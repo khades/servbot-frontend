@@ -1,0 +1,50 @@
+$item-border-width: 6px;
+.template-list-item {
+    >div {
+        padding-left: 0.15em;
+        padding-right: 0.15em;
+    }
+    color: $background-color;
+    background: $background-main-color;
+    //  @include media($size-sm) {
+    width: 100%;
+    //  }
+    &__header {
+        display: inline-flex;
+    }
+    display: inline-flex;
+    flex-direction: column;
+    @include sm-breakpoint {
+        flex-direction: row;
+    }
+    &__body {
+        word-wrap: break-word;
+        max-width: 100%;
+        width: 100%;
+    }
+    border-radius: 0.1em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    padding: 0.3em;
+    &__name {
+        font-weight: bolder;
+        // @include media($size-sm) {
+        //     min-width: 12%;
+        // }
+    }
+    &-template {
+        border-left: $item-border-width solid $color-ok;
+        border-right: $item-border-width solid $color-ok;
+        //    background-color: $color-ok;
+    }
+    &-deleted {
+        border-left: $item-border-width solid $color-error;
+        border-right: $item-border-width solid $color-error;
+        //     background-color: $background-main-color;
+    }
+    &-alias {
+        border-left: $item-border-width solid $color-active;
+        border-right: $item-border-width solid $color-active;
+        //background-color: $color-active;
+    }
+}

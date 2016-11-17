@@ -1,0 +1,45 @@
+.mustashe {
+    background-color: $color-ok;
+    padding-left: 0.15em;
+    padding-right: 0.15em;
+    border-radius: 2px;
+    margin-left: 0.15em;
+    margin-right: 0.15em;
+    &__end-if {
+        &:after {
+            margin-right: 0.15em;
+            margin-left: 0.15em;
+            content: "}";
+            font-weight: bolder;
+        }
+    }
+    &__start-if-true {
+        &:before {
+            margin-right: 0.15em;
+            margin-left: 0.15em;
+            content: "Если";
+            font-weight: bolder;
+        }
+        &:after {
+            margin-right: 0.15em;
+            margin-left: 0.15em;
+            content: "{";
+            font-weight: bolder;
+        }
+    }
+    &__start-if-false {
+        &:before {
+            margin-right: 0.15em;
+            margin-left: 0.15em;
+            content: "Если не ";
+            font-weight: bolder;
+        }
+        &:after {
+            margin-right: 0.15em;
+            margin-left: 0.15em;
+            content: "{";
+            font-weight: bolder;
+        }
+    }
+    &__variable {}
+}

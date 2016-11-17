@@ -1,0 +1,34 @@
+var m = require("mithril")
+var TemplateMustashedBodyComponent = require("./TemplateMustashedBodyComponent")
+function getCommandInfo(item) {
+    var commandInfo = { type: "deleted", body: "", icon: "delete-outline" }
+    if (!!item.template && item.template.length > 0)
+        commandInfo = { type: "template", body: item.template, icon: "pencil" }
+    if (!!item.alias && item.alias.length > 0)
+        commandInfo = { type: "alias", body: item.alias, icon: "arrow-forward" }
+    return commandInfo
+
+}
+var TemplateListItemComponent = {
+    view: function (vnode) {
+        var item = vnode.attrs.item.command
+        var commandInfo = vnode.attrs.item.commandInfo
+        return m(".template-list-item", { class: `template-list-item-${commandInfo.type}` }, [
+            m(".template-list-item__header", [m(".template-list-item__type", [
+                m(`span.typcn.typcn-${commandInfo.icon}`)
+                //, commandInfo.type
+            ]),
+
+                m(".template-list-item__name", item.commandName)]),
+            commandInfo.type == "template" ?
+                m(TemplateMustashedBodyComponent, { array: vnode.attrs.item.mustashedTemplate })
+                : m(".nothing"),
+            commandInfo.type == "alias" ? m(".template-list-item__body",
+                // m(TemplateMustashedBodyComponent, vnode.attrs.item.mustashedTemplate)
+                commandInfo.body
+
+            ) : m(".nothing")
+        ])
+    }
+}
+module.exports = TemplateListItemComponent

@@ -1,0 +1,7 @@
+//$sm-breakpoint:  "only screen  and (min-width : 700px)";
+
+@mixin sm-breakpoint {
+  @media only screen  and (min-width : 700px) {
+    @content;
+  }
+}

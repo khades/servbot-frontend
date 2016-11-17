@@ -1,0 +1,18 @@
+@import "bourbon";
+@import 'utils/index';
+@import 'base/index';
+@import 'layout/index';
+@import 'modules/index';
+@import 'states/index';
+
+
+.button-column {
+  width: 1%;
+}
+.button-container button {
+  margin-right: 0.3em;
+}
+table.checkin {
+  font-size: 0.7em;
+}
+

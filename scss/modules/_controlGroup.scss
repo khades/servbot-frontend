@@ -1,0 +1,23 @@
+.control-group {
+  label,
+  #{$all-text-inputs} {
+    display: block;
+    margin: 0.5em 0;
+  }
+  &.has-error {
+    label {
+      font-weight: bold;
+    }
+    // color: $color-error;
+    // ;
+    input {
+      border-width: 2px;
+      border-color: $color-error !important;
+      &:hover,
+       :focus {
+        border-width: 1px;
+        border-color: $color-error !important;
+      }
+    }
+  }
+}

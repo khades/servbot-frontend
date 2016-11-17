@@ -1,0 +1,22 @@
+#site-menu {
+    top: 2.85em;
+    background-color: $background-main-color;
+    margin: auto;
+    position: fixed;
+    height: 100%;
+    width: 15em;
+    left: 0;
+    //   top: 0;
+    overflow: hidden;
+    z-index: 5;
+    transition: transform 150ms linear;
+    &.hidden {
+        transform: translateX(-15em);
+        @include sm-breakpoint() {
+            transform: translateX(0em);
+        }
+    }
+    &.shown {
+        transform: translateX(0em);
+    }
+}
