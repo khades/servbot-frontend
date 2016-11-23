@@ -1,39 +1,33 @@
 var m = require("mithril")
 var LogsModel = require("../models/LogsModel")
 var Animation = require("../../utils/Animation")
+var Paginator = require("../../basicWidgets/components/PaginatorComponent")
 var LogsComponent = {
   oncreate: function (vnode) {
     Animation.fadeIn(vnode)
   },
   view: function (vnode) {
-     return m("div", [
-      m("p", "Логи"),
-      m(".button-container", [
-        m("button", {
-          type: "button",
-          disabled: LogsModel.page < 2,
-          onclick: function (event) {
-            event.redraw = false
-            LogsModel.goToPage(LogsModel.page - 1)
-          }
-        }, "Предыдущая страница"),
-        m(".right-margin-button", {
-          type: "button",
-          disabled: !LogsModel.messages || LogsModel.messages.length < 99,
-          onclick: function (event) {
-            event.redraw = false
-            LogsModel.goToPage(parseInt(LogsModel.page) + 1)
-          }
-        }, "Следующая страница"),
-      ]),
+    return m("div", [
+      m("p", `Логи пользователя ${LogsModel.username} на канале ${LogsModel.channel}, всего ${!!LogsModel.result ? LogsModel.result.Count : 0} сообщений`),
+      m(Paginator, {
+        getPage: function () {
+          return LogsModel.page
+        },
+        setPage: function (page) {
+          LogsModel.goToPage(page)
+        },
+        pages:
+          !!LogsModel.result ? Math.ceil(LogsModel.result.Count / LogsModel.pageSize) : 0
+
+      }),
       m("table", [
         m("thead", m("tr"), [
           m("th", "Дата"),
           m("th", "Сообщение")
-        ]), !!LogsModel.messages ? m("tbody", LogsModel.messages.map(function (message) {
+        ]), (!!LogsModel.result && !!LogsModel.result.Messages) ? m("tbody", LogsModel.result.Messages.map(function (message) {
           return m("tr", [
-            m("td", message.date),
-            m("td", message.message)
+            m("td", message.Date),
+            m("td", message.MessageBody)
           ])
         })) : ""
       ])

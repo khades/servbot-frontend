@@ -1,10 +1,13 @@
 var m = require("mithril")
 var TemplateModel = require("./TemplateModel")
+var ConfigURL = require("../../../utils/ConfigURL")
+
 var TemplateListModel = {
     showAlias: true,
     showTemplate: true,
     showDeleted: false,
     templates: [],
+    route: "",
     getTemplates() {
         var filter = []
         if (this.showAlias == true) {
@@ -17,17 +20,18 @@ var TemplateListModel = {
             filter.push("deleted")
         }
         var result = this.templates.filter(f => filter.some(a => a == f.commandInfo.type)).sort((a, b) => {
-            if (a.command.commandName < b.command.commandName) return -1;
-            if (a.command.commandName > b.command.commandName) return 1;
+            if (a.command.CommandName < b.command.CommandName) return -1;
+            if (a.command.CommandName > b.command.CommandName) return 1;
             return 0;
         })
         return result
     },
-    pullTemplates(channel) {
+    init(channel) {
+        this.route = m.route.get()
         m.request({
             method: "GET",
-            url: `/api/channel/${channel}/bot/templates`
-        }).map(response => {
+            url: ConfigURL(`/api/channel/${channel}/bot/templates`)
+        }).then(response => {
             TemplateListModel.templates = response.map(f => new TemplateModel(f))
         })
     }

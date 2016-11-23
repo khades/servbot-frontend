@@ -1,12 +1,11 @@
 var m = require('mithril')
-
 var TemplateModel = function (template) {
     function getCommandInfo(item) {
         var commandInfo = { type: "deleted", body: "", icon: "delete-outline" }
-        if (!!item.template && item.template.length > 0)
-            commandInfo = { type: "template", body: item.template, icon: "pencil" }
-        if (!!item.alias && item.alias.length > 0)
-            commandInfo = { type: "alias", body: item.alias, icon: "arrow-forward" }
+        if (!!item.Template && item.Template.length > 0)
+            commandInfo = { type: "template", body: item.Template, icon: "pencil" }
+        if (!!item.AliasTo && item.AliasTo.length > 0 && item.CommandName != item.AliasTo)
+            commandInfo = { type: "alias", body: item.AliasTo, icon: "arrow-forward" }
         return commandInfo
 
     }

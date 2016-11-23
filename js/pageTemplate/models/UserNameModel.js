@@ -1,4 +1,5 @@
 var Auth = require("../../utils/Auth")
+var ConfigURL = require("../../utils/ConfigURL")
 var UserNameModel = {
     userName: null,
     userNamePromise: null,
@@ -6,17 +7,17 @@ var UserNameModel = {
         if (this.userNamePromise == null)
             this.userNamePromise = Auth.request({
                 method: "GET",
-                url: "/api/user"
-            }).map(function (response) {
-                UserNameModel.userName = response.username
-                this.userNamePromise = Auth.request({
-                    method: "GET",
-                    url: `https://api.twitch.tv/kraken/channels/${response.username}`
-                }).map(function (logoResponse) {
-                    if (!!logoResponse.logo)
-                        UserNameModel.profileImage = logoResponse.logo
-                })
-            })
+                url: ConfigURL("/api/user")
+            }).then(function (response) {
+                UserNameModel.userName = response.Username
+                // this.userNamePromise = Auth.request({
+                //     method: "GET",
+                //     url: `https://api.twitch.tv/kraken/channels/${response.Username}`
+                // }).then(function (logoResponse) {
+                //     if (!!logoResponse.logo)
+                //         UserNameModel.profileImage = logoResponse.logo
+                // })
+            }.bind(this))
     },
     profileImage: null
 }

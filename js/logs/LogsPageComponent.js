@@ -4,18 +4,15 @@ var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var LogsModel = require("./models/LogsModel")
 
 var LogsPageComponent = {
-
   oninit: function (vnode) {
-    if (!!vnode.attrs.page) {
-      LogsModel.page = vnode.attrs.page
-    } else {
-      LogsModel.page = 1
-    }
-    LogsModel.username = vnode.attrs.username
-    LogsModel.channel = vnode.attrs.channel
-    LogsModel.run()
+    LogsModel.init(vnode.attrs)
   },
-
+  onupdate: function (vnode) {
+    if (m.route.get() != LogsModel.route) {
+      console.log("route change")
+      LogsModel.init(vnode.attrs)
+    }
+  },
   view: function (vnode) {
     return m(PageTemplateComponent, {
       route: "logs",

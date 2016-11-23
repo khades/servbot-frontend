@@ -1,0 +1,29 @@
+.paginator {
+     display: flex;
+    justify-content: center;
+
+    &__item {
+        font-weight: bold;
+        margin: 2px;
+        border: 1pt solid $background-main-color;
+        color: $background-main-color;
+        cursor: pointer; 
+        &__content {
+            padding: 0.5em 1.0em 0.5em 1.0em;
+        }
+        &:hover {
+            color: $background-color;
+            background: $background-main-color;
+        }
+        &__selected {
+            color: $background-color;
+            background: $color-ok !important;
+            border-color: $color-ok !important;
+            cursor: default;
+        }
+        &__inactive {
+            border-color: darkgrey !important;
+            color: darkgrey !important;
+        }
+    }
+}

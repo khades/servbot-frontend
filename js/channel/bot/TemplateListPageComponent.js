@@ -4,9 +4,14 @@ var TemplateListModel = require('./models/TemplateListModel')
 var TemplateListComponent = require("./components/TemplateListComponent")
 var TemplateListPageComponent = {
     oninit: function (vnode) {
-        TemplateListModel.pullTemplates(vnode.attrs.channel)
+        TemplateListModel.init(vnode.attrs.channel)
+
     },
-    
+    onupdate: function (vnode) {
+        if (m.route.get() != TemplateListModel.route) {
+            TemplateListModel.init(vnode.attrs.channel)
+        }
+    },
     view: function (vnode) {
         return m(PageTemplateComponent, {
             route: "templates",

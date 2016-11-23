@@ -29,6 +29,7 @@ gulp.task('build-sass', function () {
     .pipe(gulpPostcss([
       require('postcss-inline-svg'),
       autoprefixer(),
+    
       require('cssnano')
     ]))
     .pipe(sourcemaps.write('./'))
