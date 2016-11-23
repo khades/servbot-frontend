@@ -14,7 +14,8 @@ var TemplateListPageComponent = {
                         else
                             TemplateListModel.showTemplate = true
                     }
-                }, [m(`span.typcn.typcn-pencil`), "Команда"]),
+
+                }, [m(`span.sprite`), m("span.text", "Команда")]),
                 m("button.template-list__filter__alias", {
 
                     class: TemplateListModel.showAlias == true ? "" : "disabled",
@@ -25,7 +26,7 @@ var TemplateListPageComponent = {
                         else
                             TemplateListModel.showAlias = true
                     }
-                }, [m(`span.typcn.typcn-arrow-forward`), "Алиас"]),
+                }, [m(`span.sprite`), m("span.text", "Алиас")]),
                 m("button.template-list__filter__deleted", {
                     class: TemplateListModel.showDeleted == true ? "" : "disabled",
                     type: "button",
@@ -35,12 +36,13 @@ var TemplateListPageComponent = {
                         else
                             TemplateListModel.showDeleted = true
                     }
-                }, [m(`span.typcn.typcn-delete-outline`), "Удалено"])
+                }, [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")])
 
             ]),
-            m(".template-list__container", TemplateListModel.getTemplates().map(f => m(TemplateListItemComponent, { item: f })))
-        ]
-        )
+            m(".template-list__container", TemplateListModel.getTemplates().map(f => m(TemplateListItemComponent, {
+                item: f
+            })))
+        ])
     }
 }
 

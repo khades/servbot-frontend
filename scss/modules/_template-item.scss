@@ -11,6 +11,14 @@ $item-border-width: 6px;
     //  }
     &__header {
         display: inline-flex;
+        align-items: center;
+        .sprite {
+            @include svg-size(1.05em !important);
+            display: inline-flex;
+        }
+        .text {
+            display: inline-flex;
+        }
     }
     display: inline-flex;
     flex-direction: column;
@@ -35,16 +43,25 @@ $item-border-width: 6px;
     &-template {
         border-left: $item-border-width solid $color-ok;
         border-right: $item-border-width solid $color-ok;
+        .sprite {
+            background: svg-load("../svg/pencil.svg", fill=#fff);
+        }
         //    background-color: $color-ok;
     }
     &-deleted {
         border-left: $item-border-width solid $color-error;
         border-right: $item-border-width solid $color-error;
         //     background-color: $background-main-color;
+        .sprite {
+            background: svg-load("../svg/delete-outline.svg", fill=#fff);
+        }
     }
     &-alias {
         border-left: $item-border-width solid $color-active;
         border-right: $item-border-width solid $color-active;
+        .sprite {
+            background: svg-load("../svg/arrow-forward.svg", fill=#fff);
+        }
         //background-color: $color-active;
     }
 }

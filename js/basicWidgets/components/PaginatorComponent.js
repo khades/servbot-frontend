@@ -48,7 +48,7 @@ var PaginatorComponent = {
                     event.redraw = false
 
                     if (vnode.attrs.getPage() != vnode.attrs.pages) {
-                        vnode.attrs.setPage(vnode.attrs.getPage() + 1)
+                        vnode.attrs.setPage(parseInt(vnode.attrs.getPage()) + 1)
                     }
                 },
                 class: vnode.attrs.getPage() == vnode.attrs.pages ? "paginator__item__inactive" : ""

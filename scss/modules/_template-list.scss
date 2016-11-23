@@ -9,22 +9,37 @@
         display: inline-flex;
         &__template {
             background-color: $color-ok;
+            .sprite {
+                background: svg-load("../svg/pencil.svg", fill=#fff);
+            }
         }
         &__deleted {
             background-color: $color-error;
             color: $background-color;
+            .sprite {
+                background: svg-load("../svg/delete-outline.svg", fill=#fff);
+            }
         }
         &__alias {
             background-color: $color-active;
+            .sprite {
+                background: svg-load("../svg/arrow-forward.svg", fill=#fff);
+            }
         }
         >button {
-            &>.typcn {
-                margin-right: 0.3em;
-            }
             margin-left: 0.2em;
+            display: inline-flex;
+            align-items: center;
+            .sprite {
+                @include svg-size(1.05em);
+                display: inline-flex;
+            }
+            .text {
+                display: inline-flex;
+            }
             &.disabled {
-                &>.typcn {
-                    display: none;
+                .sprite {
+                    display: none
                 }
                 filter: contrast(0.7) grayscale(50);
             }

@@ -17,7 +17,7 @@ var HeaderComponent = {
             else
               PageCarcassModel.sideMenuShown = true
           }
-        }, m("span.typcn.typcn-th-menu"))),
+        })),
 
       m("div.headerContent__profile-info", {
         class: vnode.attrs.route == "personalInfo" ? "is-selected" : ""
