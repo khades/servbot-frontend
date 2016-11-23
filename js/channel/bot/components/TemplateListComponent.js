@@ -15,7 +15,7 @@ var TemplateListPageComponent = {
                             TemplateListModel.showTemplate = true
                     }
 
-                }, [m(`span.sprite`), m("span.text", "Команда")]),
+                }, m(".button-content",[m(`span.sprite`), m("span.text", "Команда")])),
                 m("button.template-list__filter__alias", {
 
                     class: TemplateListModel.showAlias == true ? "" : "disabled",
@@ -26,7 +26,7 @@ var TemplateListPageComponent = {
                         else
                             TemplateListModel.showAlias = true
                     }
-                }, [m(`span.sprite`), m("span.text", "Алиас")]),
+                }, m(".button-content", [m(`span.sprite`), m("span.text", "Алиас")])),
                 m("button.template-list__filter__deleted", {
                     class: TemplateListModel.showDeleted == true ? "" : "disabled",
                     type: "button",
@@ -36,7 +36,7 @@ var TemplateListPageComponent = {
                         else
                             TemplateListModel.showDeleted = true
                     }
-                }, [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")])
+                },m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")]))
 
             ]),
             m(".template-list__container", TemplateListModel.getTemplates().map(f => m(TemplateListItemComponent, {
