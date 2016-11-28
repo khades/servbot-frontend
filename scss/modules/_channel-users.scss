@@ -1,37 +1,22 @@
 .channel-users {
     &__container {
+        margin-left: -0.1em;
+        margin-right: -0.1em;
         display: flex;
         flex-wrap: wrap;
-    }
-    //  justify-content: space-between;
-    a {
-        text-decoration: none;
-        background-color: $background-main-color;
-        color: $background-color;
-        margin: 0.1em;
-        padding: 0.2em;
-        border-radius: 3px;
-        display: inline-flex;
-        flex-basis: 250px;
-        flex-grow: 2;
-    }
-    &__counter {
-        display: inline-flex;
-        align-items: center;
-    }
-    &__user-info {
-        display: inline-flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-    &__user {
-        font-weight: bolder;
-    }
-    &__count-icon {
-        background: svg-load("../svg/messages.svg", fill=#fff);
-        @include svg-size(1em);
-        margin-left: 0.4em;
-        margin-right: 0.1em;
+        &__user-link {
+            text-decoration: none;
+            background-color: $background-main-color;
+            color: $background-color;
+            margin: 0.1em;
+            padding: 0.2em;
+            border-radius: 3px;
+            display: inline-flex;
+            // flex-basis: 250px;
+            // flex-grow: 2;
+            &__user {
+                font-weight: bolder;
+            }
+        }
     }
 }

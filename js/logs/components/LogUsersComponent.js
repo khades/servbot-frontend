@@ -7,11 +7,11 @@ var LogUsersComponent = {
         var results = LogUsersPageModel.getResults()
         return m(".channel-users", [
             m("input", {
-                onchange: m.withAttr("value", function (value) {
+                oninput: m.withAttr("value", function (value) {
                     LogUsersPageModel.setFilter(value)
                 })
             }),
-            m(Paginator, {
+            results.count == 100 ? m(Paginator, {
                 getPage: function () {
                     return LogUsersPageModel.page
                 },
@@ -21,18 +21,12 @@ var LogUsersComponent = {
                 },
                 pages: Math.ceil(results.count / LogUsersPageModel.pageSize)
 
-            }),
+            }) : m(".nothing"),
             m(".channel-users__container", results.users.map(user => {
-                return m("a", {
+                return m("a..channel-users__container__user-link", {
                     oncreate: m.route.link,
-                    href: "/channel/" + LogUsersPageModel.channel + "/logs/" + user.User + "/1"
-                }, m("div.channel-users__user-info", [
-                    m("span.channel-users__user", user.User),
-                    m("div.channel-users__counter", [
-                        m("span.channel-users__count-icon"),
-                        m("span.channel-users__count", user.Count)
-                    ])
-                ]))
+                    href: "/channel/" + LogUsersPageModel.channel + "/logs/" + user.User
+                }, m("span.channel-users__container__user-link__user", user.User))
             }))
         ])
 

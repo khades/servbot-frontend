@@ -9,7 +9,6 @@ var LogUsersPageModel = {
     pageSize: 100,
     page: 1,
     setFilter: function (value) {
-        console.log("setting filter")
         this.page = 1
         this.filter = value
     },
@@ -34,6 +33,7 @@ var LogUsersPageModel = {
     init(channel) {
         this.route = m.route.get()
         console.log("LogUsersPageModel: Setting channel " + channel)
+        this.filter = ""
         this.channel = channel
         m.request({
             method: "GET",

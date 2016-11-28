@@ -2,27 +2,23 @@ var Auth = require("../../utils/Auth")
 var m = require("mithril")
 var ConfigURL = require("../../utils/ConfigURL")
 var LogsModel = {
-    page: 1,
-    pageSize: 50,
     filterString: "",
     channel: "",
     route: "",
     username: "",
     init: function (attrs) {
         this.route = m.route.get()
-        var page = 1
         if (!!attrs.page) {
             page = attrs.page
         }
-        this.setParams(attrs.username, attrs.channel, page)
+        this.setParams(attrs.username, attrs.channel)
     },
     goToPage: function (page) {
         this.page = page
         this.run()
-        m.route.set(`/channel/${this.channel}/logs/${this.username}/${this.page}`)
+        m.route.set(`/channel/${this.channel}/logs/${this.username}`)
     },
-    setParams(username, channel, page) {
-        this.page = page
+    setParams(username, channel) {
         this.username = username
         this.channel = channel
         this.run()
@@ -32,7 +28,7 @@ var LogsModel = {
     run() {
         Auth.request({
             method: "GET",
-            url: ConfigURL(`/api/channel/${this.channel}/logs/${this.username}/${this.page}`)
+            url: ConfigURL(`/api/channel/${this.channel}/logs/${this.username}`)
         }).then(function (response) {
             this.result = response
         }.bind(this)).catch(function (error) {

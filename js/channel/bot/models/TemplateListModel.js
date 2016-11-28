@@ -30,7 +30,7 @@ var TemplateListModel = {
         this.route = m.route.get()
         m.request({
             method: "GET",
-            url: ConfigURL(`/api/channel/${channel}/bot/templates`)
+            url: ConfigURL(`/api/channel/${channel}/templates`)
         }).then(response => {
             TemplateListModel.templates = response.map(f => new TemplateModel(f))
         })

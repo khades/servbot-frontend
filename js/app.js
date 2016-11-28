@@ -10,7 +10,7 @@ m.route(document.body, "/", {
   "/": MainPageComponent,
   "/afterAuth": AfterAuthComponent,
   //"/channelData": ChannelDataPageComponent,
-  "/channel/:channel/bot/templates": TemplateListPageComponent,
+  "/channel/:channel/templates": TemplateListPageComponent,
   // "/channel/:channel/bot/templates/:template"
   "/channel/:channel/logs": LogUsersPageComponent,
   "/channel/:channel/logs/:username": LogsPageComponent,
