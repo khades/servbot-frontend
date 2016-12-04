@@ -4,9 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "@types/lodash": "^4.14.41",
     "@types/mithril": "github:spacejack/mithril.d.ts",
-    "lodash": "^4.17.2",
     "mithril": "github:lhorie/mithril.js#rewrite"
   },
   "devDependencies": {
@@ -20,8 +18,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^3.1.3",
     "postcss-inline-svg": "^2.2.0",
-    "typescript": "^2.0.10",
-    "mithril.d.ts": "github:spacejack/mithril.d.ts"
+    "typescript": "^2.0.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
