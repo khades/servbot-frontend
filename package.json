@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
-  "dependencies": {
-    "@types/mithril": "github:spacejack/mithril.d.ts",
-    "mithril": "github:lhorie/mithril.js#rewrite"
-  },
   "devDependencies": {
+    "mithril": "github:lhorie/mithril.js#rewrite",
     "bourbon": "^4.2.7",
     "css-loader": "^0.26.1",
     "cssnano": "^3.8.0",
