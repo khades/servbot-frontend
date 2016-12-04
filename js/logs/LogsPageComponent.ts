@@ -1,8 +1,8 @@
 import * as m from "mithril"
 
-import { LogsComponent } from "./components/LogsComponent"
-import { PageTemplateComponent } from'../pageTemplate/PageTemplateComponent'
-import { LogsModel } from "./models/LogsModel"
+import  LogsComponent  from "./components/LogsComponent"
+import  PageTemplateComponent  from'../pageTemplate/PageTemplateComponent'
+import  LogsModel  from "./models/LogsModel"
 
 var LogsPageComponent = {
   oninit: function (vnode) {
@@ -22,4 +22,4 @@ var LogsPageComponent = {
     })
   }
 }
-export { LogsPageComponent }
+export default LogsPageComponent 

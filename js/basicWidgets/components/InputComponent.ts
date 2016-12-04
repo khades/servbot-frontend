@@ -23,4 +23,4 @@ var InputComponent = {
   }
 }
 
-export { InputComponent }
+export default InputComponent 

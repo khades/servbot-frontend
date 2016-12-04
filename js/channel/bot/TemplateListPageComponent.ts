@@ -1,8 +1,8 @@
 import * as m from "mithril"
 
-import { PageTemplateComponent } from '../../pageTemplate/PageTemplateComponent'
-import { TemplateListModel } from './models/TemplateListModel'
-import { TemplateListComponent } from "./components/TemplateListComponent"
+import  PageTemplateComponent  from '../../pageTemplate/PageTemplateComponent'
+import TemplateListModel  from './models/TemplateListModel'
+import  TemplateListComponent  from "./components/TemplateListComponent"
 var TemplateListPageComponent = {
     oninit: function (vnode) {
         TemplateListModel.init(vnode.attrs.channel)
@@ -22,4 +22,4 @@ var TemplateListPageComponent = {
     }
 }
 
-export { TemplateListPageComponent }
+export default TemplateListPageComponent 

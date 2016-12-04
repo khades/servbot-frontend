@@ -1,5 +1,5 @@
-import { Auth } from "../../utils/Auth"
-import {ConfigURL } from "../../utils/ConfigURL"
+import  Auth  from "../../utils/Auth"
+import ConfigURL  from "../../utils/ConfigURL"
 var UserNameModel = {
     userName: null,
     userNamePromise: null,
@@ -23,4 +23,4 @@ var UserNameModel = {
 }
 
 
-export { UserNameModel }
+export default UserNameModel

@@ -22,4 +22,4 @@ var CheckBoxComponent = {
   }
 }
 
-export { CheckBoxComponent }
+export default CheckBoxComponent 

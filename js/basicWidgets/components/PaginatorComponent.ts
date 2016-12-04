@@ -1,11 +1,12 @@
 import * as m from "mithril"
-import * as range from "lodash/range"
+// import _ from "lodash"
 var PaginatorComponent = {
-    view: function (vnode) {
+    view: function(vnode) {
         //     function generateButtons() {
-        vnode.attrs.range = 2
-        var pages = range(2 * vnode.attrs.range + 1)
-            .map(f => vnode.attrs.getPage() - vnode.attrs.range + f)
+        var paginatorRange: number = 2
+        var messedPages: Array<number> = [paginatorRange - 2, paginatorRange - 1, paginatorRange, paginatorRange + 1, paginatorRange + 2]
+        var pages = messedPages
+            .map(f => parseInt(vnode.attrs.getPage()) - paginatorRange + f)
             .filter(f => f > 0 && f < vnode.attrs.pages + 1)
         var buttons = [
             m("div.paginator__item", {
@@ -62,4 +63,4 @@ var PaginatorComponent = {
     }
 }
 
-export { PaginatorComponent }
+export default PaginatorComponent 

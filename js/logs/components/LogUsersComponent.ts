@@ -1,7 +1,6 @@
 import * as m from "mithril"
-import { LogUsersPageModel } from "../models/LogUsersPageComponent"
-import { PaginatorComponent } from "../../basicWidgets/components/PaginatorComponent"
-
+import LogUsersPageModel from "../models/LogUsersPageComponent"
+import PaginatorComponent from "../../basicWidgets/components/PaginatorComponent"
 var LogUsersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
@@ -9,6 +8,7 @@ var LogUsersComponent = {
             m("input", {
                 oninput: m.withAttr("value", function (value) {
                     LogUsersPageModel.setFilter(value)
+                    return true
                 })
             }),
             results.count == 100 ? m(PaginatorComponent, {
@@ -32,4 +32,4 @@ var LogUsersComponent = {
 
     }
 }
-export { LogUsersComponent }
+export default LogUsersComponent 

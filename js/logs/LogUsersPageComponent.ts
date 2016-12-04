@@ -1,8 +1,8 @@
 import * as m from "mithril"
 
-import { PageTemplateComponent } from '../pageTemplate/PageTemplateComponent'
-import { LogUsersPageModel } from "./models/LogUsersPageComponent"
-import { LogUsersComponent } from "./components/LogUsersComponent"
+import PageTemplateComponent from '../pageTemplate/PageTemplateComponent'
+import LogUsersPageModel from "./models/LogUsersPageComponent"
+import LogUsersComponent from "./components/LogUsersComponent"
 var LogUsersPageComponent = {
     oninit: function (vnode) {
         LogUsersPageModel.init(vnode.attrs.channel)
@@ -21,4 +21,4 @@ var LogUsersPageComponent = {
         })
     }
 }
-export { LogUsersPageComponent }
+export default LogUsersPageComponent 

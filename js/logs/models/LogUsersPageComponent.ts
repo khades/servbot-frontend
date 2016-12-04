@@ -1,6 +1,6 @@
 import * as m from "mithril"
 
-import { ConfigURL } from "../../utils/ConfigURL"
+import ConfigURL from "../../utils/ConfigURL"
 
 var LogUsersPageModel = {
     results: [],
@@ -55,4 +55,4 @@ var LogUsersPageModel = {
 
 }
 
-export { LogUsersPageModel }
+export default LogUsersPageModel 

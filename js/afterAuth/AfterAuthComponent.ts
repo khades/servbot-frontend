@@ -1,5 +1,5 @@
 import * as m from "mithril"
-import { PageTemplateComponent } from '../pageTemplate/PageTemplateComponent'
+import PageTemplateComponent  from '../pageTemplate/PageTemplateComponent'
 
 var AfterAuthComponent = {
   oninit: function (vnode) {
@@ -19,4 +19,4 @@ var AfterAuthComponent = {
   }
 }
 
-export = { AfterAuthComponent }
+export default AfterAuthComponent

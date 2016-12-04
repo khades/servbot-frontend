@@ -1,6 +1,6 @@
-import { Auth } from "../../utils/Auth"
+import  Auth  from "../../utils/Auth"
 import * as m from "mithril"
-import { ConfigURL } from "../../utils/ConfigURL"
+import  ConfigURL  from "../../utils/ConfigURL"
 
 var LogsModel = {
     filterString: "",
@@ -42,4 +42,4 @@ var LogsModel = {
     }
 }
 
-export { LogsModel }
+export default LogsModel

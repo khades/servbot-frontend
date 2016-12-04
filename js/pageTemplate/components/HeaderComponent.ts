@@ -1,7 +1,7 @@
 import * as m from "mithril"
 
-import { UserNameModel } from "../models/UserNameModel"
-import { PageCarcassModel } from "../models/PageCarcassModel"
+import UserNameModel from "../models/UserNameModel"
+import PageCarcassModel from "../models/PageCarcassModel"
 var HeaderComponent = {
   oninit: function (vnode) {
     UserNameModel.getUsername()
@@ -32,4 +32,4 @@ var HeaderComponent = {
   }
 }
 
-export { HeaderComponent } 
+export default HeaderComponent 

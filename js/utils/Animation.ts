@@ -4,4 +4,4 @@ var Animation = {
   }
 }
 
-export { Animation }
+export default Animation 

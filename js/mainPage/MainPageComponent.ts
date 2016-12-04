@@ -1,6 +1,6 @@
 import * as m from "mithril"
 
-import { PageTemplateComponent } from '../pageTemplate/PageTemplateComponent'
+import PageTemplateComponent from '../pageTemplate/PageTemplateComponent'
 
 var MainPageComponent = {
   view: function(vnode) {
@@ -13,4 +13,4 @@ var MainPageComponent = {
   }
 }
 
-export { MainPageComponent }
+export default MainPageComponent 

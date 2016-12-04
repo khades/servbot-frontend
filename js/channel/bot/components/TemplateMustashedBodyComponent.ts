@@ -21,4 +21,4 @@ var TemplateMustashedBodyComponent = {
     }
 }
 
-export { TemplateMustashedBodyComponent }
+export default TemplateMustashedBodyComponent 

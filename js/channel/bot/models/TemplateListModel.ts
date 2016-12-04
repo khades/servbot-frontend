@@ -1,7 +1,7 @@
 import * as m from "mithril"
 
-import {TemplateModel} from   "./TemplateModel"
-import {ConfigURL} from "../../../utils/ConfigURL"                           
+import TemplateModel from "./TemplateModel"
+import ConfigURL from "../../../utils/ConfigURL"
 
 var TemplateListModel = {
     showAlias: true,
@@ -32,10 +32,10 @@ var TemplateListModel = {
         m.request({
             method: "GET",
             url: ConfigURL(`/api/channel/${channel}/templates`)
-        }).then(response => {
+        }).then(function (response: Array<any>) {
             TemplateListModel.templates = response.map(f => new TemplateModel(f))
         })
     }
 }
 
-export { TemplateListModel }
+export default TemplateListModel 

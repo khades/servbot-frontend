@@ -1,7 +1,7 @@
 import * as m from "mithril"
 
-import { TemplateListModel } from '../models/TemplateListModel'
-import { TemplateListItemComponent } from "./TemplateListItemComponent"
+import TemplateListModel  from '../models/TemplateListModel'
+import TemplateListItemComponent  from "./TemplateListItemComponent"
 var TemplateListComponent = {
     view: function (vnode) {
         return m(".template-list", [
@@ -47,4 +47,4 @@ var TemplateListComponent = {
     }
 }
 
-export { TemplateListComponent }
+export default TemplateListComponent 

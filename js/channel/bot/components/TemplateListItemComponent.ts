@@ -1,6 +1,6 @@
 import * as m from "mithril"
 
-import { TemplateMustashedBodyComponent } from "./TemplateMustashedBodyComponent"
+import  TemplateMustashedBodyComponent  from "./TemplateMustashedBodyComponent"
 
 function getCommandInfo(item) {
     var commandInfo = {
@@ -46,4 +46,4 @@ var TemplateListItemComponent = {
         ])
     }
 }
-export { TemplateListItemComponent }
+export default TemplateListItemComponent 

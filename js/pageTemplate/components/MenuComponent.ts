@@ -1,8 +1,6 @@
 import * as m from "mithril"
 
-
 var MenuComponent = {
-
     view: function (vnode) {
         return m(".site-menu", m("ul", [
             m("li", {
@@ -17,4 +15,4 @@ var MenuComponent = {
     }
 }
 
-export { MenuComponent }
+export default MenuComponent 

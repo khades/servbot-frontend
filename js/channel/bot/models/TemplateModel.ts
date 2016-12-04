@@ -44,4 +44,4 @@ class TemplateModel {
     }
 }
 
-export { TemplateModel }
+export default TemplateModel 

@@ -13,4 +13,4 @@ var Auth = {
     }
 }
 
-export { Auth }
+export default Auth 

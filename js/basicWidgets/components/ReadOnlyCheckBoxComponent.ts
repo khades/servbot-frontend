@@ -21,4 +21,4 @@ var ReadOnlyCheckBoxComponent = {
   }
 }
 
-export { ReadOnlyCheckBoxComponent }
+export default ReadOnlyCheckBoxComponent 

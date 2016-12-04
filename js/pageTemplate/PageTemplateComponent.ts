@@ -1,8 +1,8 @@
 import * as m from 'mithril'
 
-import { HeaderComponent } from './components/HeaderComponent'
-import { MenuComponent } from './components/MenuComponent'
-import { PageCarcassModel } from "./models/PageCarcassModel"
+import  HeaderComponent  from './components/HeaderComponent'
+import  MenuComponent from './components/MenuComponent'
+import  PageCarcassModel  from "./models/PageCarcassModel"
 var PageTemplateComponent = {
   view: function (vnode) {
     document.title = vnode.attrs.title
@@ -18,4 +18,4 @@ var PageTemplateComponent = {
   }
 }
 
-export { PageTemplateComponent }
+export default PageTemplateComponent 

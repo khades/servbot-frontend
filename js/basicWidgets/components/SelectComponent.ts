@@ -21,4 +21,4 @@ var SelectComponent = {
   }
 }
 
-export { SelectComponent }
+export default SelectComponent 
