@@ -1,11 +1,11 @@
 import * as m from "mithril"
-
+import '../scss/style.scss';
 import MainPageComponent from "./mainPage/MainPageComponent"
 import AfterAuthComponent from "./afterAuth/AfterAuthComponent"
 import LogsPageComponent from "./logs/LogsPageComponent"
 import LogUsersPageComponent from "./logs/LogUsersPageComponent"
 import TemplateListPageComponent from "./channel/bot/TemplateListPageComponent"
-m.route.prefix("#");
+m.route.prefix("#")
 m.route(document.body, "/", {
   "/": MainPageComponent,
   "/afterAuth": AfterAuthComponent,

@@ -1,8 +1,15 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var webpack = require("webpack")
 module.exports = {
     entry: {
-        app: [ "./js/app.ts",
-        './scss/style.scss' ]
+        app: [
+            "./js/app.ts"
+        ]
+    },
+    devServer: {
+        inline: true,
+        hot: true,
+        contentBase: "./dist"
     },
     output: {
         filename: "app.js",
@@ -29,7 +36,7 @@ module.exports = {
             }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'postcss-loader?sourceMap=inline')
-            },
+            }
         ],
 
         preLoaders: [
@@ -43,7 +50,8 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('style.css', {
             allChunks: true
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     sassLoader: {
         includePaths: [require("bourbon").includePaths]
