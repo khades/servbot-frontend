@@ -1,17 +1,16 @@
-var m = require("mithril")
-
+import * as m from 'mithril'
 var Auth = {
     request: function (config) {
         return m.request(config).then(function (data) {
             return data
         }).catch(function (error) {
             if (error.status == 401) {
-                localStorage.setItem("redirect", m.route.get());
-                window.location = "/oauth/initiateAuth"
+                localStorage.setItem("redirect", m.route.get())
+                  window.location.href = "/oauth/initiateAuth"
             }
             throw error
         })
     }
 }
 
-module.exports = Auth
+export { Auth }

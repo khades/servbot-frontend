@@ -1,6 +1,7 @@
-var m = require("mithril")
-var TemplateModel = require("./TemplateModel")
-var ConfigURL = require("../../../utils/ConfigURL")
+import * as m from "mithril"
+
+import {TemplateModel} from   "./TemplateModel"
+import {ConfigURL} from "../../../utils/ConfigURL"                           
 
 var TemplateListModel = {
     showAlias: true,
@@ -37,4 +38,4 @@ var TemplateListModel = {
     }
 }
 
-module.exports = TemplateListModel
+export { TemplateListModel }

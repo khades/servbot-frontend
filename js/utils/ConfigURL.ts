@@ -5,4 +5,4 @@ function ConfigURL(uri) {
         return "http://localhost:8000/" + uri
     }
 }
-module.exports = ConfigURL
+export { ConfigURL }

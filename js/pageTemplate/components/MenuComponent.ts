@@ -1,4 +1,5 @@
-var m = require("mithril")
+import * as m from "mithril"
+
 
 var MenuComponent = {
 
@@ -16,4 +17,4 @@ var MenuComponent = {
     }
 }
 
-module.exports = MenuComponent
+export { MenuComponent }

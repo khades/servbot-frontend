@@ -1,15 +1,18 @@
-var Auth = require("../../utils/Auth")
-var m = require("mithril")
-var ConfigURL = require("../../utils/ConfigURL")
+import { Auth } from "../../utils/Auth"
+import * as m from "mithril"
+import { ConfigURL } from "../../utils/ConfigURL"
+
 var LogsModel = {
     filterString: "",
     channel: "",
     route: "",
     username: "",
+    page: 1,
+    result: null,
     init: function (attrs) {
         this.route = m.route.get()
         if (!!attrs.page) {
-            page = attrs.page
+            this.page = attrs.page
         }
         this.setParams(attrs.username, attrs.channel)
     },
@@ -39,4 +42,4 @@ var LogsModel = {
     }
 }
 
-module.exports = LogsModel
+export { LogsModel }

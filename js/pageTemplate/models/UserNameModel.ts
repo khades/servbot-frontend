@@ -1,5 +1,5 @@
-var Auth = require("../../utils/Auth")
-var ConfigURL = require("../../utils/ConfigURL")
+import { Auth } from "../../utils/Auth"
+import {ConfigURL } from "../../utils/ConfigURL"
 var UserNameModel = {
     userName: null,
     userNamePromise: null,
@@ -23,4 +23,4 @@ var UserNameModel = {
 }
 
 
-module.exports = UserNameModel
+export { UserNameModel }

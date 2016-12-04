@@ -1,10 +1,11 @@
-var m = require("mithril")
-var MainPageComponent = require("./mainPage/MainPageComponent")
-var AfterAuthComponent = require("./afterAuth/AfterAuthComponent")
-var LogsPageComponent = require("./logs/LogsPageComponent")
-var LogUsersPageComponent = require("./logs/LogUsersPageComponent")
+import * as m from "mithril"
 
-var TemplateListPageComponent = require("./channel/bot/TemplateListPageComponent")
+import { MainPageComponent }  from "./mainPage/MainPageComponent"
+import { AfterAuthComponent } from "./afterAuth/AfterAuthComponent"
+import { LogsPageComponent } from "./logs/LogsPageComponent"
+import { LogUsersPageComponent }  from "./logs/LogUsersPageComponent"
+import { TemplateListPageComponent  }  from "./channel/bot/TemplateListPageComponent"
+
 m.route.prefix("#");
 m.route(document.body, "/", {
   "/": MainPageComponent,

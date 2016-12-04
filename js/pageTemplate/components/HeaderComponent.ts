@@ -1,6 +1,7 @@
-var m = require("mithril")
-var UserNameModel = require("../models/UserNameModel")
-var PageCarcassModel = require("../models/PageCarcassModel")
+import * as m from "mithril"
+
+import { UserNameModel } from "../models/UserNameModel"
+import { PageCarcassModel } from "../models/PageCarcassModel"
 var HeaderComponent = {
   oninit: function (vnode) {
     UserNameModel.getUsername()
@@ -31,4 +32,4 @@ var HeaderComponent = {
   }
 }
 
-module.exports = HeaderComponent
+export { HeaderComponent } 

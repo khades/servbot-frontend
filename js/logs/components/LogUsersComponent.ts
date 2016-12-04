@@ -1,6 +1,6 @@
-var m = require("mithril")
-var LogUsersPageModel = require("../models/LogUsersPageComponent")
-var Paginator = require("../../basicWidgets/components/PaginatorComponent")
+import * as m from "mithril"
+import { LogUsersPageModel } from "../models/LogUsersPageComponent"
+import { PaginatorComponent } from "../../basicWidgets/components/PaginatorComponent"
 
 var LogUsersComponent = {
     view: function (vnode) {
@@ -11,7 +11,7 @@ var LogUsersComponent = {
                     LogUsersPageModel.setFilter(value)
                 })
             }),
-            results.count == 100 ? m(Paginator, {
+            results.count == 100 ? m(PaginatorComponent, {
                 getPage: function () {
                     return LogUsersPageModel.page
                 },
@@ -32,4 +32,4 @@ var LogUsersComponent = {
 
     }
 }
-module.exports = LogUsersComponent
+export { LogUsersComponent }

@@ -1,7 +1,8 @@
-var m = require("mithril")
-var TemplateListModel = require('../models/TemplateListModel')
-var TemplateListItemComponent = require("./TemplateListItemComponent")
-var TemplateListPageComponent = {
+import * as m from "mithril"
+
+import { TemplateListModel } from '../models/TemplateListModel'
+import { TemplateListItemComponent } from "./TemplateListItemComponent"
+var TemplateListComponent = {
     view: function (vnode) {
         return m(".template-list", [
             m(".template-list__filter", [
@@ -15,7 +16,7 @@ var TemplateListPageComponent = {
                             TemplateListModel.showTemplate = true
                     }
 
-                }, m(".button-content",[m(`span.sprite`), m("span.text", "Команда")])),
+                }, m(".button-content", [m(`span.sprite`), m("span.text", "Команда")])),
                 m("button.template-list__filter__alias", {
 
                     class: TemplateListModel.showAlias == true ? "" : "disabled",
@@ -36,7 +37,7 @@ var TemplateListPageComponent = {
                         else
                             TemplateListModel.showDeleted = true
                     }
-                },m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")]))
+                }, m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")]))
 
             ]),
             m(".template-list__container", TemplateListModel.getTemplates().map(f => m(TemplateListItemComponent, {
@@ -46,4 +47,4 @@ var TemplateListPageComponent = {
     }
 }
 
-module.exports = TemplateListPageComponent
+export { TemplateListComponent }

@@ -1,7 +1,8 @@
-var m = require("mithril")
-var LogsComponent = require("./components/LogsComponent")
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
-var LogsModel = require("./models/LogsModel")
+import * as m from "mithril"
+
+import { LogsComponent } from "./components/LogsComponent"
+import { PageTemplateComponent } from'../pageTemplate/PageTemplateComponent'
+import { LogsModel } from "./models/LogsModel"
 
 var LogsPageComponent = {
   oninit: function (vnode) {
@@ -21,4 +22,4 @@ var LogsPageComponent = {
     })
   }
 }
-module.exports = LogsPageComponent
+export { LogsPageComponent }

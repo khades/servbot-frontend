@@ -1,7 +1,8 @@
-var m = require("mithril")
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
-var LogUsersPageModel = require("./models/LogUsersPageComponent")
-var LogUsersComponent = require("./components/LogUsersComponent")
+import * as m from "mithril"
+
+import { PageTemplateComponent } from '../pageTemplate/PageTemplateComponent'
+import { LogUsersPageModel } from "./models/LogUsersPageComponent"
+import { LogUsersComponent } from "./components/LogUsersComponent"
 var LogUsersPageComponent = {
     oninit: function (vnode) {
         LogUsersPageModel.init(vnode.attrs.channel)
@@ -20,4 +21,4 @@ var LogUsersPageComponent = {
         })
     }
 }
-module.exports = LogUsersPageComponent
+export { LogUsersPageComponent }

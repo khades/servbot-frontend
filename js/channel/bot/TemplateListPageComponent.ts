@@ -1,7 +1,8 @@
-var m = require("mithril")
-var PageTemplateComponent = require('../../pageTemplate/PageTemplateComponent')
-var TemplateListModel = require('./models/TemplateListModel')
-var TemplateListComponent = require("./components/TemplateListComponent")
+import * as m from "mithril"
+
+import { PageTemplateComponent } from '../../pageTemplate/PageTemplateComponent'
+import { TemplateListModel } from './models/TemplateListModel'
+import { TemplateListComponent } from "./components/TemplateListComponent"
 var TemplateListPageComponent = {
     oninit: function (vnode) {
         TemplateListModel.init(vnode.attrs.channel)
@@ -21,4 +22,4 @@ var TemplateListPageComponent = {
     }
 }
 
-module.exports = TemplateListPageComponent
+export { TemplateListPageComponent }

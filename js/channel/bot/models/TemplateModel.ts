@@ -1,6 +1,15 @@
-var m = require('mithril')
-var TemplateModel = function (template) {
-    function getCommandInfo(item) {
+import * as m from "mithril"
+
+class TemplateModel {
+    constructor(template: string) {
+        this.command = template
+        this.commandInfo = this.getCommandInfo(template)
+        this.mustashedTemplate = this.commandInfo.type == "template" ? this.getMustasheDescription(this.commandInfo.body) : []
+    }
+    mustashedTemplate: string
+    command: string
+    commandInfo
+    private getCommandInfo(item) {
         var commandInfo = { type: "deleted", body: "", icon: "delete-outline" }
         if (!!item.Template && item.Template.length > 0)
             commandInfo = { type: "template", body: item.Template, icon: "pencil" }
@@ -9,7 +18,7 @@ var TemplateModel = function (template) {
         return commandInfo
 
     }
-    function getMustasheDescription(list) {
+    private getMustasheDescription(list) {
         var superline = list.replace(/{ /gi, "{")
             .replace(/ }/gi, "}")
             .replace(/{{{/gi, "{{")
@@ -32,19 +41,7 @@ var TemplateModel = function (template) {
         //     }
 
         //     return `<span class=\"mustashe mustashe__variable\">${f.replace(/{/g, "").replace(/}/g, "")}</span>`
-
-    }
-
-
-
-
-    var commandInfo = getCommandInfo(template)
-    var mustashedTemplate = commandInfo.type == "template" ? getMustasheDescription(commandInfo.body) : []
-    return {
-        command: template,
-        commandInfo: commandInfo,
-        mustashedTemplate: mustashedTemplate
     }
 }
 
-module.exports = TemplateModel
+export { TemplateModel }

@@ -1,5 +1,6 @@
-var m = require("mithril")
-var TemplateMustashedBodyComponent = require("./TemplateMustashedBodyComponent")
+import * as m from "mithril"
+
+import { TemplateMustashedBodyComponent } from "./TemplateMustashedBodyComponent"
 
 function getCommandInfo(item) {
     var commandInfo = {
@@ -41,9 +42,8 @@ var TemplateListItemComponent = {
             commandInfo.type == "alias" ? m(".template-list-item__body",
                 // m(TemplateMustashedBodyComponent, vnode.attrs.item.mustashedTemplate)
                 commandInfo.body
-
             ) : m(".nothing")
         ])
     }
 }
-module.exports = TemplateListItemComponent
+export { TemplateListItemComponent }

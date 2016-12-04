@@ -1,4 +1,5 @@
-var m = require("mithril")
+import * as m from "mithril"
+
 
 var SelectComponent = {
   view: function (vnode) {
@@ -20,4 +21,4 @@ var SelectComponent = {
   }
 }
 
-module.exports = SelectComponent
+export { SelectComponent }

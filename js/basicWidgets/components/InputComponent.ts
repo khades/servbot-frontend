@@ -1,4 +1,5 @@
-var m = require("mithril")
+import * as m from "mithril"
+
 
 var InputComponent = {
   view: function (vnode) {
@@ -22,4 +23,4 @@ var InputComponent = {
   }
 }
 
-module.exports = InputComponent
+export { InputComponent }

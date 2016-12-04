@@ -1,4 +1,5 @@
-var m = require("mithril")
+import * as m from "mithril"
+
 
 var CheckBoxComponent = {
   view: function (vnode) {
@@ -21,4 +22,4 @@ var CheckBoxComponent = {
   }
 }
 
-module.exports = CheckBoxComponent
+export { CheckBoxComponent }

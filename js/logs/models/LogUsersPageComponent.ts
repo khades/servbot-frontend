@@ -1,5 +1,6 @@
-var m = require("mithril")
-var ConfigURL = require("../../utils/ConfigURL")
+import * as m from "mithril"
+
+import { ConfigURL } from "../../utils/ConfigURL"
 
 var LogUsersPageModel = {
     results: [],
@@ -54,4 +55,4 @@ var LogUsersPageModel = {
 
 }
 
-module.exports = LogUsersPageModel
+export { LogUsersPageModel }
