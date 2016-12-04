@@ -8,13 +8,14 @@
     "mithril": "github:lhorie/mithril.js#rewrite"
   },
   "devDependencies": {
-    "sass-loader": "^4.0.2",
     "bourbon": "^4.2.7",
     "css-loader": "^0.26.1",
     "cssnano": "^3.8.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.13.0",
     "postcss-inline-svg": "^2.2.0",
     "postcss-loader": "^1.2.0",
+    "sass-loader": "^4.0.2",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
     "ts-loader": "^1.2.2",
