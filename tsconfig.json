@@ -8,6 +8,7 @@
         "lib": ["es2015", "dom"],
         "outFile": "app.js",
         "module": "system",
-        "declaration":false
+        "declaration": false,
+        "removeComments": true
     }
 }
