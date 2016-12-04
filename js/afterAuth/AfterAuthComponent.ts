@@ -1,9 +1,9 @@
 import * as m from "mithril"
-import PageTemplateComponent  from '../pageTemplate/PageTemplateComponent'
+import PageTemplateComponent from '../pageTemplate/PageTemplateComponent'
 
 var AfterAuthComponent = {
   oninit: function (vnode) {
-    var route = localStorage.getItem("redirect");
+    let route = localStorage.getItem("redirect");
     console.log(route);
     if (!!route) {
       m.route.set(route);

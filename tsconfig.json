@@ -1,4 +1,5 @@
 {
+    "include": ["types/**/*.d.ts"],
     "files": [
         "js/app.ts"
     ],

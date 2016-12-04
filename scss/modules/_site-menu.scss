@@ -1,5 +1,6 @@
 .site-menu {
     height: 100%;
+    width: 100%;
     display: inline-flex;
     justify-content: space-between;
     flex-direction: column;
@@ -8,6 +9,7 @@
         font-size: 0.6em;
     }
     ul {
+        width: 100%;
         display: inline-flex;
         flex-direction: column;
         // @include align-items(stretch);
@@ -15,6 +17,7 @@
         padding: 0;
         margin: 0;
         li {
+            width: 100%;
             transition: background-color 150ms linear;
             min-height: 2.85em;
             display: inline-flex;
