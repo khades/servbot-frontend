@@ -35,7 +35,7 @@ var LogsModel = {
         }).then(function (response) {
             this.result = response
         }.bind(this)).catch(function (error) {
-            if (error.status == 403) {
+            if (error.Code == 403) {
                 this.authorized = false
             }
         }.bind(this))
