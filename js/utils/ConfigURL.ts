@@ -1,8 +1,10 @@
+import config from "../../config"
+
 function ConfigURL(uri) {
     if (uri.startsWith("/")) {
-        return "http://localhost:8000" + uri
+        return config.appUrl + + uri
     } else {
-        return "http://localhost:8000/" + uri
+        return config.appUrl + "/" + uri
     }
 }
 export default ConfigURL
