@@ -5,7 +5,7 @@ var Auth = {
             return data
         }).catch(function (error) {
             console.log(error)
-            if (error.status == 401) {
+            if (error.Code == 401) {
                 localStorage.setItem("redirect", m.route.get())
                 window.location.href = "/oauth/initiateAuth"
             }
