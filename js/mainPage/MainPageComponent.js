@@ -1,4 +1,4 @@
-import * as m from "mithril"
+var m = require("mithril")
 
 import PageTemplateComponent from '../pageTemplate/PageTemplateComponent'
 
