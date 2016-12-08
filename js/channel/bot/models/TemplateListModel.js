@@ -32,7 +32,7 @@ var TemplateListModel = {
         m.request({
             method: "GET",
             url: ConfigURL(`/api/channel/${channel}/templates`)
-        }).then(function (response: Array<any>) {
+        }).then(function (response) {
             TemplateListModel.templates = response.map(f => new TemplateModel(f))
         })
     }

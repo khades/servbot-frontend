@@ -1,10 +1,10 @@
 import * as m from "mithril"
 // import _ from "lodash"
 var PaginatorComponent = {
-    view: function(vnode) {
+    view: function (vnode) {
         //     function generateButtons() {
-        var paginatorRange: number = 2
-        var messedPages: Array<number> = [paginatorRange - 2, paginatorRange - 1, paginatorRange, paginatorRange + 1, paginatorRange + 2]
+        var paginatorRange = 2
+        var messedPages = [paginatorRange - 2, paginatorRange - 1, paginatorRange, paginatorRange + 1, paginatorRange + 2]
         var pages = messedPages
             .map(f => parseInt(vnode.attrs.getPage()) - paginatorRange + f)
             .filter(f => f > 0 && f < vnode.attrs.pages + 1)
@@ -39,14 +39,14 @@ var PaginatorComponent = {
             }, m("div.paginator__item__content", f)))
         })
         buttons.push(m("div.paginator__item", {
-            onclick: event => {
-                event.redraw = false
-                if (vnode.attrs.getPage() != vnode.attrs.pages) {
-                    vnode.attrs.setPage(parseInt(vnode.attrs.getPage()) + 1)
-                }
-            },
-            class: vnode.attrs.getPage() == vnode.attrs.pages ? "paginator__item__inactive" : ""
-        }, m("div.paginator__item__content", "❯")),
+                onclick: event => {
+                    event.redraw = false
+                    if (vnode.attrs.getPage() != vnode.attrs.pages) {
+                        vnode.attrs.setPage(parseInt(vnode.attrs.getPage()) + 1)
+                    }
+                },
+                class: vnode.attrs.getPage() == vnode.attrs.pages ? "paginator__item__inactive" : ""
+            }, m("div.paginator__item__content", "❯")),
             m("div.paginator__item", {
                 onclick: event => {
                     event.redraw = false
@@ -56,11 +56,11 @@ var PaginatorComponent = {
                 class: vnode.attrs.getPage() == vnode.attrs.pages ? "paginator__item__selected" : ""
             }, m("div.paginator__item__content", "❯❯")))
         return m(".paginator", buttons)
-        // }
-        // return m(".paginator", [
-        //     generateButtons()
-        // ])
+            // }
+            // return m(".paginator", [
+            //     generateButtons()
+            // ])
     }
 }
 
-export default PaginatorComponent 
+export default PaginatorComponent

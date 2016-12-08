@@ -1,15 +1,13 @@
 import * as m from "mithril"
 
 class TemplateModel {
-    constructor(template: string) {
+    constructor(template) {
         this.command = template
         this.commandInfo = this.getCommandInfo(template)
         this.mustashedTemplate = this.commandInfo.type == "template" ? this.getMustasheDescription(this.commandInfo.body) : []
     }
-    mustashedTemplate: string
-    command: string
-    commandInfo
-    private getCommandInfo(item) {
+
+    getCommandInfo(item) {
         var commandInfo = { type: "deleted", body: "", icon: "delete-outline" }
         if (!!item.Template && item.Template.length > 0)
             commandInfo = { type: "template", body: item.Template, icon: "pencil" }
@@ -18,7 +16,7 @@ class TemplateModel {
         return commandInfo
 
     }
-    private getMustasheDescription(list) {
+     getMustasheDescription(list) {
         var superline = list.replace(/{ /gi, "{")
             .replace(/ }/gi, "}")
             .replace(/{{{/gi, "{{")
