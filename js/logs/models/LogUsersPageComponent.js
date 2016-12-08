@@ -1,6 +1,5 @@
-import * as m from "mithril"
-
-import ConfigURL from "../../utils/ConfigURL"
+var m = require("mithril")
+var ConfigURL = require( "../../utils/ConfigURL")
 
 var LogUsersPageModel = {
     results: [],
@@ -55,4 +54,4 @@ var LogUsersPageModel = {
 
 }
 
-export default LogUsersPageModel 
+module.exports = LogUsersPageModel 

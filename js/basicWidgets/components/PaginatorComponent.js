@@ -1,4 +1,4 @@
-import * as m from "mithril"
+var m = require("mithril")
 // import _ from "lodash"
 var PaginatorComponent = {
     view: function (vnode) {
@@ -63,4 +63,4 @@ var PaginatorComponent = {
     }
 }
 
-export default PaginatorComponent
+module.exports = PaginatorComponent

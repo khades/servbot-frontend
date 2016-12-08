@@ -1,5 +1,5 @@
-import  Auth  from "../../utils/Auth"
-import ConfigURL  from "../../utils/ConfigURL"
+var Auth = require("../../utils/Auth")
+var ConfigURL = require("../../utils/ConfigURL")
 var UserNameModel = {
     userName: null,
     userNamePromise: null,
@@ -10,17 +10,17 @@ var UserNameModel = {
                 url: ConfigURL("/api/user")
             }).then(function (response) {
                 UserNameModel.userName = response.Username
-                // this.userNamePromise = Auth.request({
-                //     method: "GET",
-                //     url: `https://api.twitch.tv/kraken/channels/${response.Username}`
-                // }).then(function (logoResponse) {
-                //     if (!!logoResponse.logo)
-                //         UserNameModel.profileImage = logoResponse.logo
-                // })
+                    // this.userNamePromise = Auth.request({
+                    //     method: "GET",
+                    //     url: `https://api.twitch.tv/kraken/channels/${response.Username}`
+                    // }).then(function (logoResponse) {
+                    //     if (!!logoResponse.logo)
+                    //         UserNameModel.profileImage = logoResponse.logo
+                    // })
             }.bind(this))
     },
     profileImage: null
 }
 
 
-export default UserNameModel
+module.exports = UserNameModel

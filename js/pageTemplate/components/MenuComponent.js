@@ -1,5 +1,5 @@
-import * as m from "mithril"
-// import * as Hammer from "hammerjs"
+var m = require("mithril")
+    // var Hammer = require("hammerjs")
 
 var MenuComponent = {
     oncreate: function (vnode) {
@@ -16,15 +16,14 @@ var MenuComponent = {
     view: function (vnode) {
         return m(".site-menu", m("ul", [
             m("li", {
-                class: vnode.attrs.route == "mainPage" ? "is-selected" : ""
-            },
+                    class: vnode.attrs.route == "mainPage" ? "is-selected" : ""
+                },
                 m("a", {
                     href: "/",
                     oncreate: m.route.link
                 }, m("span", "Главная страница"))),
-        ])
-        )
+        ]))
     }
 }
 
-export default MenuComponent 
+module.exports = MenuComponent

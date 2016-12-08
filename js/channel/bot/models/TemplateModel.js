@@ -1,4 +1,4 @@
-import * as m from "mithril"
+var m = require("mithril")
 
 class TemplateModel {
     constructor(template) {
@@ -42,4 +42,4 @@ class TemplateModel {
     }
 }
 
-export default TemplateModel 
+module.exports = TemplateModel 

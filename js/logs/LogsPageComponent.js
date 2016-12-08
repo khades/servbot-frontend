@@ -1,8 +1,8 @@
-import * as m from "mithril"
+var m = require("mithril")
 
-import  LogsComponent  from "./components/LogsComponent"
-import  PageTemplateComponent  from'../pageTemplate/PageTemplateComponent'
-import  LogsModel  from "./models/LogsModel"
+var LogsComponent = require("./components/LogsComponent")
+var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
+var LogsModel = require("./models/LogsModel")
 
 var LogsPageComponent = {
   oninit: function (vnode) {
@@ -22,4 +22,4 @@ var LogsPageComponent = {
     })
   }
 }
-export default LogsPageComponent 
+module.exports = LogsPageComponent

@@ -2,4 +2,4 @@ var PageCarcassModel = {
     sideMenuShown: false
 }
 
-export default PageCarcassModel 
+module.exports = PageCarcassModel 

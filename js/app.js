@@ -1,10 +1,10 @@
-import * as m from "mithril"
+var m = require("mithril")
 import '../scss/style.scss';
-import MainPageComponent from "./mainPage/MainPageComponent"
-import AfterAuthComponent from "./afterAuth/AfterAuthComponent"
-import LogsPageComponent from "./logs/LogsPageComponent"
-import LogUsersPageComponent from "./logs/LogUsersPageComponent"
-import TemplateListPageComponent from "./channel/bot/TemplateListPageComponent"
+var MainPageComponent = require("./mainPage/MainPageComponent")
+var AfterAuthComponent = require("./afterAuth/AfterAuthComponent")
+var LogsPageComponent = require("./logs/LogsPageComponent")
+var LogUsersPageComponent = require("./logs/LogUsersPageComponent")
+var TemplateListPageComponent = require("./channel/bot/TemplateListPageComponent")
 m.route.prefix("#")
 m.route(document.body, "/", {
   "/": MainPageComponent,

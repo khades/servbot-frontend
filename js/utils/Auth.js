@@ -1,4 +1,4 @@
-import * as m from 'mithril'
+var m = require("mithril")
 var Auth = {
     request: function (config) {
         return m.request(config).then(function (data) {
@@ -14,4 +14,4 @@ var Auth = {
     }
 }
 
-export default Auth 
+module.exports = Auth 

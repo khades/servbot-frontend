@@ -1,5 +1,4 @@
-import * as m from "mithril"
-
+var m = require("mithril")
 
 var SelectComponent = {
   view: function (vnode) {
@@ -21,4 +20,4 @@ var SelectComponent = {
   }
 }
 
-export default SelectComponent 
+module.exports = SelectComponent 

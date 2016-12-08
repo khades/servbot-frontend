@@ -1,6 +1,5 @@
-import * as m from "mithril"
-
-import  TemplateMustashedBodyComponent  from "./TemplateMustashedBodyComponent"
+var m = require("mithril")
+var TemplateMustashedBodyComponent = require("./TemplateMustashedBodyComponent")
 
 function getCommandInfo(item) {
     var commandInfo = {
@@ -46,4 +45,4 @@ var TemplateListItemComponent = {
         ])
     }
 }
-export default TemplateListItemComponent 
+module.exports = TemplateListItemComponent

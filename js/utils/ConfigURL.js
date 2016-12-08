@@ -1,4 +1,4 @@
-import config from "../../config"
+var config = require("../../config")
 
 function ConfigURL(uri) {
     if (uri.startsWith("/")) {
@@ -7,4 +7,4 @@ function ConfigURL(uri) {
         return config.appUrl + "/" + uri
     }
 }
-export default ConfigURL
+module.exports = ConfigURL

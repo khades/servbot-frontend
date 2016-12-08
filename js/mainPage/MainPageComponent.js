@@ -1,6 +1,5 @@
 var m = require("mithril")
-
-import PageTemplateComponent from '../pageTemplate/PageTemplateComponent'
+var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 
 var MainPageComponent = {
   view: function(vnode) {
@@ -13,4 +12,4 @@ var MainPageComponent = {
   }
 }
 
-export default MainPageComponent 
+module.exports = MainPageComponent 

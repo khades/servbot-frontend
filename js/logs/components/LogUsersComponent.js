@@ -1,6 +1,6 @@
-import * as m from "mithril"
-import LogUsersPageModel from "../models/LogUsersPageComponent"
-import PaginatorComponent from "../../basicWidgets/components/PaginatorComponent"
+var m = require("mithril")
+var LogUsersPageModel  = require("../models/LogUsersPageComponent")
+var PaginatorComponent  = require("../../basicWidgets/components/PaginatorComponent") 
 var LogUsersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
@@ -32,4 +32,4 @@ var LogUsersComponent = {
 
     }
 }
-export default LogUsersComponent 
+module.exports = LogUsersComponent 

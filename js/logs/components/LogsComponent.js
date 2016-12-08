@@ -1,7 +1,7 @@
-import * as m from "mithril"
+var m = require("mithril")
+var LogsModel = require("../models/LogsModel")
+var Animation = require("../../utils/Animation")
 
-import LogsModel  from "../models/LogsModel"
-import Animation  from "../../utils/Animation"
 var LogsComponent = {
   oncreate: function (vnode) {
     Animation.fadeIn(vnode)
@@ -24,4 +24,4 @@ var LogsComponent = {
   }
 }
 
-export default LogsComponent
+module.exports = LogsComponent

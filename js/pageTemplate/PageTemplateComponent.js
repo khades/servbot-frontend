@@ -1,13 +1,15 @@
-import * as m from 'mithril'
+var m = require("mithril")
 
-import HeaderComponent from './components/HeaderComponent'
-import MenuComponent from './components/MenuComponent'
-import PageCarcassModel from "./models/PageCarcassModel"
+var HeaderComponent = require('./components/HeaderComponent')
+var MenuComponent = require('./components/MenuComponent')
+var PageCarcassModel = require("./models/PageCarcassModel")
 var PageTemplateComponent = {
   view: function (vnode) {
     document.title = vnode.attrs.title
     return m("section#main", [
-      m("#site-menu", { class: PageCarcassModel.sideMenuShown == true ? "shown" : "hidden" }, m(MenuComponent, {
+      m("#site-menu", {
+        class: PageCarcassModel.sideMenuShown == true ? "shown" : "hidden"
+      }, m(MenuComponent, {
         route: vnode.attrs.route,
         hideMenu: function () {
           PageCarcassModel.sideMenuShown = false
@@ -24,4 +26,4 @@ var PageTemplateComponent = {
   }
 }
 
-export default PageTemplateComponent 
+module.exports = PageTemplateComponent

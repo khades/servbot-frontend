@@ -1,5 +1,4 @@
-import * as m from "mithril"
-
+var m = require("mithril")
 
 var ReadOnlyCheckBoxComponent = {
   view: function (vnode) {
@@ -21,4 +20,4 @@ var ReadOnlyCheckBoxComponent = {
   }
 }
 
-export default ReadOnlyCheckBoxComponent 
+module.exports = ReadOnlyCheckBoxComponent 

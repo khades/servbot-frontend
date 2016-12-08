@@ -1,6 +1,6 @@
-import  Auth  from "../../utils/Auth"
-import * as m from "mithril"
-import  ConfigURL  from "../../utils/ConfigURL"
+var Auth = require("../../utils/Auth")
+var m = require("mithril")
+var ConfigURL = require("../../utils/ConfigURL")
 
 var LogsModel = {
     filterString: "",
@@ -42,4 +42,4 @@ var LogsModel = {
     }
 }
 
-export default LogsModel
+module.exports = LogsModel

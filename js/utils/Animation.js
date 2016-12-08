@@ -4,4 +4,4 @@ var Animation = {
   }
 }
 
-export default Animation 
+module.exports = Animation 

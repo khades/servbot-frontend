@@ -1,4 +1,4 @@
-import * as m from "mithril"
+var m = require("mithril")
 
 var TemplateMustashedBodyComponent = {
     view: function (vnode) {
@@ -21,4 +21,4 @@ var TemplateMustashedBodyComponent = {
     }
 }
 
-export default TemplateMustashedBodyComponent 
+module.exports = TemplateMustashedBodyComponent 

@@ -1,9 +1,7 @@
-import * as m from "mithril"
-
+var m = require("mithril")
 
 var InputComponent = {
   view: function (vnode) {
-
     return m(".control-group", {
       class: !!vnode.attrs.error && vnode.attrs.error != null ? "has-error" : ""
     }, [
@@ -23,4 +21,4 @@ var InputComponent = {
   }
 }
 
-export default InputComponent 
+module.exports = InputComponent 
