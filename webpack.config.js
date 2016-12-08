@@ -26,11 +26,12 @@ module.exports = {
 
     module: {
         loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader?cacheDirectory=true&presets[]=es2015'
+            // {
+            //     test: /\.js$/,
+            //     loader: 'babel-loader?cacheDirectory=true&presets[]=es2015"
 
-            }, {
+            // },
+            {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap&importLoaders=1!postcss-loader?sourceMap!sass-loader?sourceMap')
             }, {
@@ -51,10 +52,7 @@ module.exports = {
             allChunks: true
         }),
         new webpack.HotModuleReplacementPlugin()
-        // ,
-        // new webpack.optimize.DedupePlugin(),
-        // new webpack.optimize.UglifyJsPlugin(),
-        // new webpack.optimize.AggressiveMergingPlugin()
+  
     ],
     sassLoader: {
         includePaths: [require("bourbon").includePaths]
