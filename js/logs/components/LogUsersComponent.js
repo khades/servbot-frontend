@@ -5,9 +5,9 @@ var LogUsersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
         console.log(results)
-        console.log(results.users.count)
+        console.log(results.users.length)
 
-        console.log(results.users.count == 100)
+        console.log(results.users.length == 100)
         return m(".channel-users", [
             m("input", {
                 oninput: m.withAttr("value", function (value) {
@@ -15,7 +15,7 @@ var LogUsersComponent = {
                     return true
                 })
             }),
-            results.users.count == 100 ? m(PaginatorComponent, {
+            results.users.length == 100 ? m(PaginatorComponent, {
                 getPage: function () {
                     return LogUsersPageModel.page
                 },
