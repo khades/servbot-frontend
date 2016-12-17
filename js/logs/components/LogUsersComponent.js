@@ -4,7 +4,7 @@ var PaginatorComponent  = require("../../basicWidgets/components/PaginatorCompon
 var LogUsersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
-        console.log(result)
+        console.log(results)
         return m(".channel-users", [
             m("input", {
                 oninput: m.withAttr("value", function (value) {
