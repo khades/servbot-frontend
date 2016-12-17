@@ -12,7 +12,7 @@ var LogUsersComponent = {
                     return true
                 })
             }),
-            (results.users.count == 100 && results.count != 100) ? m(PaginatorComponent, {
+            results.users.count == 100  ? m(PaginatorComponent, {
                 getPage: function () {
                     return LogUsersPageModel.page
                 },
