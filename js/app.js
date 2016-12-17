@@ -1,5 +1,5 @@
 var m = require("mithril")
-import '../scss/style.scss';
+require('../scss/style.scss')
 var MainPageComponent = require("./mainPage/MainPageComponent")
 var AfterAuthComponent = require("./afterAuth/AfterAuthComponent")
 var LogsPageComponent = require("./logs/LogsPageComponent")
