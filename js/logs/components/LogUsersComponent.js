@@ -5,6 +5,7 @@ var LogUsersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
         console.log(results)
+        console.log(results.users.count == 100)
         return m(".channel-users", [
             m("input", {
                 oninput: m.withAttr("value", function (value) {
