@@ -1,6 +1,6 @@
 var m = require("mithril")
-var LogUsersPageModel  = require("../models/LogUsersPageComponent")
-var PaginatorComponent  = require("../../basicWidgets/components/PaginatorComponent") 
+var LogUsersPageModel = require("../models/LogUsersPageComponent")
+var PaginatorComponent = require("../../basicWidgets/components/PaginatorComponent")
 var LogUsersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
@@ -12,7 +12,7 @@ var LogUsersComponent = {
                     return true
                 })
             }),
-            results.count == 100 ? m(PaginatorComponent, {
+            (results.users.count == 100 && results.count != 100) ? m(PaginatorComponent, {
                 getPage: function () {
                     return LogUsersPageModel.page
                 },
@@ -33,4 +33,4 @@ var LogUsersComponent = {
 
     }
 }
-module.exports = LogUsersComponent 
+module.exports = LogUsersComponent
