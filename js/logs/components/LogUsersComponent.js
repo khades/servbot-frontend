@@ -15,7 +15,7 @@ var LogUsersComponent = {
                     return true
                 })
             }),
-            (results.users.length == 100 && results.count > 100) ? m(PaginatorComponent, {
+            results.count > 100 ? m(PaginatorComponent, {
                 getPage: function () {
                     return LogUsersPageModel.page
                 },
