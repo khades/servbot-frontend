@@ -6,6 +6,7 @@ var m = require("mithril")
 module.exports = {
     state: states.READY,
     object: {},
+    channel: "",
     isNew() {
         return !(!!this.object.id)
     },
@@ -24,8 +25,13 @@ module.exports = {
         auth.request({
             url: appUrl(`api/channel/${channel}/automessages/${id}`)
         }).then(response => {
-            this.object = response
-            this.object.durationLimit = parseInt(this.object.durationLimit) / 1000000000
+            if (!!response.autoMessage) {
+                this.object = response.autoMessage
+                this.object.durationLimit = parseInt(this.object.durationLimit) / 1000000000
+            } else {
+                this.new(channel)
+            }
+            this.channel = response.channel
             this.state = states.READY
 
         }).catch(error => {
@@ -35,7 +41,6 @@ module.exports = {
         })
     },
     push() {
-        console.log("hehey")
         if (this.isNew() == true) {
             auth.request({
                 url: appUrl(`api/channel/${this.object.channel}/automessages`),
