@@ -7,10 +7,14 @@ module.exports = {
     state: states.READY,
     template: null,
     channelID: "",
-    channel : "",
+    channel: "",
     name: "",
     errorTemplate: false,
     get: function (channelID, name) {
+        this.template = {
+            commandName: name,
+            channelID: channelID
+        }
         this.state = states.LOADING
         this.channelID = channelID
         this.name = name
