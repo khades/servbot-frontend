@@ -1,0 +1,27 @@
+@import '../utils/index';
+.user-logs {
+    &__history {
+        width: 100%;
+        color: $background-color;
+        background: $background-main-color;
+        border-radius: 0.1em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        padding: 0.3em;
+        display: flex;
+        flex-direction: column;
+        &__date {
+            @include prepend-svg("../../svg/calendar.svg");
+        }
+        &__message-body {
+            @include prepend-svg("../../svg/message.svg");
+        }
+        &__user {
+            @include prepend-svg("../../svg/user-outline.svg");
+        }
+        &__row {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

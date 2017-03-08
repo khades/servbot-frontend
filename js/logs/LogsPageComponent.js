@@ -6,11 +6,11 @@ var LogsModel = require("./models/LogsModel")
 var routes = require("../pageTemplate/routes")
 var LogsPageComponent = {
   oninit: function (vnode) {
-    LogsModel.init(vnode.attrs)
+    LogsModel.get(vnode.attrs.channel, vnode.attrs.userID)
   },
   onupdate: function (vnode) {
     if (m.route.get() != LogsModel.route) {
-      LogsModel.init(vnode.attrs)
+      LogsModel.init(vnode.attrs.channel, vnode.attrs.userID)
     }
   },
   view: function (vnode) {

@@ -1,25 +1,21 @@
 var m = require("mithril")
-var LogsModel = require("../models/LogsModel")
-var Animation = require("../../utils/Animation")
-require("../../../scss/modules/_table.scss")
+var model = require("../models/LogsModel")
+require("../../../scss/modules/_user-logs.scss")
 var LogsComponent = {
-  oncreate: function (vnode) {
-    Animation.fadeIn(vnode)
-  },
   view: function (vnode) {
-    return m("div", [
-      m("p", `Логи пользователя ${LogsModel.result.user} на канале ${LogsModel.result.channel}`),
-      m("table", [
-        m("thead", m("tr"), [
-          m("th", "Дата"),
-          m("th", "Сообщение")
-        ]), (!!LogsModel.result && !!LogsModel.result.messages) ? m("tbody", LogsModel.result.messages.map(function (message) {
-          return m("tr", [
-            m("td", new Date(message.date).toLocaleString()),
-            m("td", message.messageBody)
-          ])
-        })) : ""
-      ])
+    return m("div.user-logs", [
+      m(".user-logs__header", `Логи пользователя ${model.result.user} на канале ${model.result.channel}`),
+
+      !!model.result.knownNicknames && model.result.knownNicknames > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : m(".nothing"),
+
+      !!model.result.messages ? model.result.messages.map(f => m(".user-logs__history", [
+        m(".user-logs__history__row", [
+          m(".user-logs__history__username", f.username),
+          m(".user-logs__history__date", new Date(f.date).toLocaleString())
+        ]),
+        m(".user-logs__history__message-body", f.messageBody),
+      ])) :
+      m(".nothing")
     ])
   }
 }
