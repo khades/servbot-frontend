@@ -46,7 +46,7 @@ module.exports = {
                 }
             }, "Сохранить"),
 
-            m(".subalert-show__header", "История команд"),
+            !!model.subAlert.history ?m(".subalert-show__header", "История команд") :m(".nothing"),
             !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => m(historyItem, f))) :m(".nothing")
         ])
     }

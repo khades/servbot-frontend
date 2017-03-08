@@ -45,18 +45,22 @@ var LogUsersPageModel = {
             url: ConfigURL(`api/channel/${channel}/logs`)
         }).then(function (results) {
             this.object.channel = results.channel
-            this.object.users = results.users.sort(function (a, b) {
-                if (a.user > b.user) {
-                    return 1;
-                }
-                if (a.user < b.user) {
-                    return -1;
-                }
-                // a должно быть равным b
-                return 0;
-            })
+            if (!!results.users) {
+                this.object.users = results.users.sort(function (a, b) {
+                    if (a.user > b.user) {
+                        return 1;
+                    }
+                    if (a.user < b.user) {
+                        return -1;
+                    }
+                    // a должно быть равным b
+                    return 0;
+                })
+            } else {
+                this.object.users = []
+            }
             this.state = states.READY
-     
+
         }.bind(this))
     },
 

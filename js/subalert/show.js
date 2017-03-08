@@ -2,6 +2,7 @@ var m = require("mithril")
 var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var component = require("./components/show")
 var model = require("./models/show")
+var routes = require("../pageTemplate/routes")
 
 module.exports = {
     oninit: function (vnode) {
@@ -17,8 +18,10 @@ module.exports = {
             getState: () => {
                 return model.state
             },
-            route: "",
-            title: `Сабалерт на канале ${vnode.attrs.channel}`,
+            route: routes.SUBALERT,
+            channelID: () => { return vnode.attrs.channel },
+            channel: () => { return model.channel },
+            title: `Сабалерт на канале ${model.channel}`,
             content: m(component),
 
         })

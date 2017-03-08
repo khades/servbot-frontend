@@ -30,6 +30,8 @@ module.exports = {
         class: PageCarcassModel.sideMenuShown == true ? "shown" : "hidden"
       }, m(MenuComponent, {
         route: vnode.attrs.route,
+        channel: vnode.attrs.channel,
+        channelID: vnode.attrs.channelID,
         hideMenu: function () {
           PageCarcassModel.sideMenuShown = false
         },
@@ -38,7 +40,7 @@ module.exports = {
         }
       })),
       m("header#siteHeader", m(HeaderComponent, {
-        route: vnode.attrs.route,
+
       })),
       m("section#siteContent", m(".content", content)),
     ])

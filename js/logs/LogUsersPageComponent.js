@@ -1,8 +1,9 @@
 var m = require("mithril")
 
-var PageTemplateComponent  = require('../pageTemplate/PageTemplateComponent')
-var LogUsersPageModel  = require("./models/LogUsersPageModel")
-var LogUsersComponent  = require("./components/LogUsersComponent")
+var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
+var LogUsersPageModel = require("./models/LogUsersPageModel")
+var LogUsersComponent = require("./components/LogUsersComponent")
+var routes = require("../pageTemplate/routes")
 var LogUsersPageComponent = {
     oninit: function (vnode) {
         LogUsersPageModel.init(vnode.attrs.channel)
@@ -14,12 +15,16 @@ var LogUsersPageComponent = {
     },
     view: function (vnode) {
         return m(PageTemplateComponent, {
-            route: "logs",
+            route: routes.LOGS,
             title: `Список пользователей на канале ${LogUsersPageModel.object.channel}`,
-            getState: () => {return LogUsersPageModel.state},
+            channelID: () => { return vnode.attrs.channel },
+            channel: () => { return LogUsersPageModel.object.channel },
+            getState: () => {
+                return LogUsersPageModel.state
+            },
             content: m(LogUsersComponent)
 
         })
     }
 }
-module.exports = LogUsersPageComponent 
+module.exports = LogUsersPageComponent

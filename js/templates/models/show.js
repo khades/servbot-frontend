@@ -6,19 +6,21 @@ var m = require("mithril")
 module.exports = {
     state: states.READY,
     template: null,
-    channel: "",
+    channelID: "",
+    channel : "",
     name: "",
     errorTemplate: false,
-    get: function (channel, name) {
+    get: function (channelID, name) {
         this.state = states.LOADING
-        this.channel = channel
+        this.channelID = channelID
         this.name = name
         this.route = m.route.get()
         auth.request({
-            url: appUrl(`api/channel/${channel}/templates/${name}`)
+            url: appUrl(`api/channel/${channelID}/templates/${name}`)
         }).then(response => {
             if (!!response) {
-                this.template = response
+                this.template = response.template
+                this.channel = response.channel
             }
             this.state = states.READY
         })

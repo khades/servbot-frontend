@@ -1,0 +1,16 @@
+@import '../utils/index';
+.main-page {
+    display: flex;
+    flex-direction: column;
+    &__mod-channels {
+        display: flex;
+        flex-direction: row;
+        &>a {
+            background-color: $background-main-color;
+            color: $background-color;
+            margin: 0.1em;
+            padding: 0.2em;
+            border-radius: 3px;
+        }
+    }
+}

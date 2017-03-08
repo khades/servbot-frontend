@@ -2,7 +2,7 @@ var m = require("mithril")
 var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var component = require("./components/edit")
 var model = require("./models/edit")
-
+var routes = require("../pageTemplate/routes")
 module.exports = {
     oninit: function (vnode) {
         if (!!vnode.attrs.id) {
@@ -22,10 +22,11 @@ module.exports = {
     },
     view: function (vnode) {
         return m(PageTemplateComponent, {
-            route: "",
+            route: routes.AUTOMESSAGES,
             title: "саздание",
             content: m(component),
-
+            channelID: () => { return vnode.attrs.channel },
+            channel: () => { return model.object.channel },
             getState: () => {
                 return model.state
             }
