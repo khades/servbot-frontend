@@ -1,7 +1,7 @@
 var m = require("mithril")
 
 var PageTemplateComponent  = require('../pageTemplate/PageTemplateComponent')
-var LogUsersPageModel  = require("./models/LogUsersPageComponent")
+var LogUsersPageModel  = require("./models/LogUsersPageModel")
 var LogUsersComponent  = require("./components/LogUsersComponent")
 var LogUsersPageComponent = {
     oninit: function (vnode) {
@@ -15,7 +15,8 @@ var LogUsersPageComponent = {
     view: function (vnode) {
         return m(PageTemplateComponent, {
             route: "logs",
-            title: `Список пользователей на канале ${vnode.attrs.channel}`,
+            title: `Список пользователей на канале ${LogUsersPageModel.object.channel}`,
+            getState: () => {return LogUsersPageModel.state},
             content: m(LogUsersComponent)
 
         })

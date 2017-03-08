@@ -1,10 +1,31 @@
 var m = require("mithril")
-
+require('../../../../scss/modules/_template-list.scss')
 var TemplateListModel = require('../models/TemplateListModel')
 var TemplateListItemComponent = require("./TemplateListItemComponent")
+var input = require("../../../basicWidgets/components/InputComponent")
 var TemplateListComponent = {
     view: function (vnode) {
         return m(".template-list", [
+            m(".template-list__header", `Комманды на канале ${TemplateListModel.channel}`),
+            m(input, {
+                label: "Создание новой команды\\переход к существующей команде",
+                id: "newCommand",
+                getValue: () => {
+                    return TemplateListModel.newCommand
+                },
+                setValue: (value) => {
+                    TemplateListModel.newCommand = value.trim()
+                    m.redraw()
+                }
+            }),
+
+            m("a", {
+                oncreate: m.route.link,
+                href: `/channel/${TemplateListModel.channelID}/templates/${TemplateListModel.newCommand}`,
+                style: "padding-bottom: 1em;"
+            }, m("button", "Перейти")),
+                        m(".template-list__header", `Список существующих комманд`),
+
             m(".template-list__filter", [
                 m("button.template-list__filter__template", {
                     class: TemplateListModel.showTemplate == true ? "" : "disabled",
@@ -47,4 +68,4 @@ var TemplateListComponent = {
     }
 }
 
-module.exports = TemplateListComponent 
+module.exports = TemplateListComponent

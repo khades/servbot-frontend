@@ -1,8 +1,11 @@
 var m = require("mithril")
-var ConfigURL = require( "../../utils/ConfigURL")
-
+var ConfigURL = require("../../utils/appUrl")
+var states = require("../../utils/states")
 var LogUsersPageModel = {
-    results: [],
+    state: states.LOADING,
+    object: {
+        users: []
+    },
     channel: null,
     route: "",
     filter: "",
@@ -17,41 +20,46 @@ var LogUsersPageModel = {
         var end = this.pageSize * this.page
         if (this.filter == "") {
             return {
-                count: this.results.length,
-                users: this.results.slice(start, end)
+                count: this.object.users.length,
+                users: this.object.users.slice(start, end),
+                channel: this.object.channel
             }
         } else {
-            var filteredData = this.results.filter(function (value) {
-                return value.User.startsWith(this.filter)
+            var filteredData = this.object.users.filter(function (value) {
+                console.log(value)
+                return value.user.startsWith(this.filter) || value.knownNicknames.some(f => f.startsWith(this.filter))
             }.bind(this))
             return {
                 count: filteredData.length,
-                users: filteredData.slice(start, end)
+                users: filteredData.slice(start, end),
+                channel: this.object.channel
             }
         }
     },
     init(channel) {
         this.route = m.route.get()
-        console.log("LogUsersPageModel: Setting channel " + channel)
         this.filter = ""
         this.channel = channel
         m.request({
             method: "GET",
-            url: ConfigURL(`api/channel/${this.channel}/logs`)
+            url: ConfigURL(`api/channel/${channel}/logs`)
         }).then(function (results) {
-            this.results = results.sort(function (a, b) {
-                if (a.User > b.User) {
+            this.object.channel = results.channel
+            this.object.users = results.users.sort(function (a, b) {
+                if (a.user > b.user) {
                     return 1;
                 }
-                if (a.User < b.User) {
+                if (a.user < b.user) {
                     return -1;
                 }
                 // a должно быть равным b
                 return 0;
             })
+            this.state = states.READY
+     
         }.bind(this))
     },
 
 }
 
-module.exports = LogUsersPageModel 
+module.exports = LogUsersPageModel

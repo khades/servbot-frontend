@@ -10,13 +10,15 @@ var TemplateListPageComponent = {
     },
     onupdate: function (vnode) {
         if (m.route.get() != TemplateListModel.route) {
+            TemplateListModel.newCommand = ""
             TemplateListModel.init(vnode.attrs.channel)
         }
     },
     view: function (vnode) {
         return m(PageTemplateComponent, {
+            getState: () => {return TemplateListModel.state},
             route: "templates",
-            title: `Кастомные команды для канала ${vnode.attrs.channel}`,
+            title: `Кастомные команды для канала ${TemplateListModel.channel}`,
             content: m(TemplateListComponent)
         })
     }

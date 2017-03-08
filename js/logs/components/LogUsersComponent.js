@@ -1,14 +1,14 @@
 var m = require("mithril")
-var LogUsersPageModel = require("../models/LogUsersPageComponent")
+var LogUsersPageModel = require("../models/LogUsersPageModel")
 var PaginatorComponent = require("../../basicWidgets/components/PaginatorComponent")
-var LogUsersComponent = {
+require("../../../scss/modules/_channel-users.scss")
+var input = require("../../basicWidgets/components/InputComponent")
+var LogusersComponent = {
     view: function (vnode) {
         var results = LogUsersPageModel.getResults()
-        console.log(results)
-        console.log(results.users.length)
 
-        console.log(results.users.length == 100)
         return m(".channel-users", [
+            m(".channel-users__header",`Список пользователей на канале ${LogUsersPageModel.object.channel}`),
             m("input", {
                 oninput: m.withAttr("value", function (value) {
                     LogUsersPageModel.setFilter(value)
@@ -27,13 +27,15 @@ var LogUsersComponent = {
 
             }) : m(".nothing"),
             m(".channel-users__container", results.users.map(user => {
-                return m("a..channel-users__container__user-link", {
+                return m("a.channel-users__container__user-link", {
                     oncreate: m.route.link,
-                    href: "/channel/" + LogUsersPageModel.channel + "/logs/" + user.User
-                }, m("span.channel-users__container__user-link__user", user.User))
+                    href: "/channel/" + LogUsersPageModel.channel + "/logs/" + user.userID
+                }, [
+                    m("span.channel-users__container__user-link__user", `${user.user}#${user.userID}`)
+                ])
             }))
         ])
 
     }
 }
-module.exports = LogUsersComponent
+module.exports = LogusersComponent

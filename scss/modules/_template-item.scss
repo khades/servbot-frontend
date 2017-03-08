@@ -1,5 +1,10 @@
 $item-border-width: 6px;
+@import '../utils/index';
+
+
 .template-list-item {
+    display:flex;
+    flex-direction: column;
     >div {
         padding-left: 0.15em;
         padding-right: 0.15em;

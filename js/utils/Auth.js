@@ -1,5 +1,5 @@
 var m = require("mithril")
-var Auth = {
+module.exports = {
     request: function (config) {
         return m.request(config).then(function (data) {
             return data
@@ -13,5 +13,3 @@ var Auth = {
         })
     }
 }
-
-module.exports = Auth 

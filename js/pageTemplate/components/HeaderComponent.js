@@ -1,5 +1,5 @@
 var m = require("mithril")
-
+require("../../../scss/modules/_headerContent.scss")
 var UserNameModel  = require("../models/UserNameModel")
 var PageCarcassModel  = require("../models/PageCarcassModel")
 var HeaderComponent = {

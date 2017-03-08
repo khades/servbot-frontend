@@ -1,4 +1,6 @@
 var m = require("mithril")
+require('../../../../scss/modules/_template-item.scss')
+
 var TemplateMustashedBodyComponent = require("./TemplateMustashedBodyComponent")
 
 function getCommandInfo(item) {
@@ -7,16 +9,16 @@ function getCommandInfo(item) {
         body: "",
         icon: "delete-outline"
     }
-    if (!!item.Template && item.Template.length > 0)
+    if (!!item.template && item.template.length > 0)
         commandInfo = {
             type: "template",
-            body: item.Template,
+            body: item.template,
             icon: "pencil"
         }
-    if (!!item.AliasTo && item.AliasTo.length > 0)
+    if (!!item.aliasTo && item.aliasTo.length > 0)
         commandInfo = {
             type: "alias",
-            body: item.AliasTo,
+            body: item.aliasTo,
             icon: "arrow-forward"
         }
     return commandInfo
@@ -29,9 +31,12 @@ var TemplateListItemComponent = {
         return m(".template-list-item", {
             class: `template-list-item-${commandInfo.type}`
         }, [
-            m(".template-list-item__header", [
+            m("a.template-list-item__header", {
+                oncreate: m.route.link,
+                href: `/channel/${item.channelID}/templates/${item.commandName}`
+            }, [
                 m(`span.sprite`),
-                m("span.template-list-item__name", item.CommandName)
+                m("span.template-list-item__name", item.commandName)
             ]),
             commandInfo.type == "template" ?
             m(TemplateMustashedBodyComponent, {

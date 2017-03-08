@@ -9,10 +9,10 @@ class TemplateModel {
 
     getCommandInfo(item) {
         var commandInfo = { type: "deleted", body: "", icon: "delete-outline" }
-        if (!!item.Template && item.Template.length > 0)
-            commandInfo = { type: "template", body: item.Template, icon: "pencil" }
-        if (!!item.AliasTo && item.AliasTo.length > 0 && item.CommandName != item.AliasTo)
-            commandInfo = { type: "alias", body: item.AliasTo, icon: "arrow-forward" }
+        if (!!item.template && item.template.length > 0)
+            commandInfo = { type: "template", body: item.template, icon: "pencil" }
+        if (!!item.aliasTo && item.aliasTo.length > 0 && item.commandName != item.aliasTo)
+            commandInfo = { type: "alias", body: item.aliasTo, icon: "arrow-forward" }
         return commandInfo
 
     }

@@ -10,12 +10,14 @@ var LogsPageComponent = {
   },
   onupdate: function (vnode) {
     if (m.route.get() != LogsModel.route) {
-      console.log("route change")
       LogsModel.init(vnode.attrs)
     }
   },
   view: function (vnode) {
     return m(PageTemplateComponent, {
+      getState: () => {
+        return LogsModel.state
+      },
       route: "logs",
       title: `Логи пользователя ${vnode.attrs.username} на канале ${vnode.attrs.channel}`,
       content: m(LogsComponent)

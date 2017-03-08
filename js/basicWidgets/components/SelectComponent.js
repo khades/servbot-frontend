@@ -1,4 +1,5 @@
 var m = require("mithril")
+require("../../../scss/modules/_controlGroup.scss")
 
 var SelectComponent = {
   view: function (vnode) {

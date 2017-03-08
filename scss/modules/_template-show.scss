@@ -1,0 +1,13 @@
+@import '../utils/index';
+.template-show {
+    &__header {
+        font-weight: bolder;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+        font-size: 1.3em;
+    }
+    &__history {
+        display: flex;
+        flex-direction: column;
+    }
+}

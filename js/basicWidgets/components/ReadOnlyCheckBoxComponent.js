@@ -1,4 +1,5 @@
 var m = require("mithril")
+require("../../../scss/modules/_controlGroup.scss")
 
 var ReadOnlyCheckBoxComponent = {
   view: function (vnode) {

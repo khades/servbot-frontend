@@ -1,6 +1,6 @@
 var m = require("mithril")
     // var Hammer = require("hammerjs")
-
+require("../../../scss/modules/_site-menu.scss")
 var MenuComponent = {
     oncreate: function (vnode) {
         // new Hammer(vnode.dom).on("swipeleft", function (ev) {

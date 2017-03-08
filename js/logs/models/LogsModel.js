@@ -1,8 +1,9 @@
-var Auth = require("../../utils/Auth")
+var Auth = require("../../utils/auth")
 var m = require("mithril")
-var ConfigURL = require("../../utils/ConfigURL")
-
+var ConfigURL = require("../../utils/appUrl")
+var states = require("../../utils/states")
 var LogsModel = {
+    state: states.READY,
     filterString: "",
     channel: "",
     route: "",
@@ -19,7 +20,7 @@ var LogsModel = {
     goToPage: function (page) {
         this.page = page
         this.run()
-        m.route.set(`/channel/${this.channel}/logs/${this.username}`)
+        m.route.set(`/channel/${this.channel}/logs/userid/${this.username}`)
     },
     setParams(username, channel) {
         this.username = username
@@ -29,14 +30,19 @@ var LogsModel = {
     authorized: true,
     messages: null,
     run() {
+        this.state = states.LOADING
         Auth.request({
             method: "GET",
-            url: ConfigURL(`/api/channel/${this.channel}/logs/${this.username}`)
+            url: ConfigURL(`/api/channel/${this.channel}/logs/userid/${this.username}`)
         }).then(function (response) {
             this.result = response
+            this.state = states.READY
+
         }.bind(this)).catch(function (error) {
             if (error.Code == 403) {
                 this.authorized = false
+                this.state = states.NOTAUTHORIZED
+
             }
         }.bind(this))
     }

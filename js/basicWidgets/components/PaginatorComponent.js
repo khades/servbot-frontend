@@ -1,5 +1,6 @@
 var m = require("mithril")
 // import _ from "lodash"
+require("../../../scss/modules/_paginator.scss")
 var PaginatorComponent = {
     view: function (vnode) {
         //     function generateButtons() {

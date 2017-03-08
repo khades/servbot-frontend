@@ -1,0 +1,40 @@
+@import '../utils/index';
+.automessage-edit {
+    &__duration-limit>label {
+        display: inline-flex;
+        align-items: center;
+        &:before {
+            content: "";
+            background: svg-load("../../svg/time.svg", fill=black);
+            @include svg-size(1.30em);
+        }
+    }
+    &__message-limit>label {
+        display: inline-flex;
+        align-items: center;
+        &:before {
+            content: "";
+            background: svg-load("../../svg/message-typing.svg", fill=black);
+            @include svg-size(1.30em);
+        }
+    }
+    &__message>label {
+        display: inline-flex;
+        align-items: center;
+        &:before {
+            content: "";
+            background: svg-load("../../svg/message.svg", fill=black);
+            @include svg-size(1.30em);
+        }
+    }
+    &__history {
+        display: flex;
+        flex-direction: column;
+    }
+    &__header {
+        font-weight: bolder;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+        font-size: 1.3em;
+    }
+}

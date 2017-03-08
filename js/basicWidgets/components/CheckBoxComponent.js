@@ -1,5 +1,5 @@
 var m = require("mithril")
-
+require("../../../scss/modules/_controlGroup.scss")
 var CheckBoxComponent = {
   view: function (vnode) {
     return m(".control-group", m("label", {

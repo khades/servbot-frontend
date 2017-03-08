@@ -1,4 +1,11 @@
+@import '../utils/index';
 .channel-users {
+    &__header {
+        font-weight: bolder;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+        font-size: 1.3em;
+    }
     &__container {
         margin-left: -0.1em;
         margin-right: -0.1em;

@@ -21,40 +21,46 @@ module.exports = {
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".js", ".scss", ".css"]
+        extensions: [".js", ".scss"]
     },
 
     module: {
-        loaders: [
-            // {
-            //     test: /\.js$/,
-            //     loader: 'babel-loader?cacheDirectory=true&presets[]=es2015"
-
-            // },
-            {
+        rules: [{
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap&importLoaders=1!postcss-loader?sourceMap!sass-loader?sourceMap')
-            }, {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'postcss-loader?sourceMap=inline')
-            }
-        ],
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [{
+                            loader: 'css-loader?sourceMap&importLoaders=1'
+                        },
+                        {
+                            loader: 'postcss-loader?sourceMap'
+                        },
+                        {
+                            loader: 'sass-loader?sourceMap',
+                            options: {
+                                includePaths: [require("bourbon").includePaths]
+                            }
+                        }
+                    ]
+                })
+            },
 
-        preLoaders: [
             {
                 test: /\.js$/,
+                enforce: "pre",
                 loader: "source-map-loader"
             }
         ]
+
+
+
     },
     plugins: [
-        new ExtractTextPlugin('style.css', {
+        new ExtractTextPlugin({
+            filename: 'style.css',
             allChunks: true
         }),
         new webpack.HotModuleReplacementPlugin()
-  
-    ],
-    sassLoader: {
-        includePaths: [require("bourbon").includePaths]
-    }
+
+    ]
 };

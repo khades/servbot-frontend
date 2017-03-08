@@ -15,7 +15,6 @@ var AfterAuthComponent = {
       title: "Перенаправляем обратно",
       content: "Перенаправляем обратно"
     })
-
   }
 }
 

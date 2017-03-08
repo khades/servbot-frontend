@@ -1,10 +1,9 @@
 var config = require("../../config")
 
-function ConfigURL(uri) {
+module.exports = function(uri) {
     if (uri.startsWith("/")) {
         return config.appUrl + uri
     } else {
         return config.appUrl + "/" + uri
     }
 }
-module.exports = ConfigURL
