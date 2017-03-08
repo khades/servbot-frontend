@@ -1,31 +1,13 @@
 @import '../utils/index';
 .automessage-edit {
     &__duration-limit>label {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/time.svg", fill=black);
-            @include svg-size(1.30em);
-        }
+        @include prepend-svg("../../svg/time.svg", 1.30em, black);
     }
     &__message-limit>label {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/message-typing.svg", fill=black);
-            @include svg-size(1.30em);
-        }
+        @include prepend-svg("../../svg/message-typing.svg", 1.30em, black);
     }
     &__message>label {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/message.svg", fill=black);
-            @include svg-size(1.30em);
-        }
+        @include prepend-svg("../../svg/message.svg", 1.30em, black);
     }
     &__history {
         display: flex;

@@ -23,32 +23,14 @@
             flex-grow: 2;
         }
         &__duration-limit {
-            display: inline-flex;
-            align-items: center;
-            &:before {
-                content: "";
-                background: svg-load("../../svg/time.svg", fill=#fff);
-                @include svg-size(1.05em);
-            }
+            @include prepend-svg("../../svg/time.svg");
         }
         &__message-limit {
-            display: inline-flex;
-            align-items: center;
-            &:before {
-                content: "";
-                background: svg-load("../../svg/message-typing.svg", fill=#fff);
-                @include svg-size(1.05em);
-            }
+            @include prepend-svg("../../svg/message-typing.svg");
         }
         &__message {
             flex-grow: 2;
-            display: inline-flex;
-            align-items: center;
-            &:before {
-                content: "";
-                background: svg-load("../../svg/message.svg", fill=#fff);
-                @include svg-size(1.05em);
-            }
+            @include prepend-svg("../../svg/message.svg");
         }
     }
 }

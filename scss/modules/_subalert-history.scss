@@ -1,7 +1,7 @@
 @import '../utils/index';
 .subalert-history {
     display: inline-flex;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
     color: $background-color;
     background: $background-main-color;
@@ -11,32 +11,19 @@
     padding: 0.3em;
     flex-wrap: wrap;
     &__date {
+        @include prepend-svg("../../svg/calendar.svg");
+    }
+    &__row {
         display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/calendar.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
     }
     &__body {
-        width: 100%;
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/message.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/message.svg");
     }
     &__user {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/user-outline.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/user-outline.svg");
         &__tooltip {
             visibility: hidden;
             background-color: white;
@@ -50,5 +37,14 @@
         &:hover &__tooltip {
             visibility: visible;
         }
+    }
+    &__repeat-body {
+        @include prepend-svg("../../svg/refresh.svg");
+    }
+    &__sub-message {
+        @include prepend-svg("../../svg/message.svg");
+    }
+    &__resub-message {
+        @include prepend-svg("../../svg/message-typing.svg");
     }
 }

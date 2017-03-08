@@ -10,4 +10,13 @@
         display: flex;
         flex-direction: column;
     }
+    &__repeat-body>label {
+        @include prepend-svg("../../svg/refresh.svg", 1.30em, black);
+    }
+    &__sub-message>label {
+        @include prepend-svg("../../svg/message.svg", 1.30em, black);
+    }
+    &__resub-message>label {
+        @include prepend-svg("../../svg/message-typing.svg", 1.30em, black);
+    }
 }

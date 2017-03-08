@@ -6,10 +6,12 @@ var input = require("../../basicWidgets/components/InputComponent")
 module.exports = {
     view(vnode) {
         return m(".subalert-show", [
-            m(".subalert-show__header", `Сабалерт на канале ${model.channel}`),
+            m(".subalert-show__header", `Сообщения при подписке на канале ${model.channel}`),
 
             m(input, {
                 label: "Сообщение при подписке",
+                class: "subalert-show__sub-message",
+
                 id: "subMessage",
                 getValue: () => {
                     return model.subAlert.subMessage
@@ -21,6 +23,7 @@ module.exports = {
             m(input, {
                 label: "Сообщение при переподписке",
                 id: "resubMessage",
+                class: "subalert-show__resub-message",
                 error: model.errorResubAlert ? "Некорректный шаблон" : null,
                 getValue: () => {
                     return model.subAlert.resubMessage
@@ -32,6 +35,7 @@ module.exports = {
             m(input, {
                 label: "Повторяющееся тело сообщения переподписки",
                 id: "repeatBody",
+                class: "subalert-show__repeat-body",
                 getValue: () => {
                     return model.subAlert.repeatBody
                 },
@@ -46,8 +50,7 @@ module.exports = {
                 }
             }, "Сохранить"),
 
-            !!model.subAlert.history ?m(".subalert-show__header", "История команд") :m(".nothing"),
-            !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => m(historyItem, f))) :m(".nothing")
+            !!model.subAlert.history ? m(".subalert-show__header", "История команд") : m(".nothing"), !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => m(historyItem, f))) : m(".nothing")
         ])
     }
 }

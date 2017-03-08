@@ -16,50 +16,19 @@
     padding: 0.3em;
     flex-wrap: wrap;
     &__duration-limit {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/time.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/time.svg");
     }
     &__message-limit {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/message-typing.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/message-typing.svg");
     }
     &__date {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/calendar.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/calendar.svg");
     }
     &__message {
-        width: 100%;
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/message.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/message.svg");
     }
     &__user {
-        display: inline-flex;
-        align-items: center;
-        &:before {
-            content: "";
-            background: svg-load("../../svg/user-outline.svg", fill=#fff);
-            @include svg-size(1.05em);
-        }
+        @include prepend-svg("../../svg/user-outline.svg");
         &__tooltip {
             visibility: hidden;
             background-color: white;

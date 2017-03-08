@@ -1,0 +1,10 @@
+  @mixin prepend-svg( $link, $size: 1.05em, $color: #fff) {
+      //width: 100%;
+      display: inline-flex;
+      align-items: center;
+      &:before {
+          content: "";
+          background: svg-load($link, fill=$color);
+          @include svg-size($size);
+      }
+  }
