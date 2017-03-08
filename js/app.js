@@ -9,7 +9,7 @@ var autoMessageList = require("./autoMessages/listPage")
 var autoMessageEdit = require("./autoMessages/editPage")
 var templateShow = require("./templates/show")
 var channelIndex = require("./channel/index")
-var subAlertShow = require("./subAlert/show")
+var subAlertShow = require("./subalert/show")
 
 m.route.prefix("#") 
 m.route(document.body, "/", {
