@@ -7,11 +7,11 @@ module.exports = {
     view(vnode) {
         return m(".template-show", [
             m(".template-show__header", `Просмотр команды ${model.template.commandName} на канале ${model.channel}`),
-            model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : m(".nothing"),
-            model.template.commandName == model.template.aliasTo ? m(".nothing") : m("a", {
+            model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : m(".nothing"),
+            model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m("a", {
                 oncreate: m.route.link,
                 href: `/channel/${model.template.channelID}/templates/${model.template.aliasTo}`
-            }, m("button", "Перейти к оригиналу")),
+            }, m("button", "Перейти к оригиналу")) : m(".nothing"),
             m(input, {
                 label: "Тело комманды",
                 id: "newCommand",
