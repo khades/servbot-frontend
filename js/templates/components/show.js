@@ -29,6 +29,13 @@ module.exports = {
                     model.save()
                 }
             }, "Сохранить"),
+            m("button", {
+                type: "button",
+                onclick: () => {
+                    model.template.template = ""
+                    model.save()
+                }
+            }, "Удалить команду"),
             m(input, {
                 label: "Синоним на команду",
                 id: "newCommand",
@@ -44,9 +51,7 @@ module.exports = {
                 onclick: () => {
                     model.setAliasTo()
                 }
-            }, "Сохранить"),
-            !!model.template.history ? m(".template-show__header", "История команд") : m(".nothing"),
-            !!model.template.history ? m(".template-show__history", model.template.history.map(f => m(historyItem, f))) : m(".nothing")
+            }, "Сохранить"), !!model.template.history ? m(".template-show__header", "История команд") : m(".nothing"), !!model.template.history ? m(".template-show__history", model.template.history.map(f => m(historyItem, f))) : m(".nothing")
         ])
     }
 }
