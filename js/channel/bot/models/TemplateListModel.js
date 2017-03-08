@@ -37,7 +37,11 @@ var TemplateListModel = {
             method: "GET",
             url: ConfigURL(`/api/channel/${channelID}/templates`)
         }).then(function (response) {
-            TemplateListModel.templates = response.templates.map(f => new TemplateModel(f))
+            if (!!response.templates) {
+                TemplateListModel.templates = response.templates.map(f => new TemplateModel(f))
+            } else {
+                TemplateListModel.templates = []
+            }
             TemplateListModel.channel = response.channel
             TemplateListModel.state = states.READY
         })
