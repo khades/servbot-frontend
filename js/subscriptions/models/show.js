@@ -14,13 +14,14 @@ module.exports = {
         }).then(response => {
             if (!!response) {
                 if (!!response.subscriptions) {
-                    this.subscriptions = response.subscriptions.sort((a, b) => { 
-                        if (new Date(a).getDate() - new Date(b).getDate() < 0) {
-                            return -1
-                        } else {
-                            return 1
-                        }
-                    })
+                    this.subscriptions = response.subscriptions
+                    //     .sort((a, b) => { 
+                    //     if (new Date(a).getDate() - new Date(b).getDate() < 0) {
+                    //         return -1
+                    //     } else {
+                    //         return 1
+                    //     }
+                    // })
                 } else {
                     this.subscriptions = []
                 }
