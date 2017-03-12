@@ -5,6 +5,20 @@ module.exports = {
     view(vnode) {
         return m(".subscriptions-show", [
             m(".subscriptions-show__header", `Подписчики на канале ${model.channel}`),
+            m(".subscriptions-show__buttons", [
+                m('button', {
+                    onclick: () => {
+                        model.setLimit()
+                        model.get(model.channelID)
+                    }
+                }, "Отметить как прочитанное"),
+                m('button', {
+                    onclick: () => {
+                        model.resetLimit()
+                        model.get(model.channelID)
+                    }
+                }, "Показать все")
+            ]),
             model.subscriptions.map(f => {
 
                 return m(".subscriptions-show__item", [

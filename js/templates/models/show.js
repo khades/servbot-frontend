@@ -2,7 +2,7 @@ var auth = require("../../utils/auth")
 var appUrl = require("../../utils/appUrl")
 var states = require("../../utils/states")
 var m = require("mithril")
-
+var time = require("../../utils/time")
 module.exports = {
     state: states.READY,
     template: null,
@@ -10,6 +10,7 @@ module.exports = {
     channel: "",
     name: "",
     errorTemplate: false,
+
     get: function (channelID, name) {
         this.template = {
             commandName: name,
