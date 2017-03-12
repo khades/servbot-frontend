@@ -7,6 +7,28 @@ module.exports = {
     state: states.LOADING,
     channel: "",
     subscriptions: [],
+    eventSource: null,
+    leaveEventSource() {
+        if (!!this.eventSource)
+            this.eventSource.close()
+        console.log("Closing event source")
+    },
+    createEventSource(channelID) {
+        if (!!this.eventSource)
+            this.eventSource.close()
+
+        this.eventSource = new EventSource(appUrl(`api/channel/${channelID}/subs/events`))
+        this.eventSource.onmessage = function (e) {
+            console.log("got reload")
+            this.get(channelID)
+        }.bind(this)
+
+        this.eventSource.onerror = function (e) {
+            if (this.readyState == EventSource.CONNECTING) {
+                this.get(channelID)
+            }
+        }.bind(this)
+    },
     get: function (channelID) {
         this.route = m.route.get()
         auth.request({
@@ -15,13 +37,6 @@ module.exports = {
             if (!!response) {
                 if (!!response.subscriptions) {
                     this.subscriptions = response.subscriptions
-                    //     .sort((a, b) => { 
-                    //     if (new Date(a).getDate() - new Date(b).getDate() < 0) {
-                    //         return -1
-                    //     } else {
-                    //         return 1
-                    //     }
-                    // })
                 } else {
                     this.subscriptions = []
                 }
