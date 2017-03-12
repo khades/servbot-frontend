@@ -10,7 +10,8 @@ var autoMessageEdit = require("./autoMessages/editPage")
 var templateShow = require("./templates/show")
 var channelIndex = require("./channel/index")
 var subAlertShow = require("./subalert/show")
-
+var time = require("./utils/time")
+time.getTime()
 m.route.prefix("#") 
 m.route(document.body, "/", {
   "/": MainPageComponent,
