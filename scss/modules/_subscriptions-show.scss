@@ -1,0 +1,22 @@
+@import '../utils/index';
+.subscriptions-show {
+    &__header {
+        @include header;
+    }
+    &__item {
+        @include simple-list-item;
+        justify-content: space-between;
+        &__user {
+            &--prime {
+                @include prepend-svg("../../svg/crown.svg");
+            }
+            &--non-prime {
+                @include prepend-svg("../../svg/user-outline.svg");
+            }
+            @include simple-tooltip;
+        }
+        &__date {
+            @include prepend-svg("../../svg/calendar.svg");
+        }
+    }
+}

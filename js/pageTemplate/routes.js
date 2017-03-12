@@ -4,5 +4,6 @@ module.exports = {
     SUBALERT: 3,
     TEMPLATES: 4,
     MAIN: 5,
-    CHANNEL: 6
+    CHANNEL: 6,
+    SUBSCRIPTIONS: 7,
 }

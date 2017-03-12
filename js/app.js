@@ -11,14 +11,15 @@ var templateShow = require("./templates/show")
 var channelIndex = require("./channel/index")
 var subAlertShow = require("./subalert/show")
 var time = require("./utils/time")
+var subs = require("./subscriptions/show")
 time.getTime()
-m.route.prefix("#") 
+m.route.prefix("#")
 m.route(document.body, "/", {
   "/": MainPageComponent,
   "/afterAuth": AfterAuthComponent,
   //"/channelData": ChannelDataPageComponent,
   "/channel/:channel": channelIndex,
-
+  "/channel/:channel/subs": subs,
   "/channel/:channel/templates": TemplateListPageComponent,
   "/channel/:channel/templates/:template": templateShow,
   "/channel/:channel/logs": LogUsersPageComponent,

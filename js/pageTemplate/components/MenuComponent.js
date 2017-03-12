@@ -54,6 +54,12 @@ var MenuComponent = {
                     class: vnode.attrs.route == routes.AUTOMESSAGES ? "is-selected" : "",
                     oncreate: m.route.link
                 }, m("span", "Автосообщения")))
+            components.push(
+                m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/subs`,
+                    class: vnode.attrs.route == routes.SUBSCRIPTIONS ? "is-selected" : "",
+                    oncreate: m.route.link
+                }, m("span", "Список подписчиков")))
         }
         return m(".site-menu", components)
     }
