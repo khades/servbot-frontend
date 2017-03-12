@@ -17,7 +17,7 @@ module.exports = {
                         model.resetLimit()
                         model.get(model.channelID)
                     }
-                }, "Показать все")
+                }, "Показать последние подписки (За 3 дня)")
             ]),
             model.subscriptions.map(f => {
 
