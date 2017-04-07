@@ -36,14 +36,13 @@ module.exports = {
 
             console.log(e.data)
             if (e.data != "ping") {
-
                 this.get(channelID)
             }
             // 
         }.bind(this)
 
         this.eventSource.onerror = function (e) {
-            if (this.readyState == EventSource.CONNECTING) {
+            if (this.eventSource.readyState == EventSource.CONNECTING) {
                 this.get(channelID)
             }
         }.bind(this)
