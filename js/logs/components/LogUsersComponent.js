@@ -31,7 +31,7 @@ var LogusersComponent = {
                     oncreate: m.route.link,
                     href: "/channel/" + LogUsersPageModel.channel + "/logs/" + user.userID
                 }, [
-                    m("span.channel-users__container__user-link__user", `${user.user}#${user.userID}`)
+                    m("span.channel-users__container__user-link__user", `${user.user}`)
                 ])
             }))
         ])
