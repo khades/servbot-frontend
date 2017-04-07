@@ -5,6 +5,7 @@ module.exports = {
     view(vnode) {
         return m(".subscriptions-show", [
             m(".subscriptions-show__header", `Подписчики на канале ${model.channel}`),
+            m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня` : `Начиная с ${model.getLimit().toLocaleString() }`),
             m(".subscriptions-show__buttons", [
                 m('button', {
                     onclick: () => {
