@@ -18,9 +18,10 @@
             margin: 0.1em;
             padding: 0.2em;
             border-radius: 3px;
-            display: inline-flex;
-            // flex-basis: 250px;
+            display: inline-flex; // flex-basis: 250px;
             // flex-grow: 2;
+            flex-grow: 2;
+            justify-content: center;
             &__user {
                 font-weight: bolder;
             }
