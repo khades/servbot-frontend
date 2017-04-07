@@ -3,6 +3,9 @@
     &__header {
         @include header;
     }
+    &__threshold {
+        padding-bottom: 0.3em;
+    }
     &__item {
         @include simple-list-item;
         justify-content: space-between;
