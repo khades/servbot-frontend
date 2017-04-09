@@ -8,7 +8,7 @@ module.exports = {
         return m(".subscriptions-show", [
             m(".subscriptions-show__header", `Подписчики на канале ${model.channel}`),
             (!!model.eventSource && model.eventSource.readyState == EventSource.CLOSED) || model.state == states.ERROR ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : m(".nothing"),
-            m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня` : `Начиная с ${new Date(parseInt(model.getLimit())).toLocaleString() }`),
+            m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня, ${model.subscriptions.length} подписок` : `Начиная с ${new Date(parseInt(model.getLimit())).toLocaleString() }, ${model.subscriptions.length} подписок`),
             m(".subscriptions-show__buttons", [
                 m('button', {
                     onclick: () => {
