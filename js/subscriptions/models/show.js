@@ -9,9 +9,15 @@ module.exports = {
     channelID: "",
     subscriptions: [],
     eventSource: null,
+    intervalID: null,
     leaveEventSource() {
-        if (!!this.eventSource)
+        if (!!this.eventSource) {
             this.eventSource.close()
+
+        }
+        if (this.intervalID) {
+            clearInterval(this.intervalID)
+        }
         console.log("Closing event source")
     },
     getLimit: function () {
@@ -27,7 +33,7 @@ module.exports = {
     resetLimit: function () {
         localStorage.removeItem("limitDate")
     },
-    createEventSource(channelID) {
+    connectToEventSource(channelID) {
         if (!!this.eventSource)
             this.eventSource.close()
 
@@ -47,12 +53,22 @@ module.exports = {
             }
         }.bind(this)
     },
+    createEventSource(channelID) {
+        this.connectToEventSource(channelID)
+        this.intervalID = setInterval(function () {
+            if (this.eventSource.readyState == EventSource.CLOSED) {
+                console.log("Reconnecting")
+                this.connectToEventSource(channelID)
+            }
+        }.bind(this), 5000)
+
+    },
     get: function (channelID) {
         this.channelID = channelID
         this.route = m.route.get()
         var url = `api/channel/${channelID}/subs`
         if (!!this.getLimit()) {
-             url = `api/channel/${channelID}/subs/limit/${this.getLimit()}`
+            url = `api/channel/${channelID}/subs/limit/${this.getLimit()}`
         }
         auth.request({
             url: appUrl(url)
