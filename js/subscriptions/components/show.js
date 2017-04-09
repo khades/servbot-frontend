@@ -5,6 +5,7 @@ module.exports = {
     view(vnode) {
         return m(".subscriptions-show", [
             m(".subscriptions-show__header", `Подписчики на канале ${model.channel}`),
+            !!model.eventSource && model.eventSource.readyState == EventSource.CLOSED ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : m(".nothing"),
             m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня` : `Начиная с ${new Date(parseInt(model.getLimit())).toLocaleString() }`),
             m(".subscriptions-show__buttons", [
                 m('button', {
@@ -20,7 +21,7 @@ module.exports = {
                     }
                 }, "Показать последние подписки (За 3 дня)")
             ]),
-            model.subscriptions.map(f => {
+            m(".subscriptions-show__items", model.subscriptions.map(f => {
 
                 return m(".subscriptions-show__item", [
                     m(".subscriptions-show__item__user", {
@@ -31,7 +32,7 @@ module.exports = {
                     ]),
                     m(".subscriptions-show__item__date", new Date(f.date).toLocaleString()),
                 ])
-            })
+            }))
         ])
     }
 }

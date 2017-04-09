@@ -50,6 +50,7 @@ module.exports = {
 
         this.eventSource.onerror = function (e) {
             if (this.eventSource.readyState == EventSource.CONNECTING) {
+                m.redraw()
                 this.get(channelID)
             }
         }.bind(this)
@@ -58,6 +59,7 @@ module.exports = {
         this.connectToEventSource(channelID)
         this.intervalID = setInterval(function () {
             if (this.eventSource.readyState == EventSource.CLOSED) {
+                m.redraw()
                 console.log("Reconnecting")
                 this.connectToEventSource(channelID)
             }
