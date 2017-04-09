@@ -38,6 +38,7 @@ module.exports = {
             this.eventSource.close()
 
         this.eventSource = new EventSource(appUrl(`api/channel/${channelID}/subs/events`))
+        this.get(channelID)
         this.eventSource.onmessage = function (e) {
 
             console.log(e.data)
@@ -60,7 +61,7 @@ module.exports = {
                 console.log("Reconnecting")
                 this.connectToEventSource(channelID)
             }
-        }.bind(this), 5000)
+        }.bind(this), 10000)
 
     },
     get: function (channelID) {

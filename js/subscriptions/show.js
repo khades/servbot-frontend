@@ -6,7 +6,6 @@ var routes = require("../pageTemplate/routes")
 
 module.exports = {
     oninit: function (vnode) {
-        model.get(vnode.attrs.channel)
         model.createEventSource(vnode.attrs.channel)
     },
     onupdate: function (vnode) {
