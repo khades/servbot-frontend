@@ -85,6 +85,9 @@ module.exports = {
                 this.channel = response.channel
             }
             this.state = states.READY
+        }, error => {
+            this.state = states.ERROR
+            throw error
         })
     },
 
