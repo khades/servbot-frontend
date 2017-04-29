@@ -13,7 +13,7 @@
         font-weight: bolder;
     }
     &__item {
-        &--bookmark {
+        &--bookmarked {
             background-color: #087e8b;
         }
         @include simple-list-item;
