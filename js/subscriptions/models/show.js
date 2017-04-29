@@ -21,17 +21,32 @@ module.exports = {
         console.log("Closing event source")
     },
     getLimit: function () {
-        var date = localStorage.getItem("limitDate")
+        var date = localStorage.getItem(`${this.channelID}+limitDate`)
         if (!!date) {
             return date
         }
         return null
     },
+
     setLimit: function (value) {
-        var date = localStorage.setItem("limitDate", time.now().getTime())
+        localStorage.setItem(`${this.channelID}+limitDate`, time.now().getTime())
     },
     resetLimit: function () {
-        localStorage.removeItem("limitDate")
+        localStorage.removeItem(`${this.channelID}+limitDate`)
+    },
+
+    getBookmark: function () {
+        var bookmark = localStorage.getItem(`${this.channelID}+subBookmark`)
+        if (!!bookmark) {
+            return bookmark
+        }
+        return null
+    },
+    setBookmark: function (id) {
+        localStorage.setItem(`${this.channelID}+subBookmark`, id)
+    },
+    resetBookmark: function () {
+        localStorage.removeItem(`${this.channelID}+subBookmark`)
     },
     connectToEventSource(channelID) {
         if (!!this.eventSource)
