@@ -30,7 +30,7 @@ module.exports = {
                         model.setBookmark(f.id)
                     },
                     class: model.getBookmark() == f.id ? "subscriptions-show__item--bookmarked" : ""
-                }[
+                }, [
                     m(".subscriptions-show__item__user", {
                         class: f.isPrime ? "subscriptions-show__item__user--prime" : "subscriptions-show__item__user--non-prime"
                     }, [
