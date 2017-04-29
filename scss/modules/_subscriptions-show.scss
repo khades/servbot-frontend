@@ -13,6 +13,9 @@
         font-weight: bolder;
     }
     &__item {
+        &--bookmark {
+            background-color: #087e8b;
+        }
         @include simple-list-item;
         justify-content: space-between;
         &__user {
