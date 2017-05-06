@@ -55,7 +55,41 @@ module.exports = {
                         model.subAlert.resubPrimeSmile = value.trim()
                     }
                 }),
+                m(input, {
+                    label: "Сообщение при подписке за 5$",
+                    class: "subalert-show__sub-message",
 
+                    id: "subFiveMessage",
+                    getValue: () => {
+                        return model.subAlert.subFiveMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.subFiveMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Сообщение при переподписке за 5$",
+                    id: "resubFiveMessage",
+                    class: "subalert-show__resub-message",
+                    error: model.error.fiveError ? "Некорректный шаблон" : null,
+                    getValue: () => {
+                        return model.subAlert.resubFiveMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubFiveMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Смайлики при переподписке за 5$",
+                    id: "resubFiveSmile",
+                    class: "subalert-show__repeat-body",
+                    getValue: () => {
+                        return model.subAlert.resubFiveSmile
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubFiveSmile = value.trim()
+                    }
+                }),
                 m(input, {
                     label: "Сообщение при подписке за 10$",
                     class: "subalert-show__sub-message",
