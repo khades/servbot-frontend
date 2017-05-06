@@ -1,22 +1,28 @@
 @import '../utils/index';
 .automessage-list {
+    >*+* {
+        margin-top: $element-spacing;
+        display: inline-flex;
+    }
     &__items {
+        >*+* {
+            margin-top: $element-spacing;
+        }
         display: flex;
         flex-direction: column;
     }
+    &__create {
+        @include button;
+    }
     &__header {
         font-weight: bolder;
-        padding-top: 0.3em;
-        padding-bottom: 0.3em;
-        font-size: 1.3em;
+        font-size: 1.2rem;
     }
     &__item {
         color: $background-color;
         background: $background-main-color;
         border-radius: 0.1em;
-        margin-top: 0.3em;
-        margin-bottom: 0.3em;
-        padding: 0.3em;
+        padding: $element-spacing;
         width: 100%;
         display: inline-flex;
         &__body {

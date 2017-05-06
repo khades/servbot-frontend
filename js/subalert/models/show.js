@@ -6,9 +6,19 @@ var m = require("mithril")
 module.exports = {
     state: states.LOADING,
     subAlert: {},
+    error: {},
     channelID: "",
     channel: "",
     errorResubAlert: false,
+    extended: false,
+    isExtended(object) {
+        return object.subPrimeMessage != "" ||
+            object.subTenMessage != "" ||
+            object.subTwentyFiveMessage != "" ||
+            object.resubPrimeMessage != "" ||
+            object.resubTenMessage != "" ||
+            object.resubTwentyFiveMessage != ""
+    },
     get: function (channelID) {
         this.state = states.LOADING
         this.channelID = channelID
@@ -19,14 +29,15 @@ module.exports = {
             if (!!response) {
                 this.subAlert = response.subAlert
                 this.channel = response.channel
+                this.extended = this.isExtended(response.subAlert)
+
             }
             this.state = states.READY
         })
     },
     save() {
         this.state = states.LOADING
-        this.errorResubAlert = false
-        this.subAlert.enabled = true
+        this.error = {}
         auth.request({
             url: appUrl(`api/channel/${this.channelID}/subalert`),
             method: "POST",
@@ -36,7 +47,7 @@ module.exports = {
             this.state = states.READY
         }).catch(error => {
             if (error.code == 422) {
-                this.errorResubAlert = true
+                this.error = error.message
             }
             this.state = states.READY
 

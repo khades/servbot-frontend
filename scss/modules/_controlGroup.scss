@@ -1,9 +1,11 @@
 @import '../utils/index';
 .control-group {
+  > * + * {
+    margin-top: $element-spacing;
+  }
   label,
   #{$all-text-inputs} {
     display: block;
-    margin: 0.5em 0;
   }
   &.has-error {
     label {

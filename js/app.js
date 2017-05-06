@@ -12,6 +12,7 @@ var channelIndex = require("./channel/index")
 var subAlertShow = require("./subalert/show")
 var time = require("./utils/time")
 var subs = require("./subscriptions/show")
+var bits = require("./bits/bits")
 time.getTime()
 m.route.prefix("#")
 m.route(document.body, "/", {
@@ -27,6 +28,7 @@ m.route(document.body, "/", {
   "/channel/:channel/autoMessages": autoMessageList,
   "/channel/:channel/autoMessages/new": autoMessageEdit,
   "/channel/:channel/autoMessages/:id": autoMessageEdit,
-  "/channel/:channel/subAlert": subAlertShow
+  "/channel/:channel/subAlert": subAlertShow,
+  "/channel/:channel/bits": bits
 
 });

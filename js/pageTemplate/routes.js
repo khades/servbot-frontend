@@ -6,4 +6,5 @@ module.exports = {
     MAIN: 5,
     CHANNEL: 6,
     SUBSCRIPTIONS: 7,
+    BITS: 8
 }

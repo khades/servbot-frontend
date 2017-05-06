@@ -7,11 +7,11 @@ module.exports = {
         console.log(vnode.attrs)
         return m(".automessage-list", [
             m(".automessage-list__header", `Автосообщения на канале ${vnode.attrs.object.channel}`),
-            m("a", {
+            m("a.automessage-list__create", {
                 oncreate: m.route.link,
                 href: `/channel/${vnode.attrs.channelID}/autoMessages/new`
-            }, m("button", "Создать новое автосообщение")),
-            m(".automessage-list__items", !!vnode.attrs.object.autoMessages ? vnode.attrs.object.autoMessages.map(f => m(listItem, f)): m(".nothing"))
+            }, "Создать новое автосообщение"),
+            m(".automessage-list__items", !!vnode.attrs.object.autoMessages ? vnode.attrs.object.autoMessages.map(f => m(listItem, f)) : m(".nothing"))
         ])
     }
 }

@@ -1,10 +1,11 @@
 @import '../utils/index';
 .channel-users {
+    > * + * {
+        margin-top: $element-spacing;
+    }
     &__header {
         font-weight: bolder;
-        padding-top: 0.3em;
-        padding-bottom: 0.3em;
-        font-size: 1.3em;
+        font-size: 1.2rem;
     }
     &__container {
         margin-left: -0.1em;
@@ -16,7 +17,7 @@
             background-color: $background-main-color;
             color: $background-color;
             margin: 0.1em;
-            padding: 0.2em;
+            padding: $element-spacing;
             border-radius: 3px;
             display: inline-flex; // flex-basis: 250px;
             // flex-grow: 2;

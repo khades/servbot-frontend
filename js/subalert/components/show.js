@@ -3,54 +3,183 @@ var model = require("../models/show")
 var historyItem = require("./historyItem")
 require("../../../scss/modules/_subalert-show.scss")
 var input = require("../../basicWidgets/components/InputComponent")
+var checkbox = require("../../basicWidgets/components/CheckBoxComponent")
 module.exports = {
     view(vnode) {
         return m(".subalert-show", [
             m(".subalert-show__header", `Сообщения при подписке на канале ${model.channel}`),
+            m(checkbox, {
+                id: "subAlertEnabled",
+                getValue: () => model.subAlert.enabled,
+                setValue: value => {
+                    console.log(value)
+                    model.subAlert.enabled = value
+                    console.log(model.subAlert)
+                },
+                label: "Сабалерт включён"
+            }),
+            model.extended == true ? [
 
-            m(input, {
-                label: "Сообщение при подписке",
-                class: "subalert-show__sub-message",
+                m(input, {
+                    label: "Сообщение при подписке за Prime",
+                    class: "subalert-show__sub-message",
 
-                id: "subMessage",
-                getValue: () => {
-                    return model.subAlert.subMessage
-                },
-                setValue: (value) => {
-                    model.subAlert.subMessage = value.trim()
-                }
-            }),
-            m(input, {
-                label: "Сообщение при переподписке",
-                id: "resubMessage",
-                class: "subalert-show__resub-message",
-                error: model.errorResubAlert ? "Некорректный шаблон" : null,
-                getValue: () => {
-                    return model.subAlert.resubMessage
-                },
-                setValue: (value) => {
-                    model.subAlert.resubMessage = value.trim()
-                }
-            }),
-            m(input, {
-                label: "Повторяющееся тело сообщения переподписки",
-                id: "repeatBody",
-                class: "subalert-show__repeat-body",
-                getValue: () => {
-                    return model.subAlert.repeatBody
-                },
-                setValue: (value) => {
-                    model.subAlert.repeatBody = value.trim()
-                }
-            }),
+                    id: "subPrimeMessage",
+                    getValue: () => {
+                        return model.subAlert.subPrimeMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.subPrimeMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Сообщение при переподписке за Prime",
+                    id: "resubPrimeMessage",
+                    class: "subalert-show__resub-message",
+                    error: model.error.primeError ? "Некорректный шаблон" : null,
+                    getValue: () => {
+                        return model.subAlert.resubPrimeMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubPrimeMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Смайлики при переподписке за Prime",
+                    id: "resubPrimeSmile",
+                    class: "subalert-show__repeat-body",
+                    getValue: () => {
+                        return model.subAlert.resubPrimeSmile
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubPrimeSmile = value.trim()
+                    }
+                }),
+
+                m(input, {
+                    label: "Сообщение при подписке за 10$",
+                    class: "subalert-show__sub-message",
+
+                    id: "subTenMessage",
+                    getValue: () => {
+                        return model.subAlert.subTenMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.subTenMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Сообщение при переподписке за 10$",
+                    id: "resubTenMessage",
+                    class: "subalert-show__resub-message",
+                    error: model.error.tenError ? "Некорректный шаблон" : null,
+                    getValue: () => {
+                        return model.subAlert.resubTenMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubTenMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Смайлики при переподписке за 10$",
+                    id: "resubTenSmile",
+                    class: "subalert-show__repeat-body",
+                    getValue: () => {
+                        return model.subAlert.resubTenSmile
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubTenSmile = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Сообщение при подписке за 25$",
+                    class: "subalert-show__sub-message",
+
+                    id: "subTwentyFiveMessage",
+                    getValue: () => {
+                        return model.subAlert.subTwentyFiveMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.subTwentyFiveMessage = value.trim()
+                    }
+                }),
+
+
+
+                m(input, {
+                    label: "Сообщение при переподписке за 25$",
+                    id: "resubTwentyFiveMessage",
+                    class: "subalert-show__resub-message",
+                    error: model.error.twentyFiveError ? "Некорректный шаблон" : null,
+                    getValue: () => {
+                        return model.subAlert.resubTwentyFiveMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubTwentyFiveMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Смайлики при переподписке за 25$",
+                    id: "resubTwentyFiveSmile",
+                    class: "subalert-show__repeat-body",
+                    getValue: () => {
+                        return model.subAlert.resubTwentyFiveSmile
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubTwentyFiveSmile = value.trim()
+                    }
+                })
+            ] : [m(input, {
+                    label: "Сообщение при подписке за 5$",
+                    class: "subalert-show__sub-message",
+
+                    id: "subFiveMessage",
+                    getValue: () => {
+                        return model.subAlert.subFiveMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.subFiveMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Сообщение при переподписке за 5$",
+                    id: "resubFiveMessage",
+                    class: "subalert-show__resub-message",
+                    error: model.error.fiveError ? "Некорректный шаблон" : null,
+                    getValue: () => {
+                        return model.subAlert.resubFiveMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubFiveMessage = value.trim()
+                    }
+                }),
+                m(input, {
+                    label: "Смайлики при переподписке за 5$",
+                    id: "resubFiveSmile",
+                    class: "subalert-show__repeat-body",
+                    getValue: () => {
+                        return model.subAlert.resubFiveSmile
+                    },
+                    setValue: (value) => {
+                        model.subAlert.resubFiveSmile = value.trim()
+                    }
+                })
+            ],
             m("button", {
                 type: "button",
                 onclick: () => {
                     model.save()
                 }
             }, "Сохранить"),
-
-            !!model.subAlert.history ? m(".subalert-show__header", "История команд") : m(".nothing"), !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => m(historyItem, f))) : m(".nothing")
+            model.extended == false ? m("button", {
+                type: "button",
+                onclick: () => {
+                    model.extended = true
+                }
+            }, "Показать больше") : m(".nothing"), !!model.subAlert.history ? m(".subalert-show__header", "История команд") : m(".nothing"), !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => {
+                f.extended = model.isExtended(f)
+                return m(historyItem, f)
+            })) : m(".nothing")
         ])
     }
 }

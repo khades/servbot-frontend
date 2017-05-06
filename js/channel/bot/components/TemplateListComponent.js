@@ -21,8 +21,7 @@ var TemplateListComponent = {
 
             m("a", {
                 oncreate: m.route.link,
-                href: `/channel/${TemplateListModel.channelID}/templates/${TemplateListModel.newCommand}`,
-                style: "padding-bottom: 1em;"
+                href: `/channel/${TemplateListModel.channelID}/templates/${TemplateListModel.newCommand}`
             }, m("button", "Перейти")),
                         m(".template-list__header", `Список существующих комманд`),
 

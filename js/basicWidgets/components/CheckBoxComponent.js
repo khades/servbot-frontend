@@ -9,10 +9,10 @@ var CheckBoxComponent = {
         m("input", {
           type: "checkbox",
           id: vnode.attrs.id,
-          checked: vnode.attrs.value,
+          checked: vnode.attrs.getValue(),
           onchange: function (event) {
             event.redraw = false
-            m.withAttr("checked", vnode.attrs.onchange)(event)
+            m.withAttr("checked", vnode.attrs.setValue)(event)
           }
         }),
         vnode.attrs.label

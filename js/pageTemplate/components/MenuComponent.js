@@ -60,6 +60,12 @@ var MenuComponent = {
                     class: vnode.attrs.route == routes.SUBSCRIPTIONS ? "is-selected" : "",
                     oncreate: m.route.link
                 }, m("span", "Список подписчиков")))
+            components.push(
+                m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/bits`,
+                    class: vnode.attrs.route == routes.BITS ? "is-selected" : "",
+                    oncreate: m.route.link
+                }, m("span", "Битсы")))
         }
         return m(".site-menu", components)
     }

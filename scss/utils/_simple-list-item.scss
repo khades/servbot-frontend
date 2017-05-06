@@ -1,10 +1,9 @@
-@mixin simple-list-item() {   
+@mixin simple-list-item() {
+
     color: $background-color;
     background: $background-main-color;
     border-radius: 0.1rem;
-
-    margin-bottom: 0.5rem;
-    padding: 0.3rem;
+    padding: $element-spacing;
     width: 100%;
     display: inline-flex;
 }

@@ -1,13 +1,14 @@
 @import '../utils/index';
 .user-logs {
+    >*+* {
+        margin-top: $element-spacing;
+    }
     &__history {
         width: 100%;
         color: $background-color;
         background: $background-main-color;
         border-radius: 0.1em;
-        margin-top: 0.3em;
-        margin-bottom: 0.3em;
-        padding: 0.3em;
+        padding: $element-spacing;
         display: flex;
         flex-direction: column;
         &__date {

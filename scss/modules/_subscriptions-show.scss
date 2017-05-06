@@ -1,16 +1,21 @@
 @import '../utils/index';
 .subscriptions-show {
-    >div {
-        margin-bottom: 0.5rem;
+    >*+* {
+        margin-top: $element-spacing;
     }
     &__header {
         @include header;
     }
     &__error {
-        padding: 0.5rem;
+        padding: $element-spacing;
         background: tint($color-error, 60%);
         border-left: 0.2rem solid $color-error;
         font-weight: bolder;
+    }
+    &__items {
+        >*+* {
+            margin-top: $element-spacing;
+        }
     }
     &__item {
         &--bookmarked {
@@ -19,11 +24,29 @@
         @include simple-list-item;
         justify-content: space-between;
         &__user {
+            &:before {
+                margin-right: $element-spacing;
+            }
             &--prime {
                 @include prepend-svg("../../svg/crown.svg");
             }
-            &--non-prime {
-                @include prepend-svg("../../svg/user-outline.svg");
+            &--five-dollars {
+                &:before {
+                    content: "5$";
+                    font-weight: bolder;
+                }
+            }
+            &--ten-dollars {
+                &:before {
+                    content: "10$";
+                    font-weight: bolder;
+                }
+            }
+            &--twenty-five-dollars {
+                &:before {
+                    content: "25$";
+                    font-weight: bolder;
+                }
             }
             @include simple-tooltip;
         }

@@ -2,6 +2,7 @@ var m = require("mithril")
 require("../../../scss/modules/_subalert-history.scss")
 module.exports = {
     view(vnode) {
+
         return m(".subalert-history", [
             m(".subalert-history__row", [m(".subalert-history__user", [
                     `${vnode.attrs.user}`,
@@ -9,10 +10,37 @@ module.exports = {
                 ]),
                 m(".subalert-history__date", new Date(vnode.attrs.date).toLocaleString())
             ]),
-            m(".subalert-history__sub-message", vnode.attrs.subMessage),
-            m(".subalert-history__resub-message", vnode.attrs.resubMessage),
-            m(".subalert-history__repeat-body", vnode.attrs.repeatBody)
-
+            vnode.attrs.extended ? [
+                m(".subalert-history__prime", [
+                    m("div.subalert-history__label", "Prime"),
+                    m(".subalert-history__sub-message", vnode.attrs.subPrimeMessage),
+                    m(".subalert-history__resub-message", vnode.attrs.resubPrimeMessage),
+                    m(".subalert-history__repeat-body", vnode.attrs.resubPrimeSmile)
+                ]),
+                m(".subalert-history__five", [
+                    m("div.subalert-history__label", "5$"),
+                    m(".subalert-history__sub-message", vnode.attrs.subFiveMessage),
+                    m(".subalert-history__resub-message", vnode.attrs.resubFiveMessage),
+                    m(".subalert-history__repeat-body", vnode.attrs.resubFiveSmile)
+                ]),
+                m(".subalert-history__ten", [
+                    m("div.subalert-history__label", "10$"),
+                    m(".subalert-history__sub-message", vnode.attrs.subTenMessage),
+                    m(".subalert-history__resub-message", vnode.attrs.resubTenMessage),
+                    m(".subalert-history__repeat-body", vnode.attrs.resubTenSmile)
+                ]),
+                m(".subalert-history__twenty-five", [
+                    m("div.subalert-history__label", "25$"),
+                    m(".subalert-history__sub-message", vnode.attrs.subTwentyFiveMessage),
+                    m(".subalert-history__resub-message", vnode.attrs.resubTwentyFiveMessage),
+                    m(".subalert-history__repeat-body", vnode.attrs.resubTwentyFiveMessage)
+                ])
+            ] :
+            m(".subalert-history__five", [
+                m(".subalert-history__sub-message", vnode.attrs.subFiveMessage),
+                m(".subalert-history__resub-message", vnode.attrs.resubFiveMessage),
+                m(".subalert-history__repeat-body", vnode.attrs.resubFiveSmile),
+            ])
         ])
     }
 }

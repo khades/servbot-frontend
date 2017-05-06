@@ -2,7 +2,15 @@ var m = require("mithril")
 var model = require("../models/show")
 require("../../../scss/modules/_subscriptions-show.scss")
 var states = require("../../utils/states")
-
+var generateClass = (f) => {
+    if (f.isPrime || f.subPlan == "Prime")
+        return "subscriptions-show__item__user--prime"
+    if (f.isPrime || f.subPlan == "2000")
+        return "subscriptions-show__item__user--ten-dollars"
+    if (f.isPrime || f.subPlan == "3000")
+        return "subscriptions-show__item__user--twenty-five-dollars"
+    return "subscriptions-show__item__user--five-dollars"
+}
 module.exports = {
     view(vnode) {
         return m(".subscriptions-show", [
@@ -32,7 +40,7 @@ module.exports = {
                     class: model.getBookmark() == f.id ? "subscriptions-show__item--bookmarked" : ""
                 }, [
                     m(".subscriptions-show__item__user", {
-                        class: f.isPrime ? "subscriptions-show__item__user--prime" : "subscriptions-show__item__user--non-prime"
+                        class: generateClass(f)
                     }, [
                         `${f.user} (${f.count})`,
                         m(".subscriptions-show__item__user__tooltip", `${f.user}#${f.userID}`)

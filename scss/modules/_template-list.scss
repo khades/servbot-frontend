@@ -1,16 +1,20 @@
 @import '../utils/index';
 .template-list {
+    >*+* {
+        margin-top: $element-spacing;
+    }
     display: flex;
     flex-direction: column;
     &__container {
+        >*+* {
+            margin-top: $element-spacing;
+        }
         display: inline-flex;
         flex-wrap: wrap;
     }
     &__header {
         font-weight: bolder;
-        padding-top: 0.3em;
-        padding-bottom: 0.3em;
-        font-size: 1.3em;
+        font-size: 1.2rem;
     }
     &__filter {
         display: inline-flex;
@@ -34,7 +38,6 @@
             }
         }
         >button {
-            margin-right: 0.2em;
             display: inline-flex;
             align-items: center;
             .button-content {
