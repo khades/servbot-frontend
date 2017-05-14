@@ -17,6 +17,11 @@
         &__message-body {
             @include prepend-svg("../../svg/message.svg");
         }
+        &__timeout,
+        &__ban {
+            @include prepend-svg("../../svg/delete-outline.svg");
+            font-weight: bolder;
+        }
         &__user {
             @include prepend-svg("../../svg/user-outline.svg");
         }
