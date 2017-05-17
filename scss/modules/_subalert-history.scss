@@ -15,6 +15,9 @@
             font-weight: bolder;
             margin-left: $element-spacing;
         }
+        &__follower {
+            border-left: 2px solid salmon;
+        }
         &__prime {
             >.subalert-history__label {
                 color: yellow;

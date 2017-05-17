@@ -11,6 +11,7 @@ module.exports = {
                 m(".subalert-history__date", new Date(vnode.attrs.date).toLocaleString())
             ]),
             vnode.attrs.extended ? [
+                m(".subalert-history__follower", vnode.attrs.followerMessage),
                 m(".subalert-history__prime", [
                     m("div.subalert-history__label", "Prime"),
                     m(".subalert-history__sub-message", vnode.attrs.subPrimeMessage),
@@ -35,12 +36,14 @@ module.exports = {
                     m(".subalert-history__resub-message", vnode.attrs.resubTwentyFiveMessage),
                     m(".subalert-history__repeat-body", vnode.attrs.resubTwentyFiveMessage)
                 ])
-            ] :
-            m(".subalert-history__five", [
-                m(".subalert-history__sub-message", vnode.attrs.subFiveMessage),
-                m(".subalert-history__resub-message", vnode.attrs.resubFiveMessage),
-                m(".subalert-history__repeat-body", vnode.attrs.resubFiveSmile),
-            ])
+            ] : [
+                m(".subalert-history__follower", vnode.attrs.followerMessage),
+                m(".subalert-history__five", [
+                    m(".subalert-history__sub-message", vnode.attrs.subFiveMessage),
+                    m(".subalert-history__resub-message", vnode.attrs.resubFiveMessage),
+                    m(".subalert-history__repeat-body", vnode.attrs.resubFiveSmile),
+                ])
+            ]
         ])
     }
 }
