@@ -19,7 +19,18 @@ module.exports = {
                 label: "Сабалерт включён"
             }),
             model.extended == true ? [
+                m(input, {
+                    label: "Сообщение при follower",
+                    class: "subalert-show__sub-message",
 
+                    id: "followerMessage",
+                    getValue: () => {
+                        return model.subAlert.followMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.followMessage = value.trim()
+                    }
+                }),
                 m(input, {
                     label: "Сообщение при подписке за Prime",
                     class: "subalert-show__sub-message",
@@ -163,7 +174,20 @@ module.exports = {
                         model.subAlert.resubTwentyFiveSmile = value.trim()
                     }
                 })
-            ] : [m(input, {
+            ] : [
+                m(input, {
+                    label: "Сообщение при follow",
+                    class: "subalert-show__sub-message",
+
+                    id: "followerMessage",
+                    getValue: () => {
+                        return model.subAlert.followerMessage
+                    },
+                    setValue: (value) => {
+                        model.subAlert.followerMessage = value.trim()
+                    }
+                }),
+                m(input, {
                     label: "Сообщение при подписке за 5$",
                     class: "subalert-show__sub-message",
 
