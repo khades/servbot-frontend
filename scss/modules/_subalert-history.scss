@@ -17,6 +17,7 @@
         }
         &__follower {
             border-left: 2px solid salmon;
+            padding-left: $element-spacing;
         }
         &__prime {
             >.subalert-history__label {
