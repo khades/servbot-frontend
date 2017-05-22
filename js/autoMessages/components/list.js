@@ -11,7 +11,7 @@ module.exports = {
                 oncreate: m.route.link,
                 href: `/channel/${vnode.attrs.channelID}/autoMessages/new`
             }, "Создать новое автосообщение"),
-            m(".automessage-list__items", !!vnode.attrs.object.autoMessages ? vnode.attrs.object.autoMessages.map(f => m(listItem, f)) : m(".nothing"))
+            m(".automessage-list__items", !!vnode.attrs.object.autoMessages ? vnode.attrs.object.autoMessages.map(f => m(listItem, f)) : "")
         ])
     }
 }

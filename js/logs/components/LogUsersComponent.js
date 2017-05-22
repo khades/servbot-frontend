@@ -25,7 +25,7 @@ var LogusersComponent = {
                 },
                 pages: Math.ceil(results.count / LogUsersPageModel.pageSize)
 
-            }) : m(".nothing"),
+            }) : "",
             m(".channel-users__container", results.users.map(user => {
                 return m("a.channel-users__container__user-link", {
                     oncreate: m.route.link,

@@ -234,10 +234,10 @@ module.exports = {
                 onclick: () => {
                     model.extended = true
                 }
-            }, "Показать больше") : m(".nothing"), !!model.subAlert.history ? m(".subalert-show__header", "История команд") : m(".nothing"), !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => {
+            }, "Показать больше") : "", !!model.subAlert.history ? m(".subalert-show__header", "История команд") : "", !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => {
                 f.extended = model.isExtended(f)
                 return m(historyItem, f)
-            })) : m(".nothing")
+            })) : ""
         ])
     }
 }

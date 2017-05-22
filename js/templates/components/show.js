@@ -7,11 +7,11 @@ module.exports = {
     view(vnode) {
         return m(".template-show", [
             m(".template-show__header", `Просмотр команды ${model.template.commandName} на канале ${model.channel}`),
-            model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : m(".nothing"),
+            model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : "",
             model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m("a", {
                 oncreate: m.route.link,
                 href: `/channel/${model.template.channelID}/templates/${model.template.aliasTo}`
-            }, m("button", "Перейти к оригиналу")) : m(".nothing"),
+            }, m("button", "Перейти к оригиналу")) : "",
             m(input, {
                 label: "Тело комманды",
                 id: "newCommand",
@@ -51,7 +51,7 @@ module.exports = {
                 onclick: () => {
                     model.setAliasTo()
                 }
-            }, "Сохранить"), !!model.template.history ? m(".template-show__header", "История команд") : m(".nothing"), !!model.template.history ? m(".template-show__history", model.template.history.map(f => m(historyItem, f))) : m(".nothing")
+            }, "Сохранить"), !!model.template.history ? m(".template-show__header", "История команд") : "", !!model.template.history ? m(".template-show__history", model.template.history.map(f => m(historyItem, f))) : ""
         ])
     }
 }

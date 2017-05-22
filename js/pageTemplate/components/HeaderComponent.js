@@ -24,7 +24,7 @@ var HeaderComponent = {
         class: vnode.attrs.route == "personalInfo" ? "is-selected" : ""
       }, [
           m("b", `${UserNameModel.userName}`),
-          !!UserNameModel.profileImage ? m("img.headerContent__profile-image", { src: UserNameModel.profileImage }) : m(".nothing")
+          !!UserNameModel.profileImage ? m("img.headerContent__profile-image", { src: UserNameModel.profileImage }) : ""
 
         ])
 

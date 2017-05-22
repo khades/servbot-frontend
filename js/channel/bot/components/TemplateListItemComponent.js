@@ -42,11 +42,11 @@ var TemplateListItemComponent = {
             m(TemplateMustashedBodyComponent, {
                 array: vnode.attrs.item.mustashedTemplate
             }) :
-            m(".nothing"),
+            "",
             commandInfo.type == "alias" ? m(".template-list-item__body",
                 // m(TemplateMustashedBodyComponent, vnode.attrs.item.mustashedTemplate)
                 commandInfo.body
-            ) : m(".nothing")
+            ) : ""
         ])
     }
 }

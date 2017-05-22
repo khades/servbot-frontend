@@ -7,12 +7,12 @@ require("../../../scss/modules/_automessage-edit.scss")
 module.exports = {
     view(vnode) {
         return m(".automessage-edit", [
-            model.isNew() == false ? m(".automessage-edit__header", "Информация о автосообщении") : m(".nothing"),
+            model.isNew() == false ? m(".automessage-edit__header", "Информация о автосообщении") : "",
             model.isNew() == false ? m(".automessage-edit__stats", [
                 m(".automessage-edit__stats__messagethreshold", `Сообщений до следующего срабатывания: ${model.object.messageThreshold}`),
                 m(".automessage-edit__stats__datethreshold", `Время следующего срабатывания: ${ new Date(model.object.durationThreshold).toLocaleString()}`),
 
-            ]) : m(".nothing"),
+            ]) : "",
             model.isNew() == false ? m(".automessage-edit__header", "Редактирование автосообщения") : m(".automessage-edit__header", "Создание автосообщения"),
 
             m(input, {
@@ -53,8 +53,8 @@ module.exports = {
                     model.push()
                 }
             }, "Сохранить"),
-            model.isNew() == false ? m(".automessage-edit__header", "История автосообщений") : m(".nothing"),
-            model.isNew() == false ? m(".automessage-edit__history", model.object.history.map(f => m(historyItem, f))) : m(".nothing")
+            model.isNew() == false ? m(".automessage-edit__header", "История автосообщений") : "",
+            model.isNew() == false ? m(".automessage-edit__history", model.object.history.map(f => m(historyItem, f))) : ""
 
 
         ])
