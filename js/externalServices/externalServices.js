@@ -11,8 +11,10 @@ module.exports = {
         return m(PageTemplateComponent, {
             route: routes.EXTERNAL_SERVICES,
             title: "Внешние сервисы",
-            channelID: () => { return model.object.channelID },
-            channel: () => { return model.object.channel },
+            channelID: () => { return model.object.channelId },
+            channel: () => {
+                return model.object.channel
+            },
             content: m(component, { model: model}),
             getState: () => {
                 return model.state
