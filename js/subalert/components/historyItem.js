@@ -4,7 +4,8 @@ module.exports = {
     view(vnode) {
 
         return m(".subalert-history", [
-            m(".subalert-history__row", [m(".subalert-history__user", [
+            m(".subalert-history__row", [
+                m(".subalert-history__user", [
                     `${vnode.attrs.user}`,
                     m(".subalert-history__user__tooltip", `${vnode.attrs.user}#${vnode.attrs.userID}`)
                 ]),

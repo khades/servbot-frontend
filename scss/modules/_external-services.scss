@@ -1,0 +1,14 @@
+@import '../utils/index';
+.external-services {
+    > * + * {
+        margin-top: $element-spacing;
+    }
+    &__header {
+        font-size: 1.2rem;
+        font-weight: bolder;
+    }
+    &__subheader {
+        font-size: 1.1rem;
+        font-weight: bolder;
+    }
+}
