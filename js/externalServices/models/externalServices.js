@@ -15,6 +15,7 @@ module.exports = {
             data: this.object.vkGroupInfo,
             url: appUrl(`/api/channel/${this.channelID}/externalservices/vk`)
         }).then(response => {
+            this.get(this.channelID)
             this.state = states.READY
         }).catch(error => {
             this.state = states.READY
