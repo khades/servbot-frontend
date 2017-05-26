@@ -51,11 +51,29 @@ module.exports = {
                     m.redraw()
                 },
                 label: "Включить рандомизатор строк"
-            }), !!model.template.stringRandomizer && model.template.stringRandomizer.enabled == true ? m(multiinput, {
-                getValues: () => model.template.stringRandomizer.strings,
-                setValues: (values) => model.template.stringRandomizer.strings = values,
-                id: "randomizerStrings"
-            }) : "",
+            }), !!model.template.stringRandomizer && model.template.stringRandomizer.enabled == true ? [
+                m(multiinput, {
+                    getValues: () => model.template.stringRandomizer.strings,
+                    setValues: (values) => model.template.stringRandomizer.strings = values,
+                    id: "randomizerStrings"
+                }),
+                m(textarea, {
+                    label: "Импортировать из строки",
+                    id: "stringRandomizerTemplates",
+                    getValue: () => {
+                        return !!model.stringRandomizerTemplate ? model.stringRandomizerTemplate : ""
+                    },
+                    setValue: (value) => {
+                        model.stringRandomizerTemplate = value.trim()
+                    }
+                }),
+                m("button", {
+                    type: "button",
+                    onclick: () => {
+                       model.template.stringRandomizer.strings = model.stringRandomizerTemplate.split(",").map(f => f.replace(/\"/g,"").trim())
+                    }
+                }, "Сформировать список вариантов"),
+            ] : "",
             m(check, {
                 id: "EnableIntegerRandomizer",
                 getValue: () => model.template.integerRandomizer.enabled,
