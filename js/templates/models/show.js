@@ -12,11 +12,12 @@ module.exports = {
     errorTemplate: false,
 
     get: function (channelID, name) {
-        this.template = {
-            commandName: name,
-            channelID: channelID
-        }
         this.state = states.LOADING
+        // this.template = {
+        //     commandName: name,
+        //     channelID: channelID
+        // }
+
         this.channelID = channelID
         this.name = name
         this.route = m.route.get()
@@ -24,8 +25,10 @@ module.exports = {
             url: appUrl(`api/channel/${channelID}/templates/${name}`)
         }).then(response => {
             if (!!response) {
+                console.log(response)
                 this.template = response.template
                 this.channel = response.channel
+                console.log(this.template)
             }
             this.state = states.READY
         })
@@ -36,10 +39,7 @@ module.exports = {
         auth.request({
             url: appUrl(`api/channel/${this.template.channelID}/templates/${this.template.commandName}`),
             method: "POST",
-            data: {
-                template: this.template.template
-            }
-
+            data: this.template
         }).then(response => {
             this.get(this.template.channelID, this.template.commandName)
             this.state = states.READY

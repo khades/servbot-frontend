@@ -1,5 +1,4 @@
 @import '../utils/index';
-
 #{$all-text-inputs},
 select {
   border: 1px solid $background-main-color;
@@ -22,11 +21,16 @@ select {
 }
 
 select {
-      &::-ms-expand {
-        display: none;
-    }
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
+  &::-ms-expand {
+    display: none;
+  }
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+textarea {
+  resize: vertical;
+  min-height: 4em;
 }
