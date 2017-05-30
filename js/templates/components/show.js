@@ -42,6 +42,7 @@ module.exports = {
                 },
                 label: "Игнорировать дебаунсер"
             }),
+            m(".template-show__header", "Рандомизатор строк"),
             m(check, {
                 id: "EnableStringRandomizer",
                 getValue: () => model.template.stringRandomizer.enabled,
@@ -70,10 +71,12 @@ module.exports = {
                 m("button", {
                     type: "button",
                     onclick: () => {
-                       model.template.stringRandomizer.strings = model.stringRandomizerTemplate.split(",").map(f => f.replace(/\"/g,"").trim())
+                        model.template.stringRandomizer.strings = model.stringRandomizerTemplate.split(",").map(f => f.replace(/\"/g, "").trim())
                     }
                 }, "Сформировать список вариантов"),
             ] : "",
+            m(".template-show__header", "Рандомизатор чисел"),
+
             m(check, {
                 id: "EnableIntegerRandomizer",
                 getValue: () => model.template.integerRandomizer.enabled,
@@ -103,6 +106,14 @@ module.exports = {
                     setValue: (value) => {
                         model.template.integerRandomizer.upperLimit = parseInt(value)
                     }
+                }),
+                m(check, {
+                    id: "EnableIntegerTimeoutAfter",
+                    getValue: () => model.template.timeoutAfter.enabled,
+                    setValue: value => {
+                        model.template.timeoutAfter.enabled = value
+                    },
+                    label: "Дать таймаут на это время"
                 })
             ] : "",
             m(textarea, {
