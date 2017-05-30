@@ -42,6 +42,15 @@ module.exports = {
                 },
                 label: "Игнорировать дебаунсер"
             }),
+            m(check, {
+                id: "PreventRedirect",
+                getValue: () => model.template.preventRedirect,
+                setValue: value => {
+
+                    model.template.preventRedirect = value
+                },
+                label: "Отключить перенаправление вывода команды пользователю, если после команды дописать его ник"
+            }),
             m(".template-show__header", "Рандомизатор строк"),
             m(check, {
                 id: "EnableStringRandomizer",
