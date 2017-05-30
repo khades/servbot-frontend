@@ -109,9 +109,9 @@ module.exports = {
                 }),
                 m(check, {
                     id: "EnableIntegerTimeoutAfter",
-                    getValue: () => model.template.timeoutAfter.enabled,
+                    getValue: () => model.template.integerRandomizer.timeoutAfter,
                     setValue: value => {
-                        model.template.timeoutAfter.enabled = value
+                        model.template.integerRandomizer.timeoutAfter = value
                     },
                     label: "Дать таймаут на это время"
                 })
