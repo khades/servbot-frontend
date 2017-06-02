@@ -21,6 +21,19 @@ module.exports = {
             this.state = states.READY
         })
     },
+    saveTwitchDJ: function () {
+        this.state = states.LOADING
+        auth.request({
+            method: "POST",
+            data: this.object.twitchDJ,
+            url: appUrl(`/api/channel/${this.channelID}/externalservices/twitchdj`)
+        }).then(response => {
+            this.get(this.channelID)
+            this.state = states.READY
+        }).catch(error => {
+            this.state = states.READY
+        })
+    },
     get: function (channel) {
         this.channelID = channel
         this.state = states.LOADING

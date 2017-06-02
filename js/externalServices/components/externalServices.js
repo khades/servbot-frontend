@@ -44,6 +44,37 @@ module.exports = {
                     model.saveVK()
                 }
             }, "Сохранить"),
+            m(".external-services__subheader", "TwichDJ"),
+            m(input, {
+                label: "twitchDJ идентификатор",
+                class: "external-services__twitch-dj-input",
+
+                id: "twitchDJid",
+                getValue: () => {
+                    return !!model.object.twitchDJ ? model.object.twitchDJ.id : ""
+                },
+                setValue: (value) => {
+                    !!model.object.twitchDJ ? model.object.twitchDJ.id = value : model.object.twitchDJ = {
+                        id: value
+                    }
+                }
+            }),
+            m(checkbox, {
+                id: "TwitchDJAlertEnabled",
+                getValue: () => !!model.object.twitchDJ ? model.object.twitchDJ.notifyOnChange : false,
+                setValue: value => {
+                    !!model.object.twitchDJ ? model.object.twitchDJ.notifyOnChange = value : model.object.twitchDJ = {
+                        notifyOnChange: value
+                    }
+
+                },
+                label: "Писать оповещение в чат при смене трека"
+            }),
+            m('button', {
+                onclick: () => {
+                    model.saveTwitchDJ()
+                }
+            }, "Сохранить"),
         ]) : "loading..."
     }
 }
