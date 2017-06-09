@@ -56,7 +56,7 @@ module.exports = {
                 method: "POST",
                 data: this.object
             }).then(result => {
-                this.get(this.object.channel, this.object.id)
+                this.get(this.object.channelID, this.object.id)
             })
         }
     }
