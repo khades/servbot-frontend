@@ -27,11 +27,13 @@ module.exports = {
         }).then(response => {
             if (!!response.autoMessage) {
                 this.object = response.autoMessage
+
                 this.object.durationLimit = parseInt(this.object.durationLimit) / 1000000000
             } else {
                 this.new(channel)
             }
             this.channel = response.channel
+            this.object.channel = response.channel
             this.state = states.READY
 
         }).catch(error => {
