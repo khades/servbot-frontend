@@ -11,19 +11,19 @@ module.exports = {
         return !(!!this.object.id)
     },
     route: "",
-    new(channel) {
+    new(channelID) {
         this.object = {
             message: "",
             messageLimit: 20,
             durationLimit: 300,
-            channel: channel
+            channelID: channelID
         }
     },
-    get(channel, id) {
+    get(channelID, id) {
         this.route = m.route.get()
         this.state = states.LOADING
         auth.request({
-            url: appUrl(`api/channel/${channel}/automessages/${id}`)
+            url: appUrl(`api/channel/${channelID}/automessages/${id}`)
         }).then(response => {
             if (!!response.autoMessage) {
                 this.object = response.autoMessage
@@ -33,7 +33,6 @@ module.exports = {
                 this.new(channel)
             }
             this.channel = response.channel
-            this.object.channel = response.channel
             this.state = states.READY
 
         }).catch(error => {
@@ -45,15 +44,15 @@ module.exports = {
     push() {
         if (this.isNew() == true) {
             auth.request({
-                url: appUrl(`api/channel/${this.object.channel}/automessages`),
+                url: appUrl(`api/channel/${this.object.channelID}/automessages`),
                 method: "POST",
                 data: this.object
             }).then(result => {
-                m.route.set(`/channel/${this.object.channel}/autoMessages/${result.ID}`)
+                m.route.set(`/channel/${this.object.channelID}/autoMessages/${result.ID}`)
             })
         } else {
             auth.request({
-                url: appUrl(`api/channel/${this.object.channel}/automessages/${this.object.id}`),
+                url: appUrl(`api/channel/${this.object.channelID}/automessages/${this.object.id}`),
                 method: "POST",
                 data: this.object
             }).then(result => {
