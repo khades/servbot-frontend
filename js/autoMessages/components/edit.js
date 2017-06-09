@@ -9,7 +9,7 @@ module.exports = {
         return m(".automessage-edit", [
             model.isNew() == false ? m(".automessage-edit__header", "Информация о автосообщении") : "",
             model.isNew() == false ? m(".automessage-edit__stats", [
-                m(".automessage-edit__stats__messagethreshold", `Сообщений до следующего срабатывания: ${vnode.attrs.messageThreshold < 0 ? "0" : vnode.attrs.messageThreshold}`),
+                m(".automessage-edit__stats__messagethreshold", `Сообщений до следующего срабатывания: ${model.object.messageThreshold < 0 ? "0" : model.object.messageThreshold}`),
                 m(".automessage-edit__stats__datethreshold", `Время следующего срабатывания: ${ new Date(model.object.durationThreshold).toLocaleString()}`),
 
             ]) : "",
