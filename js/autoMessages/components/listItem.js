@@ -9,7 +9,7 @@ module.exports = {
             
         }, [
                 m(".automessage-list__item__message", vnode.attrs.message),
-                m(".automessage-list__item__message-limit", vnode.attrs.messageThreshold < 0 ? `0/${vnode.attrs.messageThreshold}` : `${vnode.attrs.messageThreshold}/${vnode.attrs.messageThreshold}`),
+                m(".automessage-list__item__message-limit", vnode.attrs.messageThreshold < 0 ? `0/${vnode.attrs.messageLimit}` : `${vnode.attrs.messageThreshold}/${vnode.attrs.messageThreshold}`),
                 m(".automessage-list__item__duration-limit", `${new Date(vnode.attrs.durationThreshold).toLocaleString()} (${vnode.attrs.durationLimit/1000000000})`)
             ]
         )
