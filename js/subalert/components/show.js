@@ -25,10 +25,10 @@ module.exports = {
 
                     id: "followerMessage",
                     getValue: () => {
-                        return model.subAlert.followMessage
+                        return model.subAlert.followerMessage
                     },
                     setValue: (value) => {
-                        model.subAlert.followMessage = value.trim()
+                        model.subAlert.followerMessage = value.trim()
                     }
                 }),
                 m(input, {
