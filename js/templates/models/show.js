@@ -12,12 +12,8 @@ module.exports = {
     errorTemplate: false,
 
     get: function (channelID, name) {
+        this.extended = false
         this.state = states.LOADING
-        // this.template = {
-        //     commandName: name,
-        //     channelID: channelID
-        // }
-
         this.channelID = channelID
         this.name = name
         this.route = m.route.get()
@@ -25,10 +21,22 @@ module.exports = {
             url: appUrl(`api/channel/${channelID}/templates/${name}`)
         }).then(response => {
             if (!!response) {
-                console.log(response)
+
                 this.template = response.template
                 this.channel = response.channel
-                console.log(this.template)
+                console.log(response.template)
+                if (response.template.integerRandomizer.enabled == false &&
+                    response.template.preventDebounce == false &&
+                    response.template.preventRedirect == false &&
+                    response.template.showOffline == true &&
+                    response.template.showOnline == true &&
+                    response.template.stringRandomizer.enabled == false) {
+                    this.extended = false
+                } else {
+                    this.extended = true
+                }
+
+
             }
             this.state = states.READY
         })
