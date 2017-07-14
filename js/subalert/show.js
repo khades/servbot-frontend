@@ -20,7 +20,6 @@ module.exports = {
             },
             route: routes.SUBALERT,
             channelID: () => { return vnode.attrs.channel },
-            channel: () => { return model.channel },
             title: `Сабалерт на канале ${model.channel}`,
             content: m(component),
 

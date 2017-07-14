@@ -24,8 +24,9 @@ var LogUsersPageComponent = {
             content: m(component, {
                 channelID: vnode.attrs.channel
             }),
-            channelID: () => { return vnode.attrs.channel },
-            channel: () => { return model.channel }
+            channelID: () => {
+                return vnode.attrs.channel
+            }
         })
     }
 }

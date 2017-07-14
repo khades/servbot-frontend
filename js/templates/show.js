@@ -19,7 +19,6 @@ module.exports = {
                 return model.state
             },
             channelID: () => { return vnode.attrs.channel },
-            channel: () => { return model.channel },
             route: routes.TEMPLATES,
             title: `Просмотр команды ${vnode.attrs.template} на канале ${model.channel}`,
             content: m(component),

@@ -8,13 +8,11 @@ module.exports = {
         model.get(vnode.attrs.channel)
     },
     view: function (vnode) {
+
         return m(PageTemplateComponent, {
             route: routes.EXTERNAL_SERVICES,
             title: "Внешние сервисы",
-            channelID: () => { return model.object.channelId },
-            channel: () => {
-                return model.object.channel
-            },
+            channelID: () => vnode.attrs.channel,
             content: m(component, { model: model}),
             getState: () => {
                 return model.state

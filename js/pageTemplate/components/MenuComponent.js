@@ -2,6 +2,7 @@ var m = require("mithril")
 // var Hammer = require("hammerjs")
 require("../../../scss/modules/_site-menu.scss")
 var routes = require("../routes")
+var channelName = require("../../utils/channelName")
 var MenuComponent = {
     oncreate: function (vnode) {
         // new Hammer(vnode.dom).on("swipeleft", function (ev) {
@@ -23,13 +24,13 @@ var MenuComponent = {
                 class: vnode.attrs.route == routes.MAIN ? "is-selected" : ""
             }, m("span", "Главная страница")),
         ]
-        if (!!vnode.attrs.channel && !!vnode.attrs.channelID) {
+        if (!!vnode.attrs.channelID) {
             components.push(
                 m("a.site-menu--channel-link", {
                     href: `/channel/${vnode.attrs.channelID()}`,
                     oncreate: m.route.link,
                     class: vnode.attrs.route == routes.CHANNEL ? "is-selected" : ""
-                }, m("span", `Канал ${vnode.attrs.channel()}`)))
+                }, m("span", `Канал ${channelName.get(vnode.attrs.channelID())}`)))
             components.push(
                 m("a", {
                     href: `/channel/${vnode.attrs.channelID()}/logs`,

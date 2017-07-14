@@ -18,7 +18,6 @@ var LogUsersPageComponent = {
             route: routes.LOGS,
             title: `Список пользователей на канале ${LogUsersPageModel.object.channel}`,
             channelID: () => { return vnode.attrs.channel },
-            channel: () => { return LogUsersPageModel.object.channel },
             getState: () => {
                 return LogUsersPageModel.state
             },

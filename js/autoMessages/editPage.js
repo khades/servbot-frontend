@@ -26,7 +26,6 @@ module.exports = {
             title: "саздание",
             content: m(component),
             channelID: () => { return vnode.attrs.channel },
-            channel: () => { return model.channel },
             getState: () => {
                 return model.state
             }

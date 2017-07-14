@@ -20,7 +20,6 @@ var LogsPageComponent = {
       },
       route: routes.LOGS,
       channelID: () => { return vnode.attrs.channel },
-      channel: () => { return LogsModel.result.channel },
       title: `Логи пользователя ${vnode.attrs.username} на канале ${vnode.attrs.channel}`,
       content: m(LogsComponent)
     })

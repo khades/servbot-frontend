@@ -22,9 +22,6 @@ module.exports = {
             channelID: () => {
                 return vnode.attrs.channel
             },
-            channel: () => {
-                return model.channel
-            },
             route: routes.SUBSCRIPTIONS,
             title: `Просмотр подписок на канале ${model.channel}`,
             content: m(component),

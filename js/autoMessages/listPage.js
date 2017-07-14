@@ -12,7 +12,6 @@ module.exports = {
             route: routes.AUTOMESSAGES,
             title: "Список автосоообщений",
             channelID: () => { return vnode.attrs.channel },
-            channel: () => { return model.object.channel },
             content: m(component, { object: model.object, channelID: vnode.attrs.channel }),
             getState: () => {
                 return model.state

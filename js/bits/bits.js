@@ -12,7 +12,6 @@ module.exports = {
             route: routes.BITS,
             title: "Список людей, поддержавших канал",
             channelID: () => { return vnode.attrs.channel },
-            channel: () => { return model.result.channel },
             content: m(component, { result: model.result, channelID: vnode.attrs.channel }),
             getState: () => {
                 return model.state
