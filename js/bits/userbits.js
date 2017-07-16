@@ -14,7 +14,7 @@ module.exports = {
     view: function (vnode) {
         return m(PageTemplateComponent, {
             route: routes.BITS,
-            title: `История битсов пользователя ${model.result.user} на канале ${channelName(vnode.attrs.channel)}`,
+            title: `История битсов пользователя ${model.result.user} на канале ${channelname(vnode.attrs.channel)}`,
             channelID: () => {
                 return vnode.attrs.channel
             },
