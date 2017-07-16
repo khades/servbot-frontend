@@ -21,7 +21,7 @@ module.exports = {
             url: ConfigURL(`/api/channel/${channelID}/bits/${userID}`)
         }).then(function (response) {
             this.result = response
-            this.result.history = [{reason:"mod",change:"300", date: new Date().toISOString()}]
+
             this.state = states.READY
         }.bind(this), error => {
             this.state = states.NOTFOUND
