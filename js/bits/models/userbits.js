@@ -4,23 +4,25 @@ var ConfigURL = require("../../utils/appUrl")
 var states = require("../../utils/states")
 module.exports = {
     state: states.LOADING,
+
     result: {
-        channel: ""
+        user: "",
+        userID: "",
+        channelID: ""
     },
-    get(channel, username) {
-        this.route = m.route.get()
+    get(channelID, userID) {
+        if (channelID == this.result.channelID && userID == this.result.channelID) {
+            return
+        }
         this.state = states.LOADING
         Auth.request({
             method: "GET",
-            url: ConfigURL(`/api/channel/${channel}/bits`)
+            url: ConfigURL(`/api/channel/${channelID}/bits/${userID}`)
         }).then(function (response) {
             this.result = response
-            if (!(!!this.result.bits)) {
-                this.result.bits = []
-            }
             this.state = states.READY
-
-        }.bind(this))
+        }.bind(this), error => {
+            this.state = states.NOTFOUND
+        })
     }
 }
-
