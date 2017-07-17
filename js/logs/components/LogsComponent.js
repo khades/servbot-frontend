@@ -18,11 +18,6 @@ var generateMessagebody = function (f) {
 var LogsComponent = {
   view: function (vnode) {
     return m("div.user-logs", [
-
-
- 
-      m(".user-logs__header", `Логи пользователя ${model.result.user} на канале ${model.result.channel}`), 
-      !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : "", 
       !!model.result.bans ?
       m(".user-logs__bans", [
         m(".user-logs__bans-header", `Баны пользователя ${model.result.user} на канале ${model.result.channel}`),
@@ -32,6 +27,9 @@ var LogsComponent = {
 
         ]))
       ]) : "", 
+      m(".user-logs__header", `Логи пользователя ${model.result.user} на канале ${model.result.channel}`), 
+      !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : "", 
+
       !!model.result.messages ? model.result.messages.map(f => m(".user-logs__history", [
         m(".user-logs__history__row", [
           m(".user-logs__history__username", f.username),
