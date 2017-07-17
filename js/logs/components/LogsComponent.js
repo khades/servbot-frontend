@@ -20,7 +20,7 @@ var LogsComponent = {
     return m("div.user-logs", [
 
 
-      !!model.result.knownNicknames && model.result.knownNicknames > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : "", !!model.result.bans ?
+      !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : "", !!model.result.bans ?
       m(".user-logs__bans", [
         m(".user-logs__bans-header", `Баны пользователя ${model.result.user} на канале ${model.result.channel}`),
         model.result.bans.map(f => m(".user-logs__ban-item", [
