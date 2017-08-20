@@ -3,6 +3,7 @@ var m = require("mithril")
 require("../../../scss/modules/_site-menu.scss")
 var routes = require("../routes")
 var channelName = require("../../utils/channelName")
+var PageCarcassModel = require('../models/PageCarcassModel')
 var MenuComponent = {
     oncreate: function (vnode) {
         // new Hammer(vnode.dom).on("swipeleft", function (ev) {
@@ -74,7 +75,12 @@ var MenuComponent = {
                         oncreate: m.route.link
                     }, m("span", "Внешние сервисы")))
         }
-        return m(".site-menu", components)
+        return m(".site-menu", {
+                onclick: e => {
+                    PageCarcassModel.sideMenuShown = false
+                }
+            },
+            components)
     }
 }
 

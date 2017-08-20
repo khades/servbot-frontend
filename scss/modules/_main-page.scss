@@ -5,6 +5,7 @@
     &__mod-channels {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         &>a {
             background-color: $background-main-color;
             color: $background-color;
