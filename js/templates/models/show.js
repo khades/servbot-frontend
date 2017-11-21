@@ -30,6 +30,7 @@ module.exports = {
                     response.template.preventRedirect == false &&
                     response.template.showOffline == true &&
                     response.template.showOnline == true &&
+                    response.template.onlyPrivate == true &&
                     response.template.stringRandomizer.enabled == false) {
                     this.extended = false
                 } else {

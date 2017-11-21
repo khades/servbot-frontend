@@ -57,6 +57,15 @@ module.exports = {
                     label: "Игнорировать дебаунсер"
                 }),
                 m(check, {
+                    id: "OnlyPrivate",
+                    getValue: () => model.template.onlyPrivate,
+                    setValue: value => {
+
+                        model.template.onlyPrivate = value
+                    },
+                    label: "Слать только приватно"
+                }),
+                m(check, {
                     id: "PreventRedirect",
                     getValue: () => model.template.preventRedirect,
                     setValue: value => {
