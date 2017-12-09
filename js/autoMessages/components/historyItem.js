@@ -16,8 +16,8 @@ module.exports = {
                 m(".automessage-history__duration-limit", vnode.attrs.durationLimit / 1000000000),
                 m(".automessage-history__message-limit", vnode.attrs.messageLimit),
             ]),
-            m(".automessage-history__game", vnode.attrs.message), 
-            !!vnode.attrs.game && vnode.attrs.game != "" ? m(".automessage-history__message", vnode.attrs.game) : null
+            m(".automessage-history__message", vnode.attrs.message), 
+            !!vnode.attrs.game && vnode.attrs.game != "" ? m(".automessage-history__game", vnode.attrs.game) : null
         ])
     }
 }
