@@ -19,18 +19,23 @@
         font-size: 1.2rem;
     }
     &__item {
+        justify-content: space-between;
         color: $background-color;
         background: $background-main-color;
         border-radius: 0.1em;
         padding: $element-spacing;
         width: 100%;
         display: inline-flex;
+        align-items: flex-start;
         &__right-container {
             display: inline-flex;
             flex-direction: column;
+            > * {
+                white-space: nowrap;
+            }
         }
         &__body {
-            flex-grow: 2;
+         //   flex-grow: 2;
         }
         &__duration-limit {
             @include prepend-svg("../../svg/time.svg");
@@ -42,7 +47,7 @@
             @include prepend-svg("../../svg/media-play.svg");
         }
         &__message {
-            flex-grow: 2;
+       //     flex-grow: 2;
             @include prepend-svg("../../svg/message.svg");
         }
     }

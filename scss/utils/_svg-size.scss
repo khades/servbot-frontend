@@ -3,10 +3,14 @@
         background-size: $width $height;
         width: $width;
         height: $height;
+        min-width: $width;
+        min-height: $height;
     }
     @else {
         background-size:$width;
         width: $width;
         height: $width;
+        min-width: $width;
+        min-height: $widt;
     }
 }
