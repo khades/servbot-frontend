@@ -6,12 +6,15 @@ module.exports = {
         return m("a.automessage-list__item", {
             oncreate: m.route.link,
             href: `/channel/${vnode.attrs.channelID}/autoMessages/${vnode.attrs.id}`
-            
+
         }, [
-                m(".automessage-list__item__message", vnode.attrs.message),
+            m(".automessage-list__item__message", vnode.attrs.message),
+            m('.automessage-list__item__right-container', [
                 m(".automessage-list__item__message-limit", vnode.attrs.messageThreshold < 0 ? `0/${vnode.attrs.messageLimit}` : `${vnode.attrs.messageThreshold}/${vnode.attrs.messageLimit}`),
-                m(".automessage-list__item__duration-limit", `${new Date(vnode.attrs.durationThreshold).toLocaleString()} (${vnode.attrs.durationLimit/1000000000})`)
-            ]
-        )
+                m(".automessage-list__item__duration-limit", `${new Date(vnode.attrs.durationThreshold).toLocaleString()} (${vnode.attrs.durationLimit/1000000000})`), 
+                !!vnode.attrs.game && vnode.attrs.game != "" ? m(".automessage-list__item__game", vnode.attrs.game) : null
+            ])
+
+        ])
     }
 }

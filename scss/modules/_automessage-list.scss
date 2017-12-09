@@ -25,6 +25,10 @@
         padding: $element-spacing;
         width: 100%;
         display: inline-flex;
+        &__right-container {
+            display: inline-flex;
+            flex-direction: column;
+        }
         &__body {
             flex-grow: 2;
         }
@@ -33,6 +37,9 @@
         }
         &__message-limit {
             @include prepend-svg("../../svg/message-typing.svg");
+        }
+        &__game {
+            @include prepend-svg("../../svg/media-play.svg");
         }
         &__message {
             flex-grow: 2;

@@ -12,6 +12,9 @@
     &__message>label {
         @include prepend-svg("../../svg/message.svg", 1.2rem, black);
     }
+    &__game>label {
+        @include prepend-svg("../../svg/media-play.svg", 1.2rem, black);
+    }
     &__history {
         >*+* {
             margin-top: $element-spacing;

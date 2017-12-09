@@ -29,6 +29,9 @@
     &__message {
         @include prepend-svg("../../svg/message.svg");
     }
+    &__game {
+        @include prepend-svg("../../svg/media-play.svg");
+    }
     &__user {
         @include prepend-svg("../../svg/user-outline.svg");
         @include simple-tooltip;
