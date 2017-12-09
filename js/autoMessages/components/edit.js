@@ -48,15 +48,26 @@ module.exports = {
                 setValue: (value) => {
                     model.object.durationLimit = parseInt(value)
                 }
-            }), m("button", {
+            }),
+            m(input, {
+                label: "Показывать во время игры",
+                id: "game",
+                class: "automessage-edit__game",
+
+                getValue: () => {
+                    return model.object.game
+                },
+                setValue: (value) => {
+                    model.object.game = value.trim()
+                }
+            }),
+             m("button", {
                 onclick: () => {
                     model.push()
                 }
             }, "Сохранить"),
             model.isNew() == false ? m(".automessage-edit__header", "История автосообщений") : "",
             model.isNew() == false ? m(".automessage-edit__history", model.object.history.map(f => m(historyItem, f))) : ""
-
-
         ])
     }
 }

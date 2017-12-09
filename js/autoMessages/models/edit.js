@@ -7,6 +7,7 @@ module.exports = {
     state: states.READY,
     object: {},
     channel: "",
+    error: null,
     isNew() {
         return !(!!this.object.id)
     },
@@ -14,6 +15,7 @@ module.exports = {
     new(channelID) {
         this.object = {
             message: "",
+            game: "",
             messageLimit: 20,
             durationLimit: 300,
             channelID: channelID
