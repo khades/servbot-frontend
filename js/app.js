@@ -15,7 +15,7 @@ var subs = require("./subscriptions/show")
 var bits = require("./bits/bits")
 var userbits = require("./bits/userbits")
 var externalServices = require("./externalServices/externalServices")
-var subtrain = require("./subtrain/subtrain")
+var subtrain = require("./subTrain/subtrain")
 time.getTime()
 m.route.prefix("#")
 m.route(document.body, "/", {
