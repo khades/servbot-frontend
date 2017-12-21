@@ -1,0 +1,6 @@
+@import '../utils/index';
+.subtrain  {
+    > * + * {
+        margin-top: $content-spacing;
+    }
+}

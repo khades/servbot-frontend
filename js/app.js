@@ -15,6 +15,7 @@ var subs = require("./subscriptions/show")
 var bits = require("./bits/bits")
 var userbits = require("./bits/userbits")
 var externalServices = require("./externalServices/externalServices")
+var subtrain = require("./subtrain/subtrain")
 time.getTime()
 m.route.prefix("#")
 m.route(document.body, "/", {
@@ -33,5 +34,6 @@ m.route(document.body, "/", {
   "/channel/:channel/subAlert": subAlertShow,
   "/channel/:channel/bits": bits,
   "/channel/:channel/bits/:user": userbits,
-  "/channel/:channel/externalservices":externalServices
+  "/channel/:channel/externalservices":externalServices,
+  "/channel/:channel/subtrain": subtrain
 });

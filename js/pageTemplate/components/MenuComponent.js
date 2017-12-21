@@ -63,17 +63,23 @@ var MenuComponent = {
                     oncreate: m.route.link
                 }, m("span", "Список подписчиков")))
             components.push(
-                    m("a", {
-                        href: `/channel/${vnode.attrs.channelID()}/bits`,
-                        class: vnode.attrs.route == routes.BITS ? "is-selected" : "",
-                        oncreate: m.route.link
-                    }, m("span", "Битсы"))),
-                components.push(
-                    m("a", {
-                        href: `/channel/${vnode.attrs.channelID()}/externalservices`,
-                        class: vnode.attrs.route == routes.EXTERNAL_SERVICES ? "is-selected" : "",
-                        oncreate: m.route.link
-                    }, m("span", "Внешние сервисы")))
+                m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/bits`,
+                    class: vnode.attrs.route == routes.BITS ? "is-selected" : "",
+                    oncreate: m.route.link
+                }, m("span", "Битсы")))
+            components.push(
+                m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/externalservices`,
+                    class: vnode.attrs.route == routes.EXTERNAL_SERVICES ? "is-selected" : "",
+                    oncreate: m.route.link
+                }, m("span", "Внешние сервисы")))
+            components.push(
+                m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/subtrain`,
+                    class: vnode.attrs.route == routes.SUBTRAIN ? "is-selected" : "",
+                    oncreate: m.route.link
+                }, m("span", "Сабтрейн")))
         }
         return m(".site-menu", {
                 onclick: e => {
