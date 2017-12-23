@@ -40,6 +40,12 @@ var MenuComponent = {
                 }, m("span", "История сообщений")))
             components.push(
                 m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/bans`,
+                    oncreate: m.route.link,
+                    class: vnode.attrs.route == routes.CHANNELBANS ? "is-selected" : ""
+                }, m("span", "Баны на канале")))
+            components.push(
+                m("a", {
                     href: `/channel/${vnode.attrs.channelID()}/templates`,
                     oncreate: m.route.link,
                     class: vnode.attrs.route == routes.TEMPLATES ? "is-selected" : ""

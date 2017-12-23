@@ -22,10 +22,19 @@ module.exports =  {
                 },
                 label: "Сабтрейн включён"
             }),
+            m(check, {
+                id: "onlyNewSubs",
+                getValue: () => model.object.onlyNewSubs,
+                setValue: value => {
+
+                    model.object.onlyNewSubs = value
+                },
+                label: "Учитывать только новых сабов"
+            }),
             m("", `Следующее уведомление : ${new Date(model.object.notificationTime).toLocaleString()}`),
             m("", `Конец текущего сабтрейна : ${new Date(model.object.expirationTime).toLocaleString()}`),
             m("", `Размер сабтрейна : ${model.object.сurrentStreak}`),
-            
+            m("", `Подписчики: ${model.object.users.join(", ")}`),
             m(input, {
                 label: "Время истечения сабтрейна",
                 id: "expirationLimit",
@@ -48,6 +57,7 @@ module.exports =  {
                     model.object.notificationLimit = parseInt(value)
                 }
             }),
+            m("div", "ЕСЛИ ИЗМЕНИТЬ ЭТИ ЗНАЧЕНИЯ, САБДЕЙ СБРОСИТСЯ"),
             m(input, {
                 label: "Добавочное сообщение при подписке",
                 id: "appendTemplate",

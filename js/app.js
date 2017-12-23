@@ -16,6 +16,7 @@ var bits = require("./bits/bits")
 var userbits = require("./bits/userbits")
 var externalServices = require("./externalServices/externalServices")
 var subtrain = require("./subTrain/subtrain")
+var bans = require("./bans/bans")
 time.getTime()
 m.route.prefix("#")
 m.route(document.body, "/", {
@@ -35,5 +36,6 @@ m.route(document.body, "/", {
   "/channel/:channel/bits": bits,
   "/channel/:channel/bits/:user": userbits,
   "/channel/:channel/externalservices":externalServices,
-  "/channel/:channel/subtrain": subtrain
+  "/channel/:channel/subtrain": subtrain,
+  "/channel/:channel/bans": bans
 });

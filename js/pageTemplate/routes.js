@@ -9,4 +9,5 @@ module.exports = {
     BITS: 8,
     EXTERNAL_SERVICES: 9,
     SUBTRAIN: 10,
+    CHANNELBANS: 11
 }
