@@ -64,6 +64,12 @@ var MenuComponent = {
                 }, m("span", "Автосообщения")))
             components.push(
                 m("a", {
+                    href: `/channel/${vnode.attrs.channelID()}/subdays`,
+                    class: vnode.attrs.route == routes.SUBDAY ? "is-selected" : "",
+                    oncreate: m.route.link
+                }, m("span", "Сабдни")))
+            components.push(
+                m("a", {
                     href: `/channel/${vnode.attrs.channelID()}/subs`,
                     class: vnode.attrs.route == routes.SUBSCRIPTIONS ? "is-selected" : "",
                     oncreate: m.route.link
