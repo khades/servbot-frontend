@@ -34,7 +34,7 @@ module.exports =  {
             m("", `Следующее уведомление : ${new Date(model.object.notificationTime).toLocaleString()}`),
             m("", `Конец текущего сабтрейна : ${new Date(model.object.expirationTime).toLocaleString()}`),
             m("", `Размер сабтрейна : ${model.object.сurrentStreak}`),
-            m("", `Подписчики: ${model.object.users.join(", ")}`),
+            m("", `Подписчики: ${!!model.object.users ? model.object.users.join(", ") : ""}`),
             m(input, {
                 label: "Время истечения сабтрейна",
                 id: "expirationLimit",
