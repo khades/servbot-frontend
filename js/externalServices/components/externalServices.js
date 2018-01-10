@@ -3,8 +3,7 @@ var states = require("../../utils/states")
 var input = require("../../basicWidgets/components/InputComponent")
 var checkbox = require("../../basicWidgets/components/CheckBoxComponent")
 require("../../../scss/modules/_external-services.scss")
-//          channelID: () => { return model.object.channelID },
-//            channel: () => { return model.object.channel },
+
 module.exports = {
     view(vnode) {
         var model = vnode.attrs.model

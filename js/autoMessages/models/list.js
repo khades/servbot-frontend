@@ -4,21 +4,20 @@ var states = require("../../utils/states")
 
 module.exports = {
     state: states.READY,
-    object: {
-        autoMessages: []
-    },
+    channelID: "",
+    objects: [],
     get: function (channel) {
         this.state = states.LOADING
+        this.channelID = channel
         auth.request({
             url: appUrl(`api/channel/${channel}/automessages`)
         }).then(response => {
             if (!!response) {
-                this.object = response
+                this.objects = response
 
             } else {
-                this.object = {
-                    autoMessages: []
-                }
+                this.objects = []
+
             }
             this.state = states.READY
         }).catch(error => {

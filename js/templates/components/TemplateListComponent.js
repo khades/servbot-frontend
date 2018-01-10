@@ -1,12 +1,14 @@
 var m = require("mithril")
-require('../../../../scss/modules/_template-list.scss')
-var TemplateListModel = require('../models/TemplateListModel')
+require('../../../scss/modules/_template-list.scss')
+var TemplateListModel = require('../models/list')
 var TemplateListItemComponent = require("./TemplateListItemComponent")
-var input = require("../../../basicWidgets/components/InputComponent")
+var input = require("../../basicWidgets/components/InputComponent")
+var channelName = require("../../utils/channelName")
+
 var TemplateListComponent = {
     view: function (vnode) {
         return m(".template-list", [
-            m(".template-list__header", `Комманды на канале ${TemplateListModel.channel}`),
+            m(".template-list__header", `Комманды на канале ${channelName.get(TemplateListModel.channelID)}`),
             m(input, {
                 label: "Создание новой команды\\переход к существующей команде",
                 id: "newCommand",

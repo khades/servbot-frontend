@@ -7,11 +7,13 @@ var textarea = require("../../basicWidgets/textarea")
 var multiinput = require("../../basicWidgets/multiinput")
 var check = require("../../basicWidgets/components/CheckBoxComponent")
 var states = require("../../utils/states.js")
+var channelName = require("../../utils/channelName")
+
 module.exports = {
     view(vnode) {
         console.log(model.template)
         return model.state == states.READY ? m(".template-show", [
-            m(".template-show__header", `Просмотр команды ${model.template.commandName} на канале ${model.channel}`), !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : "", !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m("a", {
+            m(".template-show__header", `Просмотр команды ${model.template.commandName} на канале ${channelName.get(model.template.channelID)}`), !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : "", !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m("a", {
                 oncreate: m.route.link,
                 href: `/channel/${model.template.channelID}/templates/${model.template.aliasTo}`
             }, m("button", "Перейти к оригиналу")) : "",

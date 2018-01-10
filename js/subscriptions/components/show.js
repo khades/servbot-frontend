@@ -11,10 +11,12 @@ var generateClass = (f) => {
         return "subscriptions-show__item__user--twenty-five-dollars"
     return "subscriptions-show__item__user--five-dollars"
 }
+var channelName = require("../../utils/channelName")
+
 module.exports = {
     view(vnode) {
         return m(".subscriptions-show", [
-            m(".subscriptions-show__header", `Подписчики на канале ${model.channel}`),
+            m(".subscriptions-show__header", `Подписчики на канале ${channelName.get(model.channelID)}`),
             (!!model.eventSource && model.eventSource.readyState == EventSource.CLOSED) || model.state == states.ERROR ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : "",
             m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня, ${model.subscriptions.length} подписок` : `Начиная с ${new Date(parseInt(model.getLimit())).toLocaleString() }, ${model.subscriptions.length} подписок`),
             m(".subscriptions-show__buttons", [

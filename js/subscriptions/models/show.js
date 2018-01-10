@@ -5,7 +5,6 @@ var m = require("mithril")
 var time = require("../../utils/time")
 module.exports = {
     state: states.LOADING,
-    channel: "",
     channelID: "",
     subscriptions: [],
     eventSource: null,
@@ -92,12 +91,11 @@ module.exports = {
             url: appUrl(url)
         }).then(response => {
             if (!!response) {
-                if (!!response.subscriptions) {
-                    this.subscriptions = response.subscriptions
+                if (!!response) {
+                    this.subscriptions = response
                 } else {
                     this.subscriptions = []
                 }
-                this.channel = response.channel
             }
             this.state = states.READY
         }, error => {

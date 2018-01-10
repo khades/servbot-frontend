@@ -4,17 +4,17 @@ var historyItem = require("./historyItem")
 require("../../../scss/modules/_subalert-show.scss")
 var input = require("../../basicWidgets/components/InputComponent")
 var checkbox = require("../../basicWidgets/components/CheckBoxComponent")
+var channelName = require("../../utils/channelName")
+
 module.exports = {
     view(vnode) {
         return m(".subalert-show", [
-            m(".subalert-show__header", `Сообщения при подписке на канале ${model.channel}`),
+            m(".subalert-show__header", `Сообщения при подписке на канале ${channelName.get(model.channelID)}`),
             m(checkbox, {
                 id: "subAlertEnabled",
                 getValue: () => model.subAlert.enabled,
                 setValue: value => {
-                    console.log(value)
                     model.subAlert.enabled = value
-                    console.log(model.subAlert)
                 },
                 label: "Сабалерт включён"
             }),

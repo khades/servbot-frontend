@@ -1,5 +1,5 @@
 var m = require("mithril")
-require('../../../../scss/modules/_template-item.scss')
+require('../../../scss/modules/_template-item.scss')
 
 var TemplateMustashedBodyComponent = {
     view: function (vnode) {

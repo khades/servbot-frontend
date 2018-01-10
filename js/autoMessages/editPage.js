@@ -23,7 +23,7 @@ module.exports = {
     view: function (vnode) {
         return m(PageTemplateComponent, {
             route: routes.AUTOMESSAGES,
-            title: "саздание",
+            title: "Создание",
             content: m(component),
             channelID: () => { return vnode.attrs.channel },
             getState: () => {

@@ -4,23 +4,21 @@ var ConfigURL = require("../../utils/appUrl")
 var states = require("../../utils/states")
 module.exports = {
     state: states.LOADING,
-    result: {
-        channel: ""
-    },
+    result: [],
     get(channel, username) {
         this.route = m.route.get()
         this.state = states.LOADING
         Auth.request({
             method: "GET",
             url: ConfigURL(`/api/channel/${channel}/bits`)
-        }).then(function (response) {
-            this.result = response
-            if (!(!!this.result.bits)) {
-                this.result.bits = []
+        }).then(response => {
+            console.log(response)
+            if (!!response) {
+                this.result = response
+
             }
             this.state = states.READY
-
-        }.bind(this))
+        })
     }
 }
 

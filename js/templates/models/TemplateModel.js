@@ -1,5 +1,4 @@
 var m = require("mithril")
-
 class TemplateModel {
     constructor(template) {
         this.command = template
@@ -27,18 +26,7 @@ class TemplateModel {
             .split("|delimiter|")
             .filter(f => f !== "")
         return superline
-        // .replace(/{{\s?([^}]*)\s?}}/g, f => {
-        //     if (f.startsWith("{{\/")) {
-        //         return "<span class=\"mustashe mustashe__end-if\"></span>"
-        //     }
-        //     if (f.startsWith("{{\#")) {
-        //         return `<span class=\"mustashe mustashe__start-if-true\">${f.replace(/{/g, "").replace(/}/g, "").replace("\#", "")}</span>`
-        //     }
-        //     if (f.startsWith("{{\^")) {
-        //         return `<span class=\"mustashe mustashe__start-if-false\">${f.replace(/{/g, "").replace(/}/g, "").replace("\^", "")}</span>`
-        //     }
-
-        //     return `<span class=\"mustashe mustashe__variable\">${f.replace(/{/g, "").replace(/}/g, "")}</span>`
+ 
     }
 }
 

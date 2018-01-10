@@ -3,6 +3,8 @@ var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var model = require("./models/list")
 var component = require("./components/list")
 var routes = require("../pageTemplate/routes")
+var channelName = require("../utils/channelName")
+
 module.exports = {
     oninit: function (vnode) {
         model.get(vnode.attrs.channel)
@@ -10,9 +12,9 @@ module.exports = {
     view: function (vnode) {
         return m(PageTemplateComponent, {
             route: routes.AUTOMESSAGES,
-            title: "Список автосоообщений",
+            title: `Список автосоообщений на канале ${channelName.get(vnode.attrs.channel)}`,
             channelID: () => { return vnode.attrs.channel },
-            content: m(component, { object: model.object, channelID: vnode.attrs.channel }),
+            content: m(component),
             getState: () => {
                 return model.state
             }

@@ -1,8 +1,10 @@
 var m = require("mithril")
 var TemplateModel = require("./TemplateModel")
-var ConfigURL = require("../../../utils/appUrl")
-var states = require("../../../utils/states")
-var TemplateListModel = {
+var ConfigURL = require("../../utils/appUrl")
+var states = require("../../utils/states")
+var auth = require("../../utils/auth")
+
+module.exports = {
     state: states.LOADING,
     showAlias: true,
     showTemplate: true,
@@ -30,22 +32,20 @@ var TemplateListModel = {
         })
         return result
     },
-    init(channelID) {
+    init: function (channelID) {
         this.route = m.route.get()
         this.channelID = channelID
-        m.request({
+        auth.request({
             method: "GET",
             url: ConfigURL(`/api/channel/${channelID}/templates`)
-        }).then(function (response) {
-            if (!!response.templates) {
-                TemplateListModel.templates = response.templates.map(f => new TemplateModel(f))
+        }).then(response => {
+            if (!!response) {
+                this.templates = response.map(f => new TemplateModel(f))
             } else {
-                TemplateListModel.templates = []
+                this.templates = []
             }
-            TemplateListModel.channel = response.channel
-            TemplateListModel.state = states.READY
+            this.state = states.READY
         })
     }
 }
 
-module.exports = TemplateListModel

@@ -15,10 +15,21 @@ var getTiming = function (coord) {
 };
 
 module.exports = {
-    view(vnode) {
-        var rouletteInfo = vnode.attrs.getRouletteInfo()
+    view(rootvnode) {
+        var rouletteInfo = rootvnode.attrs.getRouletteInfo()
         var animationInterval = rouletteInfo.animationInterval
         return m(".roulette", {}, [
+            m('audio.roulette__audio', {
+                    oncreate(vnode) {
+                        rootvnode.state.audiodiv = vnode.dom
+                        vnode.dom.pause()
+                    }
+                },
+                m("source", {
+                    "src": "click.ogg",
+                    "type": "audio/ogg"
+                })
+            ),
             m(".roulette__items", {
                 oninit: vnode => {
                     vnode.state.date = rouletteInfo.date
@@ -39,16 +50,19 @@ module.exports = {
                     key: index + rouletteInfo.date,
                     oncreate: vnode => {
                         vnode.state.date = rouletteInfo.date
-                        if (index < rouletteInfo.winner && rouletteInfo.items.length > 0) {
+                        if (index < rouletteInfo.winner && rouletteInfo.items.length > 1) {
                             var timingOffset = getTiming(index / (rouletteInfo.winner)) * (animationInterval * rouletteInfo.winner - 1) * 1000
                             setTimeout(function () {
                                 vnode.dom.classList.add("roulette__item--lost")
+                                rootvnode.state.audiodiv.play()
                             }, timingOffset)
                         }
 
-                        if (index == rouletteInfo.winner && rouletteInfo.items.length > 0) {
+                        if (index == rouletteInfo.winner && rouletteInfo.items.length > 1) {
                             setTimeout(function () {
                                 vnode.dom.classList.add("roulette__item--won")
+                                rootvnode.state.audiodiv.play()
+
                             }, (rouletteInfo.winner) * 1000 * animationInterval)
                         }
 
@@ -58,16 +72,19 @@ module.exports = {
                             vnode.dom.classList.remove("roulette__item--lost")
                             vnode.dom.classList.remove("roulette__item--won")
 
-                            if (index < rouletteInfo.winner && rouletteInfo.items.length > 0) {
+                            if (index < rouletteInfo.winner && rouletteInfo.items.length > 1) {
                                 var timingOffset = getTiming(index / (rouletteInfo.winner)) * (animationInterval * rouletteInfo.winner - 1) * 1000
                                 setTimeout(function () {
                                     vnode.dom.classList.add("roulette__item-lost")
+                                    rootvnode.state.audiodiv.play()
+
                                 }, timingOffset)
                             }
 
-                            if (index == rouletteInfo.winner && rouletteInfo.items.length > 0) {
+                            if (index == rouletteInfo.winner && rouletteInfo.items.length > 1) {
                                 setTimeout(function () {
                                     vnode.dom.classList.add("roulette__item--won")
+                                    rootvnode.state.audiodiv.play()
 
                                 }, (rouletteInfo.winner) * 1000 * animationInterval)
                             }

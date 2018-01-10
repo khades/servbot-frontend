@@ -3,6 +3,7 @@ var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var component = require("./components/show")
 var model = require("./models/show")
 var routes = require("../pageTemplate/routes")
+var channelName = require("../utils/channelName")
 
 module.exports = {
     oninit: function (vnode) {
@@ -23,7 +24,7 @@ module.exports = {
                 return vnode.attrs.channel
             },
             route: routes.SUBSCRIPTIONS,
-            title: `Просмотр подписок на канале ${model.channel}`,
+            title: `Просмотр подписок на канале ${channelName.get(vnode.attrs.channel)}`,
             content: m(component),
         })
     },

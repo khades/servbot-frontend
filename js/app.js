@@ -4,7 +4,7 @@ var MainPageComponent = require("./mainPage/MainPageComponent")
 var AfterAuthComponent = require("./afterAuth/AfterAuthComponent")
 var LogsPageComponent = require("./logs/LogsPageComponent")
 var LogUsersPageComponent = require("./logs/LogUsersPageComponent")
-var TemplateListPageComponent = require("./channel/bot/TemplateListPageComponent")
+var templatesList= require("./templates/list")
 var autoMessageList = require("./autoMessages/listPage")
 var autoMessageEdit = require("./autoMessages/editPage")
 var templateShow = require("./templates/show")
@@ -27,7 +27,7 @@ m.route(document.body, "/", {
   //"/channelData": ChannelDataPageComponent,
   "/channel/:channel": channelIndex,
   "/channel/:channel/subs": subs,
-  "/channel/:channel/templates": TemplateListPageComponent,
+  "/channel/:channel/templates": templatesList,
   "/channel/:channel/templates/:template": templateShow,
   "/channel/:channel/logs": LogUsersPageComponent,
   "/channel/:channel/logs/:userID": LogsPageComponent,

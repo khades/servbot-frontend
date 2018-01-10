@@ -6,13 +6,14 @@ var m = require("mithril")
 module.exports = {
     state: states.READY,
     object: {},
-    channel: "",
+    channelID : "",
     error: null,
     isNew() {
         return !(!!this.object.id)
     },
     route: "",
     new(channelID) {
+        this.channelID = channelID
         this.object = {
             message: "",
             game: "",
@@ -22,23 +23,26 @@ module.exports = {
         }
     },
     get(channelID, id) {
+        this.channelID = channelID
+
         this.route = m.route.get()
         this.state = states.LOADING
         auth.request({
             url: appUrl(`api/channel/${channelID}/automessages/${id}`)
         }).then(response => {
-            if (!!response.autoMessage) {
-                this.object = response.autoMessage
+            if (!!response) {
+                this.object = response
 
                 this.object.durationLimit = parseInt(this.object.durationLimit) / 1000000000
             } else {
-                this.new(channel)
+                this.new(channelID)
             }
             this.channel = response.channel
             this.state = states.READY
 
         }).catch(error => {
-            if (error.Code = 401) {
+            console.log(error)
+            if (error.Code == 401) {
                 this.state = states.FORBIDDEN
             }
         })

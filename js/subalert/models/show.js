@@ -8,7 +8,6 @@ module.exports = {
     subAlert: {},
     error: {},
     channelID: "",
-    channel: "",
     errorResubAlert: false,
     extended: false,
     isExtended(object) {
@@ -27,9 +26,9 @@ module.exports = {
             url: appUrl(`api/channel/${channelID}/subalert`)
         }).then(response => {
             if (!!response) {
-                this.subAlert = response.subAlert
-                this.channel = response.channel
-                this.extended = this.isExtended(response.subAlert)
+                this.subAlert = response
+
+                this.extended = this.isExtended(response)
 
             }
             this.state = states.READY

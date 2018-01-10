@@ -7,7 +7,7 @@ module.exports = {
     state: states.READY,
     template: null,
     channelID: "",
-    channel: "",
+
     name: "",
     errorTemplate: false,
 
@@ -22,16 +22,16 @@ module.exports = {
         }).then(response => {
             if (!!response) {
 
-                this.template = response.template
-                this.channel = response.channel
-                console.log(response.template)
-                if (response.template.integerRandomizer.enabled == false &&
-                    response.template.preventDebounce == false &&
-                    response.template.preventRedirect == false &&
-                    response.template.showOffline == true &&
-                    response.template.showOnline == true &&
-                    response.template.onlyPrivate == false &&
-                    response.template.stringRandomizer.enabled == false) {
+                this.template = response
+
+ 
+                if (response.integerRandomizer.enabled == false &&
+                    response.preventDebounce == false &&
+                    response.preventRedirect == false &&
+                    response.showOffline == true &&
+                    response.showOnline == true &&
+                    response.onlyPrivate == false &&
+                    response.stringRandomizer.enabled == false) {
                     this.extended = false
                 } else {
                     this.extended = true
