@@ -4,6 +4,8 @@ var LogsComponent = require("./components/LogsComponent")
 var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var LogsModel = require("./models/LogsModel")
 var routes = require("../pageTemplate/routes")
+var channelName = require("../utils/channelName")
+
 var LogsPageComponent = {
   oninit: function (vnode) {
     LogsModel.get(vnode.attrs.channel, vnode.attrs.userID)
@@ -20,7 +22,7 @@ var LogsPageComponent = {
       },
       route: routes.LOGS,
       channelID: () => { return vnode.attrs.channel },
-      title: `Логи пользователя ${vnode.attrs.username} на канале ${vnode.attrs.channel}`,
+      title: `Логи пользователя ${vnode.attrs.username} на канале ${channelName.get(vnode.attrs.channel)}`,
       content: m(LogsComponent)
     })
   }
