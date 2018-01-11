@@ -5,14 +5,31 @@ var states = require("../../utils/states")
 module.exports = {
     state: states.LOADING,
     result: [],
-    get(channel, username) {
-        this.route = m.route.get()
+    channelID: "",
+    filter: "",
+    setFilter(value) {
+        this.filter = value
         this.state = states.LOADING
         Auth.request({
             method: "GET",
-            url: ConfigURL(`/api/channel/${channel}/bits`)
+            url: ConfigURL(`/api/channel/${this.channelID}/bits/search/${value}`)
         }).then(response => {
-            console.log(response)
+            if (!!response) {
+                this.result = response
+
+            }
+            this.state = states.READY
+        })
+    },
+    get(channelID, username) {
+        this.route = m.route.get()
+        this.channelID = channelID
+        this.state = states.LOADING
+        this.filter = ""
+        Auth.request({
+            method: "GET",
+            url: ConfigURL(`/api/channel/${channelID}/bits`)
+        }).then(response => {
             if (!!response) {
                 this.result = response
 
@@ -21,4 +38,3 @@ module.exports = {
         })
     }
 }
-
