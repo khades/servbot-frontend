@@ -11,7 +11,6 @@ module.exports = {
             model.isNew() == false ? m(".automessage-edit__stats", [
                 m(".automessage-edit__stats__messagethreshold", `Сообщений до следующего срабатывания: ${model.object.messageThreshold < 0 ? "0" : model.object.messageThreshold}`),
                 m(".automessage-edit__stats__datethreshold", `Время следующего срабатывания: ${ new Date(model.object.durationThreshold).toLocaleString()}`),
-
             ]) : "",
             model.isNew() == false ? m(".automessage-edit__header", "Редактирование автосообщения") : m(".automessage-edit__header", "Создание автосообщения"),
 
@@ -24,6 +23,9 @@ module.exports = {
                 },
                 setValue: (value) => {
                     model.object.message = value
+                },
+                getError: () => {
+                   return model.isValid == false ? "Минимальное значение - 20" : null
                 }
             }),
             m(input, {
@@ -35,7 +37,10 @@ module.exports = {
                 },
                 setValue: (value) => {
                     model.object.messageLimit = parseInt(value)
-                }
+                },
+                getError: () => {
+                    return model.isValid == false ? "Минимальное значение - 60" : null
+                 }
             }),
             m(input, {
                 label: "Период времени перед рассылкой, в секундах",
