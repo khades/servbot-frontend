@@ -6,14 +6,16 @@ var m = require("mithril")
 module.exports = {
     state: states.READY,
     object: {},
-    channelID : "",
+    channelID: "",
     error: null,
     isValid: true,
-    isNew() {
-        return !(!!this.object.id)
-    },
+    isNew: false,
     route: "",
     new(channelID) {
+        if (this.isNew == true && this.channelID == channelID) {
+            return
+        }
+        this.isNew = true
         this.channelID = channelID
         this.isValid = true
 
@@ -26,6 +28,7 @@ module.exports = {
         }
     },
     get(channelID, id) {
+        this.isNew = false
         this.channelID = channelID
         this.isValid = true
         this.route = m.route.get()
@@ -37,7 +40,7 @@ module.exports = {
                 this.object = response
                 this.object.durationLimit = parseInt(this.object.durationLimit) / 1000000000
             } else {
-                this.new(channelID)
+                this.isNew(channelID)
             }
             this.channel = response.channel
             this.state = states.READY
@@ -49,16 +52,18 @@ module.exports = {
         })
     },
     push() {
-        if (this.isNew() == true) {
+        if (this.isNew == true) {
             auth.request({
                 url: appUrl(`api/channel/${this.object.channelID}/automessages`),
                 method: "POST",
                 data: this.object
             }).then(result => {
-                m.route.set(`/channel/${this.object.channelID}/autoMessages/${result.ID}`)
                 this.isValid = true
+                this.isNew = false
+                m.route.set(`/channel/${this.object.channelID}/autoMessages/${result.ID}`)
+
             }).catch(error => {
-                if (error.status == 422) {
+                if (error.code == 422) {
                     this.isValid = false
 
                 }
@@ -70,7 +75,7 @@ module.exports = {
                 data: this.object
             }).then(result => {
                 this.isValid = true
-
+                this.isNew = false
                 this.get(this.object.channelID, this.object.id)
             }).catch(error => {
                 if (error.code == 422) {
