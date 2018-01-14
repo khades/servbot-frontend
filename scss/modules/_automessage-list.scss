@@ -18,7 +18,34 @@
         font-weight: bolder;
         font-size: 1.2rem;
     }
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        @include sm-breakpoint() {
+            flex-direction: row;
+        }
+        >* {
+            display: inline-flex;
+            text-align: center;
+            width: 100%;
+            @include sm-breakpoint() {
+                width: auto;
+            }
+        }
+        >*+* {
+            margin-left: 0rem;
+            margin-top: $element-spacing;
+            @include sm-breakpoint() {
+                margin-left: $element-spacing;
+                margin-top: 0rem;
+            }
+        }
+    }
     &__item {
+        flex-direction: column;
+        @include sm-breakpoint() {
+            flex-direction: row;
+        }
         justify-content: space-between;
         color: $background-color;
         background: $background-main-color;
@@ -30,12 +57,12 @@
         &__right-container {
             display: inline-flex;
             flex-direction: column;
-            > * {
+            >* {
                 white-space: nowrap;
             }
         }
         &__body {
-         //   flex-grow: 2;
+            //   flex-grow: 2;
         }
         &__duration-limit {
             @include prepend-svg("../../svg/time.svg");
@@ -47,7 +74,7 @@
             @include prepend-svg("../../svg/media-play.svg");
         }
         &__message {
-       //     flex-grow: 2;
+            //     flex-grow: 2;
             @include prepend-svg("../../svg/message.svg");
         }
     }

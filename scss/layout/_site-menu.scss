@@ -7,20 +7,24 @@
     margin-right: auto;
 
     position: fixed;
-    width: 15em;
+    width: 100vw;
     bottom:0;
     left: 0;
+    @include sm-breakpoint() { 
+        width: 15em;
+    }
+
     //   top: 0;
     overflow: hidden;
     z-index: 5;
     transition: transform 150ms linear;
     &.hidden {
-        transform: translateX(-15em);
+        transform: translateX(-100%);
         @include sm-breakpoint() {
-            transform: translateX(0em);
+            transform: translateX(0%);
         }
     }
     &.shown {
-        transform: translateX(0em);
+        transform: translateX(0%);
     }
 }

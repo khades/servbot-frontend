@@ -8,7 +8,7 @@ module.exports = {
     view(vnode) {
         console.log(model)
         return m(".automessage-edit", [
-        
+
             model.isNew == false ? m(".automessage-edit__header", "Информация о автосообщении") : "",
             model.isNew == false ? m(".automessage-edit__stats", [
                 m(".automessage-edit__stats__messagethreshold", `Сообщений до следующего срабатывания: ${model.object.messageThreshold < 0 ? "0" : model.object.messageThreshold}`),
@@ -27,7 +27,7 @@ module.exports = {
                     model.object.message = value
                 },
                 getError: () => {
-                   return model.isValid == false ? "Минимальное значение - 20" : null
+                    return model.isValid == false && model.isNew == true ? "Не должно быть пустым" : null
                 }
             }),
             m(input, {
@@ -41,8 +41,8 @@ module.exports = {
                     model.object.messageLimit = parseInt(value)
                 },
                 getError: () => {
-                    return model.isValid == false ? "Минимальное значение - 60" : null
-                 }
+                    return model.isValid == false ? "Минимальное значение - 20" : null
+                }
             }),
             m(input, {
                 label: "Период времени перед рассылкой, в секундах",
@@ -54,6 +54,9 @@ module.exports = {
                 },
                 setValue: (value) => {
                     model.object.durationLimit = parseInt(value)
+                },
+                getError: () => {
+                    return model.isValid == false ? "Минимальное значение - 60" : null
                 }
             }),
             m(input, {
@@ -68,13 +71,13 @@ module.exports = {
                     model.object.game = value.trim()
                 }
             }),
-             m("button", {
+            m("button", {
                 onclick: () => {
                     model.push()
                 }
             }, "Сохранить"),
             model.isNew == false ? m(".automessage-edit__header", "История автосообщений") : "",
-            model.isNew == false && !!model.object.history  ? m(".automessage-edit__history", model.object.history.map(f => m(historyItem, f))) : ""
+            model.isNew == false && !!model.object.history ? m(".automessage-edit__history", model.object.history.map(f => m(historyItem, f))) : ""
         ])
     }
 }

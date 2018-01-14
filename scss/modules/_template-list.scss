@@ -18,6 +18,18 @@
     }
     &__filter {
         display: inline-flex;
+        flex-direction: column;
+        >*+* {
+            margin-left: 0rem !important;
+            margin-top: $element-spacing;
+            @include sm-breakpoint() {
+                margin-left: $element-spacing !important;
+                margin-top: 0rem;
+            }
+        }
+        @include sm-breakpoint() {
+            flex-direction: row;
+        }
         &__template {
             background-color: $color-ok;
             .sprite {
