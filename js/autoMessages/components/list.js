@@ -17,6 +17,7 @@ module.exports = {
                     type: "button",
                     onclick: (event) => {
                         event.redraw = false
+                        model.removeInactive()
                     }
                 }, "Удалить неактивные автосообщения")
             ]),

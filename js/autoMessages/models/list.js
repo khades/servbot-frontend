@@ -6,6 +6,11 @@ module.exports = {
     state: states.READY,
     channelID: "",
     objects: [],
+    removeInactive: function() {
+        auth.request({
+            url: appUrl(`api/channel/${this.channelID}/automessages/removeinactive`)
+        })
+    },
     get: function (channel) {
         this.state = states.LOADING
         this.channelID = channel
