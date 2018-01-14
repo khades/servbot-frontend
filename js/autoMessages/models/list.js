@@ -19,10 +19,8 @@ module.exports = {
         }).then(response => {
             if (!!response) {
                 this.objects = response
-
             } else {
                 this.objects = []
-
             }
             this.state = states.READY
         }).catch(error => {
