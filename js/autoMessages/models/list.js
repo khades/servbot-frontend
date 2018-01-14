@@ -9,6 +9,8 @@ module.exports = {
     removeInactive: function() {
         auth.request({
             url: appUrl(`api/channel/${this.channelID}/automessages/removeinactive`)
+        }).then(response => {
+            this.get(this.channelID)
         })
     },
     get: function (channel) {
