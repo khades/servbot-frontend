@@ -17,7 +17,6 @@ module.exports = {
         if (this.intervalID) {
             clearInterval(this.intervalID)
         }
-        console.log("Closing event source")
     },
     getLimit: function () {
         var date = localStorage.getItem(`${this.channelID}+limitDate`)
@@ -48,31 +47,38 @@ module.exports = {
         localStorage.removeItem(`${this.channelID}+subBookmark`)
     },
     connectToEventSource(channelID) {
-        if (!!this.eventSource)
+        this.channelID = channelID
+        this.route = m.route.get()
+
+        var wasOpen = !!this.eventSource
+        if (wasOpen)
             this.eventSource.close()
+        this.eventSource = new WebSocket(appUrl(`api/channel/${channelID}/subs/events`).replace("https", "wss").replace("http", "ws"))
+        this.eventSource.onopen = function (event) {
+            this.get(channelID)
+        }.bind(this)
+        this.eventSource.onclose = function (event) {
+            m.redraw()
 
-        this.eventSource = new EventSource(appUrl(`api/channel/${channelID}/subs/events`))
-        this.get(channelID)
-        this.eventSource.onmessage = function (e) {
-
-            console.log(e.data)
-            if (e.data != "ping") {
+        };
+        this.eventSource.onerror = function (error) {
+            m.redraw()
+        }
+        this.eventSource.onmessage = function (event) {
+            if (event.data == "newSub"){
                 this.get(channelID)
             }
-            // 
+        
         }.bind(this)
 
-        this.eventSource.onerror = function (e) {
-            if (this.eventSource.readyState == EventSource.CONNECTING) {
-                m.redraw()
-                this.get(channelID)
-            }
-        }.bind(this)
+        this.eventSource.onerror = function (error) {
+            m.redraw()
+        }
     },
     createEventSource(channelID) {
         this.connectToEventSource(channelID)
         this.intervalID = setInterval(function () {
-            if (this.eventSource.readyState == EventSource.CLOSED) {
+            if (this.eventSource.readyState == WebSocket.CLOSED) {
                 m.redraw()
                 console.log("Reconnecting")
                 this.connectToEventSource(channelID)
@@ -81,8 +87,6 @@ module.exports = {
 
     },
     get: function (channelID) {
-        this.channelID = channelID
-        this.route = m.route.get()
         var url = `api/channel/${channelID}/subs`
         if (!!this.getLimit()) {
             url = `api/channel/${channelID}/subs/limit/${this.getLimit()}`

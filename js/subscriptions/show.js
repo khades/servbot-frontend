@@ -7,11 +7,12 @@ var channelName = require("../utils/channelName")
 
 module.exports = {
     oninit: function (vnode) {
+        //model.get(vnode.attrs.channel)
         model.createEventSource(vnode.attrs.channel)
     },
     onupdate: function (vnode) {
         if (m.route.get() != model.route) {
-            model.get(vnode.attrs.channel)
+         //   model.get(vnode.attrs.channel)
             model.createEventSource(vnode.attrs.channel)
         }
     },
