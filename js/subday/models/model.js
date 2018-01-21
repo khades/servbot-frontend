@@ -113,8 +113,10 @@ module.exports = {
         }).then(response => {
             if (!!response) {
                 this.object = response
+                this.subdayID = response.id
             }
             this.state = states.READY
+        
         }).catch(error => {
             if (error.Code = 401) {
                 this.state = states.FORBIDDEN
