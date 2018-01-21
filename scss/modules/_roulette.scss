@@ -5,15 +5,19 @@
     overflow: hidden;
     &__items {
         width: auto;
-        white-space: nowrap;
         margin-left: calc(50% - 100px);
         transition-property: all;
         transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
         transform: translateX(0);
+        display: inline-flex;
+        flex-direction: row;
     }
     &__item-footer {
         font-weight: bolder;
         font-size: 1.2rem;
+        max-width: 100%;
+        white-space: normal;
+        overflow: hidden;
     }
     &__item-header {
         font-size: 0.9rem;
