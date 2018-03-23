@@ -1,7 +1,7 @@
 var m = require("mithril")
 var ConfigURL = require("../../utils/appUrl")
 var states = require("../../utils/states")
-var LogUsersPageModel = {
+module.exports = {
     state: states.LOADING,
     results: [],
     channelID: null,
@@ -34,4 +34,3 @@ var LogUsersPageModel = {
 
 }
 
-module.exports = LogUsersPageModel

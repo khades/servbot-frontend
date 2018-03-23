@@ -1,6 +1,8 @@
 var m = require("mithril")
-var model = require("../models/LogsModel")
-require("../../../scss/modules/_user-logs.scss")
+var model = require("./models/logs")
+require("../../scss/modules/_user-logs.scss")
+var routes = require("../pageTemplate/routes")
+var channelName = require("../utils/channelName")
 var generateClass = function (f) {
   if (f.messageType == "timeout")
     return "user-logs__history__timeout"
@@ -15,10 +17,27 @@ var generateMessagebody = function (f) {
     return `Перманентный бан`
   return f.messageBody
 }
-var LogsComponent = {
+
+
+module.exports = {
+  oninit: function (vnode) {
+    vnode.state.route = m.route.get()
+    model.get(m.route.param("channel"), m.route.param("userID"))
+  },
+
+  onupdate: function(vnode) {
+    if (vnode.state.route == m.route.get())
+      return
+    vnode.state.route = m.route.get()
+    model.get(m.route.param("channel"), m.route.param("userID"))
+  },
+
+  route: routes.LOGS,
+  getTitle() {
+    return `Логи пользователя ${!!model.result.user?model.result.user:""} на канале ${channelName.get(m.route.param("channel"))}`
+  },
   view: function (vnode) {
-    return m("div.user-logs", [
-      !!model.result.bans ?
+    return m(".user-logs", [!!model.result.bans ?
       m(".user-logs__bans", [
         m(".user-logs__bans-header", `Баны пользователя ${model.result.user} на канале ${model.result.channel}`),
         model.result.bans.map(f => m(".user-logs__ban-item", [
@@ -26,9 +45,8 @@ var LogsComponent = {
           m(".user-logs__ban-date", new Date(f.date).toLocaleString())
 
         ]))
-      ]) : "", 
-      m(".user-logs__header", `Логи пользователя ${model.result.user} на канале ${model.result.channel}`), 
-      !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : "", 
+      ]) : "",
+      m(".user-logs__header", `Логи пользователя ${model.result.user} на канале ${model.result.channel}`), !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? `Так же известен как ${model.result.knownNicknames.join(", ")}` : "",
 
       !!model.result.messages ? model.result.messages.map(f => m(".user-logs__history", [
         m(".user-logs__history__row", [
@@ -43,5 +61,3 @@ var LogsComponent = {
     ])
   }
 }
-
-module.exports = LogsComponent

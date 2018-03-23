@@ -12,11 +12,10 @@ module.exports = {
         auth.request({
             url: appUrl(`api/channel/${channel}`)
         }).then(response => {
-            console.log(response)
             this.channel = response.channel
             this.channelInfo = response
             this.state = states.READY
-            
+            console.log(this)
         }).catch(error => {
             if (error.Code == 500) {
                 this.state = states.FORBIDDEN

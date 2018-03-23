@@ -1,0 +1,29 @@
+@import '../utils/index';
+.songrequests {
+    >*+* {
+        margin-top: $element-spacing;
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+        @include sm-breakpoint() {
+            flex-direction: row;
+        }
+    }
+    &__requests {
+        width: 100%;
+        >*+* {
+            margin-top: $element-spacing;
+        }
+        @include sm-breakpoint() {
+            width: 30%;
+            padding-left: $element-spacing;
+        }
+    }
+    &__player {
+        width: 100%;
+        @include sm-breakpoint() {
+            width: 70%;
+        }
+    }
+}

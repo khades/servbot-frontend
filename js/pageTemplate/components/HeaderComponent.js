@@ -1,7 +1,6 @@
 var m = require("mithril")
 require("../../../scss/modules/_headerContent.scss")
 var UserNameModel  = require("../models/UserNameModel")
-var PageCarcassModel  = require("../models/PageCarcassModel")
 var HeaderComponent = {
   oninit: function (vnode) {
     UserNameModel.getUsername()
@@ -11,13 +10,8 @@ var HeaderComponent = {
 
       m("div.headerContent__menu-button-container",
         m("div.headerContent__menu-button", {
-          class: PageCarcassModel.sideMenuShown == true ? "headerContent__menu-button__menu-shown" : "",
-          onclick: f => {
-            if (PageCarcassModel.sideMenuShown == true)
-              PageCarcassModel.sideMenuShown = false
-            else
-              PageCarcassModel.sideMenuShown = true
-          }
+          class: vnode.attrs.getMenuShown() == true ? "headerContent__menu-button__menu-shown" : "",
+          onclick: vnode.attrs.onMenuClick
         })),
 
       m("div.headerContent__profile-info", {

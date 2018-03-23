@@ -1,12 +1,13 @@
 var m = require("mithril")
 require('../scss/style.scss')
-var MainPageComponent = require("./mainPage/MainPageComponent")
+var PageTemplateComponent = require('./pageTemplate/PageTemplateComponent')
+var mainPage = require("./mainPage/mainPage")
 var AfterAuthComponent = require("./afterAuth/AfterAuthComponent")
-var LogsPageComponent = require("./logs/LogsPageComponent")
-var LogUsersPageComponent = require("./logs/LogUsersPageComponent")
-var templatesList= require("./templates/list")
-var autoMessageList = require("./autoMessages/listPage")
-var autoMessageEdit = require("./autoMessages/editPage")
+var logs = require("./logs/logs")
+var logsUsers = require("./logs/users")
+var templatesList = require("./templates/list")
+var autoMessageList = require("./autoMessages/list")
+var autoMessageEdit = require("./autoMessages/edit")
 var templateShow = require("./templates/show")
 var channelIndex = require("./channel/index")
 var subAlertShow = require("./subalert/show")
@@ -19,27 +20,38 @@ var subtrain = require("./subTrain/subtrain")
 var bans = require("./bans/bans")
 var subdayList = require("./subday/list")
 var subday = require("./subday/subday")
+var songrequests = require('./songrequests/songrequests')
 time.getTime()
 m.route.prefix("#")
+
+function carcass(component) {
+  return {
+    render() {
+      return m(PageTemplateComponent, {
+        component: component
+      })
+    }
+  }
+}
 m.route(document.body, "/", {
-  "/": MainPageComponent,
-  "/afterAuth": AfterAuthComponent,
-  //"/channelData": ChannelDataPageComponent,
-  "/channel/:channel": channelIndex,
-  "/channel/:channel/subs": subs,
-  "/channel/:channel/templates": templatesList,
-  "/channel/:channel/templates/:template": templateShow,
-  "/channel/:channel/logs": LogUsersPageComponent,
-  "/channel/:channel/logs/:userID": LogsPageComponent,
-  "/channel/:channel/autoMessages": autoMessageList,
-  "/channel/:channel/autoMessages/new": autoMessageEdit,
-  "/channel/:channel/autoMessages/:id": autoMessageEdit,
-  "/channel/:channel/subAlert": subAlertShow,
-  "/channel/:channel/bits": bits,
-  "/channel/:channel/bits/:user": userbits,
-  "/channel/:channel/externalservices":externalServices,
-  "/channel/:channel/subtrain": subtrain,
-  "/channel/:channel/bans": bans,
-  "/channel/:channel/subdays": subdayList,
-  "/channel/:channel/subdays/:subdayID": subday
+  "/": carcass(mainPage),
+  "/afterAuth": carcass(AfterAuthComponent),
+  "/channel/:channel": carcass(channelIndex),
+  "/channel/:channel/subs": carcass(subs),
+  "/channel/:channel/templates": carcass(templatesList),
+  "/channel/:channel/templates/:template": carcass(templateShow),
+  "/channel/:channel/logs": carcass(logsUsers),
+  "/channel/:channel/logs/:userID": carcass(logs),
+  "/channel/:channel/autoMessages": carcass(autoMessageList),
+  "/channel/:channel/autoMessages/new": carcass(autoMessageEdit),
+  "/channel/:channel/autoMessages/:id": carcass(autoMessageEdit),
+  "/channel/:channel/subAlert": carcass(subAlertShow),
+  // "/channel/:channel/bits": bits,
+  // "/channel/:channel/bits/:user": userbits,
+  "/channel/:channel/externalservices": externalServices,
+  "/channel/:channel/subtrain": carcass(subtrain),
+  "/channel/:channel/bans": carcass(bans),
+  "/channel/:channel/subdays": carcass(subdayList),
+  "/channel/:channel/subdays/:subdayID": carcass(subday),
+  "/channel/:channel/songrequests": songrequests
 });

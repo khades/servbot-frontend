@@ -4,5 +4,6 @@ module.exports = {
     NOTAUTHORIZED: 2,
     FORBIDDEN: 3,
     ERROR: 4,
-    NOTFOUND: 5
+    NOTFOUND: 5,
+    UPDATING: 6
 }

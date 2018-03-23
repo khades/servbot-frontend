@@ -10,5 +10,6 @@ module.exports = {
     EXTERNAL_SERVICES: 9,
     SUBTRAIN: 10,
     CHANNELBANS: 11,
-    SUBDAY: 12
+    SUBDAY: 12,
+    SONGREQUESTS: 13
 }

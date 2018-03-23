@@ -1,0 +1,20 @@
+@import '../utils/index';
+.songrequests-item {
+    >*+* {
+        margin-top: $element-spacing;
+    }
+    @include simple-list-item;
+    flex-direction: column;
+    &__buttons {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        >* {
+            flex-basis: 0;
+            flex-grow: 2;
+        }
+        >*+* {
+            margin-left: $element-spacing;
+        }
+    }
+}

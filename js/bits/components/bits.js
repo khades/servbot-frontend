@@ -3,6 +3,9 @@ var selector = ".bits"
 var model = require("../models/bits")
 require("../../../scss/modules/_bits.scss")
 module.exports = {
+    oninit: function (vnode) {
+        model.get(m.route.param("channel"))
+    },
     view(vnode) {
         return m(selector, [
             m(selector + "__header", "Список людей, поддержавших канал"),

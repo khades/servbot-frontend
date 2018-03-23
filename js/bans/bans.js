@@ -1,31 +1,40 @@
-var m = require("mithril")
-var states = require("../utils/states")
-
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var model = require("./models/model")
-var component = require("./components/component")
+var m = require("mithril")
+var input = require("../basicWidgets/components/InputComponent")
+var textarea = require("../basicWidgets/textarea")
+var multiinput = require("../basicWidgets/multiinput")
+var check = require("../basicWidgets/components/CheckBoxComponent")
+var states = require("../utils/states.js")
+require("../../scss/modules/_channel-bans.scss")
 var routes = require("../pageTemplate/routes")
 var channelName = require("../utils/channelName")
-
-module.exports =  {
-    oninit: function (vnode) { 
-        model.state = states.LOADING
-        model.get(vnode.attrs.channel)
+module.exports = {
+    oninit: function (vnode) {
+        vnode.state.route = m.route.get()
+        model.get(m.route.param("channel"))
     },
-    onupdate: function (vnode) {
-        if (m.route.get() != model.route) {
-            model.get(vnode.attrs.channel)
-        }
+    oncreate: function (vnode) {
+        if (vnode.state.route == m.route.get())
+            return
+        vnode.state.route = m.route.get()
+        model.get(m.route.param("channel"))
+    },
+    route: routes.CHANNELBANS,
+    getTitle: () => {
+        return `Баны на канале ${channelName.get(m.route.param("channel"))}`
     },
     view: function (vnode) {
-        return m(PageTemplateComponent, {
-            route: routes.CHANNELBANS,
-            title: `Баны на канале ${channelName.get(vnode.attrs.channel)}`,
-            channelID: () => { return vnode.attrs.channel },
-            getState: () => {
-                return model.state
-            },
-            content: m(component)
-        })
+
+        return model.state == states.READY ?
+            m(".channel-bans", [
+                m("h1", `Баны на канале ${channelName.get(model.channelID)}`),
+                m(".channel-bans__items", model.object.bans.map(f => {
+                    return m(".channel-bans__item", [
+                        m(".channel-bans__name", f.user + " - " + (f.banLength == 0 ? "Перманентно" : f.banLength + " Секунд")),
+
+                        m(".channel-bans__date", new Date(f.date).toLocaleString())
+                    ])
+                }))
+            ]) : ""
     }
 }

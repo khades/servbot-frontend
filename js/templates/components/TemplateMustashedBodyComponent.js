@@ -1,7 +1,7 @@
 var m = require("mithril")
 require('../../../scss/modules/_template-item.scss')
 
-var TemplateMustashedBodyComponent = {
+module.exports = {
     view: function (vnode) {
         return m(".template-list-item__body", vnode.attrs.array.map(line => {
             if (line.startsWith("|mustashe|")) {
@@ -22,4 +22,3 @@ var TemplateMustashedBodyComponent = {
     }
 }
 
-module.exports = TemplateMustashedBodyComponent 

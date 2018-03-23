@@ -4,7 +4,7 @@ var states = require("../../utils/states")
 var routes = require("../../pageTemplate/routes")
 var m = require("mithril")
 module.exports = {
-    state: states.READY,
+    state: states.LOADING,
     channelID: "",
     route: routes.CHANNELBANS,
     object: {

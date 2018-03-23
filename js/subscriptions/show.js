@@ -1,35 +1,76 @@
 var m = require("mithril")
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
-var component = require("./components/show")
 var model = require("./models/show")
-var routes = require("../pageTemplate/routes")
+require("../../scss/modules/_subscriptions-show.scss")
+var states = require("../utils/states")
+var generateClass = (f) => {
+    if (f.isPrime || f.subPlan == "Prime")
+        return "subscriptions-show__item__user--prime"
+    if (f.isPrime || f.subPlan == "2000")
+        return "subscriptions-show__item__user--ten-dollars"
+    if (f.isPrime || f.subPlan == "3000")
+        return "subscriptions-show__item__user--twenty-five-dollars"
+    return "subscriptions-show__item__user--five-dollars"
+}
 var channelName = require("../utils/channelName")
+var routes = require("../pageTemplate/routes")
 
 module.exports = {
     oninit: function (vnode) {
-        //model.get(vnode.attrs.channel)
-        model.createEventSource(vnode.attrs.channel)
+        vnode.state.route = m.route.get()
+        model.createEventSource(m.route.param("channel"))
     },
+
     onupdate: function (vnode) {
-        if (m.route.get() != model.route) {
-         //   model.get(vnode.attrs.channel)
-            model.createEventSource(vnode.attrs.channel)
-        }
+        if (vnode.state.route == m.route.get())
+            return
+        vnode.state.route = m.route.get()
+        model.createEventSource(m.route.param("channel"))
     },
-    view: function (vnode) {
-        return m(PageTemplateComponent, {
-            getState: () => {
-                return model.state
-            },
-            channelID: () => {
-                return vnode.attrs.channel
-            },
-            route: routes.SUBSCRIPTIONS,
-            title: `Просмотр подписок на канале ${channelName.get(vnode.attrs.channel)}`,
-            content: m(component),
-        })
-    },
+
     onremove: function (vnode) {
-        model.leaveEventSource(vnode.attrs.channel)
+        model.leaveEventSource(m.route.param("channel"))
+    },
+    route: routes.SUBSCRIPTIONS,
+    getTitle() {
+        `Просмотр подписок на канале ${channelName.get(m.route.param("channel"))}`
+    },
+
+    view(vnode) {
+        return m(".subscriptions-show", [
+            m(".subscriptions-show__header", `Подписчики на канале ${channelName.get(model.channelID)}`),
+            (!!model.eventSource && model.eventSource.readyState == WebSocket.CLOSED) || model.state == states.ERROR ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : "",
+            m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня, ${model.subscriptions.length} подписок` : `Начиная с ${new Date(parseInt(model.getLimit())).toLocaleString() }, ${model.subscriptions.length} подписок`),
+            m(".subscriptions-show__buttons", [
+                m('button', {
+                    onclick: () => {
+                        model.setLimit()
+                        model.get(model.channelID)
+                    }
+                }, "Отметить как прочитанное"),
+                m('button', {
+                    onclick: () => {
+                        model.resetLimit()
+                        model.get(model.channelID)
+                    }
+                }, "Показать последние подписки (За 3 дня)")
+            ]),
+            m(".subscriptions-show__items", model.subscriptions.map(f => {
+
+                return m(".subscriptions-show__item", {
+                    onclick: () => {
+                        model.setBookmark(f.id)
+                    },
+                    class: model.getBookmark() == f.id ? "subscriptions-show__item--bookmarked" : ""
+                }, [
+                    m(".subscriptions-show__item__user", {
+                        class: generateClass(f)
+                    }, [
+                        `${f.user} (${f.count})`,
+                        m(".subscriptions-show__item__user__tooltip", `${f.user}#${f.userID}`)
+                    ]),
+                    m(".subscriptions-show__item__date", new Date(f.date).toLocaleString()),
+                ])
+            }))
+        ])
     }
 }

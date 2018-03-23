@@ -6,6 +6,10 @@
         background-color: $color-ok;
         color: #eee;
     }
+    &.white {
+        background-color: white;
+        color: black;
+    }
     &.error {
         background-color: $color-error;
         color: $background-color;

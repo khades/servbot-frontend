@@ -1,12 +1,39 @@
 var m = require("mithril")
-var model = require("../models/edit")
-var input = require("../../basicWidgets/components/InputComponent")
-var historyItem = require("./historyItem")
-require("../../../scss/modules/_automessage-edit.scss")
-
+var model = require("./models/edit")
+var input = require("../basicWidgets/components/InputComponent")
+var historyItem = require("./components/historyItem")
+require("../../scss/modules/_automessage-edit.scss")
+var routes = require("../pageTemplate/routes")
 module.exports = {
+    oninit: function (vnode) {
+        vnode.state.route = m.route.get()
+        if (!!m.route.param("id")) {
+            model.get(m.route.param("channel"), m.route.param("id"))
+        } else {
+            model.new(m.route.param("channel"))
+        }
+
+    },
+  
+    oncreate: function (vnode) {
+        if (vnode.state.route == m.route.get())
+            return
+        vnode.state.route = m.route.get()
+        if (!!m.route.param("id")) {
+            model.get(m.route.param("channel"), m.route.param("id"))
+        } else {
+            model.new(m.route.param("channel"))
+        }
+    },
+    route: routes.AUTOMESSAGES,
+    getTitle() {
+        if (!!m.route.param("id")) {
+            return "Редактирование автосообщения"
+        } else {
+            return "Создание автосообщения"
+        }
+    },
     view(vnode) {
-        console.log(model)
         return m(".automessage-edit", [
 
             model.isNew == false ? m(".automessage-edit__header", "Информация о автосообщении") : "",

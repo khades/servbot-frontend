@@ -5,10 +5,11 @@ var m = require("mithril")
 
 module.exports = {
     state: states.LOADING,
-    object: {modChannels:[]},
+    object: {
+        modChannels: []
+    },
     get: function () {
         this.state = states.LOADING
-
         auth.request({
             url: appUrl(`api/user/index`)
         }).then(response => {

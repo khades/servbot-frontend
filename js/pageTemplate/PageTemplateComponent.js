@@ -3,45 +3,38 @@ require("../../scss/layout/_index.scss")
 require("../../scss/base/_index.scss")
 var HeaderComponent = require('./components/HeaderComponent')
 var MenuComponent = require('./components/MenuComponent')
-var PageCarcassModel = require("./models/PageCarcassModel")
-var states = require("../utils/states")
-var loading = require("../basic/loading")
-var forbidden = require("../basic/forbidden")
-var notfound = require("../basic/notfound")
 
-function renderStatedContent(content, stateFunction) {
-  switch (stateFunction()) {
-    case states.LOADING:
-      return m(loading)
-    case states.FORBIDDEN:
-      return m(forbidden)
-    case states.NOTAUTHORIZED:
-      return m(forbidden)
-    default:
-      return content
-  }
-}
 module.exports = {
+  oninit: function (vnode) {
+    vnode.state.menuShown = false
+  },
   view: function (vnode) {
-    document.title = vnode.attrs.title
-    var content = (!!vnode.attrs.getState && typeof vnode.attrs.getState === "function") ? renderStatedContent(vnode.attrs.content, vnode.attrs.getState) : vnode.attrs.content
+    console.log(vnode.attrs.component)
+    if (!!vnode.attrs.component.getTitle) {
+      document.title = vnode.attrs.component.getTitle()
+    }
     return m("section#main", [
       m("#site-menu", {
-        class: PageCarcassModel.sideMenuShown == true ? "shown" : "hidden"
+        class: vnode.state.menuShown == true ? "shown" : "hidden"
       }, m(MenuComponent, {
-        route: vnode.attrs.route,
-        channelID: vnode.attrs.channelID,
+        route: vnode.attrs.component.route,
         hideMenu: function () {
-          PageCarcassModel.sideMenuShown = false
+          vnode.state.menuShown = false
         },
         showMenu: function () {
-          PageCarcassModel.sideMenuShown = true
+          vnode.state.menuShown = true
+        },
+        closeMenu() {
+          vnode.state.menuShown = false
         }
       })),
       m("header#siteHeader", m(HeaderComponent, {
-
+        onMenuClick() {
+          vnode.state.menuShown == true ? vnode.state.menuShown = true : vnode.state.menuShown = false
+        },
+        getMenuShown: () => vnode.state.menuShown
       })),
-      m("section#siteContent", m(".content", content)),
+      m("section#siteContent", m(".content", m(vnode.attrs.component))),
     ])
   }
 }

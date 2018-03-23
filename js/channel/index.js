@@ -1,35 +1,31 @@
 var m = require("mithril")
-
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
 var model = require("./models/index")
-var component = require("./components/index")
 var states = require("../utils/states")
+var loading = require("../basic/loading")
 var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
 
-var LogUsersPageComponent = {
-    oninit: function (vnode) {
-        model.get(vnode.attrs.channel)
+
+module.exports = {
+    oninit(vnode) {
+        vnode.state.route = m.route.get()
+        model.get(m.route.param("channel"))
     },
-    onupdate: function (vnode) {
-        if (m.route.get() != model.route) {
-            model.get(vnode.attrs.channel)
+    onupdate(vnode) {
+        if (vnode.state.route != m.route.get()) {
+            vnode.state.route = m.route.get()
+            model.get(m.route.param("channel"))
         }
     },
-    view: function (vnode) {
-        return m(PageTemplateComponent, {
-            getState: () => {
-                return model.state
-            },
-            route: routes.CHANNEL,
-            title: model.state == states.READY ? `Информация о канале ${channelName.get(vnode.attrs.channel)}` : "",
-            content: m(component, {
-                channelID: vnode.attrs.channel
-            }),
-            channelID: () => {
-                return vnode.attrs.channel
-            }
-        })
+    getTitle() {
+        return "Welcome to the bot"
+    },
+    route: routes.CHANNEL,
+    view() {
+        if (model.state != states.READY) {
+            return m(".channel-index", m(loading))
+        }
+        return m(".channel-index", model.channelInfo.isMod ? [
+            m("div", "Вы модератор, вы можете пройти по разделам в меню слева (либо по кнопке в хедере)")
+        ] : m("div", "You're not moderator"))
     }
 }
-module.exports = LogUsersPageComponent

@@ -17,7 +17,7 @@ module.exports = {
 
         return m("a.automessage-list__item", {
             oncreate: m.route.link,
-            href: `/channel/${vnode.attrs.channelID}/autoMessages/${vnode.attrs.id}`
+            href: `/channel/${m.route.param("channel")}/autoMessages/${vnode.attrs.id}`
 
         }, [
             m(".automessage-list__item__message", generateName(vnode.attrs)),

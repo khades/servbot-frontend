@@ -2,7 +2,7 @@ var Auth = require("../../utils/auth")
 var m = require("mithril")
 var ConfigURL = require("../../utils/appUrl")
 var states = require("../../utils/states")
-var LogsModel = {
+module.exports ={
     state: states.LOADING,
     result: {
         channel: ""
@@ -16,9 +16,7 @@ var LogsModel = {
         }).then(function (response) {
             this.result = response
             this.state = states.READY
-
         }.bind(this))
     }
 }
 
-module.exports = LogsModel

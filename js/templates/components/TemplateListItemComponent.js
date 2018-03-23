@@ -24,7 +24,7 @@ function getCommandInfo(item) {
     return commandInfo
 
 }
-var TemplateListItemComponent = {
+module.exports = {
     view: function (vnode) {
         var item = vnode.attrs.item.command
         var commandInfo = vnode.attrs.item.commandInfo
@@ -50,4 +50,3 @@ var TemplateListItemComponent = {
         ])
     }
 }
-module.exports = TemplateListItemComponent
