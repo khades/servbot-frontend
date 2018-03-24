@@ -3,7 +3,7 @@ var model = require("./models/index")
 var states = require("../utils/states")
 var loading = require("../basic/loading")
 var routes = require("../pageTemplate/routes")
-
+var l10n = require("../l10n/l10n")
 
 module.exports = {
     oninit(vnode) {
@@ -17,7 +17,7 @@ module.exports = {
         }
     },
     getTitle() {
-        return "Welcome to the bot"
+        return l10n.get("WELCOME_TITLE")
     },
     route: routes.CHANNEL,
     view() {

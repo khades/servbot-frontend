@@ -31,5 +31,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "khades",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "sprintf-js": "^1.1.1"
+  }
 }

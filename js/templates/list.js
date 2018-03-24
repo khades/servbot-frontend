@@ -35,13 +35,11 @@ module.exports = {
                     m.redraw()
                 }
             }),
-
             m("a", {
                 oncreate: m.route.link,
                 href: `/channel/${model.channelID}/templates/${model.newCommand}`
             }, m("button", "Перейти")),
             m(".template-list__header", `Список существующих комманд`),
-
             m(".template-list__filter", [
                 m("button.template-list__filter__template", {
                     class: model.showTemplate == true ? "" : "disabled",
@@ -78,7 +76,6 @@ module.exports = {
                             model.showDeleted = true
                     }
                 }, m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")]))
-
             ]),
             m(".template-list__container", model.getTemplates().map(f => m(TemplateListItemComponent, {
                 item: f

@@ -8,6 +8,7 @@ var states = require("../utils/states.js")
 require("../../scss/modules/_channel-bans.scss")
 var routes = require("../pageTemplate/routes")
 var channelName = require("../utils/channelName")
+var l10n = require("../l10n/l10n")
 module.exports = {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
@@ -21,16 +22,16 @@ module.exports = {
     },
     route: routes.CHANNELBANS,
     getTitle: () => {
-        return `Баны на канале ${channelName.get(m.route.param("channel"))}`
+        return l10n.get("BANS_TITLE", channelName.get(m.route.param("channel")))
     },
     view: function (vnode) {
 
         return model.state == states.READY ?
             m(".channel-bans", [
-                m("h1", `Баны на канале ${channelName.get(model.channelID)}`),
+                m("h1", l10n.get("BANS_TITLE", channelName.get(m.route.param("channel")))),
                 m(".channel-bans__items", model.object.bans.map(f => {
                     return m(".channel-bans__item", [
-                        m(".channel-bans__name", f.user + " - " + (f.banLength == 0 ? "Перманентно" : f.banLength + " Секунд")),
+                        m(".channel-bans__name", f.user + " - " + (f.banLength == 0 ? l10n.get("BANS_PERMANENT") : l10n.get("TIME_SECONDS", f.banLength))),
 
                         m(".channel-bans__date", new Date(f.date).toLocaleString())
                     ])
