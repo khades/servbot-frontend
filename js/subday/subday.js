@@ -10,6 +10,8 @@ require("../../scss/modules/_subday.scss")
 var roulette = require("../widgets/roulette")
 var routes = require("../pageTemplate/routes")
 var loading = require("../basic/loading")
+var l10n = require("../l10n/l10n")
+
 module.exports = {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
@@ -33,9 +35,9 @@ module.exports = {
         if (model.state == states.LOADING) {
             return m(loading)
         }
-        return        m(".subday", [
+        return m(".subday", [
             m("h1", !!model.object.name ? model.object.name : ""),
-            m("", model.object.isActive == true ? "Сабдей не закрыт" : "Сабдей закрыт"),
+            m("", model.object.isActive == true ? l10n.get("SUBDAY_IS_ACTIVE") : l10n.get("SUBDAY_IS_CLOSED")),
             model.object.isMod == true ?
 
             [
@@ -45,7 +47,7 @@ module.exports = {
                     }
                 }) : "",
 
-                m("h1", "Победители"),
+                m("h1", l10n.get("SUBDAY_WINNERS")),
                 m(".subday__winners", model.object.winners.map(f => {
                     return m(".subday__winner", [
                         m(".subday__winner-user", f.user),
@@ -57,7 +59,7 @@ module.exports = {
                                 event.redraw = false
                                 model.pullWinner(f.user)
                             }
-                        }, "Удалить победителя") : ""
+                        }, l10n.get("SUBDAY_REMOVE_WINNER")) : ""
                     ])
 
                 })),
@@ -72,7 +74,7 @@ module.exports = {
                             event.redraw = false
                             model.randomize(m.route.param("roulette") == true)
                         }
-                    }, "Зарандомить победителя"),
+                    }, l10n.get("SUBDAY_RANDOMIZE_WINNER")),
                     m('button', {
                         type: 'button',
                         class: model.playingRoulette == true ? "disabled" : "",
@@ -81,8 +83,8 @@ module.exports = {
                             event.redraw = false
                             model.close()
                         }
-                    }, "Закрыть сабдей"),
-                    m.route.param("pineapple") == "throw" ? [m("h4", "История победителей"),
+                    }, l10n.get("SUBDAY_CLOSE")),
+                    m.route.param("pineapple") == "throw" ? [m("h4", l10n.get("SUBDAY_WINNERS_HISTORY")),
                         model.object.winnersHistory.map(f => {
                             return [
                                 m("h5", new Date(f.date).toLocaleString()),
@@ -101,7 +103,7 @@ module.exports = {
 
             :
             null,
-            m("h1", "Голоса"),
+            m("h1", l10n.get("SUBDAY_VOTES")),
             m(".subday__votes", model.object.votes.map(f => {
                 return m(".subday__vote", [
                     m(".subday__vote-user", f.user),

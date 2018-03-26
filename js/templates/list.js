@@ -6,9 +6,10 @@ var input = require("../basicWidgets/components/InputComponent")
 var channelName = require("../utils/channelName")
 var routes = require("../pageTemplate/routes")
 var channelName = require("../utils/channelName")
+var l10n = require("../l10n/l10n")
 
 module.exports = {
-  
+
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         model.init(m.route.param("channel"))
@@ -20,12 +21,14 @@ module.exports = {
         model.init(m.route.param("channel"))
     },
     route: routes.TEMPLATES,
-    getTitle: () => `Кастомные команды для канала ${channelName.get(m.route.param("channel"))}`,
+    getTitle: () => {
+        return l10n.get("TEMPLATES_TITLE", channelName.get(m.route.param("channel")))
+    },
     view: function (vnode) {
         return m(".template-list", [
-            m(".template-list__header", `Комманды на канале ${channelName.get(model.channelID)}`),
+            m(".template-list__header", l10n.get("TEMPLATES_TITLE", channelName.get(m.route.param("channel")))),
             m(input, {
-                label: "Создание новой команды\\переход к существующей команде",
+                label: l10n.get("TEMPLATES_CREATE_GOTO"),
                 id: "newCommand",
                 getValue: () => {
                     return model.newCommand
@@ -38,8 +41,8 @@ module.exports = {
             m("a", {
                 oncreate: m.route.link,
                 href: `/channel/${model.channelID}/templates/${model.newCommand}`
-            }, m("button", "Перейти")),
-            m(".template-list__header", `Список существующих комманд`),
+            }, m("button", l10n.get("PROCEED"))),
+            m(".template-list__header", l10n.get("TEMPLATES_COMMAND_LIST")),
             m(".template-list__filter", [
                 m("button.template-list__filter__template", {
                     class: model.showTemplate == true ? "" : "disabled",
@@ -51,7 +54,7 @@ module.exports = {
                             model.showTemplate = true
                     }
 
-                }, m(".button-content", [m(`span.sprite`), m("span.text", "Команда")])),
+                }, m(".button-content", [m(`span.sprite`), m("span.text", l10n.get("COMMAND"))])),
                 m("button.template-list__filter__alias", {
 
                     class: model.showAlias == true ? "" : "disabled",
@@ -64,7 +67,7 @@ module.exports = {
                     }
                 }, m(".button-content", [
                     m(`span.sprite`),
-                    m("span.text", "Алиас")
+                    m("span.text", l10n.get("ALIAS"))
                 ])),
                 m("button.template-list__filter__deleted", {
                     class: model.showDeleted == true ? "" : "disabled",
@@ -75,7 +78,7 @@ module.exports = {
                         else
                             model.showDeleted = true
                     }
-                }, m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", "Удалено")]))
+                }, m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", l10n.get("DELETED"))]))
             ]),
             m(".template-list__container", model.getTemplates().map(f => m(TemplateListItemComponent, {
                 item: f

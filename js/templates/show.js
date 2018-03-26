@@ -9,6 +9,7 @@ var check = require("../basicWidgets/components/CheckBoxComponent")
 var states = require("../utils/states.js")
 var routes = require("../pageTemplate/routes")
 var channelName = require("../utils/channelName")
+var l10n = require("../l10n/l10n")
 module.exports = {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
@@ -24,26 +25,26 @@ module.exports = {
     },
     route: routes.TEMPLATES,
     getTitle() {
-        return `Просмотр команды ${m.route.param("template")} на канале ${channelName.get(m.route.param("channel"))}`
+        return l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel")))
     },
     view(vnode) {
         return model.state == states.READY ? m(".template-show", [
-            m(".template-show__header", `Просмотр команды ${model.template.commandName} на канале ${channelName.get(model.template.channelID)}`), !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : "", !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m("a", {
+            m(".template-show__header", l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel")))), !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m(".template-show__subheader", `Синоним команды ${model.template.aliasTo}`) : "", !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? m("a", {
                 oncreate: m.route.link,
                 href: `/channel/${model.template.channelID}/templates/${model.template.aliasTo}`
-            }, m("button", "Перейти к оригиналу")) : "",
+            }, m("button", l10n.get("TEMPLATE_GO_TO_ORIGINAL"))) : "",
             model.extended == true ? m("button", {
                 type: "button",
                 onclick: () => {
                     model.extended = false
                 }
-            }, "Спрятать расширенные настройки") :
+            }, l10n.get("TEMPLATE_HIDE_EXTENDED_SETTINGS")) :
             m("button", {
                 type: "button",
                 onclick: () => {
                     model.extended = true
                 }
-            }, "Показать расширенные настройки"),
+            }, l10n.get("TEMPLATE_SHOW_EXTENDED_SETTINGS")),
             model.extended == true ? [
 
                 m(check, {
@@ -53,7 +54,7 @@ module.exports = {
 
                         model.template.showOnline = value
                     },
-                    label: "Показывать во время стрима"
+                    label: l10n.get("TEMPLATE_SHOW_ONLINE")
                 }),
                 m(check, {
                     id: "showOffline",
@@ -62,7 +63,7 @@ module.exports = {
 
                         model.template.showOffline = value
                     },
-                    label: "Показывать вне стрима"
+                    label: l10n.get("TEMPLATE_SHOW_OFFLINE")
                 }),
                 m(check, {
                     id: "PreventDebounce",
@@ -71,7 +72,7 @@ module.exports = {
 
                         model.template.preventDebounce = value
                     },
-                    label: "Игнорировать дебаунсер"
+                    label: l10n.get("TEMPLATE_IGNORE_DEBOUNCER")
                 }),
                 m(check, {
                     id: "OnlyPrivate",
@@ -80,7 +81,7 @@ module.exports = {
 
                         model.template.onlyPrivate = value
                     },
-                    label: "Слать только приватно"
+                    label: l10n.get("TEMPLATE_ONLY_PRIVATE")
                 }),
                 m(check, {
                     id: "PreventRedirect",
@@ -89,9 +90,9 @@ module.exports = {
 
                         model.template.preventRedirect = value
                     },
-                    label: "Отключить перенаправление вывода команды пользователю, если после команды дописать его ник"
+                    label: l10n.get("TEMPLATE_PREVENT_REDIRECT")
                 }),
-                m(".template-show__header", "Рандомизатор строк"),
+                m(".template-show__header", l10n.get("TEMPLATE_STRING_RANDOMIZER")),
                 m(check, {
                     id: "EnableStringRandomizer",
                     getValue: () => model.template.stringRandomizer.enabled,
@@ -100,7 +101,7 @@ module.exports = {
                         model.template.stringRandomizer.enabled = value
                         m.redraw()
                     },
-                    label: "Включить рандомизатор строк"
+                    label: l10n.get("TEMPLATE_ENABLE_STRING_RANDOMIZER")
                 }), !!model.template.stringRandomizer && model.template.stringRandomizer.enabled == true ? [
                     m(multiinput, {
                         getValues: () => model.template.stringRandomizer.strings,
@@ -108,7 +109,7 @@ module.exports = {
                         id: "randomizerStrings"
                     }),
                     m(textarea, {
-                        label: "Импортировать из строки",
+                        label: l10n.get("TEMPLATE_IMPORT_FROM_STRING"),
                         id: "stringRandomizerTemplates",
                         getValue: () => {
                             return !!model.stringRandomizerTemplate ? model.stringRandomizerTemplate : ""
@@ -122,9 +123,9 @@ module.exports = {
                         onclick: () => {
                             model.template.stringRandomizer.strings = model.stringRandomizerTemplate.split(",").map(f => f.replace(/\"/g, "").trim())
                         }
-                    }, "Сформировать список вариантов"),
+                    }, l10n.get("TEMPLATE_PARSE_STRING")),
                 ] : "",
-                m(".template-show__header", "Рандомизатор чисел"),
+                m(".template-show__header", l10n.get("TEMPLATE_INTEGER_RANDOMIZER")),
 
                 m(check, {
                     id: "EnableIntegerRandomizer",
@@ -134,9 +135,9 @@ module.exports = {
                         model.template.integerRandomizer.enabled = value
                         m.redraw()
                     },
-                    label: "Включить рандомизатор чисел"
+                    label: l10n.get("TEMPLATE_ENABLE_INTEGER_RANDOMIZER")
                 }), !!model.template.integerRandomizer && model.template.integerRandomizer.enabled == true ? [m(input, {
-                        label: "Нижний предел рандомизатора чисел",
+                        label: l10n.get("TEMPLATE_INTEGER_RANDOMIZER_LOWER_LIMIT"),
                         id: "integerLowerRange",
 
                         getValue: () => {
@@ -147,7 +148,7 @@ module.exports = {
                         }
                     }),
                     m(input, {
-                        label: "Верхний предел рандомизатора чисел",
+                        label: l10n.get("TEMPLATE_INTEGER_RANDOMIZER_UPPER_LIMIT"),
                         id: "integerUpperRange",
                         getValue: () => {
                             return model.template.integerRandomizer.upperLimit
@@ -162,14 +163,14 @@ module.exports = {
                         setValue: value => {
                             model.template.integerRandomizer.timeoutAfter = value
                         },
-                        label: "Дать таймаут на это время"
+                        label: l10n.get("TEMPLATE_INTEGER_RANDOMIZER_TIMEOUT"),
                     })
                 ] : ""
             ] : "",
             m(textarea, {
-                label: "Тело комманды",
+                label: l10n.get("TEMPLATE_MESSAGE"),
                 id: "newCommand",
-                error: model.errorTemplate ? "Некорректный шаблон" : null,
+                error: model.errorTemplate ? l10n.get("INVALID_TEMPLATE") : null,
                 getValue: () => {
                     return model.template.template
                 },
@@ -182,16 +183,16 @@ module.exports = {
                 onclick: () => {
                     model.save()
                 }
-            }, "Сохранить"),
+            }, l10n.get("SAVE")),
             m("button", {
                 type: "button",
                 onclick: () => {
                     model.template.template = ""
                     model.save()
                 }
-            }, "Удалить команду"),
+            }, l10n.get("TEMPLATE_DELETE")),
             m(input, {
-                label: "Синоним на команду",
+                label: l10n.get("TEMPLATE_ALIAS_TO"),
                 id: "newCommand",
                 getValue: () => {
                     return model.template.aliasTo
@@ -205,7 +206,7 @@ module.exports = {
                 onclick: () => {
                     model.setAliasTo()
                 }
-            }, "Сохранить"), !!model.template.history ? m(".template-show__header", "История команд") : "", !!model.template.history ? m(".template-show__history", model.template.history.map(f => m(historyItem, f))) : ""
+            }, "Сохранить"), !!model.template.history ? m(".template-show__header", l10n.get("TEMPLATE_EDIT_HISTORY")) : "", !!model.template.history ? m(".template-show__history", model.template.history.map(f => m(historyItem, f))) : ""
         ]) : ""
     }
 }

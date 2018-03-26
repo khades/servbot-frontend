@@ -48,7 +48,7 @@ m.route(document.body, "/", {
   "/channel/:channel/subAlert": carcass(subAlertShow),
   // "/channel/:channel/bits": bits,
   // "/channel/:channel/bits/:user": userbits,
-  "/channel/:channel/externalservices": externalServices,
+  "/channel/:channel/externalservices": carcass(externalServices),
   "/channel/:channel/subtrain": carcass(subtrain),
   "/channel/:channel/bans": carcass(bans),
   "/channel/:channel/subdays": carcass(subdayList),

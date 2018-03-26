@@ -1,0 +1,6 @@
+@import '../utils/index'; 
+.channel-index {
+    > * + * {
+        margin-top: $content-spacing;
+    }
+}

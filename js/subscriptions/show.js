@@ -13,7 +13,7 @@ var generateClass = (f) => {
 }
 var channelName = require("../utils/channelName")
 var routes = require("../pageTemplate/routes")
-
+var l10n = require("../l10n/l10n")
 module.exports = {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
@@ -32,27 +32,27 @@ module.exports = {
     },
     route: routes.SUBSCRIPTIONS,
     getTitle() {
-        `Просмотр подписок на канале ${channelName.get(m.route.param("channel"))}`
+        return l10n.get("SUBSCRIPTIONS_TITLE", channelName.get(m.route.param("channel")))
     },
 
     view(vnode) {
         return m(".subscriptions-show", [
-            m(".subscriptions-show__header", `Подписчики на канале ${channelName.get(model.channelID)}`),
+            m(".subscriptions-show__header", l10n.get("SUBSCRIPTIONS_TITLE", channelName.get(m.route.param("channel")))),
             (!!model.eventSource && model.eventSource.readyState == WebSocket.CLOSED) || model.state == states.ERROR ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : "",
-            m(".subscriptions-show__threshold", model.getLimit() == null ? `За последние три дня, ${model.subscriptions.length} подписок` : `Начиная с ${new Date(parseInt(model.getLimit())).toLocaleString() }, ${model.subscriptions.length} подписок`),
+            m(".subscriptions-show__threshold", model.getLimit() == null ? l10n.get("SUBSCRIPTIONS_LAST_THREE_DAYS", model.subscriptions.length) : l10n.get("SUBSCRIPTIONS_SINCE_DATE", new Date(parseInt(model.getLimit())).toLocaleString(), model.subscriptions.length)),
             m(".subscriptions-show__buttons", [
                 m('button', {
                     onclick: () => {
                         model.setLimit()
                         model.get(model.channelID)
                     }
-                }, "Отметить как прочитанное"),
+                }, l10n.get("MARK_AS_READ")),
                 m('button', {
                     onclick: () => {
                         model.resetLimit()
                         model.get(model.channelID)
                     }
-                }, "Показать последние подписки (За 3 дня)")
+                }, l10n.get("SUBSCRIPTIONS_SHOW_LAST_THREE_DAYS"))
             ]),
             m(".subscriptions-show__items", model.subscriptions.map(f => {
 

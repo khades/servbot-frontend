@@ -8,6 +8,7 @@ var check = require("../basicWidgets/components/CheckBoxComponent")
 var states = require("../utils/states.js")
 var routes = require("../pageTemplate/routes")
 var loading = require("../basic/loading")
+var l10n = require("../l10n/l10n")
 require("../../scss/modules/_subday-list.scss")
 module.exports = {
     oninit: function (vnode) {
@@ -23,7 +24,7 @@ module.exports = {
     },
     route: routes.SUBDAY,
     getTitle() {
-        return `Сабдеи на канале ${channelName.get(m.route.param("channel"))}`
+        return l10n.get("SUBDAYS_TITLE", channelName.get(m.route.param("channel")))
     },
 
     view: function (vnode) {
@@ -31,7 +32,7 @@ module.exports = {
             return m(loading)
         }
         return m(".subday-list", [
-            m("h1", `Сабдеи на канале ${channelName.get(model.channelID)}`),
+            m("h1", l10n.get("SUBDAYS_TITLE", channelName.get(m.route.param("channel")))),
             m(".subday-list__items", model.objects.map(f => {
                 return m(".subday-list__item", [
                     m("a.subday-list__name", {

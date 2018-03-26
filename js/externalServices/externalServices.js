@@ -2,27 +2,38 @@ var m = require("mithril")
 var states = require("../utils/states")
 var input = require("../basicWidgets/components/InputComponent")
 var checkbox = require("../basicWidgets/components/CheckBoxComponent")
-var models = require("./models/externalServices")
+var model = require("./models/externalServices")
 var routes = require("../pageTemplate/routes")
 var loading = require("../basic/loading")
+var l10n = require("../l10n/l10n")
+var channelName = require("../utils/channelName")
+require("../../scss/modules/_external-services.scss")
 
 module.exports = {
-    modelInit: function (vnode) {
+    oninit(vnode) {
+        vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
     },
+    onupdate(vnode) {
+        if (vnode.state.route != m.route.get()) {
+            vnode.state.route = m.route.get()
+            model.get(m.route.param("channel"))
+        }
+    },
+
     route: routes.EXTERNAL_SERVICES,
     getTitle() {
-        return "Внешние сервисы"
+        return l10n.get("EXTERNAL_SERVICES_TITLE", channelName.get(m.route.param("channel")))
     },
     view(vnode) {
         if (model.state == states.LOADING) {
             return m(loading)
         }
-        return model.state == states.READY ? m(".external-services", [
-            m(".external-services__header", `Внешние сервисы на канале ${model.object.channel}`),
-            m(".external-services__subheader", "Группа вконтакте"),
+        return m(".external-services", [
+            m(".external-services__header", l10n.get("EXTERNAL_SERVICES_TITLE", channelName.get(m.route.param("channel")))),
+            m(".external-services__subheader", l10n.get("EXTERNAL_SERVICES_VKGROUP")),
             m(input, {
-                label: "Имя группы",
+                label: l10n.get("EXTERNAL_SERVICES_VKGROUP_NAME"),
                 class: "external-services__vk-group-input",
                 id: "vkGroupInput",
                 getValue: () => {
@@ -42,19 +53,19 @@ module.exports = {
                         notifyOnChange: value
                     }
                 },
-                label: "Писать оповещение в чат при новом посте"
+                label: l10n.get("EXTERNAL_SERVICES_VKGROUP_NOTIFY")
             }), !!model.object.vkGroupInfo && !!model.object.vkGroupInfo.lastMessageBody ? [
-                m(".external-services__subheader", "Последнее сообщение"),
+                m(".external-services__subheader", l10n.get("EXTERNAL_SERVICES_VKGROUP_LAST_MESSAGE")),
                 m(".external-services__vk-message-body", model.object.vkGroupInfo.lastMessageBody),
             ] : "",
             m('button', {
                 onclick: () => {
                     model.saveVK()
                 }
-            }, "Сохранить"),
-            m(".external-services__subheader", "TwichDJ"),
+            }, l10n.get("SAVE")),
+            m(".external-services__subheader", l10n.get("EXTERNAL_SERVICES_TWITCHDJ")),
             m(input, {
-                label: "twitchDJ идентификатор",
+                label: l10n.get("EXTERNAL_SERVICES_TWITCHDJ_ID"),
                 class: "external-services__twitch-dj-input",
                 id: "twitchDJid",
                 getValue: () => {
@@ -74,13 +85,13 @@ module.exports = {
                         notifyOnChange: value
                     }
                 },
-                label: "Писать оповещение в чат при смене трека"
+                label: l10n.get("EXTERNAL_SERVICES_TWITCHDJ_NOTIFY")
             }),
             m('button', {
                 onclick: () => {
                     model.saveTwitchDJ()
                 }
-            }, "Сохранить"),
-        ]) : "loading..."
+            }, l10n.get("SAVE")),
+        ])
     }
 }

@@ -6,6 +6,7 @@ require("../../scss/modules/_channel-users.scss")
 var input = require("../basicWidgets/components/InputComponent")
 var channelName = require("../utils/channelName")
 var routes = require("../pageTemplate/routes")
+var l10n = require("../l10n/l10n")
 
 
 module.exports = {
@@ -23,19 +24,21 @@ module.exports = {
 
 
     route: routes.LOGS,
-    getTitle: () => `Список пользователей на канале ${channelName.get(m.route.param("channel"))}`,
+    getTitle: () => {
+        return l10n.get("USER_LIST", channelName.get(m.route.param("channel")))
+    },
     view: function (vnode) {
 
         return m(".channel-users", [
-            m(".channel-users__header", `Список пользователей на канале ${channelName.get(model.channelID)}`),
-            m("", "Выводится 100 последних активных пользователей"),
+            m(".channel-users__header", l10n.get("USER_LIST", channelName.get(m.route.param("channel")))),
+            m("", l10n.get("USER_LIST_TOP_100_SHOWN")),
             m("input", {
                 value: model.filter,
                 onchange: m.withAttr("value", function (value) {
                     model.setFilter(value)
                     return true
                 }),
-                placeholder: "Введите имя пользователя"
+                placeholder: l10n.get("USER_LIST_INPUT_PLACEHOLDER")
             }),
 
             !!model.results ? m(".channel-users__container", model.results.map(user => {

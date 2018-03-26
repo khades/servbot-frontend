@@ -8,6 +8,7 @@ var check = require("../basicWidgets/components/CheckBoxComponent")
 var states = require("../utils/states.js")
 var routes = require("../pageTemplate/routes")
 var loading = require("../basic/loading")
+var l10n = require("../l10n/l10n")
 require("../../scss/modules/_subtrain.scss")
 module.exports = {
 
@@ -28,7 +29,8 @@ module.exports = {
     route: routes.SUBTRAIN,
 
     getTitle() {
-        return `Сабтрейн на канале ${channelName.get(m.route.param("channel"))}`
+        return l10n.get("SUBTRAIN_TITLE", channelName.get(m.route.param("channel")))
+
     },
 
     view: function (vnode) {
@@ -36,7 +38,7 @@ module.exports = {
             return m(loading)
         }
         return m(".subtrain", [
-            m("h1", `Сабтрейн на канале ${channelName.get(model.channelID)}`),
+            m("h1", l10n.get("SUBTRAIN_TITLE", channelName.get(m.route.param("channel")))),
             m(check, {
                 id: "enabled",
                 getValue: () => model.object.enabled,
@@ -44,7 +46,7 @@ module.exports = {
 
                     model.object.enabled = value
                 },
-                label: "Сабтрейн включён"
+                label: l10n.get("SUBTRAIN_ENABLED")
             }),
             m(check, {
                 id: "onlyNewSubs",
@@ -53,14 +55,14 @@ module.exports = {
 
                     model.object.onlyNewSubs = value
                 },
-                label: "Учитывать только новых сабов"
+                label: l10n.get("SUBTRAIN_COUNT_ONLY_NEW_SUBS")
             }),
-            m("", `Следующее уведомление : ${new Date(model.object.notificationTime).toLocaleString()}`),
-            m("", `Конец текущего сабтрейна : ${new Date(model.object.expirationTime).toLocaleString()}`),
-            m("", `Размер сабтрейна : ${model.object.сurrentStreak}`),
-            m("", `Подписчики: ${!!model.object.users ? model.object.users.join(", ") : ""}`),
+            m("", l10n.get("SUBTRAIN_NEXT_NOTIFICATION", new Date(model.object.notificationTime).toLocaleString())),
+            m("", l10n.get("SUBTRAIN_END_TIME", new Date(model.object.expirationTime).toLocaleString())),
+            m("", l10n.get("SUBTRAIN_SIZE", model.object.сurrentStreak)),
+            m("", l10n.get("SUBTRAIN_PARTICIPANTS", !!model.object.users ? model.object.users.join(", ") : "")),
             m(input, {
-                label: "Время истечения сабтрейна",
+                label: l10n.get("SUBTRAIN_EXPIRATION_DURATION"),
                 id: "expirationLimit",
 
                 getValue: () => {
@@ -71,7 +73,7 @@ module.exports = {
                 }
             }),
             m(input, {
-                label: "Время посылки уведомления конца сабтрейна",
+                label: l10n.get("SUBTRAIN_NOTIFICATION_DURATION"),
                 id: "notificationLimit",
 
                 getValue: () => {
@@ -81,9 +83,9 @@ module.exports = {
                     model.object.notificationLimit = parseInt(value)
                 }
             }),
-            m("div", "ЕСЛИ ИЗМЕНИТЬ ЭТИ ЗНАЧЕНИЯ, САБДЕЙ СБРОСИТСЯ"),
+            m("div", l10n.get("SUBTRAIN_CHANGE_WARNING")),
             m(input, {
-                label: "Добавочное сообщение при подписке",
+                label: l10n.get("SUBTRAIN_ADDITIONAL_SUBMESSAGE"),
                 id: "appendTemplate",
 
                 getValue: () => {
@@ -94,7 +96,7 @@ module.exports = {
                 }
             }),
             m(input, {
-                label: "Уведомление о закрытии сабтрейна",
+                label: l10n.get("SUBTRAIN_NOTIFICAION_BODY"),
                 id: "notificationTemplate",
 
                 getValue: () => {
@@ -105,7 +107,7 @@ module.exports = {
                 }
             }),
             m(input, {
-                label: "Уведомление о конце сабтрейна",
+                label: l10n.get("SUBTRAIN_EXPIRATION_BODY"),
                 id: "appendTemplate",
 
                 getValue: () => {
@@ -120,7 +122,7 @@ module.exports = {
                 onclick: () => {
                     model.save()
                 }
-            }, "Сохранить")
+            }, l10n.get("SAVE"))
         ])
     }
 }

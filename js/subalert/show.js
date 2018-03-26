@@ -6,7 +6,7 @@ var input = require("../basicWidgets/components/InputComponent")
 var checkbox = require("../basicWidgets/components/CheckBoxComponent")
 var channelName = require("../utils/channelName")
 var routes = require("../pageTemplate/routes")
-
+var l10n = require("../l10n/l10n")
 module.exports = {
 
     oninit: function (vnode) {
@@ -25,19 +25,20 @@ module.exports = {
     route: routes.SUBALERT,
 
     getTitle() {
-        return `Сабалерт на канале ${channelName.get(m.route.param("channel"))}`
+        return l10n.get("SUBALERTS_TITLE", channelName.get(m.route.param("channel")))
+
     },
-    
+
     view(vnode) {
         return m(".subalert-show", [
-            m(".subalert-show__header", `Сообщения при подписке на канале ${channelName.get(model.channelID)}`),
+            m(".subalert-show__header", l10n.get("SUBALERTS_TITLE", channelName.get(m.route.param("channel")))),
             m(checkbox, {
                 id: "subAlertEnabled",
                 getValue: () => model.subAlert.enabled,
                 setValue: value => {
                     model.subAlert.enabled = value
                 },
-                label: "Сабалерт включён"
+                label: l10n.get("SUBALERTS_ENABLED")
             }),
             model.extended == true ? [
                 m(input, {
@@ -52,7 +53,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при подписке за Prime",
+                    label:  l10n.get("SUBALERTS_SUB_ALERT", "Prime"),
                     class: "subalert-show__sub-message",
 
                     id: "subPrimeMessage",
@@ -64,10 +65,10 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при переподписке за Prime",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT", "Prime"),
                     id: "resubPrimeMessage",
                     class: "subalert-show__resub-message",
-                    error: model.error.primeError ? "Некорректный шаблон" : null,
+                    error: model.error.primeError ? l10n.get("INVALID_TEMPLATE") : null,
                     getValue: () => {
                         return model.subAlert.resubPrimeMessage
                     },
@@ -76,7 +77,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Смайлики при переподписке за Prime",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT_SMILES", "Prime"),
                     id: "resubPrimeSmile",
                     class: "subalert-show__repeat-body",
                     getValue: () => {
@@ -87,7 +88,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при подписке за 5$",
+                    label: l10n.get("SUBALERTS_SUB_ALERT", "5$"),
                     class: "subalert-show__sub-message",
 
                     id: "subFiveMessage",
@@ -99,10 +100,10 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при переподписке за 5$",
+                    label:l10n.get("SUBALERTS_RESUB_ALERT", "5$"),
                     id: "resubFiveMessage",
                     class: "subalert-show__resub-message",
-                    error: model.error.fiveError ? "Некорректный шаблон" : null,
+                    error: model.error.fiveError ? l10n.get("INVALID_TEMPLATE") : null,
                     getValue: () => {
                         return model.subAlert.resubFiveMessage
                     },
@@ -111,7 +112,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Смайлики при переподписке за 5$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT_SMILES", "5$"),
                     id: "resubFiveSmile",
                     class: "subalert-show__repeat-body",
                     getValue: () => {
@@ -122,7 +123,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при подписке за 10$",
+                    label: l10n.get("SUBALERTS_SUB_ALERT", "$10"),
                     class: "subalert-show__sub-message",
 
                     id: "subTenMessage",
@@ -134,10 +135,10 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при переподписке за 10$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT", "$10"),
                     id: "resubTenMessage",
                     class: "subalert-show__resub-message",
-                    error: model.error.tenError ? "Некорректный шаблон" : null,
+                    error: model.error.tenError ? l10n.get("INVALID_TEMPLATE") : null,
                     getValue: () => {
                         return model.subAlert.resubTenMessage
                     },
@@ -146,7 +147,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Смайлики при переподписке за 10$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT_SMILES", "$10"),
                     id: "resubTenSmile",
                     class: "subalert-show__repeat-body",
                     getValue: () => {
@@ -157,7 +158,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при подписке за 25$",
+                    label: l10n.get("SUBALERTS_SUB_ALERT", "$25"),
                     class: "subalert-show__sub-message",
 
                     id: "subTwentyFiveMessage",
@@ -172,10 +173,10 @@ module.exports = {
 
 
                 m(input, {
-                    label: "Сообщение при переподписке за 25$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT", "$25"),
                     id: "resubTwentyFiveMessage",
                     class: "subalert-show__resub-message",
-                    error: model.error.twentyFiveError ? "Некорректный шаблон" : null,
+                    error: model.error.twentyFiveError ? l10n.get("INVALID_TEMPLATE") : null,
                     getValue: () => {
                         return model.subAlert.resubTwentyFiveMessage
                     },
@@ -184,7 +185,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Смайлики при переподписке за 25$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT_SMILES", "$25"),
                     id: "resubTwentyFiveSmile",
                     class: "subalert-show__repeat-body",
                     getValue: () => {
@@ -196,7 +197,7 @@ module.exports = {
                 })
             ] : [
                 m(input, {
-                    label: "Сообщение при follow",
+                    label: l10n.get("SUBALERTS_FOLLOWER_ALERT"),
                     class: "subalert-show__sub-message",
 
                     id: "followerMessage",
@@ -208,7 +209,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при подписке за 5$",
+                    label: l10n.get("SUBALERTS_SUB_ALERT", "$5"),
                     class: "subalert-show__sub-message",
 
                     id: "subFiveMessage",
@@ -220,10 +221,10 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Сообщение при переподписке за 5$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT", "$5"),
                     id: "resubFiveMessage",
                     class: "subalert-show__resub-message",
-                    error: model.error.fiveError ? "Некорректный шаблон" : null,
+                    error: model.error.fiveError ? l10n.get("INVALID_TEMPLATE") : null,
                     getValue: () => {
                         return model.subAlert.resubFiveMessage
                     },
@@ -232,7 +233,7 @@ module.exports = {
                     }
                 }),
                 m(input, {
-                    label: "Смайлики при переподписке за 5$",
+                    label: l10n.get("SUBALERTS_RESUB_ALERT_SMILES", "$5"),
                     id: "resubFiveSmile",
                     class: "subalert-show__repeat-body",
                     getValue: () => {
@@ -248,13 +249,13 @@ module.exports = {
                 onclick: () => {
                     model.save()
                 }
-            }, "Сохранить"),
+            }, l10n.get("SAVE")),
             model.extended == false ? m("button", {
                 type: "button",
                 onclick: () => {
                     model.extended = true
                 }
-            }, "Показать больше") : "", !!model.subAlert.history ? m(".subalert-show__header", "История команд") : "", !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => {
+            }, l10n.get("SHOW_MORE")) : "", !!model.subAlert.history ? m(".subalert-show__header", l10n.get("SUBALERTS_EDIT_HISTORY")) : "", !!model.subAlert.history ? m(".subalert-show__history", model.subAlert.history.map(f => {
                 f.extended = model.isExtended(f)
                 return m(historyItem, f)
             })) : ""

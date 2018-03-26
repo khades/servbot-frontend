@@ -2,6 +2,9 @@
 .main-page {
     display: flex;
     flex-direction: column;
+    > * + * {
+        margin-top: $element-spacing;
+    }
     &__mod-channels {
         display: flex;
         flex-direction: row;
