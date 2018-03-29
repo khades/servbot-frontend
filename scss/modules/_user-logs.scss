@@ -1,54 +1,74 @@
 @import '../utils/index';
 .user-logs {
     >*+* {
-        margin-top: $element-spacing;
+        margin-top: $content-spacing;
+
     }
+    &__block {
+        >*+* {
+            margin-top: $element-spacing;
+        }
+    }
+
     &__header,
     &__bans-header {
-        font-size: 1.2rem;
-        font-weight: bolder;
+        @include header;
+        & + * {
+            $container-spacing: 1.2rem;
+        }
     }
     &__ban-item {
-        color: $background-color;
-        background: $background-main-color;
-        border-radius: 0.1em;
+        width: 100%;
+
+        background: white;
         padding: $element-spacing;
+
+        @include mshadow;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
     &__ban-date {
-        @include prepend-svg("../../svg/delete-outline.svg");
+        color:$color-grey;
     }
     &__ban-type {
         font-weight: bolder;
     }
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  
     &__bans {
         >*+* {
             margin-top: $element-spacing;
         }
     }
     &__history {
+        // & + & {
+        //     border-top: 1px grey solid;
+        // }
         width: 100%;
-        color: $background-color;
-        background: $background-main-color;
-        border-radius: 0.1em;
+
+         background: white;
+
+         @include mshadow;
+
         padding: $element-spacing;
         display: flex;
         flex-direction: column;
         &__date {
-            @include prepend-svg("../../svg/calendar.svg");
+           color:$color-grey;
         }
         &__message-body {
-            @include prepend-svg("../../svg/message.svg");
+            margin-top:$element-spacing;
         }
         &__timeout,
         &__ban {
-            @include prepend-svg("../../svg/delete-outline.svg");
             font-weight: bolder;
         }
-        &__user {
-            @include prepend-svg("../../svg/user-outline.svg");
+        &__username {
+            color: $color-main;
+
         }
         &__row {
             display: flex;

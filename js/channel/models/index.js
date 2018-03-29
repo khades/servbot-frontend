@@ -6,6 +6,7 @@ var m = require("mithril")
 module.exports = {
     state: states.LOADING,
     channel: "",
+    modChannels:[],
     get: function (channel) {
         this.state = states.LOADING
         this.route = m.route.get()
@@ -15,7 +16,7 @@ module.exports = {
             this.channel = response.channel
             this.channelInfo = response
             this.state = states.READY
-            console.log(this)
+            this.modChannels = response.modChannels
         }).catch(error => {
             if (error.Code == 500) {
                 this.state = states.FORBIDDEN

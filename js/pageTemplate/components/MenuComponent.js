@@ -19,11 +19,11 @@ var MenuComponent = {
     view: function (vnode) {
         var components = [
 
-            m("a", {
-                href: "/",
-                oncreate: m.route.link,
-                class: vnode.attrs.route == routes.MAIN ? "is-selected" : ""
-            }, m("span", l10n.get("MAIN_PAGE"))),
+            // m("a", {
+            //     href: "/",
+            //     oncreate: m.route.link,
+            //     class: vnode.attrs.route == routes.MAIN ? "is-selected" : ""
+            // }, m("span", l10n.get("MAIN_PAGE"))),
         ]
         if (!!m.route.param("channel") && m.route.param("channel") != "") {
             components.push(

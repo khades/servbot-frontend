@@ -1,23 +1,37 @@
 @import '../utils/index';
 .channel-bans {
-    > * + * {
-        margin-top: $content-spacing;
+    >*+* {
+        margin-top: $element-spacing;
+    }
+    &__page-header{
+        @include header;
     }
     &__item {
         @include simple-list-item();
         flex-wrap: no-wrap;
         flex-direction: column;
-        @include xsm-breakpoint() { 
-            flex-direction: row;
+
+
+
+        >*+* {
+            margin-top: $element-spacing;
         }
-    
-  
         justify-content: space-between;
-        & + & {
-            margin-top:$element-spacing;
+        &+& {
+            margin-top: $element-spacing;
         }
     }
+    &__header {
+        flex-direction: row;
+        justify-content: space-between;
+        display: inline-flex;
+        
+    }
+  
+    &__name {
+        color: $color-main;
+    }
     &__date {
-        @include prepend-svg("../../svg/time.svg", 1.2rem, white);
+        color: $color-grey;
     }
 }

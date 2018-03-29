@@ -9,7 +9,6 @@ module.exports = {
     vnode.state.menuShown = false
   },
   view: function (vnode) {
-    console.log(vnode.attrs.component)
     if (!!vnode.attrs.component.getTitle) {
       document.title = vnode.attrs.component.getTitle()
     }
@@ -30,10 +29,11 @@ module.exports = {
       })),
       m("header#siteHeader", m(HeaderComponent, {
         onMenuClick() {
-          vnode.state.menuShown == true ? vnode.state.menuShown = true : vnode.state.menuShown = false
+          vnode.state.menuShown == true ? vnode.state.menuShown = false : vnode.state.menuShown = true
         },
         getMenuShown: () => vnode.state.menuShown
       })),
+      m(require("../notifications/notifications")),
       m("section#siteContent", m(".content", m(vnode.attrs.component))),
     ])
   }

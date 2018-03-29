@@ -17,7 +17,7 @@ module.exports = {
 
     },
 
-    oncreate: function (vnode) {
+    onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
         vnode.state.route = m.route.get()

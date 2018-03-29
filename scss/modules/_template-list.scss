@@ -5,6 +5,29 @@
     }
     display: flex;
     flex-direction: column;
+    &__hgroup {
+        @include stretchedflex;
+    }
+    &__header-buttons {
+        @include autoflex;
+    }
+    &__header-button {
+        &--list {
+            @include prepend-svg("../svg/th-list.svg", 1rem, #fff);
+        }
+        &--create {
+            @include prepend-svg("../svg/plus.svg", 1rem, #fff);
+        }
+        @include button;
+    }
+
+    &__goto-command {
+        width: 100%;
+        display: block;
+        @include breakpoint($desktop-width) {
+            width: auto;
+        }
+    }
     &__container {
         >*+* {
             margin-top: $element-spacing;
@@ -13,62 +36,7 @@
         flex-wrap: wrap;
     }
     &__header {
-        font-weight: bolder;
-        font-size: 1.2rem;
-    }
-    &__filter {
-        display: inline-flex;
-        flex-direction: column;
-        >*+* {
-            margin-left: 0rem !important;
-            margin-top: $element-spacing;
-            @include sm-breakpoint() {
-                margin-left: $element-spacing !important;
-                margin-top: 0rem;
-            }
-        }
-        @include sm-breakpoint() {
-            flex-direction: row;
-        }
-        &__template {
-            background-color: $color-ok;
-            .sprite {
-                background: svg-load("../svg/pencil.svg", fill=#fff);
-            }
-        }
-        &__deleted {
-            background-color: $color-error;
-            color: $background-color;
-            .sprite {
-                background: svg-load("../svg/delete-outline.svg", fill=#fff);
-            }
-        }
-        &__alias {
-            background-color: $color-active;
-            .sprite {
-                background: svg-load("../svg/arrow-forward.svg", fill=#fff);
-            }
-        }
-        >button {
-            display: inline-flex;
-            align-items: center;
-            .button-content {
-                display: inline-flex;
-                align-items: center;
-            }
-            .sprite {
-                @include svg-size(1.05em);
-                display: inline-flex;
-            }
-            .text {
-                display: inline-flex;
-            }
-            &.disabled {
-                .sprite {
-                    display: none
-                }
-                filter: contrast(0.7) grayscale(50);
-            }
-        }
+        @include header-nm;
+        line-height: 2.25rem;
     }
 }

@@ -1,8 +1,8 @@
 @import '../utils/index';
 .automessage-history {
-   > * + * {
-   margin-top: $element-spacing;
-  }
+    >*+* {
+        margin-top: $element-spacing;
+    }
     &__line {
         display: inline-flex;
         justify-content: space-between;
@@ -14,7 +14,6 @@
     color: $background-color;
     background: $background-main-color;
     border-radius: 0.1em;
-
     padding: $element-spacing;
     flex-wrap: wrap;
     &__duration-limit {

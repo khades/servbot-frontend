@@ -1,12 +1,12 @@
 @import '../utils/index';
-
 #siteContent {
-  padding-top: 2.85em;
-  // padding-bottom: 6.5em;
+  padding-top: 2.85em; // padding-bottom: 6.5em;
   padding-left: 0em;
   margin: 1em;
   z-index: 1;
-  @include sm-breakpoint() {
+
+  @include breakpoint($desktop-width) {
+    padding-top: 0px;
     padding-left: 15em;
   }
 }

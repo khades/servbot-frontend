@@ -4,8 +4,7 @@
         margin-top: $element-spacing;
     }
     &__header {
-        font-weight: bolder;
-        font-size: 1.2rem;
+        @include header;
     }
     &__history {
         >*+* {

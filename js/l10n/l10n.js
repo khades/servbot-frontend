@@ -2,7 +2,8 @@ var printf = require('sprintf-js').vsprintf
 var config = require("../../config")
 var l10nEN = {
     SAVE: "Save",
-
+    ADD_STRING:"Add string",
+    DELETE:"Delete",
     SHOW_MORE: "Show more",
     TIME_SECONDS: "%s seconds",
     VAL_NOT_EMPTY: "Should me not empty",
@@ -38,7 +39,7 @@ var l10nEN = {
     EXTERNAL_SERVICES_TWITCHDJ_NOTIFY: "Post message in chat on song change",
     USER_LIST: "Users on channel %s",
     USER_LIST_TOP_100_SHOWN: "Last 100 active users are shown",
-    USER_LIST_INPUT_PLACEHOLDER: "Input user name here",
+    USER_LIST_INPUT_PLACEHOLDER: "🔍 Search by username",
     USER_LOGS: "Chat logs of user %s on channel %s",
     USER_BANS: "Bans of user %s on channel %s",
     USER_AKA: "Also known as %s",
@@ -114,15 +115,22 @@ var l10nEN = {
     TEMPLATE_EDIT_HISTORY:"Command edit history",
     TEMPLATES_TITLE:"Commands on channel %s",
     TEMPLATES_CREATE_GOTO:"Create new command or jump to existing one",
+    TEMPLATES_NEW:"New",
+    TEMPLATES_LIST:"Show commands",
+    TEMPLATES_SHOW_ALL:"Show all comamnds",
+    TEMPLATES_SHOW_ACTIVE:"Show active commands",
     PROCEED:"Proceed",
     TEMPLATES_COMMAND_LIST:"List of commands",
     COMMAND:"Command",
     ALIAS:"Alias",
-    DELETED:"Deleted"
+    DELETED:"Deleted",
+    EXTENDED_SETTINGS:"Extended settings"
 }
 
 var l10nRU = {
     SAVE: "Сохранить",
+    ADD_STRING:"Добавить строку",
+    DELETE: "Удалить",
     SHOW_MORE: "Показать больше",
     TIME_SECONDS: "%s секунд",
     VAL_NOT_EMPTY: "Не должно быть пустым",
@@ -158,7 +166,7 @@ var l10nRU = {
     EXTERNAL_SERVICES_TWITCHDJ_NOTIFY: "Писать сообщение в чат при смене трека",
     USER_LIST: "Пользователи на канале %s",
     USER_LIST_TOP_100_SHOWN: "Показаны последние 100 активных пользователей",
-    USER_LIST_INPUT_PLACEHOLDER: "Введите имя пользователя",
+    USER_LIST_INPUT_PLACEHOLDER: "🔍 Поиск по имени пользователя",
     USER_LOGS: "Сообщения пользователя %s на канале %s",
     USER_BANS: "Баны пользователя %s на канале %s",
     USER_AKA: "Так же известен как %s",
@@ -234,18 +242,24 @@ var l10nRU = {
     TEMPLATE_EDIT_HISTORY:"История редактирования команды",
     TEMPLATES_TITLE:"Команды на канале %s",
     TEMPLATES_CREATE_GOTO:"Создать новую команду или перейти к существующей",
+    TEMPLATES_NEW:"Создать",
+    TEMPLATES_LIST:"Показать команды",
+    TEMPLATES_SHOW_ALL:"Показать все",
+    TEMPLATES_SHOW_ACTIVE:"Показать только активные",
     PROCEED:"Перейти",
     TEMPLATES_COMMAND_LIST:"Список команд",
     COMMAND:"Команда",
     ALIAS:"Ссылка",
-    DELETED:"Удалено"
+    DELETED:"Удалено",
+    EXTENDED_SETTINGS:"Расширенные настройки"
+
 }
 
 var l10n = {
     "en": l10nEN,
     "ru": l10nRU
 }
-
+var langs = ["en","ru"]
 var currentl10n
 var lang = localStorage.getItem("lang")
 if (lang == null)
@@ -257,7 +271,7 @@ else
 
 
 function setLang(newlang) {
-    if (!!l10n[newllang])
+    if (!!l10n[newlang])
         currentl10n = l10n[newlang]
     lang = newlang
     localStorage.setItem("lang", newlang.toLowerCase())
@@ -282,5 +296,6 @@ module.exports = {
     setLang: setLang,
     getLang() {
         return lang
-    }
+    },
+    langs: langs
 }

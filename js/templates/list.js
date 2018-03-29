@@ -11,12 +11,15 @@ var l10n = require("../l10n/l10n")
 module.exports = {
 
     oninit: function (vnode) {
+        vnode.state.tab = "list"
+        model.showAll = false
         vnode.state.route = m.route.get()
         model.init(m.route.param("channel"))
     },
-    oncreate: function (vnode) {
+    onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+        vnode.state.tab = "list"
         vnode.state.route = m.route.get()
         model.init(m.route.param("channel"))
     },
@@ -26,63 +29,57 @@ module.exports = {
     },
     view: function (vnode) {
         return m(".template-list", [
-            m(".template-list__header", l10n.get("TEMPLATES_TITLE", channelName.get(m.route.param("channel")))),
-            m(input, {
-                label: l10n.get("TEMPLATES_CREATE_GOTO"),
-                id: "newCommand",
-                getValue: () => {
-                    return model.newCommand
-                },
-                setValue: (value) => {
-                    model.newCommand = value.trim()
-                    m.redraw()
-                }
-            }),
-            m("a", {
-                oncreate: m.route.link,
-                href: `/channel/${model.channelID}/templates/${model.newCommand}`
-            }, m("button", l10n.get("PROCEED"))),
-            m(".template-list__header", l10n.get("TEMPLATES_COMMAND_LIST")),
-            m(".template-list__filter", [
-                m("button.template-list__filter__template", {
-                    class: model.showTemplate == true ? "" : "disabled",
-                    type: "button",
-                    onclick: f => {
-                        if (model.showTemplate == true)
-                            model.showTemplate = false
-                        else
-                            model.showTemplate = true
-                    }
+            m("hgroup.template-list__hgroup", [
+                m(".template-list__header", l10n.get("TEMPLATES_TITLE", channelName.get(m.route.param("channel")))),
+                m(".template-list__header-buttons", [
+                    model.isMod ? m(".template-list__header-button", {
+                            class: vnode.state.tab == "list" ? "template-list__header-button--create" : "template-list__header-button--list",
+                            onclick: () => {
+                                if (vnode.state.tab == "list") {
+                                    vnode.state.tab = "create"
+                                } else {
+                                    vnode.state.tab = "list"
+                                }
+                            },
 
-                }, m(".button-content", [m(`span.sprite`), m("span.text", l10n.get("COMMAND"))])),
-                m("button.template-list__filter__alias", {
-
-                    class: model.showAlias == true ? "" : "disabled",
-                    type: "button",
-                    onclick: f => {
-                        if (model.showAlias == true)
-                            model.showAlias = false
-                        else
-                            model.showAlias = true
-                    }
-                }, m(".button-content", [
-                    m(`span.sprite`),
-                    m("span.text", l10n.get("ALIAS"))
-                ])),
-                m("button.template-list__filter__deleted", {
-                    class: model.showDeleted == true ? "" : "disabled",
-                    type: "button",
-                    onclick: f => {
-                        if (model.showDeleted == true)
-                            model.showDeleted = false
-                        else
-                            model.showDeleted = true
-                    }
-                }, m(".button-content", [m(`span.sprite-delete-outline`), m(`span.sprite`), m("span.text", l10n.get("DELETED"))]))
+                        },
+                        vnode.state.tab == "list" ? l10n.get("TEMPLATES_NEW") : l10n.get("TEMPLATES_LIST")) : null,
+                    vnode.state.tab == "list" ? m(".template-list__header-button", {
+                        onclick: () => {
+                            if (model.showAll == true) {
+                                model.showAll = false
+                            } else {
+                                model.showAll = true
+                            }
+                        },
+                    }, model.showAll == true ? l10n.get("TEMPLATES_SHOW_ACTIVE") : l10n.get("TEMPLATES_SHOW_ALL")) : null
+                ]),
             ]),
-            m(".template-list__container", model.getTemplates().map(f => m(TemplateListItemComponent, {
-                item: f
-            })))
+
+            vnode.state.tab == "list" ? m(".template-list__container", model.getTemplates().map(f => m(TemplateListItemComponent, {
+                item: f,
+                isMod: model.isMod
+            }))) : null,
+            model.isMod && vnode.state.tab == "create" ? [
+                m(input, {
+                    label: l10n.get("TEMPLATES_CREATE_GOTO"),
+                    id: "newCommand",
+                    getValue: () => {
+                        return model.newCommand
+                    },
+                    setValue: (value) => {
+                        model.newCommand = value.trim()
+                        m.redraw()
+                    }
+                }),
+                m("a.template-list__goto-command", {
+                    oncreate: m.route.link,
+                    href: `/channel/${model.channelID}/templates/${model.newCommand}`
+                }, m("button", l10n.get("PROCEED"))),
+            ] : null
+
+
         ])
+
     }
 }

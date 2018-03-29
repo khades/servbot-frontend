@@ -11,6 +11,8 @@
     }
     &__remove { 
         @include button;
+        height: 2.25rem;
+        border-radius:0px;
     }
     > * + * {
         margin-top: $element-spacing;

@@ -3,8 +3,9 @@
   > * + * {
     margin-top: $element-spacing;
   }
-  input {
-    transition: all 0.3s ease-in-out;
+  label {
+    text-shadow: 2px 2px 0px white;
+
   }
   label,
   #{$all-text-inputs} {

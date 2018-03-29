@@ -1,6 +1,6 @@
 var m = require("mithril")
 require('../../../scss/modules/_template-item.scss')
-
+var l10n = require("../../l10n/l10n")
 var TemplateMustashedBodyComponent = require("./TemplateMustashedBodyComponent")
 
 function getCommandInfo(item) {
@@ -24,19 +24,30 @@ function getCommandInfo(item) {
     return commandInfo
 
 }
+function returnType(commandInfo) {
+    if (commandInfo.type == "template") {
+        return l10n.get("COMMAND")
+    }
+    if (commandInfo.type == "alias") {
+        return l10n.get("ALIAS")
+
+    }
+    return l10n.get("DELETED")
+}
 module.exports = {
     view: function (vnode) {
         var item = vnode.attrs.item.command
         var commandInfo = vnode.attrs.item.commandInfo
-        return m(".template-list-item", {
+        return m(vnode.attrs.isMod == true ? "a.template-list-item" : ".template-list-item", vnode.attrs.isMod == true ? {
+            oncreate: m.route.link,
+            class: `template-list-item-${commandInfo.type}`,
+            href: `/channel/${item.channelID}/templates/${item.commandName}`
+        } : {
             class: `template-list-item-${commandInfo.type}`
         }, [
-            m("a.template-list-item__header", {
-                oncreate: m.route.link,
-                href: `/channel/${item.channelID}/templates/${item.commandName}`
-            }, [
-                m(`span.sprite`),
-                m("span.template-list-item__name", item.commandName)
+            m(".template-list-item__header", [
+                m("span.template-list-item__name", item.commandName),
+                m(".template-list-item__type",returnType(commandInfo))
             ]),
             commandInfo.type == "template" ?
             m(TemplateMustashedBodyComponent, {

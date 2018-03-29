@@ -4,11 +4,10 @@
         margin-top: $element-spacing;
     }
     &__header {
-        font-size: 1.2rem;
-        font-weight: bolder;
+        @include header;
     }
     &__subheader {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: bolder;
     }
 }

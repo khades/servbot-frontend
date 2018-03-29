@@ -15,27 +15,26 @@
         @include button;
     }
     &__header {
-        font-weight: bolder;
-        font-size: 1.2rem;
+        @include header;
     }
     &__buttons {
         display: flex;
         flex-direction: column;
-        @include sm-breakpoint() {
+        @include breakpoint($desktop-width) {
             flex-direction: row;
         }
         >* {
             display: inline-flex;
             text-align: center;
             width: 100%;
-            @include sm-breakpoint() {
+            @include breakpoint($desktop-width) {
                 width: auto;
             }
         }
         >*+* {
             margin-left: 0rem;
             margin-top: $element-spacing;
-            @include sm-breakpoint() {
+            @include breakpoint($desktop-width) {
                 margin-left: $element-spacing;
                 margin-top: 0rem;
             }
@@ -43,7 +42,7 @@
     }
     &__item {
         flex-direction: column;
-        @include sm-breakpoint() {
+        @include breakpoint($desktop-width) {
             flex-direction: row;
         }
         justify-content: space-between;

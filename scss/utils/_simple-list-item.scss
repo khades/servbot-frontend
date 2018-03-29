@@ -1,9 +1,15 @@
 @mixin simple-list-item() {
+    width: 100%;
+    color: black;
 
-    color: $background-color;
-    background: $background-main-color;
-    border-radius: 0.1rem;
+    background: white;
     padding: $element-spacing;
+
+    @include mshadow;
+
+
+
     width: 100%;
     display: inline-flex;
+
 }

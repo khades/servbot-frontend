@@ -10,8 +10,9 @@
     width: 100vw;
     bottom:0;
     left: 0;
-    @include sm-breakpoint() { 
+    @include breakpoint($desktop-width) { 
         width: 15em;
+        top: 0;
     }
 
     //   top: 0;
@@ -20,7 +21,7 @@
     transition: transform 150ms linear;
     &.hidden {
         transform: translateX(-100%);
-        @include sm-breakpoint() {
+        @include breakpoint($desktop-width) {
             transform: translateX(0%);
         }
     }

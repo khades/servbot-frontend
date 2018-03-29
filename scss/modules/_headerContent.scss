@@ -16,6 +16,23 @@
   &__menu-button-container {
     display: inline-flex;
   }
+  &__right {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    select {
+      padding: 0.2rem !important;
+      background-color: $background-main-color;
+      border: 0px solid grey;
+      border-radius:0px;
+      box-shadow: unset;
+      color:white;
+      text-decoration-line: underline;
+      font-weight: bolder;
+     
+    }
+  }
   &__menu-button {
     transition: background-color 150ms linear;
     min-width: 2.85em;
@@ -36,7 +53,7 @@
     display: inline-flex;
     justify-content: center;
     align-items:center;
-    @include sm-breakpoint {
+    @include breakpoint($desktop-width) {
       display: none;
     }
   }

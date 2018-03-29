@@ -23,7 +23,6 @@
         flex-direction: column;
     }
     &__header {
-        font-weight: bolder;
-        font-size: 1.2rem;
+        @include header;
     }
 }

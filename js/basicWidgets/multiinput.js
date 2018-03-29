@@ -1,10 +1,10 @@
 var m = require("mithril")
+var l10n = require("../l10n/l10n")
 require("../../scss/modules/_multiinput.scss")
 module.exports = {
     view(vnode) {
 
         var values = vnode.attrs.getValues()
-        console.log(values)
         if (!(!!values)) {
             values = []
         }
@@ -26,7 +26,7 @@ module.exports = {
                         onclick: () => {
                             values.splice(index, 1)
                         }
-                    }, "Удалить")
+                    }, l10n.get("DELETE"))
                 ])
             ) : "",
             m("button.btn.btn-success", {
@@ -36,7 +36,7 @@ module.exports = {
                         vnode.attrs.setValues(values)
                     }
                 },
-                "Добавить строку")
+                l10n.get("ADD_STRING"))
         ])
 
 

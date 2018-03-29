@@ -1,3 +1,9 @@
+if (!String.prototype.startsWith) {
+	String.prototype.startsWith = function(search, pos) {
+		return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+	};
+}
+
 var m = require("mithril")
 require('../scss/style.scss')
 var PageTemplateComponent = require('./pageTemplate/PageTemplateComponent')

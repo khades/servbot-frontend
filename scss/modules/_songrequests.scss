@@ -6,7 +6,7 @@
     &__container {
         display: flex;
         flex-direction: column;
-        @include sm-breakpoint() {
+        @include breakpoint($desktop-width) {
             flex-direction: row;
         }
     }
@@ -15,14 +15,14 @@
         >*+* {
             margin-top: $element-spacing;
         }
-        @include sm-breakpoint() {
+        @include breakpoint($desktop-width) {
             width: 30%;
             padding-left: $element-spacing;
         }
     }
     &__player {
         width: 100%;
-        @include sm-breakpoint() {
+        @include breakpoint($desktop-width) {
             width: 70%;
         }
     }

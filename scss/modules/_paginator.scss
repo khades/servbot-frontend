@@ -1,15 +1,13 @@
 @import "../utils/index";
-
 .paginator {
-     display: flex;
+    display: flex;
     justify-content: center;
-
     &__item {
         font-weight: bold;
         margin: 2px;
         border: 1pt solid $background-main-color;
         color: $background-main-color;
-        cursor: pointer; 
+        cursor: pointer;
         &__content {
             padding: 0.5em 1.0em 0.5em 1.0em;
         }

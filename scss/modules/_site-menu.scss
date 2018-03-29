@@ -4,8 +4,9 @@
     width: 120%;
     &--channel-link {
         font-weight: bolder;
-        border-bottom: 2px solid white;
-        border-top: 2px solid white;
+        background-color: black;
+        //border-bottom: 2px solid white;
+    //    border-top: 2px solid white;
     }
     height: 100%;
     display: inline-flex;
@@ -27,10 +28,10 @@
         vertical-align: middle;
         &:hover,
         &:focus {
-            background-color: $color-active;
+            background-color: tint($color-main, 30%);
         }
         &.is-selected {
-            background-color: $color-ok;
+            background-color: $color-main;
             color: #eeeeee !important;
         }
         span {

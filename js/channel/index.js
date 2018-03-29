@@ -19,7 +19,7 @@ module.exports = {
         }
     },
     getTitle() {
-        return l10n.get("CHANNEL_TITLE",  channelName.get(m.route.param("channel")))
+        return l10n.get("CHANNEL_TITLE", channelName.get(m.route.param("channel")))
     },
     route: routes.CHANNEL,
     view() {
@@ -27,10 +27,17 @@ module.exports = {
             return m(".channel-index", m(loading))
         }
         return m(".channel-index", [
-            m("h1", l10n.get("CHANNEL_TITLE",  channelName.get(m.route.param("channel")))),
+            m("h1", l10n.get("CHANNEL_TITLE", channelName.get(m.route.param("channel")))),
             model.channelInfo.isMod ? [
-                m("div", l10n.get("YOURE_MODERATOR",  channelName.get(m.route.param("channel"))))
-            ] : m("div",  l10n.get("YOURE_NOT_MODERATOR",  channelName.get(m.route.param("channel"))))
+                m("div", l10n.get("YOURE_MODERATOR", channelName.get(m.route.param("channel"))))
+            ] : m("div", l10n.get("YOURE_NOT_MODERATOR", channelName.get(m.route.param("channel")))),
+            m("h1",  l10n.get("AVAILABLE_CHANNELS_TO_MOD")),
+            m(".channel-index__mod-channels", model.modChannels.map(f => [
+                m("a.channel-index__mod-channels__channel", {
+                    href: `/channel/${f.channelID}`,
+                    oncreate: m.route.link
+                }, f.channel)
+            ]))
         ])
     }
 }
