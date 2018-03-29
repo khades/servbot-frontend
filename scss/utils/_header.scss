@@ -14,3 +14,12 @@
     line-height:2.25rem;
     text-shadow: 2px 2px 0px white;
 }
+
+@mixin subheader() {
+    font-weight: bolder;
+    font-size: 1.3rem;
+    text-shadow: 2px 2px 0px white;
+    & + * {
+        margin-top: $container-spacing;
+    }
+}

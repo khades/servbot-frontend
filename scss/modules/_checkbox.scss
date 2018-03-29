@@ -5,13 +5,12 @@
     &:hover label:before {
         border-color: black;
     }
-    input:checked + label:before {
+    input:checked+label:before {
         background: svg-load("../../svg/tick2.svg", fill=black);
         background-color: white;
-
-        background-size: 0.6rem;
+        background-size: 0.7rem;
         background-repeat: no-repeat;
-         background-position: center;
+        background-position: center;
     }
     label {
         display: flex;
@@ -20,10 +19,12 @@
             background-color: white;
             content: " ";
             display: inline-flex;
-            
+            min-width: 1rem;
+            min-height: 1rem;
+            align-self: start;
             margin-right: 0.5rem;
-            width: 0.9rem;
-            height: 0.9rem;
+            width: 1rem;
+            height: 1rem;
             border: 1px solid grey;
             transition: border-color 0.3s ease-in-out;
         }

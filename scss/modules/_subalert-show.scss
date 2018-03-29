@@ -1,10 +1,22 @@
 @import '../utils/index';
 .subalert-show {
     >*+* {
-        margin-top: $element-spacing;
+        margin-top: $container-spacing;
     }
     &__header {
+        margin-top: $content-spacing;
         @include header;
+    }
+    &__block {
+        &+& {
+            margin-top: $content-spacing;
+        }
+        >*+* {
+            margin-top: $container-spacing;
+        }
+    }
+    &__headernm {
+        @include header-nm;
     }
     &__history {
         >*+* {

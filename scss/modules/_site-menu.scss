@@ -1,6 +1,7 @@
 @import '../utils/index';
 .site-menu {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 120%;
     &--channel-link {
         font-weight: bolder;

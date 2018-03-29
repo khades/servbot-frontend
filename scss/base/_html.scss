@@ -20,8 +20,21 @@ h3 {
 hgroup {
   display: flex;
   flex-direction: row;
-  & + * {
-    margin-top:$container-spacing !important;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  @include breakpoint($desktop-width) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  >*+* {
+    margin-top: $element-spacing;
+    @include breakpoint($desktop-width) {
+      margin-top: 0px;
+    }
+  }
+  &+* {
+    margin-top: $container-spacing !important;
   }
   .hgroup-info {
     margin-left: $element-spacing;
@@ -29,4 +42,3 @@ hgroup {
     @include prepend-svg("../../svg/info-large.svg", 1.6rem, black);
   }
 }
-

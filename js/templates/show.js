@@ -35,8 +35,7 @@ module.exports = {
                 m("hgroup.template-show__hgroup", [
 
 
-                    m(".template-show__header-nm",
-                        l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel")))),
+                    m(".template-show__header-nm", l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel")))),
                     model.extended == true ? m("button", {
                         type: "button",
                         onclick: () => {
@@ -48,7 +47,7 @@ module.exports = {
                             model.extended = true
                         }
                     }, l10n.get("TEMPLATE_SHOW_EXTENDED_SETTINGS")),
-                ]),
+                ]), !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? l10n.get("ALIAS_TO", model.template.aliasTo) : null,
                 m(textarea, {
                     label: l10n.get("TEMPLATE_MESSAGE"),
                     id: "newCommand",

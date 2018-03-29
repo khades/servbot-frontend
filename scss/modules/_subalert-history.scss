@@ -3,9 +3,10 @@
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    color: $background-color;
-    background: $background-main-color;
+    color: black;
+    background: white;
     border-radius: 0.1em;
+    @include mshadow;
     padding: $element-spacing;
     flex-wrap: wrap;
     >*+* {
@@ -13,48 +14,45 @@
     }
     &__label {
         font-weight: bolder;
-        margin-left: $element-spacing;
+    
     }
-    &__follower {
-        border-left: 2px solid salmon;
-        padding-left: $element-spacing;
-    }
-    &__prime {
-        >.subalert-history__label {
-            color: yellow;
-        }
-        border-left: 2px solid yellow;
-    }
-    &__five {
-        >.subalert-history__label {
-            color: greenyellow;
-        }
-        border-left: 2px solid greenyellow;
-    }
-    &__ten {
-        >.subalert-history__label {
-            color: orange;
-        }
-        border-left: 2px solid orange;
-    }
-    &__twenty-five {
-        >.subalert-history__label {
-            color: cyan;
-        }
-        border-left: 2px solid cyan;
-    }
+    // &__follower {
+    //     border-left: 2px solid salmon;
+    //     padding-left: $element-spacing;
+    // }
+    // &__prime {
+    //     >.subalert-history__label {
+    //         color: yellow;
+    //     }
+    //     border-left: 2px solid yellow;
+    // }
+    // &__five {
+    //     >.subalert-history__label {
+    //         color: greenyellow;
+    //     }
+    //     border-left: 2px solid greenyellow;
+    // }
+    // &__ten {
+    //     >.subalert-history__label {
+    //         color: orange;
+    //     }
+    //     border-left: 2px solid orange;
+    // }
+    // &__twenty-five {
+    //     >.subalert-history__label {
+    //         color: cyan;
+    //     }
+    //     border-left: 2px solid cyan;
+    // }
     &__prime,
     &__five,
     &__ten,
     &__twenty-five {
-        >* {
-            margin-left: 0.3em
-        }
         display: inline-flex;
         flex-direction: column;
     }
     &__date {
-        @include prepend-svg("../../svg/calendar.svg");
+        color: $color-grey;
     }
     &__row {
         display: inline-flex;
@@ -62,20 +60,20 @@
         justify-content: space-between;
         width: 100%;
     }
-    &__body {
-        @include prepend-svg("../../svg/message.svg");
-    }
+    // &__body {
+    //     @include prepend-svg("../../svg/message.svg");
+    // }
     &__user {
-        @include prepend-svg("../../svg/user-outline.svg");
+        color: $color-main;
         @include simple-tooltip;
     }
     &__repeat-body {
-        @include prepend-svg("../../svg/refresh.svg");
+        @include prepend-svg("../../svg/refresh.svg", 1rem, black);
     }
     &__sub-message {
-        @include prepend-svg("../../svg/message.svg");
+        @include prepend-svg("../../svg/message.svg",1rem, black);
     }
     &__resub-message {
-        @include prepend-svg("../../svg/message-typing.svg");
+        @include prepend-svg("../../svg/message-typing.svg",1rem, black);
     }
 }

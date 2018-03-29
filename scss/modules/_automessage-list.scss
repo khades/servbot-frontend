@@ -13,42 +13,33 @@
     }
     &__create {
         @include button;
+        @include prepend-svg("../../svg/plus.svg", 1rem, #fff);
     }
     &__header {
-        @include header;
+        @include header-nm;
     }
     &__buttons {
-        display: flex;
-        flex-direction: column;
-        @include breakpoint($desktop-width) {
-            flex-direction: row;
-        }
-        >* {
-            display: inline-flex;
-            text-align: center;
-            width: 100%;
-            @include breakpoint($desktop-width) {
-                width: auto;
-            }
-        }
-        >*+* {
-            margin-left: 0rem;
-            margin-top: $element-spacing;
-            @include breakpoint($desktop-width) {
-                margin-left: $element-spacing;
-                margin-top: 0rem;
-            }
-        }
+        @include autoflex;
     }
     &__item {
         flex-direction: column;
-        @include breakpoint($desktop-width) {
+        &__status {
+            color: $color-grey;
+        }
+        &__header {
             flex-direction: row;
+            justify-content: space-between;
+            align-content: top;
+            >* {
+                display: inline-flex;
+            }
+            display: flex;
+            width: 100%;
         }
         justify-content: space-between;
-        color: $background-color;
-        background: $background-main-color;
-        border-radius: 0.1em;
+        color: black;
+        background: white;
+        @include mshadow;
         padding: $element-spacing;
         width: 100%;
         display: inline-flex;
@@ -60,21 +51,24 @@
                 white-space: nowrap;
             }
         }
+        &__right-container {
+            margin-top: $element-spacing;
+        }
         &__body {
             //   flex-grow: 2;
         }
         &__duration-limit {
-            @include prepend-svg("../../svg/time.svg");
+            @include prepend-svg("../../svg/time.svg", 1rem, black);
         }
         &__message-limit {
-            @include prepend-svg("../../svg/message-typing.svg");
+            @include prepend-svg("../../svg/message-typing.svg", 1rem, black);
         }
         &__game {
-            @include prepend-svg("../../svg/media-play.svg");
+            @include prepend-svg("../../svg/media-play.svg", 1rem, black);
         }
         &__message {
             //     flex-grow: 2;
-            @include prepend-svg("../../svg/message.svg");
+
         }
     }
 }
