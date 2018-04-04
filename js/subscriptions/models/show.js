@@ -7,8 +7,9 @@ module.exports = {
     state: states.LOADING,
     channelID: "",
     subscriptions: [],
-    eventSource: null,
     intervalID: null,
+    eventSource: null,
+
     leaveEventSource() {
         if (!!this.eventSource) {
             this.eventSource.close()

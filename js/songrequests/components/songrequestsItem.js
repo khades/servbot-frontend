@@ -1,5 +1,5 @@
 var m = require("mithril")
-
+var model = require("../models/model")
 require("../../../scss/modules/_songrequests-item.scss")
 var cclass = "songrequests-item"
 var cselector = `.${cclass}`
@@ -32,10 +32,15 @@ module.exports = {
                     href: "https://youtu.be/" + vnode.attrs.item.videoID
                 },
                 vnode.attrs.item.title + " [" + formDuration(vnode.attrs.item.length) + "]"),
-                vnode.attrs.isMod == true ||vnode.attrs.isOwner == true ? m(cselector+"__buttons",[
-                    vnode.attrs.isOwner == true ?  m('button.white',"Воспроизвести"):null,
-                    m('button.white',"Удалить из очереди"),
-                ]):null
+            vnode.attrs.isMod == true || vnode.attrs.isOwner == true ? m(cselector + "__buttons", [
+                vnode.attrs.isOwner == true ? m('button.white', "Воспроизвести") : null,
+                m('button.white', {
+                    type: "button",
+                    onclick() {
+                        model.skipVideo(vnode.attrs.item.videoID)
+                    }
+                }, "Удалить из очереди"),
+            ]) : null
         ])
     }
 }

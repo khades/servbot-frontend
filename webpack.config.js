@@ -49,6 +49,10 @@ module.exports = {
                 test: /\.js$/,
                 enforce: "pre",
                 loader: "source-map-loader"
+            },
+            {
+                test: /\.js$/,
+                loader: "babel-loader?cacheDirectory=true&presets[]=es2015"
             }
         ]
 

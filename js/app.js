@@ -1,7 +1,7 @@
 if (!String.prototype.startsWith) {
-	String.prototype.startsWith = function(search, pos) {
-		return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
-	};
+  String.prototype.startsWith = function (search, pos) {
+    return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+  };
 }
 
 var m = require("mithril")
@@ -27,6 +27,7 @@ var bans = require("./bans/bans")
 var subdayList = require("./subday/list")
 var subday = require("./subday/subday")
 var songrequests = require('./songrequests/songrequests')
+var songrequestModel = require("./songrequests/models/model")
 time.getTime()
 m.route.prefix("#")
 
@@ -39,6 +40,7 @@ function carcass(component) {
     }
   }
 }
+
 m.route(document.body, "/", {
   "/": carcass(mainPage),
   "/afterAuth": carcass(AfterAuthComponent),
@@ -59,5 +61,6 @@ m.route(document.body, "/", {
   "/channel/:channel/bans": carcass(bans),
   "/channel/:channel/subdays": carcass(subdayList),
   "/channel/:channel/subdays/:subdayID": carcass(subday),
-  "/channel/:channel/songrequests": songrequests
+  "/channel/:channel/songrequests": carcass(songrequests)
 });
+
