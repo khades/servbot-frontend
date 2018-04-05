@@ -58,7 +58,7 @@
     z-index: 10;
     @include breakpoint(320px) {
         width: 300px;
-        left: unset;
+        left: auto;
     }
     &__item {
         &--hidden {

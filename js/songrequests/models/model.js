@@ -9,7 +9,7 @@ module.exports = {
     songrequestInfo: null,
     player: null,
     currentVideo: null,
-
+    playerReady: false,
     intervalID: null,
     eventSource: null,
 
@@ -64,6 +64,21 @@ module.exports = {
         }.bind(this), 10000)
 
     },
+    bubbleUp(id) {
+        
+        var url = `api/channel/${this.channelID}/songrequests/bubbleup/${id}`
+
+        auth.request({
+            url: appUrl(url)
+        }).then(response => {
+      //      this.songrequestInfo = response
+            this.state = states.READY
+            this.afterInit()
+        }, error => {
+            this.state = states.ERROR
+            throw error
+        })
+    },
     skipVideo(id) {
 
         var url = `api/channel/${this.channelID}/songrequests/skip/${id}`
@@ -82,23 +97,26 @@ module.exports = {
 
     afterInit() {
 
-        if (this.songrequestInfo == null || this.player == null) {
+        if (this.songrequestInfo == null || this.playerReady == false) {
             return
         }
-        //console.dir(this.player)
-      //  this.player.mute()
+
         if (this.songrequestInfo.requests.length ==  0) {
             return
         }
+
         if (this.songrequestInfo.requests.some(f => f.videoID == this.videoID)) {
             return 
         }
+
         var currentRequest = this.songrequestInfo.requests.sort(function (a, b) {
-            var c = new Date(a.date);
-            var d = new Date(b.date);
-            return c - d;
+            var c = a.order
+            var d = b.order
+            return c - d
         })[0].videoID
+
         this.player.loadVideoById(currentRequest)
+
         this.videoID = currentRequest
     },
     get: function (channelID) {

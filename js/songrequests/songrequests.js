@@ -11,6 +11,7 @@ module.exports = {
     oninit: function (vnode) {
         model.songrequestInfo = null
         model.currentVideo = null
+        model.playerReady = false
         model.get(m.route.param("channel"))
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
@@ -67,6 +68,7 @@ module.exports = {
                             }
 
                             function onPlayerReady() {
+                                model.playerReady = true
                                 model.afterInit()
                             }
 
@@ -83,7 +85,12 @@ module.exports = {
                     }
 
                 ),
-                m(".songrequests__requests", model.songrequestInfo.requests.map(f => m(songrequestsItem, {
+                m(".songrequests__requests", model.songrequestInfo.requests.sort(function (a, b) {
+                    var c = a.order
+                    var d = b.order
+                    return c - d
+                }).map(f => m(songrequestsItem, {
+                    key: f.videoID,
                     item: f,
                     isMod: model.songrequestInfo.isMod,
                     isOwner: model.songrequestInfo.isOwner
