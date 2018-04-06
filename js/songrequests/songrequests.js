@@ -10,9 +10,9 @@ var channelName = require("../utils/channelName")
 module.exports = {
     oninit: function (vnode) {
         model.songrequestInfo = null
-        model.currentVideo = null
+        model.videoID = null
         model.playerReady = false
-        model.get(m.route.param("channel"))
+        // model.get(m.route.param("channel"))
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
 
@@ -21,7 +21,8 @@ module.exports = {
         if (vnode.state.route == m.route.get()) {
             return
         }
-        model.get(m.route.param("channel"))
+        console.log("onint")
+   //     model.get(m.route.param("channel"))
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
 
@@ -75,7 +76,6 @@ module.exports = {
                             function onPlayerStateChange() {
                                 console.log(model.player.getPlayerState())
                                 if (model.player.getPlayerState() == 0) {
-                                    console.log("Video ended")
                                     model.skipVideo(model.player.getVideoData().video_id)
                                 }
 
@@ -90,7 +90,6 @@ module.exports = {
                     var d = b.order
                     return c - d
                 }).map(f => m(songrequestsItem, {
-                    key: f.videoID,
                     item: f,
                     isMod: model.songrequestInfo.isMod,
                     isOwner: model.songrequestInfo.isOwner

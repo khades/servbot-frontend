@@ -25,6 +25,8 @@ function formDuration(input) {
 }
 module.exports = {
     view(vnode) {
+
+
         return m(cselector, {key: vnode.attrs.key}, [
             m(cselector + "__user", vnode.attrs.item.order + " " + vnode.attrs.item.user),
             m("a" + cselector + "__title", {
@@ -33,11 +35,11 @@ module.exports = {
                 },
                 vnode.attrs.item.title + " [" + formDuration(vnode.attrs.item.length) + "]"),
             vnode.attrs.isMod == true || vnode.attrs.isOwner == true ? m(cselector + "__buttons", [
-                vnode.attrs.isOwner == true ? m('button.white', {
+                vnode.attrs.isOwner == true && model.videoID != vnode.attrs.item.videoID ? m('button.white', {
                     type: "button",
                     onclick() {
-                        console.log(vnode.attrs.item.videoID)
-                        model.bubbleUp(vnode.attrs.item.videoID)
+
+                        model.bubbleUp(vnode.attrs.item.videoID, true)
                     }
                 }, "Воспроизвести") : null,
                 m('button.white', {

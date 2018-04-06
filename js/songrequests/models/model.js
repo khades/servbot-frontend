@@ -8,11 +8,13 @@ module.exports = {
     channelID: "",
     songrequestInfo: null,
     player: null,
-    currentVideo: null,
+    videoID: null,
     playerReady: false,
     intervalID: null,
     eventSource: null,
-
+    getVideoID() {
+        return this.videoID
+    },
     leaveEventSource() {
         if (!!this.eventSource) {
             this.eventSource.close()
@@ -43,10 +45,10 @@ module.exports = {
             m.redraw()
         }
         this.eventSource.onmessage = function (event) {
-            if (event.data == "update"){
+            if (event.data == "update") {
                 this.get(channelID)
             }
-        
+
         }.bind(this)
 
         this.eventSource.onerror = function (error) {
@@ -64,16 +66,17 @@ module.exports = {
         }.bind(this), 10000)
 
     },
-    bubbleUp(id) {
-        
+    bubbleUp(id, forceSwitch) {
+
         var url = `api/channel/${this.channelID}/songrequests/bubbleup/${id}`
 
         auth.request({
             url: appUrl(url)
         }).then(response => {
-      //      this.songrequestInfo = response
             this.state = states.READY
-            this.afterInit()
+            this.afterInit(forceSwitch)
+            console.log("Afterinit")
+
         }, error => {
             this.state = states.ERROR
             throw error
@@ -89,46 +92,50 @@ module.exports = {
             this.songrequestInfo = response
             this.state = states.READY
             this.afterInit()
+            console.log("Afterinit")
         }, error => {
             this.state = states.ERROR
             throw error
         })
     },
 
-    afterInit() {
+    afterInit(forceSwitch) {
 
         if (this.songrequestInfo == null || this.playerReady == false) {
             return
         }
 
-        if (this.songrequestInfo.requests.length ==  0) {
+        if (this.songrequestInfo.requests.length == 0) {
             return
         }
 
         if (this.songrequestInfo.requests.some(f => f.videoID == this.videoID)) {
-            return 
+            return
         }
+        console.log("BeforeSortInit")
 
         var currentRequest = this.songrequestInfo.requests.sort(function (a, b) {
             var c = a.order
             var d = b.order
             return c - d
         })[0].videoID
-
-        this.player.loadVideoById(currentRequest)
-
         this.videoID = currentRequest
+        console.log("onInit")
+        this.player.loadVideoById(currentRequest)
+        m.redraw()
     },
     get: function (channelID) {
         this.channelID = channelID
         var url = `api/channel/${channelID}/songrequests`
-
+        console.log("Running get")
         auth.request({
             url: appUrl(url)
         }).then(response => {
             this.songrequestInfo = response
             this.state = states.READY
             this.afterInit()
+            console.log("AfterInit")
+
         }, error => {
             this.state = states.ERROR
             throw error
