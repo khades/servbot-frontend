@@ -27,7 +27,9 @@ module.exports = {
     view(vnode) {
 
 
-        return m(cselector, {key: vnode.attrs.key}, [
+        return m(cselector, {
+            key: vnode.attrs.key
+        }, [
             m(cselector + "__user", vnode.attrs.item.order + " " + vnode.attrs.item.user),
             m("a" + cselector + "__title", {
                     target: "_blank",
@@ -35,13 +37,18 @@ module.exports = {
                 },
                 vnode.attrs.item.title + " [" + formDuration(vnode.attrs.item.length) + "]"),
             vnode.attrs.isMod == true || vnode.attrs.isOwner == true ? m(cselector + "__buttons", [
-                vnode.attrs.isOwner == true && model.videoID != vnode.attrs.item.videoID ? m('button.white', {
+                model.videoID != vnode.attrs.item.videoID ? m('button.white', {
                     type: "button",
                     onclick() {
-
-                        model.bubbleUp(vnode.attrs.item.videoID, true)
+                        model.bubbleUp(vnode.attrs.item.videoID)
                     }
-                }, "Воспроизвести") : null,
+                }, "Воспроизвести сейчас") : null,
+                model.videoID != vnode.attrs.item.videoID && vnode.attrs.item.order != 1 && vnode.attrs.item.order != 2 ? m('button.white', {
+                    type: "button",
+                    onclick() {
+                        model.bubbleUpToSecond(vnode.attrs.item.videoID)
+                    }
+                }, "Воспроизвести следующим") : null,
                 m('button.white', {
                     type: "button",
                     onclick() {

@@ -6,7 +6,7 @@ var songrequestsItem = require("./components/songrequestsItem")
 var channelName = require("../utils/channelName")
 var routes = require("../pageTemplate/routes")
 var channelName = require("../utils/channelName")
-
+var settings = require("./components/settings")
 module.exports = {
     oninit: function (vnode) {
         model.songrequestInfo = null
@@ -21,7 +21,7 @@ module.exports = {
         if (vnode.state.route == m.route.get()) {
             return
         }
-        console.log("onint")
+
    //     model.get(m.route.param("channel"))
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
@@ -70,7 +70,7 @@ module.exports = {
 
                             function onPlayerReady() {
                                 model.playerReady = true
-                                model.afterInit()
+                                model.afterInit(false, true)
                             }
 
                             function onPlayerStateChange() {
@@ -94,7 +94,8 @@ module.exports = {
                     isMod: model.songrequestInfo.isMod,
                     isOwner: model.songrequestInfo.isOwner
                 })))
-            ])
+            ]),
+            m(settings)
         ]) : null
     }
 }
