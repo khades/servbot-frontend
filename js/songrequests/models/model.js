@@ -12,6 +12,7 @@ module.exports = {
     playerReady: false,
     intervalID: null,
     eventSource: null,
+    currentVideo: null,
     getVideoID() {
         return this.videoID
     },
@@ -74,7 +75,7 @@ module.exports = {
             url: appUrl(url)
         }).then(response => {
             this.state = states.READY
-                this.videoID = null
+            this.videoID = null
 
 
         }, error => {
@@ -130,16 +131,17 @@ module.exports = {
         }
         if (this.songrequestInfo.requests.length == 0) {
             this.videoID = ""
+            this.currentVideo = null
             this.player.stop()
             return
         }
-        var currentRequest = this.songrequestInfo.requests.sort(function (a, b) {
+        this.currentVideo = this.songrequestInfo.requests.sort(function (a, b) {
             var c = a.order
             var d = b.order
             return c - d
-        })[0].videoID
-        this.videoID = currentRequest
-        this.player.loadVideoById(currentRequest)
+        })[0]
+        this.videoID = this.currentVideo.videoID
+        this.player.loadVideoById(this.currentVideo.videoID)
         if (forceRedraw == true) {
             m.redraw()
 

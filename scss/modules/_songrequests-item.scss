@@ -5,16 +5,49 @@
     }
     @include simple-list-item;
     flex-direction: column;
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &__user {
+        color: $color-grey;
+    }
     &__buttons {
         display: inline-flex;
         flex-direction: row;
-        justify-content: space-between;
+      //  justify-content: space-between;
         >* {
-            flex-basis: 0;
-            flex-grow: 2;
+            white-space: nowrap;
+            
+            // flex-grow: 2;
         }
         >*+* {
             margin-left: $element-spacing;
         }
+        input {
+            flex-grow: 2;
+            width: 5rem;
+        }
+    }
+    &__play-button {
+        @include button;
+        @include prepend-svg("../../svg/media-play.svg", 1.4rem, white,0px);
+        @include simple-tooltip();
+    }
+    &__play-next-button {
+        @include button;
+        @include prepend-svg("../../svg/arrow-up-thick.svg", 1.4rem, white,0px);
+        @include simple-tooltip();
+    }
+    &__delete-button {
+        @include button;
+        @include prepend-svg("../../svg/times.svg", 1.4rem, white,0px);
+        @include simple-tooltip();
+    }
+    &__pause-button {
+        @include button;
+        @include prepend-svg("../../svg/media-pause.svg", 1.4rem, white,0px);
+        @include simple-tooltip();
     }
 }

@@ -3,26 +3,8 @@ var model = require("../models/model")
 require("../../../scss/modules/_songrequests-item.scss")
 var cclass = "songrequests-item"
 var cselector = `.${cclass}`
-
-function formDuration(input) {
-    var floatSeconds = input / 1000000000
-    var hours = Math.floor(floatSeconds / 3600)
-    var minutes = Math.floor(floatSeconds / 60 - hours * 60)
-    var seconds = floatSeconds - minutes * 60
-    var result = seconds
-    if (seconds < 10) {
-        result = "0" + seconds
-    }
-    if (minutes < 10) {
-        result = "0" + minutes + ":" + result
-    } else {
-        result = minutes + ":" + result
-    }
-    if (hours > 0) {
-        result = hours + ":" + result
-    }
-    return result
-}
+var l10n = require("../../l10n/l10n")
+var formatDuration = require("../../utils/formatDuration")
 module.exports = {
     view(vnode) {
 
@@ -30,31 +12,35 @@ module.exports = {
         return m(cselector, {
             key: vnode.attrs.key
         }, [
-            m(cselector + "__user", vnode.attrs.item.order + " " + vnode.attrs.item.user),
-            m("a" + cselector + "__title", {
-                    target: "_blank",
-                    href: "https://youtu.be/" + vnode.attrs.item.videoID
-                },
-                vnode.attrs.item.title + " [" + formDuration(vnode.attrs.item.length) + "]"),
+            m(cselector + "__header", [
+                m("a" + cselector + "__title", {
+                        target: "_blank",
+                        href: "https://youtu.be/" + vnode.attrs.item.videoID
+                    },
+                    vnode.attrs.item.title + " [" + formatDuration(vnode.attrs.item.length / 1000000000) + "]"),
+                m(cselector + "__user", vnode.attrs.item.user)
+            ]),
             vnode.attrs.isMod == true || vnode.attrs.isOwner == true ? m(cselector + "__buttons", [
-                model.videoID != vnode.attrs.item.videoID ? m('button.white', {
-                    type: "button",
+                model.videoID != vnode.attrs.item.videoID ? m(cselector + "__play-button", {
+
                     onclick() {
                         model.bubbleUp(vnode.attrs.item.videoID)
                     }
-                }, "Воспроизвести сейчас") : null,
-                model.videoID != vnode.attrs.item.videoID && vnode.attrs.item.order != 1 && vnode.attrs.item.order != 2 ? m('button.white', {
-                    type: "button",
+                }, l10n.get("Воспроизвести сейчас")) : null,
+                model.videoID != vnode.attrs.item.videoID && vnode.attrs.item.order != 1 && vnode.attrs.item.order != 2 ? m(cselector + "__play-next-button", {
+
                     onclick() {
                         model.bubbleUpToSecond(vnode.attrs.item.videoID)
                     }
-                }, "Воспроизвести следующим") : null,
-                m('button.white', {
-                    type: "button",
+                }, l10n.get("Поднять в очереди")) : null,
+
+                m(cselector + "__delete-button", {
+
                     onclick() {
                         model.skipVideo(vnode.attrs.item.videoID)
                     }
-                }, "Удалить из очереди"),
+                }, l10n.get("Удалить из очереди")),
+
             ]) : null
         ])
     }
