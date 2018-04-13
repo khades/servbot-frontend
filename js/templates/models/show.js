@@ -28,9 +28,6 @@ module.exports = {
                 if (response.integerRandomizer.enabled == false &&
                     response.preventDebounce == false &&
                     response.preventRedirect == false &&
-                    response.showOffline == true &&
-                    response.showOnline == true &&
-                    response.onlyPrivate == false &&
                     response.stringRandomizer.enabled == false) {
                     this.extended = false
                 } else {

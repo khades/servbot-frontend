@@ -84,6 +84,15 @@ module.exports = {
                 },
                 label: l10n.get("Разрешить заказы оффлайн")
             }),
+            m(check, {
+                id: "skipIfTagged",
+                getValue: () => model.songrequestInfo.settings.skipIfTagged,
+                setValue: value => {
+
+                    model.songrequestInfo.settings.skipIfTagged = value
+                },
+                label: l10n.get("Скипнуть если добавлен забаненый трек")
+            }),
             m("button", {
                 type: "button",
                 onclick() {

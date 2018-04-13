@@ -8,13 +8,15 @@ var routes = require("../pageTemplate/routes")
 var channelName = require("../utils/channelName")
 var settings = require("./components/settings")
 var formatDuration = require("../utils/formatDuration")
+var loading = require("../basic/loading")
 module.exports = {
     oninit: function (vnode) {
+        model.state = states.LOADING
         model.songrequestInfo = null
         model.videoID = null
         model.playerReady = false
-        // model.get(m.route.param("channel"))
         vnode.state.route = m.route.get()
+        model.volume = 100
         model.createEventSource(m.route.param("channel"))
 
     },
@@ -23,7 +25,6 @@ module.exports = {
             return
         }
 
-        //     model.get(m.route.param("channel"))
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
 
@@ -36,10 +37,15 @@ module.exports = {
     },
     route: routes.SONGREQUESTS,
     view(vnode) {
-        return model.songrequestInfo != null ? m(".songrequests", [
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
+        return m(".songrequests", {
+            class: model.songrequestInfo.isOwner == false ? "songrequests--noplayer" : ""
+        }, [
             m(".songrequests__hgroup", [
                 m(".songrequests__header", `Сонгреквесты на канале ${channelName.get(model.channelID)}`),
-                m('button', {
+                model.songrequestInfo.isOwner == true || model.songrequestInfo.isMod == true ? m('button', {
                     type: "button",
                     onclick() {
                         if (vnode.state.settingsShown == true) {
@@ -49,10 +55,10 @@ module.exports = {
 
                         }
                     }
-                }, vnode.state.settingsShown == true ? "Спрятать настройки" : "Показать настройки")
+                }, vnode.state.settingsShown == true ? "Спрятать настройки" : "Показать настройки"): null
             ]),
             m(".songrequests__container", [
-                m(".songrequests__player-container", {
+                model.songrequestInfo.isOwner == true ? m(".songrequests__player-container", {
                     class: vnode.state.settingsShown == true ? "songrequests__player-container--hidden" : ""
 
                 }, [
@@ -65,8 +71,11 @@ module.exports = {
                                 if (model.player != null) {
                                     model.player = new YT.Player(vnode.dom, {
                                         playerVars: {
-                                            'autoplay': 1,
-                                            html5: 1
+                                            'autoplay': 0,
+                                            'controls': 0,
+                                            'disablekb': 0,
+                                            'rel': 0,
+                                            'vq': "large"
                                         },
 
                                         events: {
@@ -80,14 +89,19 @@ module.exports = {
                                     model.player = new YT.Player(vnode.dom, {
                                         playerVars: {
                                             'autoplay': 0,
-                                            'controls': 0
+                                            'controls': 0,
+                                            'disablekb': 0,
+                                            'rel': 0,
+                                            'vq': "large"
                                         },
                                         events: {
                                             'onReady': onPlayerReady,
                                             'onStateChange': onPlayerStateChange,
-                                            'onError': function (data) {
-                                                console.log("PLAYER ERROR")
-                                                console.log(data)
+                                            'onError': function (event) {
+                                                if (event.data == 100 || event.data == 101 || event.data == 150) {
+                                                    model.setAsYoutubeRestrictred(model.player.getVideoData().video_id)
+
+                                                }
                                             }
                                         }
                                     })
@@ -114,8 +128,9 @@ module.exports = {
 
                     ),
 
-                ]),
-                vnode.state.settingsShown == true ? m(settings) : m(".songrequests__requests", model.songrequestInfo.requests.sort(function (a, b) {
+                ]) : null,
+                vnode.state.settingsShown == true ? m(settings) : null,
+                vnode.state.settingsShown != true && model.songrequestInfo != null ? m(".songrequests__requests", model.songrequestInfo.requests.sort(function (a, b) {
                     var c = a.order
                     var d = b.order
                     return c - d
@@ -123,14 +138,14 @@ module.exports = {
                     item: f,
                     isMod: model.songrequestInfo.isMod,
                     isOwner: model.songrequestInfo.isOwner
-                }))),
-                m(".songrequests__controls", [
+                }))) : null,
+                model.songrequestInfo != null && model.songrequestInfo.isOwner == true ? m(".songrequests__controls", [
                     m("input.songrequests__seeker", {
-                        oncreate(lvnode){
-                            lvnode.state.timer =setInterval(() => {
+                        oncreate(lvnode) {
+                            lvnode.state.timer = setInterval(() => {
                                 if (!!model.player && !!model.player.getCurrentTime) {
-         
-                                    lvnode.dom.value = model.player.getCurrentTime()*100 
+
+                                    lvnode.dom.value = model.player.getCurrentTime() * 100
 
                                 }
                             }, 200)
@@ -140,15 +155,15 @@ module.exports = {
                         },
                         type: "range",
                         min: 0,
-                   
-                        max: !!model.player ? model.player.getDuration()*100 : 0,
-                        value: !!model.player ? model.player.getCurrentTime()*100 : 0,
+
+                        max: !!model.player && model.player.getDuration ? model.player.getDuration() * 100 : 0,
+                        value: !!model.player && !!model.player.getCurrentTime ? model.player.getCurrentTime() * 100 : 0,
                         onchange(event) {
                             event.redraw = false
-                            model.player.seekTo(event.target.value/100)
+                            model.player.seekTo(event.target.value / 100)
                         }
                     }),
-                    model.songrequestInfo.requests.length > 0 ? m(".songrequests__song-info", [!!model.player && model.player.getPlayerState() == 1 ? m(".songrequests__pause-button", {
+                    model.songrequestInfo.requests.length > 0 ? m(".songrequests__song-info", [!!model.player && !!model.player.getPlayerState && model.player.getPlayerState() == 1 ? m(".songrequests__pause-button", {
                                 onclick() {
                                     model.player.pauseVideo()
                                 }
@@ -165,43 +180,45 @@ module.exports = {
                         ],
                         model.currentVideo != null ? m(".songrequests__request-label", [
                             m(".songrequests__request-upper-part", [
-                                m("div.songrequests__request-title",model.currentVideo.title),
-                            
+                                m("div.songrequests__request-title", model.currentVideo.title),
+
                                 m("div", {
-                                    oncreate(lvnode){
-                                        lvnode.state.timer =setInterval(() => {
+                                    oncreate(lvnode) {
+                                        lvnode.state.timer = setInterval(() => {
                                             if (!!model.player && !!model.player.getCurrentTime) {
                                                 lvnode.dom.innerHTML = `${formatDuration(model.player.getCurrentTime())}/${formatDuration(model.player.getDuration())}`
-            
+
                                             }
                                         }, 200)
                                     },
                                     onbeforeremove(lvnode) {
                                         clearInterval(lvnode.state.timer)
                                     }
-                             
-                       
-                                 
-                                })]),
+
+
+
+                                })
+                            ]),
                             m(".songrequests__request-user", "@" + model.currentVideo.user),
 
-                        ]) : null) : null,
+                        ]) : m(".songrequests__song-info")) : null,
                     m(".songrequests__volume-control", [
                         m(".songrequests__volume-control-icon"),
                         m("input", {
                             type: "range",
                             min: 0,
                             max: 100,
-                            value: !!model.player ? model.player.getVolume() : 100,
+                            value: model.getVolume(),
                             onchange(event) {
                                 event.redraw = false
-                                model.player.setVolume(event.target.value)
+                                model.pushVolumeToDb(event.target.value)
+                                model.setVolume(event.target.value)
                             }
                         })
                     ])
 
-                ])
+                ]) : null
             ])
-        ]) : null
+        ])
     }
 }

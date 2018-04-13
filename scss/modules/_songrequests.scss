@@ -1,21 +1,28 @@
 @import '../utils/index';
 .songrequests {
-    max-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 6.35rem);
+    @include breakpoint($desktop-width) {
+        max-height: calc(100vh - 3.5rem);
+    }
+    &--noplayer {
+        max-height: calc(100vh - 2.85rem);
+        @include breakpoint($desktop-width) {
+            max-height: 100vh;
+        }
+    }
     overflow-y: auto;
-    padding-bottom: 5rem;
     >*+* {
         margin-top: $element-spacing;
     }
     &__settings {
         width: 100%;
-        margin-top: $content-spacing;
+        margin-top: $container-spacing;
         >*+* {
             margin-top: $container-spacing;
         }
     }
     &__container {
-        display: flex;
-        flex-direction: column;
+        margin-bottom: 1rem;
     }
     &__requests {
         width: 100%;
@@ -28,10 +35,10 @@
         }
     }
     &__controls {
-        @include mshadow;
+        box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.11);
         position: fixed;
         background: $color-main;
-        height: 4rem;
+        height: 3.5rem;
         padding: $element-spacing;
         bottom: 0px;
         left: 0px;
@@ -49,11 +56,11 @@
         align-content: center;
     }
     &__play-button {
-        @include prepend-svg("../../svg/media-play.svg", 3.6rem, white, 0px);
+        @include prepend-svg("../../svg/media-play.svg", 3rem, white, 0px);
         cursor: pointer;
     }
     &__pause-button {
-        @include prepend-svg("../../svg/media-pause.svg", 3.6rem, white, 0px);
+        @include prepend-svg("../../svg/media-pause.svg", 3rem, white, 0px);
         cursor: pointer;
     }
     &__skip-button {
@@ -61,7 +68,7 @@
         cursor: pointer;
     }
     &__request-label {
-        max-width: calc(100% - 100px);
+        // max-width: calc(100% - 100px);
         margin-left: $container-spacing;
         color: white;
         display: inline-flex;
@@ -95,7 +102,6 @@
         }
         &-icon {
             @include prepend-svg("../../svg/volume.svg", 25px, white, 5px);
-       
         }
         display: flex;
         align-content: center;
@@ -107,8 +113,7 @@
             height: 12px;
             padding: 0;
             margin: 0;
-            width: 110px;
-            // transform: rotate(270deg);
+            width: 110px; // transform: rotate(270deg);
             // @include breakpoint($tablet-width) {
             //     transform: rotate(0deg);
             // }
@@ -166,7 +171,7 @@
     }
     &__seeker {
         position: absolute;
-        top: -0.5rem;
+        top: 0;
         left: 0;
         right: 0;
         padding: 0;
@@ -181,14 +186,14 @@
             width: 100%;
             height: 0.5rem;
             cursor: pointer;
-            background: #50555C;
+            background: $color-main;
             border: 0px solid #000000;
         }
         &::-moz-range-track {
             width: 100%;
             height: 0.5rem;
             cursor: pointer;
-            background: #50555C;
+            background: $color-main;
             border: 0px solid #000000;
         }
         ::-webkit-slider-runnable-track {
@@ -273,7 +278,6 @@
         &--hidden .songrequests__player {
             height: 0px !important;
         }
-   
         width: 100%;
         >* {
             width: 100%

@@ -17,7 +17,7 @@ module.exports = {
                         target: "_blank",
                         href: "https://youtu.be/" + vnode.attrs.item.videoID
                     },
-                    vnode.attrs.item.title + " [" + formatDuration(vnode.attrs.item.length / 1000000000) + "]"),
+                    vnode.attrs.item.order + " " +vnode.attrs.item.title + " [" + formatDuration(vnode.attrs.item.length / 1000000000) + "]"),
                 m(cselector + "__user", vnode.attrs.item.user)
             ]),
             vnode.attrs.isMod == true || vnode.attrs.isOwner == true ? m(cselector + "__buttons", [
@@ -40,6 +40,12 @@ module.exports = {
                         model.skipVideo(vnode.attrs.item.videoID)
                     }
                 }, l10n.get("Удалить из очереди")),
+                m(cselector + "__delete-button", {
+
+                    onclick() {
+                        model.setAsTwitchRestrictred(vnode.attrs.item.videoID)
+                    }
+                }, l10n.get("Не для твитча")),
 
             ]) : null
         ])

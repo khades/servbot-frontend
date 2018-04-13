@@ -13,8 +13,18 @@ module.exports = {
     intervalID: null,
     eventSource: null,
     currentVideo: null,
+    volume: 100,
     getVideoID() {
         return this.videoID
+    },
+    getVolume() {
+        return this.volume
+    },
+    setVolume(volume) {
+        this.volume = volume
+        if (!!this.player && !!this.player.setVolume) {
+            this.player.setVolume(volume)
+        }
     },
     leaveEventSource() {
         if (!!this.eventSource) {
@@ -46,6 +56,12 @@ module.exports = {
             m.redraw()
         }
         this.eventSource.onmessage = function (event) {
+            if (String(event.data).startsWith("volume")) {
+
+                var volume = parseInt(String(event.data).split(":")[1])
+                this.setVolume(volume)
+                m.redraw()
+            }
             if (event.data == "update") {
                 this.get(channelID)
             }
@@ -67,6 +83,20 @@ module.exports = {
         }.bind(this), 10000)
 
     },
+    setAsYoutubeRestrictred(videoID) {
+        console.log(videoID)
+        var url = `/api/channel/${this.channelID}/songrequests/${this.videoID}/settag/youtuberestricted`
+        auth.request({
+            url: appUrl(url)
+        })
+    },
+    setAsTwitchRestrictred(videoID) {
+        console.log(videoID)
+        var url = `/api/channel/${this.channelID}/songrequests/${this.videoID}/settag/twitchrestricted`
+        auth.request({
+            url: appUrl(url)
+        })
+    },
     bubbleUp(id) {
 
         var url = `api/channel/${this.channelID}/songrequests/bubbleup/${id}`
@@ -81,6 +111,13 @@ module.exports = {
         }, error => {
             this.state = states.ERROR
             throw error
+        })
+    },
+    pushVolumeToDb(volume) {
+        var url = `api/channel/${this.channelID}/songrequests/setvolume/${volume}`
+
+        auth.request({
+            url: appUrl(url)
         })
     },
     bubbleUpToSecond(id) {
@@ -117,6 +154,10 @@ module.exports = {
     },
 
     afterInit(forceSwitch, forceRedraw) {
+        if (this.songrequestInfo != null) {
+            this.setVolume(this.songrequestInfo.settings.volume)
+
+        }
 
         if (this.songrequestInfo == null || this.playerReady == false) {
             return
@@ -129,19 +170,25 @@ module.exports = {
         if (!(forceSwitch == true) && this.songrequestInfo.requests.some(f => f.videoID == this.videoID)) {
             return
         }
+
+        this.currentVideo = this.songrequestInfo.requests.sort(function (a, b) {
+            var c = a.order
+            var d = b.order
+            return c - d
+        })[0]
+        if (this.songrequestInfo.isOwner == false) {
+            return
+        }
         if (this.songrequestInfo.requests.length == 0) {
             this.videoID = ""
             this.currentVideo = null
             this.player.stop()
             return
         }
-        this.currentVideo = this.songrequestInfo.requests.sort(function (a, b) {
-            var c = a.order
-            var d = b.order
-            return c - d
-        })[0]
+
         this.videoID = this.currentVideo.videoID
         this.player.loadVideoById(this.currentVideo.videoID)
+        this.player.setVolume(this.getVolume())
         if (forceRedraw == true) {
             m.redraw()
 
