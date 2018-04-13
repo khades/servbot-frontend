@@ -1,18 +1,18 @@
-var model = require("./models/model")
-var m = require("mithril")
-var channelName = require("../utils/channelName")
-var input = require("../basicWidgets/components/InputComponent")
-var textarea = require("../basicWidgets/textarea")
-var multiinput = require("../basicWidgets/multiinput")
-var check = require("../basicWidgets/components/CheckBoxComponent")
-var states = require("../utils/states.js")
-require("../../scss/modules/_subday.scss")
-var roulette = require("../widgets/roulette")
-var routes = require("../pageTemplate/routes")
-var loading = require("../basic/loading")
-var l10n = require("../l10n/l10n")
+import model from './models/model';
+import m from 'mithril';
+import channelName from '../utils/channelName';
+import input from '../basicWidgets/components/InputComponent';
+import textarea from '../basicWidgets/textarea';
+import multiinput from '../basicWidgets/multiinput';
+import check from '../basicWidgets/components/CheckBoxComponent';
+import states from '../utils/states.js';
+import '../../scss/modules/_subday.scss';
+import roulette from '../widgets/roulette';
+import routes from '../pageTemplate/routes';
+import loading from '../basic/loading';
+import l10n from '../l10n/l10n';
 
-module.exports = {
+export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("subdayID"))
@@ -113,4 +113,4 @@ module.exports = {
 
         ])
     }
-}
+};

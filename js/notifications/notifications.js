@@ -1,7 +1,7 @@
-var m = require("mithril")
-var model = require("./models/notifications")
-var component = require("./components/notifications")
-require("../../scss/modules/_notifications.scss")
+import m from 'mithril';
+import model from './models/notifications';
+import component from './components/notifications';
+import '../../scss/modules/_notifications.scss';
 var timeout = 10000
 
 function func() {
@@ -40,7 +40,8 @@ var notificationItem = {
         }, vnode.attrs.body)
     }
 }
-module.exports = {
+
+export default {
     addNotification(text, id) {
         if (!!id) {
             model.addNotification(text, id)
@@ -62,4 +63,4 @@ module.exports = {
                 }
             })))
     }
-}
+};

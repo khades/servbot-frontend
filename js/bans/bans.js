@@ -1,15 +1,16 @@
-var model = require("./models/model")
-var m = require("mithril")
-var input = require("../basicWidgets/components/InputComponent")
-var textarea = require("../basicWidgets/textarea")
-var multiinput = require("../basicWidgets/multiinput")
-var check = require("../basicWidgets/components/CheckBoxComponent")
-var states = require("../utils/states.js")
-require("../../scss/modules/_channel-bans.scss")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
-var l10n = require("../l10n/l10n")
-module.exports = {
+import model from './models/model';
+import m from 'mithril';
+import input from '../basicWidgets/components/InputComponent';
+import textarea from '../basicWidgets/textarea';
+import multiinput from '../basicWidgets/multiinput';
+import check from '../basicWidgets/components/CheckBoxComponent';
+import states from '../utils/states.js';
+import '../../scss/modules/_channel-bans.scss';
+import routes from '../pageTemplate/routes';
+import channelName from '../utils/channelName';
+import l10n from '../l10n/l10n';
+
+export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
@@ -44,4 +45,4 @@ module.exports = {
                 }) : null)
             ]) : null
     }
-}
+};

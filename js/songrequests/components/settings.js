@@ -1,10 +1,10 @@
-var m = require('mithril')
-var model = require("../models/model")
-var input = require("../../basicWidgets/components/InputComponent")
+import m from 'mithril';
+import model from '../models/model';
+import input from '../../basicWidgets/components/InputComponent';
+import l10n from '../../l10n/l10n';
+import check from '../../basicWidgets/components/CheckBoxComponent';
 
-var l10n = require("../../l10n/l10n")
-var check = require("../../basicWidgets/components/CheckBoxComponent")
-module.exports = {
+export default {
     view() {
         var settings = model.songrequestInfo.settings
         return m(".songrequests__settings", [
@@ -102,4 +102,4 @@ module.exports = {
         ])
     }
 
-}
+};

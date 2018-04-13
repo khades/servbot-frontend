@@ -1,10 +1,10 @@
-var m = require("mithril")
-var TemplateModel = require("./TemplateModel")
-var ConfigURL = require("../../utils/appUrl")
-var states = require("../../utils/states")
-var auth = require("../../utils/auth")
+import m from 'mithril';
+import TemplateModel from './TemplateModel';
+import ConfigURL from '../../utils/appUrl';
+import states from '../../utils/states';
+import auth from '../../utils/auth';
 
-module.exports = {
+export default {
     state: states.LOADING,
     showAll: false,
     templates: [],
@@ -49,4 +49,4 @@ module.exports = {
             this.state = states.READY
         })
     }
-}
+};

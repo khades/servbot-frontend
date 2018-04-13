@@ -1,9 +1,9 @@
-var m = require("mithril")
-var model = require("./models/logs")
-require("../../scss/modules/_user-logs.scss")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
-var l10n = require("../l10n/l10n")
+import m from 'mithril';
+import model from './models/logs';
+import '../../scss/modules/_user-logs.scss';
+import routes from '../pageTemplate/routes';
+import channelName from '../utils/channelName';
+import l10n from '../l10n/l10n';
 
 var generateClass = function (f) {
   if (f.messageType == "timeout")
@@ -21,7 +21,7 @@ var generateMessagebody = function (f) {
 }
 
 
-module.exports = {
+export default {
   oninit: function (vnode) {
 
     vnode.state.route = m.route.get()
@@ -79,4 +79,4 @@ module.exports = {
 
     ])
   }
-}
+};

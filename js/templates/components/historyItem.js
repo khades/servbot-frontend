@@ -1,6 +1,7 @@
-var m = require("mithril")
-require("../../../scss/modules/_template-history.scss")
-module.exports = {
+import m from 'mithril';
+import '../../../scss/modules/_template-history.scss';
+
+export default {
     view(vnode) {
         return m(".template-history", [
             m(".template-history__row", [
@@ -15,4 +16,4 @@ module.exports = {
 
         ])
     }
-}
+};

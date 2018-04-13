@@ -1,5 +1,5 @@
-var printf = require('sprintf-js').vsprintf
-var config = require("../../config")
+import { vsprintf as printf } from 'sprintf-js';
+import config from '../../config';
 var l10nEN = {
     SAVE: "Save",
     ADD_STRING: "Add string",
@@ -296,11 +296,11 @@ function get() {
     return string
 }
 
-module.exports = {
+export default {
     get: get,
     setLang: setLang,
     getLang() {
         return lang
     },
     langs: langs
-}
+};

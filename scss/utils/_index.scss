@@ -2,7 +2,7 @@
 @import 'breakpoints';
 @import 'prepend-svg';
 @import 'svg-size';
-@import 'bourbon';
+@import '../../node_modules/bourbon/core/_bourbon.scss';
 @import 'simple-tooltip';
 @import 'simple-list-item';
 @import 'header';

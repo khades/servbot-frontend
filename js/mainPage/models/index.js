@@ -1,9 +1,9 @@
-var auth = require("../../utils/auth")
-var appUrl = require("../../utils/appUrl")
-var states = require("../../utils/states")
-var m = require("mithril")
+import auth from '../../utils/auth';
+import appUrl from '../../utils/appUrl';
+import states from '../../utils/states';
+import m from 'mithril';
 
-module.exports = {
+export default {
     state: states.LOADING,
     object: {
         modChannels: []
@@ -18,4 +18,4 @@ module.exports = {
         })
     }
 
-}
+};

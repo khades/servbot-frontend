@@ -1,5 +1,5 @@
-var m = require("mithril")
-var appUrl = require("./appUrl")
+import m from 'mithril';
+import appUrl from './appUrl';
 var time = {
     getTime() {
         m.request({
@@ -16,4 +16,4 @@ var time = {
     }
 }
 
-module.exports = time
+export default time;

@@ -1,11 +1,11 @@
-var m = require("mithril")
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
-var model = require("./models/bits")
-var component = require("./components/bits")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
+import m from 'mithril';
+import PageTemplateComponent from '../pageTemplate/PageTemplateComponent';
+import model from './models/bits';
+import component from './components/bits';
+import routes from '../pageTemplate/routes';
+import channelName from '../utils/channelName';
 
-module.exports = {
+export default {
     render() {
         return m(PageTemplateComponent, {
             route: routes.BITS,
@@ -18,4 +18,4 @@ module.exports = {
         })
 
     }
-}
+};

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     LOADING: 0,
     READY: 1,
     NOTAUTHORIZED: 2,
@@ -6,4 +6,4 @@ module.exports = {
     ERROR: 4,
     NOTFOUND: 5,
     UPDATING: 6
-}
+};

@@ -1,7 +1,7 @@
-var m = require("mithril")
-require("../../../scss/modules/_headerContent.scss")
-var UserNameModel = require("../models/UserNameModel")
-var l10n = require("../../l10n/l10n")
+import m from 'mithril';
+import '../../../scss/modules/_headerContent.scss';
+import UserNameModel from '../models/UserNameModel';
+import l10n from '../../l10n/l10n';
 var HeaderComponent = {
   oninit: function (vnode) {
     UserNameModel.getUsername()
@@ -42,4 +42,4 @@ var HeaderComponent = {
   }
 }
 
-module.exports = HeaderComponent
+export default HeaderComponent;

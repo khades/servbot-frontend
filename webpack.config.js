@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var webpack = require("webpack")
+
 module.exports = {
     entry: {
         app: [
@@ -27,8 +28,8 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
+               use: ExtractTextPlugin.extract({
+                   fallback: "style-loader",
                     use: [{
                             loader: 'css-loader?sourceMap&importLoaders=1'
                         },
@@ -36,10 +37,7 @@ module.exports = {
                             loader: 'postcss-loader?sourceMap'
                         },
                         {
-                            loader: 'sass-loader?sourceMap',
-                            options: {
-                                includePaths: [require("bourbon").includePaths]
-                            }
+                            loader: 'sass-loader?sourceMap'
                         }
                     ]
                 })
@@ -49,11 +47,12 @@ module.exports = {
                 test: /\.js$/,
                 enforce: "pre",
                 loader: "source-map-loader"
-            },
-            {
-                test: /\.js$/,
-                loader: "babel-loader?cacheDirectory=true&presets[]=es2015"
             }
+            // ,
+            // {
+            //     test: /\.js$/,
+            //     loader: "babel-loader?cacheDirectory=true&presets[]=env"
+            // }
         ]
 
 

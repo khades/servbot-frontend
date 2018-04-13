@@ -1,7 +1,7 @@
-var m = require("mithril")
-require('../../../scss/modules/_template-item.scss')
-var l10n = require("../../l10n/l10n")
-var TemplateMustashedBodyComponent = require("./TemplateMustashedBodyComponent")
+import m from 'mithril';
+import '../../../scss/modules/_template-item.scss';
+import l10n from '../../l10n/l10n';
+import TemplateMustashedBodyComponent from './TemplateMustashedBodyComponent';
 
 function getCommandInfo(item) {
     var commandInfo = {
@@ -34,7 +34,8 @@ function returnType(commandInfo) {
     }
     return l10n.get("DELETED")
 }
-module.exports = {
+
+export default {
     view: function (vnode) {
         var item = vnode.attrs.item.command
         var commandInfo = vnode.attrs.item.commandInfo
@@ -60,4 +61,4 @@ module.exports = {
             ) : ""
         ])
     }
-}
+};

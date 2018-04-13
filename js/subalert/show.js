@@ -1,13 +1,14 @@
-var m = require("mithril")
-var model = require("./models/show")
-var historyItem = require("./components/historyItem")
-require("../../scss/modules/_subalert-show.scss")
-var input = require("../basicWidgets/components/InputComponent")
-var checkbox = require("../basicWidgets/components/CheckBoxComponent")
-var channelName = require("../utils/channelName")
-var routes = require("../pageTemplate/routes")
-var l10n = require("../l10n/l10n")
-module.exports = {
+import m from 'mithril';
+import model from './models/show';
+import historyItem from './components/historyItem';
+import '../../scss/modules/_subalert-show.scss';
+import input from '../basicWidgets/components/InputComponent';
+import checkbox from '../basicWidgets/components/CheckBoxComponent';
+import channelName from '../utils/channelName';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
+
+export default {
 
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
@@ -285,4 +286,4 @@ module.exports = {
             })) : ""
         ])
     }
-}
+};

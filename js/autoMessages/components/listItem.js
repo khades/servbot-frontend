@@ -1,6 +1,6 @@
-var m = require("mithril")
-var model = require("../models/list")
-var l10n = require("../../l10n/l10n")
+import m from 'mithril';
+import model from '../models/list';
+import l10n from '../../l10n/l10n';
 function generateName(item) {
     var message = item.message
     if (message.trim() != "" || !(!!item.history) || item.history.length == 0) {
@@ -13,7 +13,8 @@ function generateName(item) {
         return historyItems[0].message
     }
 }
-module.exports = {
+
+export default {
     view(vnode) {
 
         return m("a.automessage-list__item", {
@@ -32,4 +33,4 @@ module.exports = {
 
         ])
     }
-}
+};

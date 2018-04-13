@@ -1,7 +1,7 @@
-var m = require("mithril")
-var model = require("./models/show")
-require("../../scss/modules/_subscriptions-show.scss")
-var states = require("../utils/states")
+import m from 'mithril';
+import model from './models/show';
+import '../../scss/modules/_subscriptions-show.scss';
+import states from '../utils/states';
 var generateClass = (f) => {
     if (f.isPrime || f.subPlan == "Prime")
         return "subscriptions-show__item__user--prime"
@@ -11,10 +11,11 @@ var generateClass = (f) => {
         return "subscriptions-show__item__user--twenty-five-dollars"
     return "subscriptions-show__item__user--five-dollars"
 }
-var channelName = require("../utils/channelName")
-var routes = require("../pageTemplate/routes")
-var l10n = require("../l10n/l10n")
-module.exports = {
+import channelName from '../utils/channelName';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
+
+export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
@@ -73,4 +74,4 @@ module.exports = {
             }))
         ])
     }
-}
+};

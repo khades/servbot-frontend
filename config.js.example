@@ -3,4 +3,4 @@ var config = {
     defaultLang:"ru"
 }
 
-module.exports = config
+export default config;

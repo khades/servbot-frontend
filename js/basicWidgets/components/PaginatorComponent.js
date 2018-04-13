@@ -1,6 +1,8 @@
-var m = require("mithril")
+import m from 'mithril';
+
 // import _ from "lodash"
-require("../../../scss/modules/_paginator.scss")
+import '../../../scss/modules/_paginator.scss';
+
 var PaginatorComponent = {
     view: function (vnode) {
         //     function generateButtons() {
@@ -64,4 +66,4 @@ var PaginatorComponent = {
     }
 }
 
-module.exports = PaginatorComponent
+export default PaginatorComponent;

@@ -1,9 +1,9 @@
-var config = require("../../config")
+import config from '../../config';
 
-module.exports = function(uri) {
+export default function(uri) {
     if (uri.startsWith("/")) {
         return config.appUrl + uri
     } else {
         return config.appUrl + "/" + uri
     }
-}
+};

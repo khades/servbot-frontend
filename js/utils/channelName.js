@@ -1,8 +1,9 @@
-var m = require("./auth")
-var states = require("./states")
-var config = require("./appUrl")
-var auth = require("./auth")
-module.exports = {
+import m from './auth';
+import states from './states';
+import config from './appUrl';
+import auth from './auth';
+
+export default {
     channels: {},
     get(id) {
         if (!!this.channels[id]) {
@@ -34,4 +35,4 @@ module.exports = {
         }
 
     }
-}
+};

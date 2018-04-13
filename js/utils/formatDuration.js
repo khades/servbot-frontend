@@ -1,4 +1,4 @@
-module.exports = function (input) {
+export default function (input) {
     var floatSeconds = input
     var hours = Math.floor(floatSeconds / 3600)
     var minutes = Math.floor(floatSeconds / 60 - hours * 60)
@@ -16,4 +16,4 @@ module.exports = function (input) {
         result = hours + ":" + result
     }
     return result
-}
+};

@@ -4,30 +4,30 @@ if (!String.prototype.startsWith) {
   };
 }
 
-var m = require("mithril")
-require('../scss/style.scss')
-var PageTemplateComponent = require('./pageTemplate/PageTemplateComponent')
-var mainPage = require("./mainPage/mainPage")
-var AfterAuthComponent = require("./afterAuth/AfterAuthComponent")
-var logs = require("./logs/logs")
-var logsUsers = require("./logs/users")
-var templatesList = require("./templates/list")
-var autoMessageList = require("./autoMessages/list")
-var autoMessageEdit = require("./autoMessages/edit")
-var templateShow = require("./templates/show")
-var channelIndex = require("./channel/index")
-var subAlertShow = require("./subalert/show")
-var time = require("./utils/time")
-var subs = require("./subscriptions/show")
-var bits = require("./bits/bits")
-var userbits = require("./bits/userbits")
-var externalServices = require("./externalServices/externalServices")
-var subtrain = require("./subTrain/subtrain")
-var bans = require("./bans/bans")
-var subdayList = require("./subday/list")
-var subday = require("./subday/subday")
-var songrequests = require('./songrequests/songrequests')
-var songrequestModel = require("./songrequests/models/model")
+import m from 'mithril';
+import '../scss/style.scss';
+import PageTemplateComponent from './pageTemplate/PageTemplateComponent';
+import mainPage from './mainPage/mainPage';
+import AfterAuthComponent from './afterAuth/AfterAuthComponent';
+import logs from './logs/logs';
+import logsUsers from './logs/users';
+import templatesList from './templates/list';
+import autoMessageList from './autoMessages/list';
+import autoMessageEdit from './autoMessages/edit';
+import templateShow from './templates/show';
+import channelIndex from './channel/index';
+import subAlertShow from './subalert/show';
+import time from './utils/time';
+import subs from './subscriptions/show';
+import bits from './bits/bits';
+import userbits from './bits/userbits';
+import externalServices from './externalServices/externalServices';
+import subtrain from './subTrain/subtrain';
+import bans from './bans/bans';
+import subdayList from './subday/list';
+import subday from './subday/subday';
+import songrequests from './songrequests/songrequests';
+import songrequestModel from './songrequests/models/model';
 time.getTime()
 m.route.prefix("#")
 

@@ -1,13 +1,13 @@
-var m = require("mithril")
-var model = require("./models/index")
-var states = require("../utils/states")
-var loading = require("../basic/loading")
-var routes = require("../pageTemplate/routes")
-var l10n = require("../l10n/l10n")
-var channelName = require("../utils/channelName")
-require("../../scss/modules/_channel-index.scss")
+import m from 'mithril';
+import model from './models/index';
+import states from '../utils/states';
+import loading from '../basic/loading';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
+import channelName from '../utils/channelName';
+import '../../scss/modules/_channel-index.scss';
 
-module.exports = {
+export default {
     oninit(vnode) {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
@@ -40,4 +40,4 @@ module.exports = {
             ]))
         ])
     }
-}
+};

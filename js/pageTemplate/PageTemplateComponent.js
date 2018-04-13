@@ -1,10 +1,11 @@
-var m = require("mithril")
-require("../../scss/layout/_index.scss")
-require("../../scss/base/_index.scss")
-var HeaderComponent = require('./components/HeaderComponent')
-var MenuComponent = require('./components/MenuComponent')
+import m from 'mithril'
+import '../../scss/layout/_index.scss'
+import '../../scss/base/_index.scss'
+import HeaderComponent from './components/HeaderComponent'
+import MenuComponent from './components/MenuComponent'
+import notifications from '../notifications/notifications'
 
-module.exports = {
+export default {
   oninit: function (vnode) {
     vnode.state.menuShown = false
   },
@@ -33,8 +34,8 @@ module.exports = {
         },
         getMenuShown: () => vnode.state.menuShown
       })),
-      m(require("../notifications/notifications")),
+      m(notifications),
       m("section#siteContent", m(".content", m(vnode.attrs.component))),
     ])
   }
-}
+};

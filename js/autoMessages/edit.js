@@ -1,12 +1,12 @@
-var m = require("mithril")
-var model = require("./models/edit")
-var input = require("../basicWidgets/components/InputComponent")
-var historyItem = require("./components/historyItem")
-require("../../scss/modules/_automessage-edit.scss")
-var routes = require("../pageTemplate/routes")
-var l10n = require("../l10n/l10n")
+import m from 'mithril';
+import model from './models/edit';
+import input from '../basicWidgets/components/InputComponent';
+import historyItem from './components/historyItem';
+import '../../scss/modules/_automessage-edit.scss';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
 
-module.exports = {
+export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         if (!!m.route.param("id")) {
@@ -109,4 +109,4 @@ module.exports = {
             model.isNew == false && !!model.object.history ? m(".automessage-edit__history", model.object.history.map(f => m(historyItem, f))) : ""
         ])
     }
-}
+};

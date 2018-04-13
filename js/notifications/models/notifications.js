@@ -13,4 +13,4 @@ var notifications = {
     }
 }
 
-module.exports = notifications
+export default notifications;

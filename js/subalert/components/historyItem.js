@@ -1,7 +1,8 @@
-var m = require("mithril")
-require("../../../scss/modules/_subalert-history.scss")
-var l10n = require("../../l10n/l10n")
-module.exports = {
+import m from 'mithril';
+import '../../../scss/modules/_subalert-history.scss';
+import l10n from '../../l10n/l10n';
+
+export default {
     view(vnode) {
 
         return m(".subalert-history", [
@@ -55,4 +56,4 @@ module.exports = {
             ]
         ])
     }
-}
+};

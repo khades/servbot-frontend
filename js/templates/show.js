@@ -1,16 +1,17 @@
-var m = require("mithril")
-var model = require("./models/show")
-var historyItem = require("./components/historyItem")
-require("../../scss/modules/_template-show.scss")
-var input = require("../basicWidgets/components/InputComponent")
-var textarea = require("../basicWidgets/textarea")
-var multiinput = require("../basicWidgets/multiinput")
-var check = require("../basicWidgets/components/CheckBoxComponent")
-var states = require("../utils/states.js")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
-var l10n = require("../l10n/l10n")
-module.exports = {
+import m from 'mithril';
+import model from './models/show';
+import historyItem from './components/historyItem';
+import '../../scss/modules/_template-show.scss';
+import input from '../basicWidgets/components/InputComponent';
+import textarea from '../basicWidgets/textarea';
+import multiinput from '../basicWidgets/multiinput';
+import check from '../basicWidgets/components/CheckBoxComponent';
+import states from '../utils/states.js';
+import routes from '../pageTemplate/routes';
+import channelName from '../utils/channelName';
+import l10n from '../l10n/l10n';
+
+export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("template"))
@@ -209,4 +210,4 @@ module.exports = {
             ]) : null
         ]) : null
     }
-}
+};

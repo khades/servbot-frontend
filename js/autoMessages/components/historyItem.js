@@ -1,7 +1,7 @@
-var m = require("mithril")
-require("../../../scss/modules/_automessage-history.scss")
+import m from 'mithril';
+import '../../../scss/modules/_automessage-history.scss';
 
-module.exports = {
+export default {
     view(vnode) {
         return m(".automessage-history", [
             m(".automessage-history__line", [
@@ -20,4 +20,4 @@ module.exports = {
             !!vnode.attrs.game && vnode.attrs.game != "" ? m(".automessage-history__game", vnode.attrs.game) : null
         ])
     }
-}
+};

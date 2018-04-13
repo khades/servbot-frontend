@@ -1,8 +1,9 @@
-var Auth = require("../../utils/auth")
-var m = require("mithril")
-var ConfigURL = require("../../utils/appUrl")
-var states = require("../../utils/states")
-module.exports = {
+import Auth from '../../utils/auth';
+import m from 'mithril';
+import ConfigURL from '../../utils/appUrl';
+import states from '../../utils/states';
+
+export default {
     state: states.LOADING,
     result: [],
     channelID: "",
@@ -37,4 +38,4 @@ module.exports = {
             this.state = states.READY
         })
     }
-}
+};

@@ -1,5 +1,5 @@
-var m = require("mithril")
-require("../../scss/modules/_controlGroup.scss")
+import m from 'mithril';
+import '../../scss/modules/_controlGroup.scss';
 
 function generateClass(vnode) {
     var classes = []
@@ -7,7 +7,8 @@ function generateClass(vnode) {
     if (!!vnode.attrs.class) classes.push(vnode.attrs.class)
     return classes.join(" ")
 }
-module.exports = {
+
+export default {
     view: function (vnode) {
         return m(".control-group", {
             class: generateClass(vnode)
@@ -25,4 +26,4 @@ module.exports = {
             }), !!vnode.attrs.error && vnode.attrs.error != null ? m("span.help-block", vnode.attrs.error) : null
         ])
     }
-}
+};

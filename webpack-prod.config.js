@@ -3,15 +3,10 @@ var webpack = require("webpack")
 
 config.module.rules.push({
     test: /\.js$/,
-    loader: "babel-loader?cacheDirectory=true&presets[]=es2015"
+    loader: "babel-loader?cacheDirectory=true&presets[]=env"
 })
+config.devtool= "hidden-source-map"
 
-config.plugins = config.plugins.concat([
-    new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true
-    })
-    // ,
-    // new webpack.optimize.AggressiveMergingPlugin()
-])
+
 
 module.exports = config

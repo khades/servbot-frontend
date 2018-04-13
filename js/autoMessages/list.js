@@ -1,11 +1,12 @@
-var m = require("mithril")
-var model = require("./models/list")
-var listItem = require("./components/listItem")
-require("../../scss/modules/_automessage-list.scss")
-var channelName = require("../utils/channelName")
-var routes = require("../pageTemplate/routes")
-var l10n = require("../l10n/l10n")
-module.exports = {
+import m from 'mithril';
+import model from './models/list';
+import listItem from './components/listItem';
+import '../../scss/modules/_automessage-list.scss';
+import channelName from '../utils/channelName';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
+
+export default {
     oninit: function (vnode) {
         vnode.state.showEmpty = false
         vnode.state.route = m.route.get()
@@ -62,4 +63,4 @@ module.exports = {
             }).map(f => m(listItem, f)) : "")
         ])
     }
-}
+};

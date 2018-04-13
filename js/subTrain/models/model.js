@@ -1,9 +1,10 @@
-var auth = require("../../utils/auth")
-var appUrl = require("../../utils/appUrl")
-var states = require("../../utils/states")
-var routes = require("../../pageTemplate/routes")
-var m = require("mithril")
-module.exports = {
+import auth from '../../utils/auth';
+import appUrl from '../../utils/appUrl';
+import states from '../../utils/states';
+import routes from '../../pageTemplate/routes';
+import m from 'mithril';
+
+export default {
     state: states.READY,
     channelID: "",
     route: routes.SUBTRAIN,
@@ -40,4 +41,4 @@ module.exports = {
             }
         })
     }
-}
+};

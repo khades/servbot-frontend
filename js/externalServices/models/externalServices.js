@@ -1,8 +1,8 @@
-var auth = require("../../utils/auth")
-var appUrl = require("../../utils/appUrl")
-var states = require("../../utils/states")
+import auth from '../../utils/auth';
+import appUrl from '../../utils/appUrl';
+import states from '../../utils/states';
 
-module.exports = {
+export default {
     state: states.READY,
     channelID: "",
     object: {
@@ -50,4 +50,4 @@ module.exports = {
             }
         })
     }
-}
+};

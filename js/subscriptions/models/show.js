@@ -1,9 +1,10 @@
-var auth = require("../../utils/auth")
-var appUrl = require("../../utils/appUrl")
-var states = require("../../utils/states")
-var m = require("mithril")
-var time = require("../../utils/time")
-module.exports = {
+import auth from '../../utils/auth';
+import appUrl from '../../utils/appUrl';
+import states from '../../utils/states';
+import m from 'mithril';
+import time from '../../utils/time';
+
+export default {
     state: states.LOADING,
     channelID: "",
     subscriptions: [],
@@ -109,4 +110,4 @@ module.exports = {
         })
     },
 
-}
+};

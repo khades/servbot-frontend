@@ -1,5 +1,5 @@
-var m = require("mithril")
-require("../../scss/modules/_roulette.scss")
+import m from 'mithril';
+import '../../scss/modules/_roulette.scss';
 
 var getTiming = function (coord) {
     var t1 = 1
@@ -14,7 +14,7 @@ var getTiming = function (coord) {
     }
 };
 
-module.exports = {
+export default {
     view(rootvnode) {
         var rouletteInfo = rootvnode.attrs.getRouletteInfo()
         var animationInterval = rouletteInfo.animationInterval
@@ -99,4 +99,4 @@ module.exports = {
             }))
         ])
     }
-}
+};

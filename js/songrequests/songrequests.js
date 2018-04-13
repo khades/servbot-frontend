@@ -1,15 +1,15 @@
-var m = require("mithril")
-var model = require("./models/model")
-require("../../scss/modules/_songrequests.scss")
-var states = require("../utils/states")
-var songrequestsItem = require("./components/songrequestsItem")
-var channelName = require("../utils/channelName")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
-var settings = require("./components/settings")
-var formatDuration = require("../utils/formatDuration")
-var loading = require("../basic/loading")
-module.exports = {
+import m from 'mithril';
+import model from './models/model';
+import '../../scss/modules/_songrequests.scss';
+import states from '../utils/states';
+import songrequestsItem from './components/songrequestsItem';
+import channelName from '../utils/channelName';
+import routes from '../pageTemplate/routes';
+import settings from './components/settings';
+import formatDuration from '../utils/formatDuration';
+import loading from '../basic/loading';
+
+export default {
     oninit: function (vnode) {
         model.state = states.LOADING
         model.songrequestInfo = null
@@ -221,4 +221,4 @@ module.exports = {
             ])
         ])
     }
-}
+};

@@ -1,10 +1,13 @@
-var m = require("mithril")
-var model = require("./models/index")
-var routes = require("../pageTemplate/routes")
+import m from 'mithril';
+import model from './models/index';
+import routes from '../pageTemplate/routes';
+
 // require("../../scss/modules/_main-page.scss")
-var l10n = require("../l10n/l10n")
-var user = require("../pageTemplate/models/UserNameModel")
-module.exports = {
+import l10n from '../l10n/l10n';
+
+import user from '../pageTemplate/models/UserNameModel';
+
+export default {
     oninit: function (vnode) {
         if (!!user.userID) {
             m.route.set(`/channel/${user.userID}`)
@@ -34,4 +37,4 @@ module.exports = {
 
         // ])
     }
-}
+};

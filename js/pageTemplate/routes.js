@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     LOGS: 1,
     AUTOMESSAGES: 2,
     SUBALERT: 3,
@@ -12,4 +12,4 @@ module.exports = {
     CHANNELBANS: 11,
     SUBDAY: 12,
     SONGREQUESTS: 13
-}
+};

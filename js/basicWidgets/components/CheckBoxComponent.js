@@ -1,5 +1,5 @@
-var m = require("mithril")
-require("../../../scss/modules/_checkbox.scss")
+import m from 'mithril';
+import '../../../scss/modules/_checkbox.scss';
 var CheckBoxComponent = {
   view: function (vnode) {
     return m(".checkbox", m("input", {
@@ -20,4 +20,4 @@ var CheckBoxComponent = {
   }
 }
 
-module.exports = CheckBoxComponent
+export default CheckBoxComponent;

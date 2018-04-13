@@ -1,15 +1,14 @@
-var m = require("mithril")
-var model = require("./models/users")
-var PaginatorComponent = require("../basicWidgets/components/PaginatorComponent")
-require("../../scss/modules/_channel-users.scss")
+import m from 'mithril';
+import model from './models/users';
+import PaginatorComponent from '../basicWidgets/components/PaginatorComponent';
+import '../../scss/modules/_channel-users.scss';
+import input from '../basicWidgets/components/InputComponent';
+import channelName from '../utils/channelName';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
+import notifications from '../notifications/notifications';
 
-var input = require("../basicWidgets/components/InputComponent")
-var channelName = require("../utils/channelName")
-var routes = require("../pageTemplate/routes")
-var l10n = require("../l10n/l10n")
-
-var notifications = require("../notifications/notifications")
-module.exports = {
+export default {
     oninit: function (vnode) {
 
         notifications.addNotification(l10n.get("USER_LIST_TOP_100_SHOWN"), "USER_LIST_TOP_100_SHOWN")
@@ -60,4 +59,4 @@ module.exports = {
         ])
 
     }
-}
+};

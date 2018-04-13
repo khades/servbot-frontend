@@ -1,11 +1,12 @@
-var m = require("mithril")
-var model = require("../models/model")
-require("../../../scss/modules/_songrequests-item.scss")
+import m from 'mithril';
+import model from '../models/model';
+import '../../../scss/modules/_songrequests-item.scss';
 var cclass = "songrequests-item"
 var cselector = `.${cclass}`
-var l10n = require("../../l10n/l10n")
-var formatDuration = require("../../utils/formatDuration")
-module.exports = {
+import l10n from '../../l10n/l10n';
+import formatDuration from '../../utils/formatDuration';
+
+export default {
     view(vnode) {
 
 
@@ -50,4 +51,4 @@ module.exports = {
             ]) : null
         ])
     }
-}
+};

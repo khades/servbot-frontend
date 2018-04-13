@@ -1,12 +1,12 @@
-var m = require("mithril")
-var PageTemplateComponent = require('../pageTemplate/PageTemplateComponent')
-var model = require("./models/userbits")
-var component = require("./components/userbits")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
+import m from 'mithril';
+import PageTemplateComponent from '../pageTemplate/PageTemplateComponent';
+import model from './models/userbits';
+import component from './components/userbits';
+import routes from '../pageTemplate/routes';
+import channelName from '../utils/channelName';
 
 
-module.exports = {
+export default {
     render() {
         return m(PageTemplateComponent, {
             route: routes.BITS,
@@ -16,4 +16,4 @@ module.exports = {
         })
 
     }
-}
+};

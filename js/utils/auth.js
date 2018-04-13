@@ -1,5 +1,6 @@
-var m = require("mithril")
-module.exports = {
+import m from 'mithril';
+
+export default {
     request: function (config) {
         return m.request(config).then(function (data) {
             return data
@@ -12,4 +13,4 @@ module.exports = {
             throw error
         })
     }
-}
+};

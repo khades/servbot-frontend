@@ -1,7 +1,7 @@
-var m = require("mithril")
+import m from 'mithril';
 
-module.exports = {
+export default {
     view(vnode) {
         return m(".forbidden", "Forbidden")
     }
-}
+};

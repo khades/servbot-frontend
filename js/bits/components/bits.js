@@ -1,8 +1,9 @@
-var m = require("mithril")
+import m from 'mithril';
 var selector = ".bits"
-var model = require("../models/bits")
-require("../../../scss/modules/_bits.scss")
-module.exports = {
+import model from '../models/bits';
+import '../../../scss/modules/_bits.scss';
+
+export default {
     oninit: function (vnode) {
         model.get(m.route.param("channel"))
     },
@@ -27,4 +28,4 @@ module.exports = {
             ])))
         ])
     }
-}
+};

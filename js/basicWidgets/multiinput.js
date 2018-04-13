@@ -1,7 +1,8 @@
-var m = require("mithril")
-var l10n = require("../l10n/l10n")
-require("../../scss/modules/_multiinput.scss")
-module.exports = {
+import m from 'mithril';
+import l10n from '../l10n/l10n';
+import '../../scss/modules/_multiinput.scss';
+
+export default {
     view(vnode) {
 
         var values = vnode.attrs.getValues()
@@ -41,4 +42,4 @@ module.exports = {
 
 
     }
-}
+};

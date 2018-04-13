@@ -1,14 +1,13 @@
-var m = require("mithril")
-require('../../scss/modules/_template-list.scss')
-var model = require('./models/list')
-var TemplateListItemComponent = require("./components/TemplateListItemComponent")
-var input = require("../basicWidgets/components/InputComponent")
-var channelName = require("../utils/channelName")
-var routes = require("../pageTemplate/routes")
-var channelName = require("../utils/channelName")
-var l10n = require("../l10n/l10n")
+import m from 'mithril';
+import '../../scss/modules/_template-list.scss';
+import model from './models/list';
+import TemplateListItemComponent from './components/TemplateListItemComponent';
+import input from '../basicWidgets/components/InputComponent';
+import channelName from '../utils/channelName';
+import routes from '../pageTemplate/routes';
+import l10n from '../l10n/l10n';
 
-module.exports = {
+export default {
 
     oninit: function (vnode) {
         vnode.state.tab = "list"
@@ -82,4 +81,4 @@ module.exports = {
         ])
 
     }
-}
+};

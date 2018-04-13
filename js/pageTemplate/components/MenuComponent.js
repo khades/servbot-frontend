@@ -1,9 +1,11 @@
-var m = require("mithril")
+import m from 'mithril';
+
 // var Hammer = require("hammerjs")
-require("../../../scss/modules/_site-menu.scss")
-var routes = require("../routes")
-var channelName = require("../../utils/channelName")
-var l10n = require("../../l10n/l10n")
+import '../../../scss/modules/_site-menu.scss';
+
+import routes from '../routes';
+import channelName from '../../utils/channelName';
+import l10n from '../../l10n/l10n';
 var MenuComponent = {
     oncreate: function (vnode) {
         // new Hammer(vnode.dom).on("swipeleft", function (ev) {
@@ -108,4 +110,4 @@ var MenuComponent = {
     }
 }
 
-module.exports = MenuComponent
+export default MenuComponent;

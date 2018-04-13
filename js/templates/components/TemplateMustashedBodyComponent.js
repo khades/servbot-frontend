@@ -1,7 +1,7 @@
-var m = require("mithril")
-require('../../../scss/modules/_template-item.scss')
+import m from 'mithril';
+import '../../../scss/modules/_template-item.scss';
 
-module.exports = {
+export default {
     view: function (vnode) {
         return m(".template-list-item__body", vnode.attrs.array.map(line => {
             if (line.startsWith("|mustashe|")) {
@@ -20,5 +20,5 @@ module.exports = {
                 return line.trim()
         }))
     }
-}
+};
 

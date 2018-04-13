@@ -1,15 +1,15 @@
-var m = require("mithril")
-var states = require("../utils/states")
-var input = require("../basicWidgets/components/InputComponent")
-var checkbox = require("../basicWidgets/components/CheckBoxComponent")
-var model = require("./models/externalServices")
-var routes = require("../pageTemplate/routes")
-var loading = require("../basic/loading")
-var l10n = require("../l10n/l10n")
-var channelName = require("../utils/channelName")
-require("../../scss/modules/_external-services.scss")
+import m from 'mithril';
+import states from '../utils/states';
+import input from '../basicWidgets/components/InputComponent';
+import checkbox from '../basicWidgets/components/CheckBoxComponent';
+import model from './models/externalServices';
+import routes from '../pageTemplate/routes';
+import loading from '../basic/loading';
+import l10n from '../l10n/l10n';
+import channelName from '../utils/channelName';
+import '../../scss/modules/_external-services.scss';
 
-module.exports = {
+export default {
     oninit(vnode) {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
@@ -94,4 +94,4 @@ module.exports = {
             }, l10n.get("SAVE")),
         ])
     }
-}
+};

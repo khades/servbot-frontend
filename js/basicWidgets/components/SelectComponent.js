@@ -1,5 +1,5 @@
-var m = require("mithril")
-require("../../../scss/modules/_controlGroup.scss")
+import m from 'mithril';
+import '../../../scss/modules/_controlGroup.scss';
 
 var SelectComponent = {
   view: function (vnode) {
@@ -21,4 +21,4 @@ var SelectComponent = {
   }
 }
 
-module.exports = SelectComponent 
+export default SelectComponent; 

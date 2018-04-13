@@ -1,9 +1,10 @@
-var auth = require("../../utils/auth")
-var appUrl = require("../../utils/appUrl")
-var states = require("../../utils/states")
-var m = require("mithril")
-var time = require("../../utils/time")
-module.exports = {
+import auth from '../../utils/auth';
+import appUrl from '../../utils/appUrl';
+import states from '../../utils/states';
+import m from 'mithril';
+import time from '../../utils/time';
+
+export default {
     state: states.READY,
     template: null,
     channelID: "",
@@ -25,14 +26,14 @@ module.exports = {
                 this.template = response
 
  
-                if (response.integerRandomizer.enabled == false &&
-                    response.preventDebounce == false &&
-                    response.preventRedirect == false &&
-                    response.stringRandomizer.enabled == false) {
-                    this.extended = false
-                } else {
-                    this.extended = true
-                }
+                // if (response.integerRandomizer.enabled == false &&
+                //     response.preventDebounce == false &&
+                //     response.preventRedirect == false &&
+                //     response.stringRandomizer.enabled == false) {
+                //     this.extended = false
+                // } else {
+                //     this.extended = true
+                // }
 
 
             }
@@ -73,4 +74,4 @@ module.exports = {
         })
 
     }
-}
+};
