@@ -16,7 +16,7 @@ module.exports = {
         filename: "app.js",
         path: __dirname + "/dist"
     },
-
+     mode: 'development',
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
@@ -28,19 +28,22 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.scss$/,
-               use: ExtractTextPlugin.extract({
-                   fallback: "style-loader",
-                    use: [{
-                            loader: 'css-loader?sourceMap&importLoaders=1'
-                        },
-                        {
-                            loader: 'postcss-loader?sourceMap'
-                        },
-                        {
-                            loader: 'sass-loader?sourceMap'
-                        }
-                    ]
-                })
+                // use: ExtractTextPlugin.extract({
+                //    fallback: "style-loader",
+                use: [{
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader?sourceMap&importLoaders=1'
+                    },
+                    {
+                        loader: 'postcss-loader?sourceMap'
+                    },
+                    {
+                        loader: 'sass-loader?sourceMap'
+                    }
+                ]
+                // })
             },
 
             {
@@ -59,10 +62,10 @@ module.exports = {
 
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: 'style.css',
-            allChunks: true
-        }),
+        // new ExtractTextPlugin({
+        //     filename: 'style.css',
+        //     allChunks: true
+        // }),
         new webpack.HotModuleReplacementPlugin()
 
     ]

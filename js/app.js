@@ -4,30 +4,30 @@ if (!String.prototype.startsWith) {
   };
 }
 
-import m from 'mithril';
-import '../scss/style.scss';
-import PageTemplateComponent from './pageTemplate/PageTemplateComponent';
-import mainPage from './mainPage/mainPage';
-import AfterAuthComponent from './afterAuth/AfterAuthComponent';
-import logs from './logs/logs';
-import logsUsers from './logs/users';
-import templatesList from './templates/list';
-import autoMessageList from './autoMessages/list';
-import autoMessageEdit from './autoMessages/edit';
-import templateShow from './templates/show';
-import channelIndex from './channel/index';
-import subAlertShow from './subalert/show';
-import time from './utils/time';
-import subs from './subscriptions/show';
-import bits from './bits/bits';
-import userbits from './bits/userbits';
-import externalServices from './externalServices/externalServices';
-import subtrain from './subTrain/subtrain';
-import bans from './bans/bans';
-import subdayList from './subday/list';
-import subday from './subday/subday';
-import songrequests from './songrequests/songrequests';
-import songrequestModel from './songrequests/models/model';
+import m from 'mithril'
+import '../scss/style.scss'
+import PageTemplateComponent from './pageTemplate/PageTemplateComponent'
+import mainPage from './mainPage/mainPage'
+import AfterAuthComponent from './afterAuth/AfterAuthComponent'
+import logs from './logs/logs'
+import logsUsers from './logs/users'
+import templatesList from './templates/list'
+import autoMessageList from './autoMessages/list'
+import autoMessageEdit from './autoMessages/edit'
+import templateShow from './templates/show'
+import channelIndex from './channel/index'
+import subAlertShow from './subalert/show'
+import time from './utils/time'
+import subs from './subscriptions/show'
+import bits from './bits/bits'
+import userbits from './bits/userbits'
+import externalServices from './externalServices/externalServices'
+import subtrain from './subTrain/subtrain'
+import bans from './bans/bans'
+import subdayList from './subday/list'
+import subday from './subday/subday'
+import songrequests from './songrequests/songrequests'
+
 time.getTime()
 m.route.prefix("#")
 
@@ -36,6 +36,17 @@ function carcass(component) {
     render() {
       return m(PageTemplateComponent, {
         component: component
+      })
+    }
+  }
+}
+
+function carcassAsync(path) {
+  return {
+    onmatch() {
+      return path.then(component => {
+        return m(component.default)
+
       })
     }
   }
@@ -63,4 +74,3 @@ m.route(document.body, "/", {
   "/channel/:channel/subdays/:subdayID": carcass(subday),
   "/channel/:channel/songrequests": carcass(songrequests)
 });
-

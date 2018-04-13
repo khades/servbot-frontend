@@ -3,7 +3,7 @@ import appUrl from '../../utils/appUrl';
 import states from '../../utils/states';
 import m from 'mithril';
 import time from '../../utils/time';
-
+import l10n from '../../l10n/l10n'
 export default {
     state: states.READY,
     template: null,
@@ -61,6 +61,7 @@ export default {
     setAliasTo() {
         this.state = states.LOADING
         this.errorTemplate = false
+
         auth.request({
             url: appUrl(`api/channel/${this.template.channelID}/templates/${this.template.commandName}/setAliasTo`),
             method: "POST",
@@ -74,4 +75,4 @@ export default {
         })
 
     }
-};
+}

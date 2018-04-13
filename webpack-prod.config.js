@@ -5,8 +5,9 @@ config.module.rules.push({
     test: /\.js$/,
     loader: "babel-loader?cacheDirectory=true&presets[]=env"
 })
-config.devtool= "hidden-source-map"
+config.devtool = false
 
 
+config.mode = 'production'
 
 module.exports = config

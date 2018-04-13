@@ -36,18 +36,21 @@ export default {
                 m("hgroup.template-show__hgroup", [
 
 
-                    m(".template-show__header-nm", l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel")))),
-                    model.extended == true ? m("button", {
-                        type: "button",
-                        onclick: () => {
-                            model.extended = false
-                        }
-                    }, l10n.get("TEMPLATE_HIDE_EXTENDED_SETTINGS")) : m("button", {
-                        type: "button",
-                        onclick: () => {
-                            model.extended = true
-                        }
-                    }, l10n.get("TEMPLATE_SHOW_EXTENDED_SETTINGS")),
+                    m(".template-show__header-nm", l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel"))))
+                    //,
+                    // model.extended == true ? m("button", {
+                    //     type: "button",
+                    //     onclick: () => {
+                    //         model.extended = false
+                    //     }
+                    // }
+                    // , l10n.get("TEMPLATE_HIDE_EXTENDED_SETTINGS")) : m("button", {
+                    //     type: "button",
+                    //     onclick: () => {
+                    //         model.extended = true
+                    //     }
+                    // }, l10n.get("TEMPLATE_SHOW_EXTENDED_SETTINGS")
+                    //  ),
                 ]), !!model.template.aliasTo && model.template.aliasTo != "" && model.template.commandName != model.template.aliasTo ? l10n.get("ALIAS_TO", model.template.aliasTo) : null,
                 m(textarea, {
                     label: l10n.get("TEMPLATE_MESSAGE"),
@@ -103,7 +106,7 @@ export default {
             // model.extended == true ? [
             //     m(".template-show__block", [
             //         m(".template-show__header", l10n.get("EXTENDED_SETTINGS")),
-                  
+
             //         m(check, {
             //             id: "PreventDebounce",
             //             getValue: () => model.template.preventDebounce,
