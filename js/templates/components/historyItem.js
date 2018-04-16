@@ -1,5 +1,5 @@
-import m from 'mithril';
-import '../../../scss/modules/_template-history.scss';
+import m from 'mithril'
+import '../../../scss/modules/_template-history.scss'
 
 export default {
     view(vnode) {

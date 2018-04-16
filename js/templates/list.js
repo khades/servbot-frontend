@@ -16,6 +16,7 @@ export default {
         model.init(m.route.param("channel"))
     },
     onupdate: function (vnode) {
+        
         if (vnode.state.route == m.route.get())
             return
         vnode.state.tab = "list"

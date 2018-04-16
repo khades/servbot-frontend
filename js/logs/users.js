@@ -1,6 +1,5 @@
 import m from 'mithril';
 import model from './models/users';
-import PaginatorComponent from '../basicWidgets/components/PaginatorComponent';
 import '../../scss/modules/_channel-users.scss';
 import input from '../basicWidgets/components/InputComponent';
 import channelName from '../utils/channelName';

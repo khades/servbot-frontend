@@ -13,6 +13,11 @@
     &__user {
         color: $color-grey;
     }
+    &__order {
+        color: $color-grey;
+        margin-right: 0.3rem;
+
+    }
     &__buttons {
         display: inline-flex;
         flex-direction: row;
@@ -33,21 +38,34 @@
     &__play-button {
         @include button;
         @include prepend-svg("../../svg/media-play.svg", 1.4rem, white,0px);
-        @include simple-tooltip();
+
+    }
+    &__title {
+        transition: color 0.2s ease-in-out;
+        &:hover {
+            cursor: pointer;
+
+            color: $color-main;
+        }
     }
     &__play-next-button {
         @include button;
         @include prepend-svg("../../svg/arrow-up-thick.svg", 1.4rem, white,0px);
-        @include simple-tooltip();
+
     }
     &__delete-button {
         @include button;
         @include prepend-svg("../../svg/times.svg", 1.4rem, white,0px);
-        @include simple-tooltip();
+
     }
     &__pause-button {
         @include button;
         @include prepend-svg("../../svg/media-pause.svg", 1.4rem, white,0px);
-        @include simple-tooltip();
+   
+    }
+    &__ban-button {
+        @include button;
+        @include prepend-svg("../../svg/cancel.svg", 1.4rem, white,0px);
+   
     }
 }

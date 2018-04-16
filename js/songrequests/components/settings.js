@@ -1,8 +1,9 @@
-import m from 'mithril';
-import model from '../models/model';
-import input from '../../basicWidgets/components/InputComponent';
-import l10n from '../../l10n/l10n';
-import check from '../../basicWidgets/components/CheckBoxComponent';
+import m from 'mithril'
+import model from '../models/model'
+import input from '../../basicWidgets/components/InputComponent'
+import l10n from '../../l10n/l10n'
+import check from '../../basicWidgets/components/CheckBoxComponent'
+import notifications from '../../notifications/notifications'
 
 export default {
     view() {
@@ -15,24 +16,22 @@ export default {
 
                     model.songrequestInfo.settings.onlySubs = value
                 },
-                label: l10n.get("Ток сабы :3")
+                label: l10n.get("SONGREQUESTS_SUBS_ONLY")
             }),
             m(input, {
-                label: l10n.get("Длина плейлиста"),
+                label: l10n.get("SONGREQUESTS_PLAYLIST_LENGTH"),
                 id: "playlistLength",
                 getValue: () => {
                     return model.songrequestInfo.settings.playlistLength
                 },
                 setValue: (value) => {
-                    console.log(value)
-                    console.log(value.trim())
                     model.songrequestInfo.settings.playlistLength = parseInt(value.trim())
                     m.redraw()
 
                 }
             }),
             m(input, {
-                label: l10n.get("Максимальная длительность видео в секундах"),
+                label: l10n.get("SONGREQUESTS_MAX_VIDEO_LENGTH"),
                 id: "playlistLength",
                 getValue: () => {
                     return model.songrequestInfo.settings.maxVideoLength
@@ -44,7 +43,7 @@ export default {
                 }
             }),
             m(input, {
-                label: l10n.get("Максимальное количество заказов на пользователя"),
+                label: l10n.get("SONGREQUESTS_MAX_REQUESTS_PER_USER"),
                 id: "maxRequestsPerUser",
                 getValue: () => {
                     return model.songrequestInfo.settings.maxRequestsPerUser
@@ -56,7 +55,7 @@ export default {
                 }
             }),
             m(input, {
-                label: l10n.get("Минимальное количество просмотров"),
+                label: l10n.get("SONGREQUESTS_MINIMAL_AMOUNT_OF_VIEWS"),
                 id: "videoViewLimit",
                 getValue: () => {
                     return model.songrequestInfo.settings.videoViewLimit
@@ -73,7 +72,7 @@ export default {
 
                     model.songrequestInfo.settings.moreLikes = value
                 },
-                label: l10n.get("Больше лайков чем дизлайков")
+                label: l10n.get("SONGREQUESTS_MORE_LIKES_THAN_DISLIKES")
             }),
             m(check, {
                 id: "allowOffline",
@@ -82,17 +81,17 @@ export default {
 
                     model.songrequestInfo.settings.allowOffline = value
                 },
-                label: l10n.get("Разрешить заказы оффлайн")
+                label: l10n.get("SONGREQUESTS_ALLOW_OFFLINE")
             }),
-            m(check, {
-                id: "skipIfTagged",
-                getValue: () => model.songrequestInfo.settings.skipIfTagged,
-                setValue: value => {
+            // m(check, {
+            //     id: "skipIfTagged",
+            //     getValue: () => model.songrequestInfo.settings.skipIfTagged,
+            //     setValue: value => {
 
-                    model.songrequestInfo.settings.skipIfTagged = value
-                },
-                label: l10n.get("Скипнуть если добавлен забаненый трек")
-            }),
+            //         model.songrequestInfo.settings.skipIfTagged = value
+            //     },
+            //     label: l10n.get("SONGREQUESTS_SKIP_IF_RESTRICTED_TAG_ADDED")
+            // }),
             m("button", {
                 type: "button",
                 onclick() {

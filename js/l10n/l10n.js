@@ -1,4 +1,6 @@
-import { vsprintf as printf } from 'sprintf-js';
+import {
+    vsprintf as printf
+} from 'sprintf-js';
 import config from '../../config';
 var l10nEN = {
     SAVE: "Save",
@@ -51,7 +53,7 @@ var l10nEN = {
     COMMANDS: "Chat Commands",
     SUBALERTS: "Subscription alerts",
     AUTOMESSAGES: "Automessages",
-    SONGREQUESTS: "Songrequests",
+    SONGREQUESTS: "Song requests",
     SUBDAYS: "Subdays",
     SUBSCRIPTIONS: "Subscriptions",
     EXTERNAL_SERVICES: "External Services",
@@ -127,7 +129,35 @@ var l10nEN = {
     EXTENDED_SETTINGS: "Extended settings",
     AUTOMESSAGES_SHOW_ALL: "Show all",
     AUTOMESSAGES_SHOW_ACTIVE: "Show active",
-    ALIAS_TO: "Alias to %s"
+    ALIAS_TO: "Alias to %s",
+    SAVE_SUCCESSFULL: "Save successfull",
+    SONGREQUEST_CANT_PLAY_DUE_YOUTUBE: "Skipping track \"%s\" due to YouTube restriction",
+    SONGREQUEST_CANT_PLAY_DUE_TWITCH: "Skipping track \"%s\" due to Twitch restriction",
+    SONGREQUEST_CANT_PLAY_DUE_CHANNEL: "Skipping track \"%s\", its banned on that channel",
+    SONGREQUEST_CANT_PLAY_DUE_TAG: "Skipping track \"%s\", its has restricted tag added",
+
+    SONGREQUESTS_TITLE: "Song requests on channel %s",
+    SONGREQUESTS_RETURN_TO_PLAYLIST: "Return to playlist",
+    SONGREQUESTS_SHOW_SETTINGS: "Show Settings",
+    SONGREQUESTS_SHOW_TRACK_LIBRARY: "Show Track library",
+
+    SONGREQUESTS_PLAY_NOW:"Play now",
+    SONGREQUESTS_PLAY_NEXT:"Play next",
+    SONGREQUESTS_DELETE:"Delete",
+    SONGREQUESTS_BAN:"Ban",
+    SONGREQUESTS_SUBS_ONLY:"Allows requests only from subs",
+    SONGREQUESTS_PLAYLIST_LENGTH:"Playlist length",
+    SONGREQUESTS_MAX_VIDEO_LENGTH:"Maximum track length (in seconds)",
+    SONGREQUESTS_MAX_REQUESTS_PER_USER: "Maximum amount of requests per user",
+    SONGREQUESTS_MINIMAL_AMOUNT_OF_VIEWS:"Minimal amount of views on track",
+    SONGREQUESTS_MORE_LIKES_THAN_DISLIKES:"Require track to have more likes than dislikes",
+    SONGREQUESTS_ALLOW_OFFLINE:"Allow offline requests",
+    SONGREQUESTS_SKIP_IF_RESTRICTED_TAG_ADDED:"Remove track automatically if restricted tag is added",
+    SONGREQUESTS_LIBRARY:"Track library",
+    SONGREQUESTS_BANNED_TRACKS:"Banned tracks",
+    SONGREQUESTS_UNBAN_TRACK:"Unban track",
+    SONGREQUESTS_SHOW_BANNED_TRACKS:"Show banned tracks",
+    SONGREQUEST_UNBANNED: "Track \"%s\" is no longer banned"
 }
 
 var l10nRU = {
@@ -257,7 +287,35 @@ var l10nRU = {
     EXTENDED_SETTINGS: "Расширенные настройки",
     AUTOMESSAGES_SHOW_ALL: "Показать все",
     AUTOMESSAGES_SHOW_ACTIVE: "Показать только активные",
-    ALIAS_TO: "Ссылка на команду %s"
+    ALIAS_TO: "Ссылка на команду %s",
+    SAVE_SUCCESSFULL: "Сохранение прошло успешно",
+    SONGREQUEST_CANT_PLAY_DUE_YOUTUBE: "Трек \"%s\" удалён из списка заказов из-за ограничений сервиса YouTube",
+
+    SONGREQUEST_CANT_PLAY_DUE_TWITCH: "Трек \"%s\" удалён из списка заказов из-за ограничений сервиса Twitch",
+    SONGREQUEST_CANT_PLAY_DUE_CHANNEL: "Трек \"%s\" удалён из списка заказов, и заблокирован на этом канале",
+    SONGREQUEST_CANT_PLAY_DUE_TAG:  "Трек \"%s\" удалён из списка заказов, так как у него появился запрещённый на этом канале тег",
+    SONGREQUESTS_TITLE: "Заказы песен на канале %s",
+    SONGREQUESTS_RETURN_TO_PLAYLIST: "Вернутся к списку заказов",
+    SONGREQUESTS_SHOW_SETTINGS: "Показать настройки",
+    SONGREQUESTS_SHOW_TRACK_LIBRARY: "Показать библиотеку треков",
+
+    SONGREQUESTS_PLAY_NOW:"Воспроизвести сейчас",
+    SONGREQUESTS_PLAY_NEXT:"Воспроизвести следующим",
+    SONGREQUESTS_DELETE:"Удалить",
+    SONGREQUESTS_BAN:"Заблокировать",
+    SONGREQUESTS_SUBS_ONLY:"Разрешить заказы только сабам",
+    SONGREQUESTS_PLAYLIST_LENGTH:"Длина списка заказов",
+    SONGREQUESTS_MAX_VIDEO_LENGTH:"Максимальная длительность заказа (в секундах)",
+    SONGREQUESTS_MAX_REQUESTS_PER_USER: "Максимальное количество заказов для одного пользователя",
+    SONGREQUESTS_MINIMAL_AMOUNT_OF_VIEWS:"Минимальное количество просмотров на заказе",
+    SONGREQUESTS_MORE_LIKES_THAN_DISLIKES:"Требовать чтобы заказ имел больше лайков чем дизлайков",
+    SONGREQUESTS_ALLOW_OFFLINE:"Разрешить заказы вне стрима",
+    SONGREQUESTS_SKIP_IF_RESTRICTED_TAG_ADDED:"Автоматически удалять трек если добавлен запрещённый трек к видео",
+    SONGREQUESTS_LIBRARY:"Библиотека треков",
+    SONGREQUESTS_BANNED_TRACKS:"Заблокированные треки",
+    SONGREQUESTS_UNBAN_TRACK:"Разблокировать",
+    SONGREQUESTS_SHOW_BANNED_TRACKS:"Показать заблокированные треки",
+    SONGREQUEST_UNBANNED: "Трек \"%s\" разблокирован"
 }
 
 var l10n = {

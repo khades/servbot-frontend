@@ -1,8 +1,10 @@
-import auth from '../../utils/auth';
-import appUrl from '../../utils/appUrl';
-import states from '../../utils/states';
-import m from 'mithril';
-import time from '../../utils/time';
+import auth from '../../utils/auth'
+import appUrl from '../../utils/appUrl'
+import states from '../../utils/states'
+import m from 'mithril'
+import time from '../../utils/time'
+import notifications from '../../notifications/notifications'
+import l10n from '../../l10n/l10n'
 
 export default {
     state: states.LOADING,
@@ -66,7 +68,18 @@ export default {
             if (event.data == "update") {
                 this.get(channelID)
             }
-
+            if (String(event.data).startsWith("youtuberestricted")) {
+                notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_YOUTUBE", String(event.data).replace("youtuberestricted:", "")))
+            }
+            if (String(event.data).startsWith("twitchrestricted")) {
+                notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_TWITCH", String(event.data).replace("twitchrestricted:", "")))
+            }
+            if (String(event.data).startsWith("channelrestricted")) {
+                notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_CHANNEL", String(event.data).replace("channelrestricted:", "")))
+            }
+            if (String(event.data).startsWith("tagrestricted")) {
+                notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_TAG", String(event.data).replace("tagrestricted:", "")))
+            }
         }.bind(this)
 
         this.eventSource.onerror = function (error) {
@@ -78,22 +91,25 @@ export default {
         this.intervalID = setInterval(function () {
             if (this.eventSource.readyState == WebSocket.CLOSED) {
                 m.redraw()
-                console.log("Reconnecting")
                 this.connectToEventSource(channelID)
             }
         }.bind(this), 10000)
 
     },
     setAsYoutubeRestrictred(videoID) {
-        console.log(videoID)
-        var url = `/api/channel/${this.channelID}/songrequests/${this.videoID}/settag/youtuberestricted`
+        var url = `/api/channel/${this.channelID}/songrequests/${videoID}/settag/youtuberestricted`
         auth.request({
             url: appUrl(url)
         })
     },
     setAsTwitchRestrictred(videoID) {
-        console.log(videoID)
-        var url = `/api/channel/${this.channelID}/songrequests/${this.videoID}/settag/twitchrestricted`
+        var url = `/api/channel/${this.channelID}/songrequests/${videoID}/settag/twitchrestricted`
+        auth.request({
+            url: appUrl(url)
+        })
+    },
+    setAsChannelRestrictred(videoID) {
+        var url = `/api/channel/${this.channelID}/songrequests/${videoID}/settag/${this.channelID}-restricted`
         auth.request({
             url: appUrl(url)
         })
@@ -164,7 +180,16 @@ export default {
             return
         }
 
+        // if (this.songrequestInfo.requests.length == 0) {
+        //     return
+        // }
+
         if (this.songrequestInfo.requests.length == 0) {
+            this.videoID = ""
+            this.currentVideo = null
+            if (!!this.player.stopVideo) {
+                this.player.stopVideo()
+            }
             return
         }
 
@@ -177,15 +202,11 @@ export default {
             var d = b.order
             return c - d
         })[0]
+
         if (this.songrequestInfo.isOwner == false) {
             return
         }
-        if (this.songrequestInfo.requests.length == 0) {
-            this.videoID = ""
-            this.currentVideo = null
-            this.player.stop()
-            return
-        }
+
 
         this.videoID = this.currentVideo.videoID
         this.player.loadVideoById(this.currentVideo.videoID)
@@ -203,6 +224,7 @@ export default {
             data: this.songrequestInfo.settings
         }).then(response => {
             this.get(this.channelID)
+            notifications.addNotification(l10n.get("SAVE_SUCCESSFULL"))
 
         })
     },

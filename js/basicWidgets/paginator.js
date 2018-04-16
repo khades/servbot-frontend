@@ -1,11 +1,9 @@
-import m from 'mithril';
+import m from 'mithril'
 
-// import _ from "lodash"
-import '../../../scss/modules/_paginator.scss';
+import '../../scss/modules/_paginator.scss'
 
-var PaginatorComponent = {
+export default {
     view: function (vnode) {
-        //     function generateButtons() {
         var paginatorRange = 2
         var messedPages = [paginatorRange - 2, paginatorRange - 1, paginatorRange, paginatorRange + 1, paginatorRange + 2]
         var pages = messedPages
@@ -66,4 +64,3 @@ var PaginatorComponent = {
     }
 }
 
-export default PaginatorComponent;

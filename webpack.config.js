@@ -16,7 +16,7 @@ module.exports = {
         filename: "app.js",
         path: __dirname + "/dist"
     },
-     mode: 'development',
+    mode: 'development',
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 

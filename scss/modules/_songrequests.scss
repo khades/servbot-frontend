@@ -20,6 +20,12 @@
         >*+* {
             margin-top: $container-spacing;
         }
+        button {
+            width: 100%;
+            @include breakpoint($desktop-width) { 
+                width: auto;
+            }
+        }
     }
     &__container {
         margin-bottom: 1rem;
@@ -49,6 +55,9 @@
         }
         display: flex;
         align-content: center;
+    }
+    &__buttons {
+        @include autoflex;
     }
     &__song-info {
         max-width: calc(100% - 150px);
