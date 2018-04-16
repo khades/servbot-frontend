@@ -145,10 +145,8 @@ export default {
             url: appUrl(url)
         }).then(response => {
             this.state = states.READY
-            if (forceSwitch == true) {
-                this.videoID = null
 
-            }
+            
 
         }, error => {
             this.state = states.ERROR

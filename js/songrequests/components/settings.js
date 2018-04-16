@@ -4,6 +4,7 @@ import input from '../../basicWidgets/components/InputComponent'
 import l10n from '../../l10n/l10n'
 import check from '../../basicWidgets/components/CheckBoxComponent'
 import notifications from '../../notifications/notifications'
+import formatDuration from '../../utils/formatDuration'
 
 export default {
     view() {
@@ -42,6 +43,7 @@ export default {
 
                 }
             }),
+            m("div.songrequests__human-readable-duration", l10n.get("HUMAN_READABLE_DURATION")+": "+formatDuration(model.songrequestInfo.settings.maxVideoLength)),
             m(input, {
                 label: l10n.get("SONGREQUESTS_MAX_REQUESTS_PER_USER"),
                 id: "maxRequestsPerUser",

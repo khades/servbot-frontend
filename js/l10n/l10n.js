@@ -157,7 +157,8 @@ var l10nEN = {
     SONGREQUESTS_BANNED_TRACKS:"Banned tracks",
     SONGREQUESTS_UNBAN_TRACK:"Unban track",
     SONGREQUESTS_SHOW_BANNED_TRACKS:"Show banned tracks",
-    SONGREQUEST_UNBANNED: "Track \"%s\" is no longer banned"
+    SONGREQUEST_UNBANNED: "Track \"%s\" is no longer banned",
+    HUMAN_READABLE_DURATION:"Human readable duration"
 }
 
 var l10nRU = {
@@ -315,7 +316,9 @@ var l10nRU = {
     SONGREQUESTS_BANNED_TRACKS:"Заблокированные треки",
     SONGREQUESTS_UNBAN_TRACK:"Разблокировать",
     SONGREQUESTS_SHOW_BANNED_TRACKS:"Показать заблокированные треки",
-    SONGREQUEST_UNBANNED: "Трек \"%s\" разблокирован"
+    SONGREQUEST_UNBANNED: "Трек \"%s\" разблокирован",
+    HUMAN_READABLE_DURATION:"Итоговая длительность"
+
 }
 
 var l10n = {

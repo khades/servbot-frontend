@@ -11,6 +11,9 @@
         }
     }
     overflow-y: auto;
+    &__human-readable-duration {
+        margin-top: $element-spacing !important;
+    }
     >*+* {
         margin-top: $element-spacing;
     }

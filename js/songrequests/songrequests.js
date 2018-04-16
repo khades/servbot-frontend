@@ -95,7 +95,9 @@ export default {
 
                                         events: {
                                             'onReady': onPlayerReady,
-                                            'onStateChange': onPlayerStateChange
+                                            'onStateChange': onPlayerStateChange,
+                                            'onError': onError
+                                    
                                         }
                                     })
                                     return
@@ -111,19 +113,27 @@ export default {
                                         events: {
                                             'onReady': onPlayerReady,
                                             'onStateChange': onPlayerStateChange,
-                                            'onError': function (event) {
-                                                if (event.data == 100 || event.data == 101 || event.data == 150) {
-                                                    model.setAsYoutubeRestrictred(model.player.getVideoData().video_id)
-                                                    // notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_YOUTUBE", model.currentVideo.title))
-                                                }
-                                            }
+                                            'onError': onError//,
+                                            // 'onError': function (event) {
+                                            //     if (event.data == 100 || event.data == 101 || event.data == 150) {
+                                            //         model.setAsYoutubeRestrictred(model.player.getVideoData().video_id)
+                                            //         // notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_YOUTUBE", model.currentVideo.title))
+                                            //     }
+                                            // }
                                         }
                                     })
 
 
 
                                 }
-
+                                function onError(event) {
+                               
+                                        if (event.data == 100 || event.data == 101 || event.data == 150) {
+                                            model.setAsYoutubeRestrictred(model.player.getVideoData().video_id)
+                                            // notifications.addNotification(l10n.get("SONGREQUEST_CANT_PLAY_DUE_YOUTUBE", model.currentVideo.title))
+                                        }
+                               
+                                }
                                 function onPlayerReady() {
                                     model.playerReady = true
                                     model.afterInit(false, true)
@@ -166,7 +176,7 @@ export default {
                                 }
                             }, 200)
                         },
-                        oninput(vnode) {
+                        oninput(event) {
                             model.seekerIsPicked = true
                             event.redraw = false
                         },
