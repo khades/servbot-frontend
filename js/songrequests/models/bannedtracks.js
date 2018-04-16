@@ -31,7 +31,7 @@ export default {
     },
     unban(video) {
 
-        var url = `/api/channel/${m.route.param("channel")}/songrequests/${video.videoID}/removetag/${m.route.param("channel")}-restricted`
+        var url = `/api/channel/${m.route.param("channel")}/songrequests/${video.videoID}/unban`
         auth.request({
             url: appUrl(url)
         }).then(result => {
