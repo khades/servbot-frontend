@@ -1,8 +1,8 @@
 import m from 'mithril'
 import model from '../models/model'
-import input from '../../basicWidgets/components/InputComponent'
+import input from '../../basicWidgets/input'
 import l10n from '../../l10n/l10n'
-import check from '../../basicWidgets/components/CheckBoxComponent'
+import check from '../../basicWidgets/checkbox'
 import notifications from '../../notifications/notifications'
 import formatDuration from '../../utils/formatDuration'
 

@@ -1,9 +1,9 @@
 import model from './models/model';
 import m from 'mithril';
-import input from '../basicWidgets/components/InputComponent';
+import input from '../basicWidgets/input';
 import textarea from '../basicWidgets/textarea';
 import multiinput from '../basicWidgets/multiinput';
-import check from '../basicWidgets/components/CheckBoxComponent';
+import check from '../basicWidgets/checkbox';
 import states from '../utils/states.js';
 import '../../scss/modules/_channel-bans.scss';
 import routes from '../pageTemplate/routes';

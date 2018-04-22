@@ -1,7 +1,7 @@
 import m from 'mithril';
 import model from './models/users';
 import '../../scss/modules/_channel-users.scss';
-import input from '../basicWidgets/components/InputComponent';
+import input from '../basicWidgets/input';
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';

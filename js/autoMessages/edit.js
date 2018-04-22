@@ -1,6 +1,6 @@
 import m from 'mithril';
 import model from './models/edit';
-import input from '../basicWidgets/components/InputComponent';
+import input from '../basicWidgets/input';
 import historyItem from './components/historyItem';
 import '../../scss/modules/_automessage-edit.scss';
 import routes from '../pageTemplate/routes';
@@ -43,7 +43,6 @@ export default {
                 m(".automessage-edit__stats__messagethreshold", l10n.get("AUTOMESSAGES_NEXT_MESSAGETHRESHOLD", model.object.messageThreshold < 0 ? "0" : model.object.messageThreshold)),
                 m(".automessage-edit__stats__datethreshold", l10n.get("AUTOMESSAGES_NEXT_DURATIONTHRESHOLD", new Date(model.object.durationThreshold).toLocaleString())),
             ]) : "",
-            m(".automessage-edit__header", l10n.get("AUTOMESSAGES_SETTINGS")),
 
             m(input, {
                 label: l10n.get("AUTOMESSAGES_BODY"),

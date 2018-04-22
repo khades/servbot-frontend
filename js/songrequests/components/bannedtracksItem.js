@@ -1,5 +1,5 @@
 import m from 'mithril'
-import input from '../../basicWidgets/components/InputComponent'
+import input from '../../basicWidgets/input'
 import l10n from '../../l10n/l10n'
 import model from '../models/bannedtracks'
 import formatDuration from '../../utils/formatDuration'

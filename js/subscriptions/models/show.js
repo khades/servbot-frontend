@@ -7,7 +7,21 @@ import time from '../../utils/time';
 export default {
     state: states.LOADING,
     channelID: "",
-    subscriptions: [],
+    subscriptions: [{
+            user: "khades",
+            userID: "sadasd",
+            date: new Date(),
+            count: 1,
+            id:1
+        },
+        {
+            user: "khades",
+            userID: "sadasd",
+            date: new Date(),
+            count: 1,
+            id:2
+        }
+    ],
     intervalID: null,
     eventSource: null,
 
@@ -67,10 +81,10 @@ export default {
             m.redraw()
         }
         this.eventSource.onmessage = function (event) {
-            if (event.data == "newSub"){
+            if (event.data == "newSub") {
                 this.get(channelID)
             }
-        
+
         }.bind(this)
 
         this.eventSource.onerror = function (error) {
@@ -98,9 +112,33 @@ export default {
         }).then(response => {
             if (!!response) {
                 if (!!response) {
-                    this.subscriptions = response
+                    // this.subscriptions = response
+                    this.subscriptions = [{
+                        user: "khades",
+                        userID: "sadasd",
+                        date: new Date(),
+                        count: 1
+                    }, {
+                        user: "khades",
+                        userID: "sadasd",
+                        date: new Date(),
+                        count: 1
+                    }]
                 } else {
-                    this.subscriptions = []
+                    // this.subscriptions = []
+                    this.subscriptions = [{
+                            user: "khades",
+                            userID: "sadasd",
+                            date: new Date(),
+                            count: 1
+                        },
+                        {
+                            user: "khades",
+                            userID: "sadasd",
+                            date: new Date(),
+                            count: 1
+                        }
+                    ]
                 }
             }
             this.state = states.READY

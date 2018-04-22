@@ -1,8 +1,8 @@
-import auth from '../../utils/auth';
-import appUrl from '../../utils/appUrl';
-import states from '../../utils/states';
-import routes from '../../pageTemplate/routes';
-import m from 'mithril';
+import auth from '../../utils/auth'
+import appUrl from '../../utils/appUrl'
+import states from '../../utils/states'
+import routes from '../../pageTemplate/routes'
+import m from 'mithril'
 
 export default {
     state: states.READY,

@@ -1,7 +1,7 @@
 @import '../utils/index';
 .automessage-edit {
     >*+* {
-        margin-top: $element-spacing;
+        margin-top: $container-spacing;
     }
     &__duration-limit>label {
         @include prepend-svg("../../svg/time.svg", 1.2rem, black);
@@ -22,7 +22,14 @@
         display: flex;
         flex-direction: column;
     }
+    &__stats {
+        margin-top: 0px !important;
+    }
     &__header {
         @include header;
+    }
+    button {
+        margin-top: $container-spacing;
+        margin-bottom: $content-spacing;
     }
 }

@@ -13,14 +13,48 @@ var generateClass = function (f) {
   return "user-logs__history__message-body"
 }
 var generateMessagebody = function (f) {
+  var result = []
+  // var result = f.messageBody
   if (f.messageType == "timeout")
-    return l10n.get("BANS_TIMEOUT", f.banLength)
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_TIMEOUT", f.banLength)))
   if (f.messageType == "ban")
-    return l10n.get("BANS_PERMANENT")
-  return f.messageBody
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_PERMANENT")))
+
+
+  if (f.messageType == "untimeout")
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_UNTIMEOUT")))
+  if (f.messageType == "unban")
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_UNBAN")))
+  if (f.banIssuer != "") {
+    if (f.banReason != "") {
+      result.push(m(".user-logs__ban-description", `@${f.banIssuer} - ${l10n.get("REASON")}: "${f.banReason}"`))
+    } else {
+      result.push(m(".user-logs__ban-description", `@${f.banIssuer}`))
+    }
+  }
+  return result
 }
 
+var generatebanbody = function (f) {
+  var result = []
+  if (f.type == "timeout")
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_TIMEOUT", f.duration)))
+  if (f.type == "ban")
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_PERMANENT")))
+  if (f.type == "untimeout")
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_UNTIMEOUT")))
+  if (f.type == "unban")
+    result.push(m(".user-logs__ban-reason", l10n.get("BANS_UNBAN")))
+  if (f.banIssuer != "") {
+    if (f.reason != "") {
+      result.push(m(".user-logs__ban-description", `@${f.banIssuer} - ${l10n.get("REASON")}: "${f.reason}"`))
+    } else {
+      result.push(m(".user-logs__ban-description", `@${f.banIssuer}`))
+    }
+  }
 
+  return result
+}
 export default {
   oninit: function (vnode) {
 
@@ -42,13 +76,12 @@ export default {
   },
   view: function (vnode) {
     return m(".user-logs", [
-    
+
       !!model.result.messages ? m(".user-logs__block", [
-      
-        m("hgroup.user-logs__header", l10n.get("USER_LOGS", !!model.result.user ? model.result.user : "", channelName.get(m.route.param("channel")))), 
-        !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? l10n.get("USER_AKA", model.result.knownNicknames.join(", ")) : null,
+
+        m("hgroup.user-logs__header", l10n.get("USER_LOGS", !!model.result.user ? model.result.user : "", channelName.get(m.route.param("channel")))), !!model.result.knownNicknames && model.result.knownNicknames.length > 1 ? l10n.get("USER_AKA", model.result.knownNicknames.join(", ")) : null,
         model.result.messages.map(f => {
-            if (f.messageType == "timeout" || f.messageType == "ban") {
+            if (f.messageType == "timeout" || f.messageType == "ban" || f.messageType == "unban" || f.messageType == "untimeout") {
               return m(".user-logs__history", [
                 m(".user-logs__history__row", [
                   m(".user-logs__history__ban", generateMessagebody(f)),
@@ -63,7 +96,7 @@ export default {
               ]),
               m("div", {
                 class: generateClass(f)
-              }, generateMessagebody(f))
+              }, f.messageBody)
             ])
           }
 
@@ -71,7 +104,7 @@ export default {
       ]) : null, !!model.result.bans ? m(".user-logs__block", [
         m(".user-logs__header", l10n.get("USER_BANS", !!model.result.user ? model.result.user : "", channelName.get(m.route.param("channel")))),
         model.result.bans.map(f => m(".user-logs__ban-item", [
-          m(".user-logs__ban-type", f.type == "timeout" ? l10n.get("BANS_TIMEOUT", f.duration) : l10n.get("BANS_PERMANENT")),
+          m(".user-logs__ban-type", generatebanbody(f)),
           m(".user-logs__ban-date", new Date(f.date).toLocaleString())
 
         ]))

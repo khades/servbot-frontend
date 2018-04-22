@@ -1,16 +1,16 @@
-import model from './models/model';
-import m from 'mithril';
-import channelName from '../utils/channelName';
-import input from '../basicWidgets/components/InputComponent';
-import textarea from '../basicWidgets/textarea';
-import multiinput from '../basicWidgets/multiinput';
-import check from '../basicWidgets/components/CheckBoxComponent';
-import states from '../utils/states.js';
-import '../../scss/modules/_subday.scss';
-import roulette from '../widgets/roulette';
-import routes from '../pageTemplate/routes';
-import loading from '../basic/loading';
-import l10n from '../l10n/l10n';
+import model from './models/model'
+import m from 'mithril'
+import channelName from '../utils/channelName'
+import input from '../basicWidgets/input'
+import textarea from '../basicWidgets/textarea'
+import multiinput from '../basicWidgets/multiinput'
+import check from '../basicWidgets/checkbox'
+import states from '../utils/states.js'
+import '../../scss/modules/_subday.scss'
+import roulette from '../widgets/roulette'
+import routes from '../pageTemplate/routes'
+import loading from '../basic/loading'
+import l10n from '../l10n/l10n'
 
 export default {
     oninit: function (vnode) {
@@ -36,8 +36,11 @@ export default {
             return m(loading)
         }
         return m(".subday", [
-            m("h1", !!model.object.name ? model.object.name : ""),
-            m("", model.object.isActive == true ? l10n.get("SUBDAY_IS_ACTIVE") : l10n.get("SUBDAY_IS_CLOSED")),
+            m(".subday__hgroup", [
+                m(".subday__header", !!model.object.name ? model.object.name : ""),
+                m("", model.object.isActive == true ? l10n.get("SUBDAY_IS_ACTIVE") : l10n.get("SUBDAY_IS_CLOSED"))
+            ]),
+
             model.object.isMod == true ?
 
             [

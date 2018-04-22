@@ -38,23 +38,31 @@ export default {
 
     view(vnode) {
         return m(".subscriptions-show", [
-            m(".subscriptions-show__header", l10n.get("SUBSCRIPTIONS_TITLE", channelName.get(m.route.param("channel")))),
-            (!!model.eventSource && model.eventSource.readyState == WebSocket.CLOSED) || model.state == states.ERROR ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : "",
-            m(".subscriptions-show__threshold", model.getLimit() == null ? l10n.get("SUBSCRIPTIONS_LAST_THREE_DAYS", model.subscriptions.length) : l10n.get("SUBSCRIPTIONS_SINCE_DATE", new Date(parseInt(model.getLimit())).toLocaleString(), model.subscriptions.length)),
-            m(".subscriptions-show__buttons", [
-                m('button', {
-                    onclick: () => {
-                        model.setLimit()
-                        model.get(model.channelID)
-                    }
-                }, l10n.get("MARK_AS_READ")),
-                m('button', {
-                    onclick: () => {
-                        model.resetLimit()
-                        model.get(model.channelID)
-                    }
-                }, l10n.get("SUBSCRIPTIONS_SHOW_LAST_THREE_DAYS"))
+            m(".subscriptions-show__hgroup", [
+                m("div",[
+                    m(".subscriptions-show__header", l10n.get("SUBSCRIPTIONS_TITLE", channelName.get(m.route.param("channel")))),
+
+                    m(".subscriptions-show__threshold", model.getLimit() == null ? l10n.get("SUBSCRIPTIONS_LAST_THREE_DAYS", model.subscriptions.length) : l10n.get("SUBSCRIPTIONS_SINCE_DATE", new Date(parseInt(model.getLimit())).toLocaleString(), model.subscriptions.length)),
+
+                ]),
+
+                m(".subscriptions-show__buttons", [
+                    m('button', {
+                        onclick: () => {
+                            model.setLimit()
+                            model.get(model.channelID)
+                        }
+                    }, l10n.get("MARK_AS_READ")),
+                    m('button', {
+                        onclick: () => {
+                            model.resetLimit()
+                            model.get(model.channelID)
+                        }
+                    }, l10n.get("SUBSCRIPTIONS_SHOW_LAST_THREE_DAYS"))
+                ]),
             ]),
+
+            (!!model.eventSource && model.eventSource.readyState == WebSocket.CLOSED) || model.state == states.ERROR ? m(".subscriptions-show__error", "Произошла ошибка, пересоединяемся, если не работает - перезагрузите страницу") : "",
             m(".subscriptions-show__items", model.subscriptions.map(f => {
 
                 return m(".subscriptions-show__item", {

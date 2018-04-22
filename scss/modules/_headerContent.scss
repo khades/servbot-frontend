@@ -7,6 +7,8 @@
   justify-content: space-between;
   align-items: stretch;
   color: $background-color;
+  min-height: 2.85em;
+
   &__profile-image {
     max-height: 32px;
     border-radius: 50%;
@@ -45,10 +47,10 @@
       margin-top: -3px;
     }
     &:hover {
-      background-color: $color-active;
+      background-color: $color-blue;
     }
     &__menu-shown {
-      background-color: $color-ok;
+      background-color: $color-main;
     }
     display: inline-flex;
     justify-content: center;

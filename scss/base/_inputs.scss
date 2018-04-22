@@ -1,4 +1,8 @@
 @import '../utils/index';
+#{$all-text-inputs} {
+  padding: 0rem 0rem 0rem .5rem;
+}
+
 #{$all-text-inputs},
 select {
   border-color: $color-grey;
@@ -9,16 +13,31 @@ select {
   //border-radius: 2px;
   //box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4);
   width: 100%;
-  padding: 0em 0em 0em .5em;
   height: 2.25em;
-  font: inherit;
-  //font-size:1.1rem;
+  font: inherit; //font-size:1.1rem;
   transition: border-color 0.3s ease-in-out;
+
   &:focus,
   &:hover,
   &:active {
+    border-width: 1px;
+
     border-color: $color-main;
   }
+}
+
+select {
+  padding: 0rem 2rem 0rem .5rem;
+  background-image: svg-load("../../svg/arrow-sorted-down.svg");
+  background-size: 1.5rem 1rem;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+select option {
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 ::-webkit-input-placeholder {

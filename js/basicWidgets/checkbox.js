@@ -1,6 +1,6 @@
 import m from 'mithril';
-import '../../../scss/modules/_checkbox.scss';
-var CheckBoxComponent = {
+import '../../scss/modules/_checkbox.scss';
+export default  {
   view: function (vnode) {
     return m(".checkbox", m("input", {
       type: "checkbox",
@@ -20,4 +20,3 @@ var CheckBoxComponent = {
   }
 }
 
-export default CheckBoxComponent;

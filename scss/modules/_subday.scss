@@ -3,6 +3,9 @@
     >*+* {
         margin-top: $content-spacing;
     }
+    &__header{
+        @include header-nm();
+    }
     &__winner {
         @include simple-list-item();
         flex-wrap: no-wrap;
@@ -73,6 +76,9 @@
     }
     &__winner-game {
         padding-right: $element-spacing;
+    }
+    &__buttons {
+        @include autoflex;
     }
     &__vote {
         @include simple-list-item();

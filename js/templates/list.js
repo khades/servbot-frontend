@@ -2,7 +2,7 @@ import m from 'mithril';
 import '../../scss/modules/_template-list.scss';
 import model from './models/list';
 import TemplateListItemComponent from './components/TemplateListItemComponent';
-import input from '../basicWidgets/components/InputComponent';
+import input from '../basicWidgets/input';
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';

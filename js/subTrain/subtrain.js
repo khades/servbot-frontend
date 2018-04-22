@@ -1,15 +1,15 @@
-import model from './models/model';
-import m from 'mithril';
-import channelName from '../utils/channelName';
-import input from '../basicWidgets/components/InputComponent';
-import textarea from '../basicWidgets/textarea';
-import multiinput from '../basicWidgets/multiinput';
-import check from '../basicWidgets/components/CheckBoxComponent';
-import states from '../utils/states.js';
-import routes from '../pageTemplate/routes';
-import loading from '../basic/loading';
-import l10n from '../l10n/l10n';
-import '../../scss/modules/_subtrain.scss';
+import model from './models/model'
+import m from 'mithril'
+import channelName from '../utils/channelName'
+import input from '../basicWidgets/input'
+import textarea from '../basicWidgets/textarea'
+import multiinput from '../basicWidgets/multiinput'
+import check from '../basicWidgets/checkbox'
+import states from '../utils/states.js'
+import routes from '../pageTemplate/routes'
+import loading from '../basic/loading'
+import l10n from '../l10n/l10n'
+import '../../scss/modules/_subtrain.scss'
 
 export default {
 
@@ -39,7 +39,15 @@ export default {
             return m(loading)
         }
         return m(".subtrain", [
-            m("h1", l10n.get("SUBTRAIN_TITLE", channelName.get(m.route.param("channel")))),
+            m(".subtrain__hgroup", [
+                m(".subtrain__header", l10n.get("SUBTRAIN_TITLE", channelName.get(m.route.param("channel")))),
+
+                model.object.enabled == true && model.object.сurrentStreak != 0 ? [m("", l10n.get("SUBTRAIN_NEXT_NOTIFICATION", new Date(model.object.notificationTime).toLocaleString())),
+                    m("", l10n.get("SUBTRAIN_END_TIME", new Date(model.object.expirationTime).toLocaleString())),
+                    m("", l10n.get("SUBTRAIN_SIZE", model.object.сurrentStreak)),
+                    m("", l10n.get("SUBTRAIN_PARTICIPANTS", !!model.object.users ? model.object.users.join(", ") : ""))
+                ] : null,
+            ]),
             m(check, {
                 id: "enabled",
                 getValue: () => model.object.enabled,
@@ -58,10 +66,7 @@ export default {
                 },
                 label: l10n.get("SUBTRAIN_COUNT_ONLY_NEW_SUBS")
             }),
-            m("", l10n.get("SUBTRAIN_NEXT_NOTIFICATION", new Date(model.object.notificationTime).toLocaleString())),
-            m("", l10n.get("SUBTRAIN_END_TIME", new Date(model.object.expirationTime).toLocaleString())),
-            m("", l10n.get("SUBTRAIN_SIZE", model.object.сurrentStreak)),
-            m("", l10n.get("SUBTRAIN_PARTICIPANTS", !!model.object.users ? model.object.users.join(", ") : "")),
+
             m(input, {
                 label: l10n.get("SUBTRAIN_EXPIRATION_DURATION"),
                 id: "expirationLimit",

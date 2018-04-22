@@ -1,7 +1,9 @@
-import auth from '../../utils/auth';
-import appUrl from '../../utils/appUrl';
-import states from '../../utils/states';
-import m from 'mithril';
+import auth from '../../utils/auth'
+import appUrl from '../../utils/appUrl'
+import states from '../../utils/states'
+import m from 'mithril'
+import l10n from '../../l10n/l10n'
+import notifications from "../../notifications/notifications"
 
 export default {
     state: states.READY,
@@ -61,6 +63,7 @@ export default {
                 this.isValid = true
                 this.isNew = false
                 m.route.set(`/channel/${this.object.channelID}/autoMessages/${result.ID}`)
+                notifications.addNotification(l10n.get("SAVE_SUCCESSFULL"))
 
             }).catch(error => {
                 if (error.code == 422) {
@@ -77,6 +80,8 @@ export default {
                 this.isValid = true
                 this.isNew = false
                 this.get(this.object.channelID, this.object.id)
+                notifications.addNotification(l10n.get("SAVE_SUCCESSFULL"))
+
             }).catch(error => {
                 if (error.code == 422) {
                     this.isValid = false

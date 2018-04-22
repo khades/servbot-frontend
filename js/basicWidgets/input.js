@@ -1,5 +1,5 @@
-import m from 'mithril';
-import '../../../scss/modules/_controlGroup.scss';
+import m from 'mithril'
+import '../../scss/modules/_controlGroup.scss'
 
 function generateClass(vnode) {
   var classes = []
@@ -28,4 +28,4 @@ export default {
       }), !!vnode.attrs.error && vnode.attrs.error != null ? m("div.help-block", vnode.attrs.error) : null, !!vnode.attrs.getError && vnode.attrs.getError() != null && vnode.attrs.getError() != "" ? m("div.help-block", vnode.attrs.getError()) : null
     ])
   }
-};
+}

@@ -12,6 +12,10 @@
         margin-top: $container-spacing;
 
     }
+    &__original-body {
+        margin-top:$element-spacing;
+        color: $color-grey;
+    }
     &__buttons {
         @include autoflex;
     }
@@ -24,6 +28,10 @@
     }
     &__hgroup {
         @include stretchedflex;
+    }
+    &__buttons {
+        margin-top: $container-spacing;
+
     }
     &__history {
         >*+* {

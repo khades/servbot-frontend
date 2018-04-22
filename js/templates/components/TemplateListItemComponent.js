@@ -1,8 +1,7 @@
-import m from 'mithril';
-import '../../../scss/modules/_template-item.scss';
-import l10n from '../../l10n/l10n';
-import TemplateMustashedBodyComponent from './TemplateMustashedBodyComponent';
-
+import m from 'mithril'
+import '../../../scss/modules/_template-item.scss'
+import l10n from '../../l10n/l10n'
+import TemplateMustashedBodyComponent from './TemplateMustashedBodyComponent'
 function getCommandInfo(item) {
     var commandInfo = {
         type: "deleted",

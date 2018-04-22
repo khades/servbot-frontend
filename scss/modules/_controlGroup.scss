@@ -1,5 +1,9 @@
 @import '../utils/index';
 .control-group {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   > * + * {
     margin-top: $element-spacing;
   }

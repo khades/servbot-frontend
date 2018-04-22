@@ -1,7 +1,12 @@
 @import '../utils/index';
 .external-services {
     > * + * {
-        margin-top: $element-spacing;
+        margin-top: $content-spacing;
+    }
+    &__block {
+        > * + * {
+            margin-top: $container-spacing;
+        }
     }
     &__header {
         @include header;

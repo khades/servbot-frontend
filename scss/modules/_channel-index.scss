@@ -1,7 +1,16 @@
 @import '../utils/index';
 .channel-index {
     >*+* {
-        margin-top: $content-spacing;
+        margin-top: $element-spacing;
+    }
+    &__hgroup {
+        &+* {
+            margin-top: $content-spacing;
+
+        }
+    }
+    &__header {
+        @include header-nm;
     }
     &__mod-channels {
         display: flex;
@@ -14,5 +23,9 @@
             margin: 0.2rem;
       
         }
+    }
+    .control-group label {
+        font-size: 1.17rem;
+        font-weight:bolder;
     }
 }

@@ -31,8 +31,12 @@
     &__ban-date {
         color:$color-grey;
     }
-    &__ban-type {
-        font-weight: bolder;
+    &__ban-type,&__history__ban {
+        display: flex;
+        flex-direction: column;
+        >*+* {
+            margin-top: $element-spacing;
+        }
     }
     display: flex;
     flex-direction: column;
@@ -63,9 +67,7 @@
             margin-top:$element-spacing;
         }
         &__timeout,
-        &__ban {
-            font-weight: bolder;
-        }
+      
         &__username {
             color: $color-main;
 
@@ -74,5 +76,9 @@
             display: flex;
             justify-content: space-between;
         }
+    }
+    &__ban-reason {
+        font-weight: bolder;
+
     }
 }

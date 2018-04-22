@@ -3,13 +3,19 @@
     display: flex;
     justify-content: center;
     &__item {
+        border-radius: 2px;
+        display: inline-flex;
+        justify-content: center;
+        background-color: white;
         font-weight: bold;
-        margin: 2px;
-        border: 1pt solid $background-main-color;
+        @include mshadow;
+        margin: 2px; //  border: 1pt solid $background-main-color;
         color: $background-main-color;
         cursor: pointer;
         &__content {
-            padding: 0.5em 1.0em 0.5em 1.0em;
+            text-align: center;
+            min-width: 3rem;
+            padding:0.7rem 1rem 0.7rem 1rem
         }
         &:hover {
             color: $background-color;
@@ -17,12 +23,11 @@
         }
         &__selected {
             color: $background-color;
-            background: $color-ok !important;
-            border-color: $color-ok !important;
+            background: $color-main !important; //    border-color: $color-main  !important;
             cursor: default;
         }
         &__inactive {
-            border-color: darkgrey !important;
+            background-color: white !important;
             color: darkgrey !important;
         }
     }
