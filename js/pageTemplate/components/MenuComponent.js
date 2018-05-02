@@ -35,8 +35,8 @@ var MenuComponent = {
                     oncreate: m.route.link,
                     //   class: vnode.attrs.route == routes.CHANNEL ? "is-selected" : ""
                 },[
-                    !!UserNameModel.avatarUrl ? m("img", {
-                        src: UserNameModel.avatarUrl 
+                    !!UserNameModel.profileImage ? m("img", {
+                        src: UserNameModel.profileImage
                     }):null,
                     m(".site-menu__header-info", [
 
