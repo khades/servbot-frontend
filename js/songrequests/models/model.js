@@ -182,7 +182,7 @@ export default {
         //     return
         // }
 
-        if (this.songrequestInfo.requests.length == 0) {
+        if (this.songrequestInfo.requests == null || this.songrequestInfo.requests.length == 0) {
             this.videoID = ""
             this.currentVideo = null
             if (!!this.player.stopVideo) {
