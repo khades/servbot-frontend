@@ -156,7 +156,7 @@ export default {
                 vnode.state.shownPane == "settings" ? m(settings) : null,
                 vnode.state.shownPane == "bannedtracks" ? m(bannedtracks) : null,
 
-                vnode.state.shownPane == "playlist" && model.songrequestInfo != null ? m(".songrequests__requests", model.songrequestInfo.requests.sort(function (a, b) {
+                vnode.state.shownPane == "playlist" && model.songrequestInfo != null && model.songrequestInfo.requests != null ? m(".songrequests__requests", model.songrequestInfo.requests.sort(function (a, b) {
                     var c = a.order
                     var d = b.order
                     return c - d

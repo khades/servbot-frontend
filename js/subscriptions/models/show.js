@@ -7,20 +7,7 @@ import time from '../../utils/time';
 export default {
     state: states.LOADING,
     channelID: "",
-    subscriptions: [{
-            user: "khades",
-            userID: "sadasd",
-            date: new Date(),
-            count: 1,
-            id:1
-        },
-        {
-            user: "khades",
-            userID: "sadasd",
-            date: new Date(),
-            count: 1,
-            id:2
-        }
+    subscriptions: [
     ],
     intervalID: null,
     eventSource: null,
@@ -112,33 +99,23 @@ export default {
         }).then(response => {
             if (!!response) {
                 if (!!response) {
-                    // this.subscriptions = response
-                    this.subscriptions = [{
-                        user: "khades",
-                        userID: "sadasd",
-                        date: new Date(),
-                        count: 1
-                    }, {
-                        user: "khades",
-                        userID: "sadasd",
-                        date: new Date(),
-                        count: 1
-                    }]
+                    this.subscriptions = response
+           
                 } else {
-                    // this.subscriptions = []
-                    this.subscriptions = [{
-                            user: "khades",
-                            userID: "sadasd",
-                            date: new Date(),
-                            count: 1
-                        },
-                        {
-                            user: "khades",
-                            userID: "sadasd",
-                            date: new Date(),
-                            count: 1
-                        }
-                    ]
+                    this.subscriptions = []
+                    // this.subscriptions = [{
+                    //         user: "khades",
+                    //         userID: "sadasd",
+                    //         date: new Date(),
+                    //         count: 1
+                    //     },
+                    //     {
+                    //         user: "khades",
+                    //         userID: "sadasd",
+                    //         date: new Date(),
+                    //         count: 1
+                    //     }
+                    // ]
                 }
             }
             this.state = states.READY
