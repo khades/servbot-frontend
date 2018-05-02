@@ -35,9 +35,9 @@ var MenuComponent = {
                     oncreate: m.route.link,
                     //   class: vnode.attrs.route == routes.CHANNEL ? "is-selected" : ""
                 },[
-                    m("img", {
-                        src: "https://static-cdn.jtvnw.net/jtv_user_pictures/d7bbfe70-9962-4e76-8a10-267a0cea9a64-profile_image-300x300.png"
-                    }),
+                    !!UserNameModel.avatarUrl ? m("img", {
+                        src: UserNameModel.avatarUrl 
+                    }):null,
                     m(".site-menu__header-info", [
 
                         m("div", `${UserNameModel.userName}`),
