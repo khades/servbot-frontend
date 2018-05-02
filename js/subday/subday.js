@@ -37,8 +37,8 @@ export default {
         }
         return m(".subday", [
             m(".subday__hgroup", [
-                m(".subday__header", !!model.object.name ? model.object.name : ""),
-                m("", model.object.isActive == true ? l10n.get("SUBDAY_IS_ACTIVE") : l10n.get("SUBDAY_IS_CLOSED"))
+                m(".subday__header", !!model.object.name ? model.object.name : ""), !!model.object.closer && model.object.closer != "" ? m("", l10n.get("SUBDAY_IS_CLOSED_BY", model.object.closer)) : m("", model.object.isActive == true ? l10n.get("SUBDAY_IS_ACTIVE") : l10n.get("SUBDAY_IS_CLOSED")),
+
             ]),
 
             model.object.isMod == true ?

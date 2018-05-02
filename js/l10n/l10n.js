@@ -78,6 +78,7 @@ var l10nEN = {
     SUBDAY_CLOSE: "Close subday",
     SUBDAY_WINNERS_HISTORY: "Winners history",
     SUBDAY_VOTES: "Votes",
+    SUBDAY_IS_CLOSED_BY:"Subday is closed by moderator %s",
     SUBSCRIPTIONS_TITLE: "Subscriptions on channel %s",
     SUBSCRIPTIONS_LAST_THREE_DAYS: "For last three days: %s subscriptions",
     SUBSCRIPTIONS_SINCE_DATE: "Since %s: %s subscriptions",
@@ -254,6 +255,8 @@ var l10nRU = {
     SUBDAY_CLOSE: "Закрыть сабдей",
     SUBDAY_WINNERS_HISTORY: "История победителей",
     SUBDAY_VOTES: "Голоса",
+    SUBDAY_IS_CLOSED_BY:"Сабдей закрыт модератором %s",
+
     SUBSCRIPTIONS_TITLE: "Подписки на канале %s",
     SUBSCRIPTIONS_LAST_THREE_DAYS: "За последние три дня: %s подписок",
     SUBSCRIPTIONS_SINCE_DATE: "После %s: %s подписок",
