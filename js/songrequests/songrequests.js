@@ -194,7 +194,7 @@ export default {
                             model.player.seekTo(event.target.value / 100)
                         }
                     }),
-                    model.songrequestInfo.requests.length > 0 ? m(".songrequests__song-info", [!!model.player && !!model.player.getPlayerState && model.player.getPlayerState() == 1 ? m(".songrequests__pause-button", {
+                    model.songrequestInfo.requests != null && model.songrequestInfo.requests.length > 0 ? m(".songrequests__song-info", [!!model.player && !!model.player.getPlayerState && model.player.getPlayerState() == 1 ? m(".songrequests__pause-button", {
                                 onclick() {
                                     model.player.pauseVideo()
                                 }
