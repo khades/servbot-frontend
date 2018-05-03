@@ -10,7 +10,7 @@ export default {
     oninit(vnode) {
         vnode.state.model = {
             name: "",
-            allowNonSubs: false
+            subsOnly: true
         }
     },
     view(vnode) {
@@ -28,10 +28,13 @@ export default {
             }),
             m(checkbox, {
                 id: "allowNonSubs",
-                getValue: () => vnode.state.model.allowNonSubs,
+                getValue: () => vnode.state.model.subsOnly == false,
                 setValue: value => {
-
-                    vnode.state.model.allowNonSubs = value
+                    if (value == true) {
+                        vnode.state.model.subsOnly = false 
+                    } else {
+                        vnode.state.model.subsOnly = true 
+                    }
                 },
                 label: l10n.get("SUBDAY_ALLOW_NON_SUBS")
             }),
