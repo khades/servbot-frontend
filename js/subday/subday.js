@@ -50,7 +50,7 @@ export default {
                     }
                 }) : "",
 
-                m("h1", l10n.get("SUBDAY_WINNERS")),
+                m(".subday__subheader", l10n.get("SUBDAY_WINNERS")),
                 m(".subday__winners", model.object.winners.map(f => {
                     return m(".subday__winner", [
                         m(".subday__winner-user", f.user),
@@ -106,7 +106,7 @@ export default {
 
             :
             null,
-            m("h1", l10n.get("SUBDAY_VOTES")),
+            m(".subday__subheader", l10n.get("SUBDAY_VOTES")),
             m(".subday__votes", model.object.votes.map(f => {
                 return m(".subday__vote", [
                     m(".subday__vote-user", f.user),

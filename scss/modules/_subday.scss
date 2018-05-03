@@ -6,6 +6,13 @@
     &__header{
         @include header-nm();
     }
+    &__subheader {
+        font-size: 1.2rem;
+        font-weight: bolder;
+        & + * {
+            margin-top: $element-spacing;
+        }
+    }
     &__winner {
         @include simple-list-item();
         flex-wrap: no-wrap;
@@ -19,12 +26,9 @@
         }
         align-content: center;
         >button {
-            background: white;
-            color: black;
-            &:hover,
-            &:active {
-                background: grey;
-            }
+        
+                margin-left: $element-spacing;
+        
         }
     }
     &__roulette {
@@ -74,10 +78,9 @@
     &__winner-user {
         flex-grow: 2;
     }
-    &__winner-game {
-        padding-right: $element-spacing;
-    }
+
     &__buttons {
+        margin-top: $container-spacing;
         @include autoflex;
     }
     &__vote {
