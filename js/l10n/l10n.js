@@ -98,7 +98,7 @@ var l10nEN = {
     SUBTRAIN_NOTIFICAION_BODY: "Subtrain expiration notification message",
     SUBTRAIN_EXPIRATION_BODY: "Subtrain expiration message",
     TEMPLATE_TITLE: "Command %s on channel %s",
-    
+    REDIRECTING:"Redirecting...",
     TEMPLATE_TO_ALIAS: "Convert to alias",
     TEMPLATE_TO_NORMAL: "Convert to normal command",
     TEMPLATE_GO_TO_ORIGINAL: "Jump to original command",
@@ -256,6 +256,7 @@ var l10nRU = {
     SUBDAY_WINNERS_HISTORY: "История победителей",
     SUBDAY_VOTES: "Голоса",
     SUBDAY_IS_CLOSED_BY:"Сабдей закрыт модератором %s",
+    REDIRECTING:"Перенаправляем...",
 
     SUBSCRIPTIONS_TITLE: "Подписки на канале %s",
     SUBSCRIPTIONS_LAST_THREE_DAYS: "За последние три дня: %s подписок",

@@ -1,19 +1,20 @@
 import m from 'mithril';
-import PageTemplateComponent from '../pageTemplate/PageTemplateComponent';
+import l10n from '../l10n/l10n';
 
 var AfterAuthComponent = {
-  oninit: function (vnode) {
+  oninit: (vnode) => {
     let route = localStorage.getItem("redirect");
     if (!!route) {
       m.route.set(route);
     } else m.route.set("/")
   },
-  view: function () {
-    return m(PageTemplateComponent, {
-      route: "redirect",
-      title: "Перенаправляем обратно",
-      content: "Перенаправляем обратно"
-    })
+  route: routes.CHANNELBANS,
+  getTitle: () => {
+    return l10n.get("REDIRECTING")
+  },
+  view: () => {
+    return m(".redirect", l10n.get("REDIRECTING"))
+
   }
 }
 

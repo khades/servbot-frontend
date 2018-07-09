@@ -11,5 +11,6 @@ export default {
     SUBTRAIN: 10,
     CHANNELBANS: 11,
     SUBDAY: 12,
-    SONGREQUESTS: 13
+    SONGREQUESTS: 13,
+    REDIRECT: 14
 };
