@@ -6,6 +6,7 @@ var AfterAuthComponent = {
   oninit: (vnode) => {
     let route = localStorage.getItem("redirect");
     if (!!route) {
+      localStorage.setItem("/");
       m.route.set(route);
     } else m.route.set("/")
   },
@@ -15,7 +16,6 @@ var AfterAuthComponent = {
   },
   view: () => {
     return m(".redirect", l10n.get("REDIRECTING"))
-
   }
 }
 
