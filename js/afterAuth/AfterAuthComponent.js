@@ -1,5 +1,6 @@
 import m from 'mithril';
 import l10n from '../l10n/l10n';
+import routes from '../pageTemplate/routes';
 
 var AfterAuthComponent = {
   oninit: (vnode) => {
