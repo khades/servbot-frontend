@@ -53,11 +53,13 @@ export default {
             ]),
 
             vnode.state.innerroute == "list" ? m(".subday-list__items", model.objects.map(f => {
-                return m(".subday-list__item", [
-                    m("a.subday-list__name", {
-                        class: f.isActive ? "subday-list__name--is-active" : "",
-                        href: `/channel/${f.channelID}/subdays/${f.id}`,
-                        oncreate: m.route.link
+                return m("a.subday-list__item", {
+                    href: `/channel/${f.channelID}/subdays/${f.id}`,
+                    oncreate: m.route.link
+                },[
+                    m("subday-list__name", {
+                        class: f.isActive ? "subday-list__name--is-active" : ""
+
                     }, f.name),
                     m(".subday-list__date", new Date(f.date).toLocaleString())
                 ])
