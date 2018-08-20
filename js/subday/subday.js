@@ -53,7 +53,9 @@ export default {
                 m(".subday__subheader", l10n.get("SUBDAY_WINNERS")),
                 m(".subday__winners", model.object.winners.map(f => {
                     return m(".subday__winner", [
-                        m(".subday__winner-user", f.user),
+                        m(".subday__winner-user",{
+                            class: model.object.subsOnly === false && f.isSub === true ? "subday__winner-user--sub" : ""
+                        }, f.user),
                         m(".subday__winner-game", f.game),
                         model.object.isActive == true ? m('button', {
                             class: model.playingRoulette == true ? "disabled" : "",
@@ -75,9 +77,30 @@ export default {
                         onclick: (event) => {
 
                             event.redraw = false
-                            model.randomize(m.route.param("roulette") == true)
+                            model.randomize(m.route.param("roulette") == true, false, false)
                         }
                     }, l10n.get("SUBDAY_RANDOMIZE_WINNER")),
+                    model.object.subsOnly === false ? m('button', {
+                        type: 'button',
+                        class: model.playingRoulette == true ? "disabled" : "",
+
+                        onclick: (event) => {
+
+                            event.redraw = false
+                            model.randomize(m.route.param("roulette") == true, true, false)
+                        }
+                    }, "★ "+l10n.get("SUBDAY_RANDOMIZE_WINNER_SUBS")) : null,
+
+                    model.object.subsOnly === false ? m('button', {
+                        type: 'button',
+                        class: model.playingRoulette == true ? "disabled" : "",
+
+                        onclick: (event) => {
+
+                            event.redraw = false
+                            model.randomize(m.route.param("roulette") == true, false, true)
+                        }
+                    }, l10n.get("SUBDAY_RANDOMIZE_WINNER_NONSUBS")) : null,
                     m('button', {
                         type: 'button',
                         class: model.playingRoulette == true ? "disabled" : "",
@@ -109,7 +132,9 @@ export default {
             m(".subday__subheader", l10n.get("SUBDAY_VOTES")),
             m(".subday__votes", model.object.votes.map(f => {
                 return m(".subday__vote", [
-                    m(".subday__vote-user", f.user),
+                    m(".subday__vote-user", {
+                        class: model.object.subsOnly === false && f.isSub === true ? "subday__vote-user--sub" : ""
+                    }, f.user),
                     m(".subday__vote-game", f.game)
                 ])
             }))

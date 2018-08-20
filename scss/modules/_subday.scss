@@ -13,6 +13,10 @@
             margin-top: $element-spacing;
         }
     }
+    &__winner-user--sub:before, &__vote-user--sub:before{
+        content:"★";
+        margin-right: 0.35rem;
+    }
     &__winner {
         @include simple-list-item();
         flex-wrap: no-wrap;

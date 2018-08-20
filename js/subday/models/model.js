@@ -79,12 +79,19 @@ export default {
             this.get(this.channelID, this.subdayID)
         })
     },
-    randomize: function (block) {
+    randomize: function (block, subs, nonsubs) {
         if (this.playingRoulette == true) {
             return
         }
+        let url = `api/channel/${this.channelID}/subdays/${this.subdayID}/randomize`
+        if (subs === true) {
+            url = `api/channel/${this.channelID}/subdays/${this.subdayID}/randomizeSubs`
+        }
+        if (nonsubs === true) {
+            url = `api/channel/${this.channelID}/subdays/${this.subdayID}/randomizeNonSubs`
+        }
         auth.request({
-            url: appUrl(`api/channel/${this.channelID}/subdays/${this.subdayID}/randomize`),
+            url: appUrl(url),
             method: "GET"
         }).then(result => {
             if (!!result.user) {

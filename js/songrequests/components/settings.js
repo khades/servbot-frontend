@@ -14,7 +14,6 @@ export default {
                 id: "onlySubs",
                 getValue: () => model.songrequestInfo.settings.onlySubs,
                 setValue: value => {
-
                     model.songrequestInfo.settings.onlySubs = value
                 },
                 label: l10n.get("SONGREQUESTS_SUBS_ONLY")
@@ -28,19 +27,30 @@ export default {
                 setValue: (value) => {
                     model.songrequestInfo.settings.playlistLength = parseInt(value.trim())
                     m.redraw()
-
                 }
             }),
             m(input, {
+                label: l10n.get("SONGREQUESTS_MIN_VIDEO_LENGTH"),
+                id: "minSongLength",
+                getValue: () => {
+                    return model.songrequestInfo.settings.minVideoLength
+                },
+                setValue: (value) => {
+                    model.songrequestInfo.settings.minVideoLength = parseInt(value.trim())
+                    m.redraw()
+                }
+            }),
+            m("div.songrequests__human-readable-duration", l10n.get("HUMAN_READABLE_DURATION")+": "+formatDuration(model.songrequestInfo.settings.minVideoLength)),
+
+            m(input, {
                 label: l10n.get("SONGREQUESTS_MAX_VIDEO_LENGTH"),
-                id: "playlistLength",
+                id: "maxSongLength",
                 getValue: () => {
                     return model.songrequestInfo.settings.maxVideoLength
                 },
                 setValue: (value) => {
                     model.songrequestInfo.settings.maxVideoLength = parseInt(value.trim())
                     m.redraw()
-
                 }
             }),
             m("div.songrequests__human-readable-duration", l10n.get("HUMAN_READABLE_DURATION")+": "+formatDuration(model.songrequestInfo.settings.maxVideoLength)),
@@ -53,7 +63,6 @@ export default {
                 setValue: (value) => {
                     model.songrequestInfo.settings.maxRequestsPerUser = parseInt(value.trim())
                     m.redraw()
-
                 }
             }),
             m(input, {
