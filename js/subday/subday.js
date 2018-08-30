@@ -15,14 +15,14 @@ import l10n from '../l10n/l10n'
 export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
-        model.get(m.route.param("channel"), m.route.param("subdayID"))
+        model.get(m.route.param("channel"), m.route.param("subdayID"), true)
 
     },
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
         vnode.state.route = m.route.get()
-        model.get(m.route.param("channel"), m.route.param("subdayID"))
+        model.get(m.route.param("channel"), m.route.param("subdayID"), true)
 
     },
     route: routes.SUBDAY,

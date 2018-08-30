@@ -111,11 +111,14 @@ export default {
             }
         })
     },
-    get: function (channel, subdayID) {
+    get: function (channel, subdayID, init) {
         this.channelID = channel
         this.subdayID = subdayID
         this.state = states.LOADING
-        this.route = m.route.get()
+        if (init == true ) {
+            this.route = m.route.get()
+
+        }
         auth.request({
             url: appUrl(`api/channel/${this.channelID}/subdays/${this.subdayID}`)
         }).then(response => {
