@@ -122,7 +122,7 @@ export default {
             this.state = states.LOADING
         }
         this.route = m.route.get()
-        auth.request({
+        return auth.request({
             url: appUrl(`api/channel/${this.channelID}/subdays/${this.subdayID}`)
         }).then(response => {
             if (!!response) {
