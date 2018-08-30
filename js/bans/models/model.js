@@ -23,6 +23,9 @@ export default {
             }
             this.state = states.READY
         }).catch(error => {
+            this.object = {
+                bans: []
+            }
             if (error.Code = 401) {
                 this.state = states.FORBIDDEN
             }

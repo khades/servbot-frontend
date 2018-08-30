@@ -130,6 +130,11 @@ export default {
             }
             this.state = states.READY
         }).catch(error => {
+            this.object =   {
+                votes: [],
+                winners: [],
+                winnersHistory: []
+            }
             if (error.Code = 401) {
                 this.state = states.FORBIDDEN
             }

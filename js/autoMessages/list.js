@@ -5,7 +5,8 @@ import '../../scss/modules/_automessage-list.scss';
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';
-import states from '../utils/states'
+import states from '../utils/states';
+import loading from '../basic/loading';
 
 export default {
     oninit: function (vnode) {
@@ -32,6 +33,9 @@ export default {
 
     },
     view(vnode) {
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         return m(".automessage-list", [
             m("hgroup", [
                 m(".automessage-list__header", l10n.get("AUTOMESSAGES_TITLE", channelName.get(m.route.param("channel")))),

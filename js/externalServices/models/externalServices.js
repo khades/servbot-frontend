@@ -45,6 +45,7 @@ export default {
             }
             this.state = states.READY
         }).catch(error => {
+            this.object = {}
             if (error.Code = 401) {
                 this.state = states.FORBIDDEN
             }
