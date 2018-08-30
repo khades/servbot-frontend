@@ -114,11 +114,11 @@ export default {
     get: function (channel, subdayID, init) {
         this.channelID = channel
         this.subdayID = subdayID
-        this.state = states.LOADING
-        if (init == true ) {
-            this.route = m.route.get()
+        if (init == true) {
 
+            this.state = states.LOADING
         }
+        this.route = m.route.get()
         auth.request({
             url: appUrl(`api/channel/${this.channelID}/subdays/${this.subdayID}`)
         }).then(response => {
@@ -127,7 +127,7 @@ export default {
                 this.subdayID = response.id
             }
             this.state = states.READY
-        
+
         }).catch(error => {
             if (error.Code = 401) {
                 this.state = states.FORBIDDEN
