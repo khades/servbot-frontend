@@ -2,6 +2,6 @@ import m from 'mithril';
 
 export default {
     view(vnode) {
-        return m(".loading", "Now loading")
+        return m(".loading", m(".loading__spinner"))
     }
 };
