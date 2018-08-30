@@ -7,10 +7,14 @@ import checkbox from '../basicWidgets/checkbox';
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';
+import loading from '../basic/loading';
+import states from '../utils/states.js';
 
 export default {
 
     oninit: function (vnode) {
+
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
 
@@ -19,6 +23,8 @@ export default {
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
     },
@@ -31,6 +37,9 @@ export default {
     },
 
     view(vnode) {
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         return m(".subalert-show", [
             m("hgroup", [
                 m(".subalert-show__headernm", l10n.get("SUBALERTS_TITLE", channelName.get(m.route.param("channel")))),

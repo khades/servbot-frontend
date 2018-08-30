@@ -1,18 +1,17 @@
 import m from 'mithril';
 import model from './models/users';
 import '../../scss/modules/_channel-users.scss';
-import input from '../basicWidgets/input';
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';
 import notifications from '../notifications/notifications';
+import loading from '../basic/loading';
+import states from '../utils/states.js';
 
 export default {
     oninit: function (vnode) {
-
+        model.state = states.LOADING
         notifications.addNotification(l10n.get("USER_LIST_TOP_100_SHOWN"), "USER_LIST_TOP_100_SHOWN")
-
-
         vnode.state.route = m.route.get()
         model.init(m.route.param("channel"))
     },
@@ -22,6 +21,7 @@ export default {
 
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.init(m.route.param("channel"))
     },
@@ -32,7 +32,9 @@ export default {
         return l10n.get("USER_LIST", channelName.get(m.route.param("channel")))
     },
     view: function (vnode) {
-
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         return m(".channel-users", [
             m("hgroup.channel-users__hgroup", [
                 m(".channel-users__header", l10n.get("USER_LIST", channelName.get(m.route.param("channel")))),

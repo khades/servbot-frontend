@@ -5,10 +5,12 @@ import historyItem from './components/historyItem';
 import '../../scss/modules/_automessage-edit.scss';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';
+import states from '../utils/states'
 
 export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
+        model.state = states.LOADING
         if (!!m.route.param("id")) {
             model.get(m.route.param("channel"), m.route.param("id"))
         } else {
@@ -20,6 +22,7 @@ export default {
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         if (!!m.route.param("id")) {
             model.get(m.route.param("channel"), m.route.param("id"))

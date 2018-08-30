@@ -14,9 +14,10 @@ var generateClass = (f) => {
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';
-
+import loading from '../basic/loading';
 export default {
     oninit: function (vnode) {
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
     },
@@ -24,6 +25,7 @@ export default {
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
     },
@@ -37,6 +39,9 @@ export default {
     },
 
     view(vnode) {
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         return m(".subscriptions-show", [
             m(".subscriptions-show__hgroup", [
                 m("div",[

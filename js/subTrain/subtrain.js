@@ -14,6 +14,7 @@ import '../../scss/modules/_subtrain.scss'
 export default {
 
     oninit: function (vnode) {
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
 
@@ -22,6 +23,7 @@ export default {
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
 

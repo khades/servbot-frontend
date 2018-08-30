@@ -6,10 +6,13 @@ import input from '../basicWidgets/input';
 import channelName from '../utils/channelName';
 import routes from '../pageTemplate/routes';
 import l10n from '../l10n/l10n';
+import loading from '../basic/loading';
+import states from '../utils/states.js';
 
 export default {
 
     oninit: function (vnode) {
+        model.state = states.LOADING
         vnode.state.tab = "list"
         model.showAll = false
         vnode.state.route = m.route.get()
@@ -19,6 +22,7 @@ export default {
         
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.tab = "list"
         vnode.state.route = m.route.get()
         model.init(m.route.param("channel"))
@@ -28,6 +32,9 @@ export default {
         return l10n.get("TEMPLATES_TITLE", channelName.get(m.route.param("channel")))
     },
     view: function (vnode) {
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         return m(".template-list", [
             m("hgroup.template-list__hgroup", [
                 m(".template-list__header", l10n.get("TEMPLATES_TITLE", channelName.get(m.route.param("channel")))),

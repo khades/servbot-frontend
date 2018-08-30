@@ -1,23 +1,22 @@
 import model from './models/model';
 import m from 'mithril';
-import input from '../basicWidgets/input';
-import textarea from '../basicWidgets/textarea';
-import multiinput from '../basicWidgets/multiinput';
-import check from '../basicWidgets/checkbox';
 import states from '../utils/states.js';
 import '../../scss/modules/_channel-bans.scss';
 import routes from '../pageTemplate/routes';
 import channelName from '../utils/channelName';
 import l10n from '../l10n/l10n';
+import loading from '../basic/loading';
 
 export default {
     oninit: function (vnode) {
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
     },
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
     },
@@ -26,7 +25,9 @@ export default {
         return l10n.get("BANS_TITLE", channelName.get(m.route.param("channel")))
     },
     view: function (vnode) {
-
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         return model.state == states.READY ?
             m(".channel-bans", [
                 m(".channel-bans__page-header", l10n.get("BANS_TITLE", channelName.get(m.route.param("channel")))),

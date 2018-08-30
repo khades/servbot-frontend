@@ -11,11 +11,13 @@ import '../../scss/modules/_external-services.scss';
 
 export default {
     oninit(vnode) {
+        model.state == states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
     },
     onupdate(vnode) {
         if (vnode.state.route != m.route.get()) {
+            model.state == states.LOADING
             vnode.state.route = m.route.get()
             model.get(m.route.param("channel"))
         }

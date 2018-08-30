@@ -28,7 +28,7 @@ export default {
         if (vnode.state.route == m.route.get()) {
             return
         }
-
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.createEventSource(m.route.param("channel"))
 

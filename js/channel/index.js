@@ -9,11 +9,13 @@ import '../../scss/modules/_channel-index.scss';
 import select from '../basicWidgets/select'
 export default {
     oninit(vnode) {
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"))
     },
     onupdate(vnode) {
         if (vnode.state.route != m.route.get()) {
+            model.state = states.LOADING
             vnode.state.route = m.route.get()
             model.get(m.route.param("channel"))
         }
@@ -23,8 +25,8 @@ export default {
     },
     route: routes.CHANNEL,
     view() {
-        if (model.state != states.READY) {
-            return m(".channel-index", m(loading))
+        if (model.state == states.LOADING) {
+            return m(loading)
         }
         return m(".channel-index", [
             m(".channel-index__hgroup", [

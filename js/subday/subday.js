@@ -1,10 +1,6 @@
 import model from './models/model'
 import m from 'mithril'
-import channelName from '../utils/channelName'
-import input from '../basicWidgets/input'
-import textarea from '../basicWidgets/textarea'
-import multiinput from '../basicWidgets/multiinput'
-import check from '../basicWidgets/checkbox'
+
 import states from '../utils/states.js'
 import '../../scss/modules/_subday.scss'
 import roulette from '../widgets/roulette'
@@ -17,6 +13,7 @@ export default {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("subdayID"), true)
         model.rollButtonBlock = false
+        model.state = states.LOADING
     },
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
@@ -24,7 +21,7 @@ export default {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("subdayID"), true)
         model.rollButtonBlock = false
-
+        model.state = states.LOADING
     },
     route: routes.SUBDAY,
     getTitle() {

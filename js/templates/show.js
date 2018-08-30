@@ -2,19 +2,19 @@ import m from 'mithril';
 import model from './models/show';
 import historyItem from './components/historyItem';
 import '../../scss/modules/_template-show.scss';
-import input from '../basicWidgets/input';
 import textarea from '../basicWidgets/textarea';
-import multiinput from '../basicWidgets/multiinput';
-import check from '../basicWidgets/checkbox';
+
 import states from '../utils/states.js';
 import routes from '../pageTemplate/routes';
 import channelName from '../utils/channelName';
 import l10n from '../l10n/l10n';
 import select from '../basicWidgets/select';
 import listModel from "./models/list"
+import loading from '../basic/loading';
 
 export default {
     oninit: function (vnode) {
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("template"))
 
@@ -22,6 +22,7 @@ export default {
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
+        model.state = states.LOADING
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("template"))
 
@@ -31,6 +32,9 @@ export default {
         return l10n.get("TEMPLATE_TITLE", m.route.param("template"), channelName.get(m.route.param("channel")))
     },
     view(vnode) {
+        if (model.state == states.LOADING) {
+            return m(loading)
+        }
         var currentPanel = "template"
         if (model.state == states.READY) {
             if (vnode.state.isAlias == true || (vnode.state.isAlias == null && model.isAlias == true)) {

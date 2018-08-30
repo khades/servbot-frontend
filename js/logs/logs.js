@@ -4,6 +4,8 @@ import '../../scss/modules/_user-logs.scss';
 import routes from '../pageTemplate/routes';
 import channelName from '../utils/channelName';
 import l10n from '../l10n/l10n';
+import loading from '../basic/loading';
+import states from '../utils/states.js';
 
 var generateClass = function (f) {
   if (f.messageType == "timeout")
@@ -57,6 +59,7 @@ var generatebanbody = function (f) {
 }
 export default {
   oninit: function (vnode) {
+    model.state = states.LOADING
 
     vnode.state.route = m.route.get()
     model.get(m.route.param("channel"), m.route.param("userID"))
@@ -66,6 +69,7 @@ export default {
 
     if (vnode.state.route == m.route.get())
       return
+    model.state = states.LOADING
     vnode.state.route = m.route.get()
     model.get(m.route.param("channel"), m.route.param("userID"))
   },
@@ -75,6 +79,9 @@ export default {
     return l10n.get("USER_LOGS", !!model.result.user ? model.result.user : "", channelName.get(m.route.param("channel")))
   },
   view: function (vnode) {
+    if (model.state == states.LOADING) {
+      return m(loading)
+    }
     return m(".user-logs", [
 
       !!model.result.messages ? m(".user-logs__block", [

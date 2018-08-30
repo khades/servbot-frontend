@@ -118,7 +118,6 @@ export default {
         this.channelID = channel
         this.subdayID = subdayID
         if (init == true) {
-
             this.state = states.LOADING
         }
         this.route = m.route.get()
@@ -130,7 +129,6 @@ export default {
                 this.subdayID = response.id
             }
             this.state = states.READY
-
         }).catch(error => {
             if (error.Code = 401) {
                 this.state = states.FORBIDDEN
