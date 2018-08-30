@@ -80,9 +80,10 @@ export default {
         })
     },
     randomize: function (block, subs, nonsubs) {
-        if (this.playingRoulette == true) {
+        if (model.playingRoulette == true || model.rollButtonBlock == true) {
             return
         }
+        model.rollButtonBlock = true
         let url = `api/channel/${this.channelID}/subdays/${this.subdayID}/randomize`
         if (subs === true) {
             url = `api/channel/${this.channelID}/subdays/${this.subdayID}/randomizeSubs`
@@ -107,7 +108,9 @@ export default {
                 }
             }
             if (this.playingRoulette != true) {
-                this.get(this.channelID, this.subdayID)
+                this.get(this.channelID, this.subdayID).then(f => {
+                    model.rollButtonBlock = false
+                })
             }
         })
     },

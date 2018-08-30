@@ -16,13 +16,14 @@ export default {
     oninit: function (vnode) {
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("subdayID"), true)
-
+        model.rollButtonBlock = false
     },
     onupdate: function (vnode) {
         if (vnode.state.route == m.route.get())
             return
         vnode.state.route = m.route.get()
         model.get(m.route.param("channel"), m.route.param("subdayID"), true)
+        model.rollButtonBlock = false
 
     },
     route: routes.SUBDAY,
@@ -53,12 +54,12 @@ export default {
                 m(".subday__subheader", l10n.get("SUBDAY_WINNERS")),
                 m(".subday__winners", model.object.winners.map(f => {
                     return m(".subday__winner", [
-                        m(".subday__winner-user",{
+                        m(".subday__winner-user", {
                             class: model.object.subsOnly === false && f.isSub === true ? "subday__winner-user--sub" : ""
                         }, f.user),
                         m(".subday__winner-game", f.game),
                         model.object.isActive == true ? m('button', {
-                            class: model.playingRoulette == true ? "disabled" : "",
+                            class: (model.playingRoulette == true || model.rollButtonBlock == true) ? "disabled" : "",
                             type: 'button',
                             onclick: (event) => {
                                 event.redraw = false
@@ -72,7 +73,7 @@ export default {
 
                     m('button', {
                         type: 'button',
-                        class: model.playingRoulette == true ? "disabled" : "",
+                        class: (model.playingRoulette == true || model.rollButtonBlock == true) ? "disabled" : "",
 
                         onclick: (event) => {
 
@@ -82,18 +83,18 @@ export default {
                     }, l10n.get("SUBDAY_RANDOMIZE_WINNER")),
                     model.object.subsOnly === false ? m('button', {
                         type: 'button',
-                        class: model.playingRoulette == true ? "disabled" : "",
+                        class: (model.playingRoulette == true || model.rollButtonBlock == true)  ? "disabled" : "",
 
                         onclick: (event) => {
 
                             event.redraw = false
                             model.randomize(m.route.param("roulette") == true, true, false)
                         }
-                    }, "★ "+l10n.get("SUBDAY_RANDOMIZE_WINNER_SUBS")) : null,
+                    }, "★ " + l10n.get("SUBDAY_RANDOMIZE_WINNER_SUBS")) : null,
 
                     model.object.subsOnly === false ? m('button', {
                         type: 'button',
-                        class: model.playingRoulette == true ? "disabled" : "",
+                        class: (model.playingRoulette == true || model.rollButtonBlock == true)  ? "disabled" : "",
 
                         onclick: (event) => {
 
@@ -103,7 +104,7 @@ export default {
                     }, l10n.get("SUBDAY_RANDOMIZE_WINNER_NONSUBS")) : null,
                     m('button', {
                         type: 'button',
-                        class: model.playingRoulette == true ? "disabled" : "",
+                        class: (model.playingRoulette == true || model.rollButtonBlock == true) ? "disabled" : "",
 
                         onclick: (event) => {
                             event.redraw = false
